@@ -1,16 +1,9 @@
+import { Box, Heading } from '@chakra-ui/react';
+
 export const App = () => {
   return (
-    <h1
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React homework template
-    </h1>
+    <Box display="flex" justifyContent="center" bg="accent.100">
+      <Heading as="h1">React template with CHAKRA UI</Heading>
+    </Box>
   );
 };

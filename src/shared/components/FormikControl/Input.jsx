@@ -12,6 +12,7 @@ const CustomInput = ({label, name, id, mb='16px', ...rest}) => {
           <Field>
             {({ form }) => (
               <FormControl isInvalid={form.errors[name] && form.touched[name]}>
+                {console.log(form.values)}
                 {label  ? <FormLabel 
                             htmlFor={id}
                             mb='8px'

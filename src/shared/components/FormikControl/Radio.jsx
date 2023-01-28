@@ -9,7 +9,7 @@ import {
 import { default as male } from './el_male.jpg'
 import { default as female } from './el_female.jpg'
 
-export default function SexRadioButtons({label, name, options, ...rest}) {
+const SexRadioButtons = ({label, name, options, ...rest}) => {
     const id = useMemo(()=> nanoid(), [])
 
   return (
@@ -59,3 +59,5 @@ export default function SexRadioButtons({label, name, options, ...rest}) {
     </Box>
   )
 }
+
+export default SexRadioButtons

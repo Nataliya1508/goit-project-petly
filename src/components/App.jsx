@@ -1,5 +1,5 @@
 import { Box, Heading } from '@chakra-ui/react';
-import { Button } from 'shared/components';
+import { Filter } from 'shared/components';
 
 export const App = () => {
   return (
@@ -8,7 +8,8 @@ export const App = () => {
       <Heading as="h1">React template with CHAKRA UI</Heading>
       
     </Box>
-    <Button>Cancel</Button>
+    <Filter>in good hands</Filter>
+
 </>
   );
 };

@@ -1,6 +1,16 @@
 import React from 'react'
 
-const NoticesCategoryItem = () => {
+const NoticesCategoryItem = (
+  {
+  avatar,
+  favorite,
+  title,
+  breed,
+  location,
+  age,
+  condition,
+  onDeletePets
+  }) => {
   return (
     <li>
       <div>

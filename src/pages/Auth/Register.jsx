@@ -5,6 +5,9 @@ import { Box, Text } from '@chakra-ui/react';
 import AuthForm from 'components/AuthForm/AuthForm';
 import StepSwitcher from 'components/AuthForm/StepSwitcher/StepSwitcher';
 import { regesterYupSchema } from 'schemas/registerYupSchema';
+import backgroundMobile from './bg-auth-mobile.png';
+import backgroundTablet from './bg-auth-tablet.png';
+import backgroundLaptop from './bg-auth-laptop.png';
 
 
 const Register = () => {
@@ -20,21 +23,23 @@ const Register = () => {
     mobile:""
   }
 
-  const onSubmit = (values, actions) => {
+  const onSubmit = (values, actions) => {''
     alert(JSON.stringify(values, null, 2));
     actions.resetForm();
   }
 
-  const handleNextClick = () => {
+  const handleNextClick = (event) => {
+    
     setStep('step2')
 
   }
   const handleBackClick = () => {
     setStep('step1')
   }
+
     
   return (
-    <Box as='main' bgColor='#FDF7F2' h='100vh'>
+    <Box as='main' bgImage={{base:backgroundMobile, md:backgroundTablet, xl:backgroundLaptop }} bgPosition='bottom' bgSize='contain' bgRepeat='no-repeat' bgColor='#FDF7F2' h='100vh' pt={{ md:'169px', xl:'46px'}}>
       <AuthForm title="Register" path={path} initialValues={initialValues} validationSchema={regesterYupSchema} onSubmit={onSubmit}>
         <StepSwitcher step={step} handleNextClick={handleNextClick} handleBackClick={handleBackClick}/>
         <Box display='flex' justifyContent='center' >

@@ -1,4 +1,4 @@
-import { Box, CloseButton } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import PetsItem from "./PetsItem";
 
 // тут буде рендеринг PetsItem за допомогою map

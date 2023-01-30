@@ -1,7 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-export default function NoticesCategoriesNav() {
-  return (
-    <div>NoticesCategoriesNav</div>
-  )
-}
+// import NoticeCategoryItem from "components/NoticesCategoryItem/NoticesCategoryItem"
+
+// const NoticesCategoriesNav = () => {
+//   return (
+//     <div></div>
+//   )
+// }
+
+// export default NoticesCategoriesNav

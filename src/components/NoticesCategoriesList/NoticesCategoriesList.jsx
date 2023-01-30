@@ -1,7 +1,27 @@
-import React from 'react'
+import React from 'react';
 
-export default function NoticesCategoriesList() {
+import { NoticesCategoryItem } from './NoticesCategoryItem.js';
+
+const NoticesCategoriesList = userPets => {
+  // const filterPets = userPets.filter(pets => pets.condition === condition);
   return (
-    <div>NoticesCategoriesList</div>
-  )
-}
+    <ul key={userPets.id}>
+      {userPets.map(
+        ({ id, favorite, avatar, title, breed, location, age, condition }) => (
+          <NoticesCategoryItem
+            key={id}
+            avatar={avatar}
+            favorite={favorite}
+            title={title}
+            breed={breed}
+            location={location}
+            age={age}
+            condition={condition}
+          />
+        )
+      )}
+    </ul>
+  );
+};
+
+export default NoticesCategoriesList;

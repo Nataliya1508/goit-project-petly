@@ -10,6 +10,12 @@ const theme = extendTheme({
     heading: `'manrope', sans-serif`,
     body: `'manrope', sans-serif`,
   },
+  breakpoints: {
+    sm: '320px',
+    md: '768px',
+    lg: '960px',
+    xl: '1280px',
+  },
 });
 
 export default theme;

@@ -2,8 +2,8 @@ import {
     Box,
     FormControl,
     FormLabel,
-    Input,
-    FormErrorMessage, } from "@chakra-ui/react"
+    FormErrorMessage,
+    VisuallyHiddenInput } from "@chakra-ui/react"
 import { Field } from 'formik';
   
 const CustomInputFile = ({label, name, id, mb: marginbot='20px', ...rest}) => {
@@ -32,11 +32,10 @@ const CustomInputFile = ({label, name, id, mb: marginbot='20px', ...rest}) => {
                     </FormLabel>
 
                     <Field
-                        as={Input}
+                        as={VisuallyHiddenInput}
                         id={id}
                         name={name}
                         type='file'
-                        hidden
                         {...rest}
                         />
                     <FormErrorMessage

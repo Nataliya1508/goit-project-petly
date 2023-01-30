@@ -8,6 +8,6 @@ export const regesterYupSchema = Yup.object({
     password: Yup.string().min(7, 'Must be 7 characters or more').max(32, 'Must be 32 characters or less').matches(regexPassword, 'Must not contain spaces').required("Required"),
     confirm: Yup.string().oneOf([Yup.ref('password'), null], "Password must match").required("Required"),
     name: Yup.string(),
-    city: Yup.string(),
-    mobile: Yup.string().max(13, 'Must be 12 numbers or less').matches(regexPhoneNumber, 'Mobile phone must include numbers in format +380xxxxxxxxx'),
+    address: Yup.string(),
+    phone: Yup.string().max(13, 'Must be 12 numbers or less').matches(regexPhoneNumber, 'Mobile phone must include numbers in format +380xxxxxxxxx'),
 });

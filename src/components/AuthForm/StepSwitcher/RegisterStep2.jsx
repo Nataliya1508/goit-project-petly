@@ -17,16 +17,16 @@ const RegisterStep2 = ({handleBackClick}) => {
                 <FormikControl 
                 control='input'
                 type='text' 
-                name='city' 
-                id='reg-city' 
+                name='address' 
+                id='address' 
                 placeholder='City, region'
                 h={{md:'52px'}}
                 width={{base:'280px', md:'448px', xl:'458px'}} />
                 <FormikControl 
                 control='input'
                 type='tel' 
-                name='mobile' 
-                id='reg-mobile phone' 
+                name='phone' 
+                id='reg-phone' 
                 placeholder='Mobile phone'
                 h={{md:'52px'}}
                 width={{base:'280px', md:'448px', xl:'458px'}}

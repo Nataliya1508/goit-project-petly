@@ -1,9 +1,19 @@
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { Box } from '@chakra-ui/layout';
 import React from 'react';
+import { useState } from 'react';
 import FormikControl from 'shared/components/FormikControl/FormikControl';
-// import { Button } from 'shared/components';
 
 
 const RegisterStep1 = () => {
+    const[isShowPassword, setIsShowPassword] = useState(false);
+    const handleClickPassword =() => {
+        setIsShowPassword((prevState)=> !prevState);
+    }
+    const[isShowConfirm, setIsShowConfirm] = useState(false);
+    const handleClickConfirm =() => {
+        setIsShowConfirm((prevState)=> !prevState);
+    }
     return (
         <>
             <FormikControl 
@@ -14,23 +24,29 @@ const RegisterStep1 = () => {
                 placeholder='Email'
                 h={{md:'52px'}}
                 width={{base:'280px', md:'448px', xl:'458px'}} />
-                <FormikControl 
+                <FormikControl
                 control='input'
-                type='password' 
+                type={isShowPassword ? 'text' : 'password'}
                 name='password' 
                 id='reg-password' 
                 placeholder='Password'
                 h={{md:'52px'}}
                 width={{base:'280px', md:'448px', xl:'458px'}} />
+                <Box onClick={handleClickPassword} position='absolute' zIndex='1' right={{base:'12px'}} top={{base:'70px',md:'80px'}} bg='#FDF7F' h={{base:'25px',md:'25px'}} w={{base:'15px', md:'25px'}}>
+                    {isShowPassword ? <ViewOffIcon color='rgba(17, 17, 17, 0.6);' h='inherit' w='inherit'/> : <ViewIcon color='rgba(17, 17, 17, 0.6);' h='inherit' w='inherit'/>}
+                </Box>
                 <FormikControl 
                 control='input'
-                type='password' 
+                type={isShowConfirm ? 'text' : 'password'} 
                 name='confirm' 
                 id='reg-confirm Password' 
                 placeholder='Confirm Password'
                 h={{md:'52px'}}
                 width={{base:'280px', md:'448px', xl:'458px'}}
                 mb='0' />
+                <Box onClick={handleClickConfirm} position='absolute' zIndex='1' right={{base:'12px'}} top={{base:'130px',md:'150px'}} bg='#FDF7F' h={{base:'25px',md:'25px'}} w={{base:'15px', md:'25px'}}>
+                    {isShowConfirm ? <ViewOffIcon color='rgba(17, 17, 17, 0.6);' h='inherit' w='inherit'/> : <ViewIcon color='rgba(17, 17, 17, 0.6);' h='inherit' w='inherit'/>}
+                </Box>
         </>                   
     )
 }

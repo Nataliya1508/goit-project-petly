@@ -41,7 +41,7 @@ const RegisterForm = () => {
             onSubmit={onSubmit}
             >
                 {formik => (
-                <Box as={Form} width={{base:'280px', md:'448px', xl:'458px'}} >
+                <Box as={Form} position='relative' width={{base:'280px', md:'448px', xl:'458px'}} >
                     <StepSwitcher step={step} handleBackClick={handleBackClick}/>
                     {step === 'step1' && <Button isDisabled={formik.values.email === '' || formik.values.password === '' || formik.values.confirm === '' } controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={()=>{!formik.errors.email && !formik.errors.password && !formik.errors.confirm ? setStep('step2') : formik.setFieldTouched('email', true)}}>Next</Button> }
                     <Box display='flex' justifyContent='center' >

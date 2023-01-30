@@ -1,13 +1,12 @@
 import React from 'react'
 
-import NoticesCategoryItem from 'components/NoticesCategoryItem/NoticesCategoryItem'
+import {NoticesCategoryItem} from './NoticesCategoryItem.js'
 
 const NoticesCategoriesList = (userPets) => {
 const filterPets = userPets.filter(pets => pets.condition === condition)
-
   return (
     <ul key={filterPets.id}>
-      {filterPets.map(({id, favorite, avatar, breed, location, age, condition}) =>(
+      {filterPets.map(({id, favorite, avatar, title, breed, location, age, condition}) => (
         <NoticesCategoryItem
         key={id}
         avatar = {avatar}

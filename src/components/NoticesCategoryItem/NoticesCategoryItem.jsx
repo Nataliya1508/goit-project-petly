@@ -1,7 +1,9 @@
 import React from 'react'
+import {Text} from '@chakra-ui/react'
 
 const NoticesCategoryItem = (
   {
+  id,
   avatar,
   favorite,
   title,
@@ -16,7 +18,7 @@ const NoticesCategoryItem = (
       <div>
         <img src={avatar} alt="Pets" width="100" />
         <p>{condition}</p>
-        <span className={ favorite ? css.onFavorite : css.offFavorite}></span>
+        <Text bg={ favorite ? "res.200" : "green.300"}></Text>
       </div>
     <h3>{title}</h3>
       <p>Breed:{breed}</p> 

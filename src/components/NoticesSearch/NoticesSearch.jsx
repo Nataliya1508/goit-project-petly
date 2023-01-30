@@ -1,7 +1,7 @@
 import { useState} from 'react';
 import { Search, SearchForm, FormButton, FormInput } from "components/NoticesSearch/NoticesSearch"
 import PropTypes from "prop-types"
-import HighlightOffIcon from "@mui/icon-material/HighlightOff"
+import { CloseIcon } from '@chakra-ui/icon'
 
 import SearchIcon from ""
 const NoticesSearch = (onSubmit) => {
@@ -38,7 +38,7 @@ const NoticesSearch = (onSubmit) => {
       />
         <FormButton type="submit">
 {filteredData.length === 0 ?
-<SearchIcon /> : <HighlightOffIcon onClick={clearInput} />
+<SearchIcon /> : <CloseIcon onClick={clearInput} />
 }
         </FormButton>
       </SearchForm>

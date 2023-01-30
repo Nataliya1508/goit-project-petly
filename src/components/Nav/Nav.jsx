@@ -1,6 +1,7 @@
-import { Box } from '@chakra-ui/react'
+import { useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import BurgerMenuNav from './BurgerMenuNav'
+import DesktopNav from './DesktopNav'
 
 export default function Nav() {
     const navItems = [
@@ -9,10 +10,13 @@ export default function Nav() {
         { href: '/friends', text: 'Our friends' }
     ]
 
+    const [isBurgerMenu] = useMediaQuery('(max-width: 1279px)')
+    const [isDesktop] = useMediaQuery('(min-width: 1280px)')
+
     return (
-        <Box as='nav' display='flex' alignItems='center'>
-            {navItems.map(({ href, text }) => <Link style={{ marginLeft: '10px' }} to={href} key={href}>{text}</Link>)
-            }
-        </Box >
+        <>
+            {isBurgerMenu && <BurgerMenuNav items={navItems} />}
+            {isDesktop && <DesktopNav items={navItems} />}
+        </>
     )
 }

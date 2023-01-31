@@ -1,10 +1,4 @@
 import { useState } from 'react';
-// import {
-//   Search,
-//   SearchForm,
-//   FormButton,
-//   FormInput,
-// } from 'components/NoticesSearch/NoticesSearch';
 import PropTypes from 'prop-types';
 import { CloseIcon, Search2Icon } from '@chakra-ui/icons';
 import { Box } from '@chakra-ui/react';

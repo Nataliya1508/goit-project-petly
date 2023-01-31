@@ -36,6 +36,9 @@ export const App = () => {
         <Route path="news" element={<News />} />
         <Route path="notices" element={<Notices />} />
         <Route path="notices/:categoryName" element={<Notices />} />
+          <Route path="sell" element={<p>sell</p>}/>
+          <Route path="lost-found" element={<p>lost-found</p>}/>
+          <Route path="free" element={<p>in good hands</p>}/>
         <Route path="friends" element={<OurFriends />} />
 
         <Route path="user" element={<UserAccount />} />

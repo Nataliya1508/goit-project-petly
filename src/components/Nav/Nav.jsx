@@ -3,7 +3,7 @@ import React from 'react'
 import BurgerMenuNav from './BurgerMenuNav'
 import DesktopNav from './DesktopNav'
 
-export default function Nav() {
+export default function Nav({ onClick }) {
     const navItems = [
         { href: '/news', text: 'News' },
         { href: '/notices', text: 'Find pet' },
@@ -15,7 +15,7 @@ export default function Nav() {
 
     return (
         <>
-            {isBurgerMenu && <BurgerMenuNav items={navItems} />}
+            {isBurgerMenu && <BurgerMenuNav items={navItems} action={onClick} />}
             {isDesktop && <DesktopNav items={navItems} />}
         </>
     )

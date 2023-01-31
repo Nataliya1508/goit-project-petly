@@ -1,16 +1,20 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { StyledLink } from './AuthNav.styled'
 
-export default function AuthNav() {
+export default function AuthNav({ onClick }) {
     const authItems = [
-        { href: '/register', text: 'Registration' },
-        { href: '/login', text: 'Login' }
+        { href: '/login', text: 'Login' },
+        { href: '/register', text: 'Registration' }
     ]
 
     return (
-        <Flex>
-            {authItems.map(({ href, text }) => <Link to={href} key={href}>{text}</Link>)}
+        <Flex m='0 auto'>
+            {authItems.map(({ href, text }) =>
+                <StyledLink onClick={() => onClick(false)} to={href} key={href}>
+                    {text}
+                </StyledLink>)}
         </Flex>
     )
 }

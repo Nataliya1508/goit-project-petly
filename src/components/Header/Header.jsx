@@ -29,7 +29,7 @@ export default function Header() {
             {isMobile && <MobileHeader active={menuActive} setActive={onBurgerBtnClick} />}
             {isTablet && <TabletHeader active={menuActive} setActive={onBurgerBtnClick} />}
             {isDesktop && <DesktopHeader />}
-            <BurgerMenu active={menuActive} />
+            <BurgerMenu active={menuActive} setActive={setMenuActive} />
         </>
     )
 }

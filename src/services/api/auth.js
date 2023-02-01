@@ -15,15 +15,10 @@ const token = {
     }
 };
 
-export const register = async (signupData) => {
-    try {
-        const { data } = await instance.post("/api/users/register", signupData);
-        // token.set(data.token);
-        console.log(data);
-        return data;
-    } catch (e) {
-        console.log(e.message)
-    }
+export const register = async (signupData) => {    
+    const { data } = await instance.post("/api/users/register", signupData);
+    console.log(data);
+    return data;
 }
 
 export const login = async (loginData) => {
@@ -32,14 +27,14 @@ export const login = async (loginData) => {
     return data;
 }
 
-// export const logout = async () => {
-//     const { data } = await instance.post("/logout");
-//     token.unset();
-//     return data;
-// }
+export const logout = async () => {
+    const { data } = await instance.post("/logout");
+    token.unset();
+    return data;
+}
 
-// export const getCurrentUser = async (persistedToken) => {
-//     token.set(persistedToken);
-//     const data = await instance.get("/current");
-//     return data;
-// }
+export const getCurrentUser = async (persistedToken) => {
+    token.set(persistedToken);
+    const data = await instance.get("/current");
+    return data;
+}

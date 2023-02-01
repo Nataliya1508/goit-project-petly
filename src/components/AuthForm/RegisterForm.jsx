@@ -3,14 +3,17 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heading, Box, Text } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
+import { useDispatch } from 'react-redux';
+
 import { Button } from 'shared/components';
 import StepSwitcher from 'components/AuthForm/StepSwitcher/StepSwitcher';
-import {register, login} from '../../services/api/auth';
 import { regesterYupSchema } from 'schemas/registerYupSchema';
+import { login, register } from 'redux/auth/auth-operations';
 
 
 const RegisterForm = () => {
     const [step, setStep] = useState('step1');
+    const dispatch = useDispatch();
 
     const initialValues = {
         email: "",
@@ -21,17 +24,22 @@ const RegisterForm = () => {
         phone:""
     }
   
-    const onSubmit = async (values, actions) => {
-        const data = await register({'email': values.email, 'password': values.password, 'name': values.name, 'address': values.address, 'phone': values.phone });
-        if(data) {
-            login({'email': values.email, 'password': values.password})
+    const onSubmit = async (values, {resetForm}) => {
+        const registerData = ({'email': values.email, 'password': values.password, 'name': values.name, 'address': values.address, 'phone': values.phone });
+        const data = await dispatch(register(registerData));
+        console.log(data);
+        
+        if(data.type === "auth/register/fulfilled") {
+            dispatch(login({'email': values.email, 'password': values.password}));
+            resetForm();            
         }
-        actions.resetForm();
+        data.error.message && alert(data.payload.message);                
     }
-  
+    
     const handleBackClick = () => {
         setStep('step1')
     }
+
     return (
         <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'80px'}} pt={{base:'42px', md:'60px'}} pb={{base:'0', md:'40px', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'#FDF7F2', md:'white'}} mx='auto'>
             <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center'>Register</Heading>
@@ -43,7 +51,7 @@ const RegisterForm = () => {
                 {formik => (
                 <Box as={Form} position='relative' width={{base:'280px', md:'448px', xl:'458px'}} >
                     <StepSwitcher step={step} handleBackClick={handleBackClick}/>
-                    {step === 'step1' && <Button isDisabled={formik.values.email === '' || formik.values.password === '' || formik.values.confirm === '' } controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={()=>{!formik.errors.email && !formik.errors.password && !formik.errors.confirm ? setStep('step2') : formik.setFieldTouched('email', true)}}>Next</Button> }
+                    {step === 'step1' && <Button  controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={async()=>{Object.keys(await formik.validateForm()).length === 0 ? setStep('step2') : formik.submitForm()}}>Next</Button> }
                     <Box display='flex' justifyContent='center' >
                         <Text 
                         fontFamily='body' 

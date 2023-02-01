@@ -4,6 +4,7 @@ import { FilterInput } from 'shared/components';
 // import { CloseIcon, Search2Icon } from '@chakra-ui/icons';
 // import { Box } from '@chakra-ui/react';
 
+
 const NoticesSearch = onSubmit => {
   const [query, setQuery] = useState('');
   const [filteredData, setFilteredData] = useState([]);
@@ -24,7 +25,7 @@ const NoticesSearch = onSubmit => {
   const clearInput = () => {
     setFilteredData('');
   };
-  console.log(filteredData);
+
   return (
     <FilterInput
       name={'search'}

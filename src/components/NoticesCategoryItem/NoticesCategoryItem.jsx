@@ -58,10 +58,38 @@ const NoticesCategoryItem = (
               letterSpacing={'-0.01em'}>
                 {title}
             </Heading>
-            <Text mb={'8px'}>Breed:{breed}</Text>
-            <Text mb={'8px'}>Location:{location}</Text>
-            <Text mb={price && '8px'}>Age:{age}</Text>
-            {price && <Text>Price:{price}</Text>}
+            <Text
+              mb={'8px'}
+              fontSize={'16px'}
+              fontWeight={'medium'}
+              lineHeight={'short'}
+              color={'#111111'}>
+                Breed: {breed}
+            </Text>
+            <Text
+              mb={'8px'}
+              fontSize={'16px'}
+              fontWeight={'medium'}
+              lineHeight={'short'}
+              color={'#111111'}>
+                Location: {location}
+            </Text>
+            <Text
+              mb={price && '8px'}
+              fontSize={'16px'}
+              fontWeight={'medium'}
+              lineHeight={'short'}
+              color={'#111111'}>
+                Age: {age}
+            </Text>
+            {price && <Text
+                        mb={price && '8px'}
+                        fontSize={'16px'}
+                        fontWeight={'medium'}
+                        lineHeight={'short'}
+                        color={'#111111'}>
+                          Price: {price}
+                      </Text>}
           </Box>
         </CardBody>
         <CardFooter

@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react'
 
-const CustomFilter = ({children, ...rest}) => {
+const FilterButton = ({children, ...rest}) => {
   return (
     <Button
         type={'button'}
@@ -29,4 +29,4 @@ const CustomFilter = ({children, ...rest}) => {
   )
 }
 
-export default CustomFilter
+export default FilterButton

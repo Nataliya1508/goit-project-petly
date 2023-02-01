@@ -1,5 +1,7 @@
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import { SharedLayout } from './SharedLayout';
 
 const Home = lazy(() =>
@@ -25,13 +27,15 @@ const UserAccount = lazy(() =>
 );
 
 export const App = () => {
+  const isLoggedIn = useSelector(getIsLoggedIn);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
 
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route path="login" element={isLoggedIn ? <Navigate to='/user'/> : <Login />} />
+        <Route path="register" element={isLoggedIn ? <Navigate to='/user'/> : <Register />} />
 
         <Route path="news" element={<News />} />
         <Route path="notices" element={<Notices />} />

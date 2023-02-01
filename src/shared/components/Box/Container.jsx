@@ -5,6 +5,7 @@ function Container({children, ...rest}) {
         <Box
             p={'0 20px'}
             m={'0 auto'}
+            backgroundColor={'#FDF7F2'}
             {...rest}
         >
             {children}

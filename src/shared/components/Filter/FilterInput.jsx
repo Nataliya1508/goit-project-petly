@@ -1,7 +1,7 @@
 import { Input, InputRightElement, InputGroup, Button } from '@chakra-ui/react'
 import { SearchIcon, SmallCloseIcon } from '@chakra-ui/icons'
 
-const FilterInput = ({handleClick, active, ...rest}) => {
+const FilterInput = ({handleSearch, handleClear, active, ...rest}) => {
   return (
     <InputGroup
         w={'full'}>
@@ -15,12 +15,13 @@ const FilterInput = ({handleClick, active, ...rest}) => {
                 borderRadius={'20px'}
                 boxShadow={'7px 4px 14px rgba(49, 21, 4, 0.07)'}
                 color={'#535353'}
+                backgroundColor={'white'}
                 fontSize={'20px'}
                 fontWeight={'medium'}
                 lineHeight={'1.2'}
                 letterSpacing={'0.04em'}
                 _placeholder={{ color: '#535353',
-                                opasity: '0' }}
+                                opacity: 1}}
                 _hover={{borderColor: 'rgba(245, 146, 86, 0.5)'}}
                 _focus={{borderColor: 'rgba(245, 146, 86, 0.5)',
                         boxShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)'}}
@@ -33,7 +34,7 @@ const FilterInput = ({handleClick, active, ...rest}) => {
                     backgroundColor={'white'}
                     width={'24px'}
                     height={'24px'}
-                    onClick={handleClick}>
+                    onClick={active ? handleClear : handleSearch}>
                         {!active
                             ? <SearchIcon
                                 width={'18px'}

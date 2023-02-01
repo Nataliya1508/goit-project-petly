@@ -3,7 +3,7 @@ import FormikControl from 'shared/components/FormikControl/FormikControl';
 import { Button } from 'shared/components';
 
 
-const RegisterStep2 = ({handleBackClick}) => {
+const RegisterStep2 = ({handleBackClick, isDisabled}) => {
     return (
         <>                            
             <FormikControl 

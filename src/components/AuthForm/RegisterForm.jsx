@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import { Button } from 'shared/components';
 import StepSwitcher from 'components/AuthForm/StepSwitcher/StepSwitcher';
-import { regesterYupSchema } from 'schemas/registerYupSchema';
+import { regesterYupSchema } from 'schemas/validationYupSchemas';
 import { login, register } from 'redux/auth/auth-operations';
 
 
@@ -33,7 +33,7 @@ const RegisterForm = () => {
             dispatch(login({'email': values.email, 'password': values.password}));
             resetForm();            
         }
-        data.error.message && alert(data.payload.message);                
+        data.error && alert(data.payload.message);                
     }
     
     const handleBackClick = () => {
@@ -42,7 +42,7 @@ const RegisterForm = () => {
 
     return (
         <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'80px'}} pt={{base:'42px', md:'60px'}} pb={{base:'0', md:'40px', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'#FDF7F2', md:'white'}} mx='auto'>
-            <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center'>Register</Heading>
+            <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Registration</Heading>
             <Formik 
             initialValues={initialValues}
             validationSchema={regesterYupSchema}
@@ -50,7 +50,7 @@ const RegisterForm = () => {
             >
                 {formik => (
                 <Box as={Form} position='relative' width={{base:'280px', md:'448px', xl:'458px'}} >
-                    <StepSwitcher step={step} handleBackClick={handleBackClick}/>
+                    <StepSwitcher step={step} isDisabled={formik.isSubmitting} handleBackClick={handleBackClick}/>
                     {step === 'step1' && <Button  controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={async()=>{Object.keys(await formik.validateForm()).length === 0 ? setStep('step2') : formik.submitForm()}}>Next</Button> }
                     <Box display='flex' justifyContent='center' >
                         <Text 

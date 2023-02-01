@@ -11,3 +11,8 @@ export const regesterYupSchema = Yup.object({
     address: Yup.string(),
     phone: Yup.string().max(13, 'Must be 12 numbers or less').matches(regexPhoneNumber, 'Mobile phone must include numbers in format +380xxxxxxxxx'),
 });
+
+export const loginYupSchema = Yup.object({
+    email: Yup.string().email("Invalid email adress").required("Required"),
+    password: Yup.string().min(7, 'Must be 7 characters or more').max(32, 'Must be 32 characters or less').matches(regexPassword, 'Must not contain spaces').required("Required"),
+});

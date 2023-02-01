@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { FilterInput } from 'shared/components';
 // import { CloseIcon, Search2Icon } from '@chakra-ui/icons';
 // import { Box } from '@chakra-ui/react';
 
-
 const NoticesSearch = onSubmit => {
   const [query, setQuery] = useState('');
-  const [filteredData, setFilteredData] = useState([]);
+  const [
+    // filteredData,
+    setFilteredData,
+  ] = useState([]);
 
   const handleChange = e => {
     setQuery(e.target.value.toLowerCase());
@@ -23,15 +25,15 @@ const NoticesSearch = onSubmit => {
   };
 
   const clearInput = () => {
-    setFilteredData('');
+    setFilteredData([]);
   };
 
   return (
     <FilterInput
       name={'search'}
       onChange={handleChange}
-      handleSearch={handleSubmit} 
-      handleClear={clearInput}  
+      handleSearch={handleSubmit}
+      handleClear={clearInput}
       value={query}
       mb={'28px'}
     />

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { CloseIcon, SearchIcon } from '@chakra-ui/icons';
-import { Box, Button, Input, IconButton } from '@chakra-ui/react';
+import { FilterInput } from 'shared/components';
+// import { CloseIcon, Search2Icon } from '@chakra-ui/icons';
+// import { Box } from '@chakra-ui/react';
+
 
 const NoticesSearch = onSubmit => {
   const [query, setQuery] = useState('');
@@ -25,29 +27,38 @@ const NoticesSearch = onSubmit => {
   };
 
   return (
-    <Box>
-      <form onSubmit={handleSubmit} autocomplete="off">
-        <Input
-          type="text"
-          name="input"
-          placeholder="Search"
-          onChange={handleChange}
-          value={filteredData}
-        />
-        <Button type="submit">
-          {filteredData.length === 0 ? (
-            <IconButton aria-label="Search database" icon={<SearchIcon />} />
-          ) : (
-            <CloseIcon onClick={clearInput} />
-          )}
-        </Button>
-      </form>
-    </Box>
+    <FilterInput
+      name={'search'}
+      onChange={handleChange}
+      handleSearch={handleSubmit} 
+      handleClear={clearInput}  
+      value={query}
+      mb={'28px'}
+    />
+    // <Box>
+    //   <Box onSubmit={handleSubmit}>
+    //     <Box
+    //       type="text"
+    //       name="input"
+    //       autocomplete="off"
+    //       placeholder="Search"
+    //       onChange={handleChange}
+    //       value={filteredData}
+    //     />
+    //     <Box type="submit">
+    //       {filteredData.length === 0 ? (
+    //         <Search2Icon />
+    //       ) : (
+    //         <CloseIcon onClick={clearInput} />
+    //       )}
+    //     </Box>
+    //   </Box>
+    // </Box>
   );
 };
 
-NoticesSearch.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+// NoticesSearch.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+// };
 
 export default NoticesSearch;

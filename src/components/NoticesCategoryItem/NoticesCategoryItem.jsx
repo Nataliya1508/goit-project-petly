@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, Box, Image, Card, CardBody, Heading, CardFooter, Button} from '@chakra-ui/react'
+import {Text, Box, Image, Card, CardBody, Heading, CardFooter} from '@chakra-ui/react'
 import { CardButton, FavoriteButton } from 'shared/components'
 
 const NoticesCategoryItem = (

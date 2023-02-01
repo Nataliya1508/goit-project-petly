@@ -2,10 +2,11 @@ import React from 'react';
 
 import { NoticesCategoryItem } from './NoticesCategoryItem.js';
 
-const NoticesCategoriesList = userPets => {
-  // const filterPets = userPets.filter(pets => pets.condition === condition);
+const NoticesCategoriesList = ({ userPets, condition }) => {
+  const filterPets = userPets.filter(pets => pets.condition === condition);
+
   return (
-    <ul key={userPets.id}>
+    <ul key={filterPets.id}>
       {userPets.map(
         ({ id, favorite, avatar, title, breed, location, age, condition }) => (
           <NoticesCategoryItem

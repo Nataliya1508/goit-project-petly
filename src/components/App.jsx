@@ -1,7 +1,7 @@
 import { lazy } from 'react';
-import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { getIsLoggedIn } from 'redux/auth/auth-selectors';
+import { Route, Routes } from 'react-router-dom';
+import { PrivateRoute } from './SecureRoutes/PrivatRoute';
+import { RedirectedRoute } from './SecureRoutes/RedirectedRoute';
 import { SharedLayout } from './SharedLayout';
 
 const Home = lazy(() =>
@@ -27,24 +27,43 @@ const UserAccount = lazy(() =>
 );
 
 export const App = () => {
-  const isLoggedIn = useSelector(getIsLoggedIn);
-
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
 
-        <Route path="login" element={isLoggedIn ? <Navigate to='/user'/> : <Login />} />
-        <Route path="register" element={isLoggedIn ? <Navigate to='/user'/> : <Register />} />
+        <Route
+          path="login"
+          element={<RedirectedRoute redirectTo="/user" component={<Login />} />}
+        />
+        <Route
+          path="register"
+          element={
+            <RedirectedRoute redirectTo="/user" component={<Register />} />
+          }
+        />
 
         <Route path="news" element={<News />} />
         <Route path="notices" element={<Notices />} />
-        <Route path="notices/:categoryName" element={<Notices />} />
-          <Route path="sell" element={<p>sell</p>}/>
-          <Route path="lost-found" element={<p>lost-found</p>}/>
-          <Route path="free" element={<p>in good hands</p>}/>
-        <Route path="friends" element={<OurFriends />} />
+        <Route path="notices/:categoryName" element={<Notices />}>
+          <Route path="sell" element={<p>sell</p>} />
+          <Route path="lost-found" element={<p>lost-found</p>} />
+          <Route path="free" element={<p>in good hands</p>} />
+          <Route
+            path="own"
+            element={
+              <PrivateRoute redirectTo="/login" component={<p>own</p>} />
+            }
+          />
+          <Route
+            path="favorite"
+            element={
+              <PrivateRoute redirectTo="/login" component={<p>favorite</p>} />
+            }
+          />
+        </Route>
 
+        <Route path="friends" element={<OurFriends />} />
         <Route path="user" element={<UserAccount />} />
         <Route path="*" element={<h1>Page Not Found 🥶</h1>} />
       </Route>

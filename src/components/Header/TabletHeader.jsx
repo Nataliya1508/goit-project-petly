@@ -1,12 +1,12 @@
 import React from 'react'
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import { Flex, Container, IconButton, Box, Image } from '@chakra-ui/react'
+import { Flex, Container, Box, Image } from '@chakra-ui/react'
 import UserNav from 'components/UserNav/UserNav'
 import AuthNav from 'components/AuthNav/AuthNav'
+import { BurgerButton } from './BurgerButton.styled'
 import logo from '../../media/logo.svg'
 
-export default function TabletHeader({ active, setActive }) {
-    const isLogin = true  ///////// Временно
+export default function TabletHeader({ active, setActive, action }) {
+    const isLogin = true ///////// Временно
 
     return (
         <Box
@@ -14,8 +14,7 @@ export default function TabletHeader({ active, setActive }) {
         >
             <Container
                 maxW='768px'
-                pl='32px'
-                pr='32px'
+                p='24px 32px'
                 position='relative'
                 zIndex='10'
             >
@@ -33,12 +32,17 @@ export default function TabletHeader({ active, setActive }) {
                         />
                     </Flex>
                     <Flex>
-                        {isLogin ? <UserNav /> : <AuthNav />}
-                        <IconButton
-                            onClick={() => setActive()}
-                            variant='unstyled'
-                            icon={active ? <CloseIcon w='20px' h='20px' /> : <HamburgerIcon w='30px' h='20px' />}
-                        />
+                        {isLogin ? <UserNav onClick={action} /> : <AuthNav onClick={action} />}
+                        <Flex justify='center' align='center' width='40px' ml='20px'>
+                            <Box
+                                position='relative'
+                                width='30px'
+                                height='20px'
+                                onClick={() => setActive()}
+                            >
+                                <BurgerButton className={active ? 'active' : ''} />
+                            </Box>
+                        </Flex>
                     </Flex>
                 </Flex>
             </Container>

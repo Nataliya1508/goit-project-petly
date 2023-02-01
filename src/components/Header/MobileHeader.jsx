@@ -1,7 +1,7 @@
 import React from 'react'
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { IconButton, Container, Flex, Box, Image } from '@chakra-ui/react'
+import { Container, Flex, Box, Image } from '@chakra-ui/react'
 import logo from '../../media/logo.svg'
+import { BurgerButton } from './BurgerButton.styled'
 
 export default function MobileHeader({ active, setActive }) {
 
@@ -25,13 +25,18 @@ export default function MobileHeader({ active, setActive }) {
                     >
                         <Image src={logo} alt="Logo" />
                     </Flex>
-                    <IconButton
-                        onClick={() => setActive()}
-                        variant='unstyled'
-                        icon={active ? <CloseIcon w='20px' h='20px' /> : <HamburgerIcon w='30px' h='20px' />}
-                    />
+                    <Flex justify='center' align='center' width='40px'>
+                        <Box
+                            position='relative'
+                            width='30px'
+                            height='20px'
+                            onClick={() => setActive()}
+                        >
+                            <BurgerButton className={active ? 'active' : ''} />
+                        </Box>
+                    </Flex>
                 </Flex>
             </Container>
-        </Box>
+        </Box >
     )
 }

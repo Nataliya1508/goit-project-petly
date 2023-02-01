@@ -5,8 +5,8 @@ import UserNav from 'components/UserNav/UserNav'
 import AuthNav from 'components/AuthNav/AuthNav'
 import logo from '../../media/logo.svg'
 
-export default function DesktopHeader() {
-    const isLogin = false
+export default function DesktopHeader({ action }) {
+    const isLogin = true  ////////// Временно
 
     return (
         <Box
@@ -14,8 +14,7 @@ export default function DesktopHeader() {
         >
             <Container
                 maxW='1280px'
-                pl='16px'
-                pr='16px'
+                padding='20px 16px'
             >
                 <Flex
                     justify='space-between'
@@ -34,7 +33,7 @@ export default function DesktopHeader() {
                         <Nav />
                     </Flex>
                     <Flex>
-                        {isLogin ? <UserNav /> : <AuthNav />}
+                        {isLogin ? <UserNav onClick={action} /> : <AuthNav onClick={action} />}
                     </Flex>
                 </Flex>
             </Container>

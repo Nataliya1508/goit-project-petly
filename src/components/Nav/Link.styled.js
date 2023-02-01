@@ -12,6 +12,10 @@ export const StyledLink = styled(Link)`
 
     color: #181C27;
 
+    .active {
+        background-color: black;
+    }
+
     &:last-child {
         margin-bottom: 0;
     }
@@ -24,4 +28,26 @@ export const StyledLink = styled(Link)`
 
         color: #F59256;
     }
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: 60px;
+
+        font-size: 48px;
+        line-height: 66px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        &:first-of-type {
+            margin-top: 34px;
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+
+        margin: 0;
+
+        font-size: 20px;
+        line-height: 27px;
+    }
 `
+

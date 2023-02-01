@@ -1,12 +1,21 @@
-import { Box } from '@chakra-ui/react'
+import { Box, HStack } from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { StyledLink } from './Link.styled'
 
 export default function DesktopNav({ items }) {
     return (
-        <Box as='nav' display='flex' alignItems='center' bg='green'>
-            {items.map(({ href, text }) => <Link style={{ marginLeft: '10px' }} to={href} key={href}>{text}</Link>)
-            }
+        <Box
+            as='nav'
+            ml='80px'
+            display='flex'
+            alignItems='center'
+        >
+            <HStack
+                spacing='80px'
+            >
+                {items.map(({ href, text }) => <StyledLink to={href} key={href}>{text}</StyledLink>)
+                }
+            </HStack>
         </Box >
     )
 }

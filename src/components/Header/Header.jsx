@@ -1,4 +1,4 @@
-import { useMediaQuery, Box } from '@chakra-ui/react'
+import { useMediaQuery } from '@chakra-ui/react'
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu'
 import React, { useState } from 'react'
 import DesktopHeader from './DesktopHeader'
@@ -27,8 +27,8 @@ export default function Header() {
     return (
         <>
             {isMobile && <MobileHeader active={menuActive} setActive={onBurgerBtnClick} />}
-            {isTablet && <TabletHeader active={menuActive} setActive={onBurgerBtnClick} />}
-            {isDesktop && <DesktopHeader />}
+            {isTablet && <TabletHeader active={menuActive} setActive={onBurgerBtnClick} action={setMenuActive} />}
+            {isDesktop && <DesktopHeader action={setMenuActive} />}
             <BurgerMenu active={menuActive} setActive={setMenuActive} />
         </>
     )

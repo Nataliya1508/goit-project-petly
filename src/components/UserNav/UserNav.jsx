@@ -1,6 +1,6 @@
-import { Flex, Image, Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { StyledLink, Text } from './UserNav.styled'
+import { StyledUserLink } from '../AuthNav/StyledLink.styled'
 import user from '../../media/user.svg'
 
 export default function UserNav({ onClick }) {
@@ -9,11 +9,14 @@ export default function UserNav({ onClick }) {
     ]
 
     return (
-        <Flex m='0 auto'>
-            {userItems.map(({ href, text, icon }) =>
-                <StyledLink onClick={() => onClick(false)} to={href} key={href}>
+        <Flex
+            m='0 auto'
+            align='center'
+        >
+            {userItems.map(({ href, text }) =>
+                <StyledUserLink onClick={() => onClick(false)} to={href} key={href}>
                     {text}
-                </StyledLink>)}
+                </StyledUserLink>)}
         </Flex>
     )
 }

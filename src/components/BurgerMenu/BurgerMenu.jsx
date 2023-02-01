@@ -6,9 +6,9 @@ import Nav from 'components/Nav/Nav'
 
 export default function BurgerMenu({ active, setActive }) {
     const [isMobile] = useMediaQuery('(max-width: 767px)')
-    const isOpen = active ? 'translateY(0%)' : 'translateY(-110%)'
+    const isOpen = active ? 'translateY(0%)' : 'translateY(-120%)'
 
-    const isLogin = true     ////////  Временно
+    const isLogin = false    ////////  Временно
 
     return (
         <Box
@@ -17,13 +17,12 @@ export default function BurgerMenu({ active, setActive }) {
             bg='#FDF7F2'
             position='absolute'
             zIndex='1'
-            transition='transform 0.7s'
+            transition='transform 0.5s'
             overflow='auto'
             style={{ transform: isOpen }}
         >
             <Box
                 display='flex'
-                // justifyContent='center'
                 flexDirection='column'
                 padding='30px 0'
             >

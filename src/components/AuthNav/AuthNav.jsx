@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { StyledLink } from './AuthNav.styled'
+import { StyledAuthLink } from './StyledLink.styled'
 
 export default function AuthNav({ onClick }) {
     const authItems = [
@@ -10,11 +9,11 @@ export default function AuthNav({ onClick }) {
     ]
 
     return (
-        <Flex m='0 auto'>
+        <Flex m='0 auto' align='center'>
             {authItems.map(({ href, text }) =>
-                <StyledLink onClick={() => onClick(false)} to={href} key={href}>
+                <StyledAuthLink onClick={() => onClick(false)} to={href} key={href}>
                     {text}
-                </StyledLink>)}
+                </StyledAuthLink>)}
         </Flex>
     )
 }

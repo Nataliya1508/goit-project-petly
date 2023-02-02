@@ -9,6 +9,7 @@ export const NewsSearch = ({ searchFunction }) => {
 		searchFunction(e.target.value);
 	}
 
+
 	const removeQuery = () => {
 		setSearchQuery("")
 		searchFunction("");
@@ -19,6 +20,9 @@ export const NewsSearch = ({ searchFunction }) => {
     type="text"  
     value={searchQuery} 
     onChange={searchHandler}
-    onClick={removeQuery}/>
+	handleClear={removeQuery}
+	maxWidth={['280px', '280px', '280px', '608px', '608px' ]}
+	/>
+	
     )
   }

@@ -3,11 +3,11 @@ import { CustomInput } from "shared/components/FormikControl";
 import {
     Box,
     Flex,
-    Button,
+    Text,
     Heading,
     Image
 } from "@chakra-ui/react"
-
+import {BsCameraFill} from 'react-icons/bs'
 
 
 
@@ -26,11 +26,23 @@ const UserData = () => {
                 mb={{ sm: "42px", md: "8px", xl: "26px" }}
                 mx='auto'>
                 
-                <Box mx='auto'>
+                <Box position='relative' mx='auto' mb={{sm:'66px', md:'0px', xl:'32px'}} >
                     <Image src="" alt="user photo" w='233px' h='233px' bg='azure' borderRadius='50%' filter= 'drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))' />
-                    <Button>Edit photo</Button>
+                    <Box
+                        display='flex'
+                        alignItems="center"
+                        type='button'
+                        as='button'
+                        fontSize='12px'
+                        lineHeight="1.35"
+                        fontWeight='400'
+                        position='absolute'
+                        p='0px'
+                        top='218px'
+                        right='-60px'>
+                        <BsCameraFill size='20px' fill='#F59256'/><Text ml='4px'>Edit photo</Text></Box>
                 </Box>
-                <Flex direction='column' alignItems='center' justifyContent='center' w={{ sm: '100%', md: '379px', xl: '379px' }}>
+                <Flex direction='column' alignItems='center' justifyContent='center' mb='-8px' w={{ sm: '100%', md: '379px', xl: '411px' }}>
                     <UserDataItem name="Name" />
                     <UserDataItem name = "Email" />
                     <UserDataItem name = "Birthday" />

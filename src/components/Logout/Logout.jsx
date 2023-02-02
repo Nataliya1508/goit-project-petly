@@ -7,15 +7,16 @@ const Logout = () => {
   return (
     <Button
       fontSize='16px'
-      color='#111111'
       fontWeight='500px'
       lineHeight='1.35'
       display='flex'
       alignContent='center'
-      ml="auto"
-      py='0px'
+      ml={{ sm:'auto', md:'0px',sm:'auto'}}
+      mr={{ sm:'0px', md:'auto',sm:'0px'}}
+      bgColor='#FFFFFF'
+      p='0px'
       h='22px'
-      leftIcon={<IoLogOutOutline fill="#F59256" size='18px'/>}
+      leftIcon={<IoLogOutOutline color='#F59256' size='18px'/>}
     >Logout</Button>);
 };
 

@@ -21,7 +21,7 @@ const NoticesCategoryItem = (
       width={'100%'}
       boxShadow={'7px 4px 14px rgba(49, 21, 4, 0.07)'}
       borderBottomRadius={'20px'}
-      _notLast={{mb: '32px'}}>
+    >
         <CardBody p={'0'} mb={(price || favorite) ? '0' : '30px'}>
           <Box position={'relative'}>
             <Image src={avatar} alt={breed} width={'100%'} height={'288px'}/>
@@ -98,6 +98,7 @@ const NoticesCategoryItem = (
           pb={!favorite ? '32px' : '16px'}
           width={'100%'}
           display={'flex'}
+          alignItems={'center'}
           flexDirection={'column'}>
             <CardButton mb={favorite && '12px'}>
               Learn more

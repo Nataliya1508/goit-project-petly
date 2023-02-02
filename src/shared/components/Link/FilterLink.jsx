@@ -1,19 +1,22 @@
-import { Button } from '@chakra-ui/react'
+import { Link as RouteLink } from 'react-router-dom'
+import { Link } from '@chakra-ui/react'
 
-const FilterButton = ({children, ...rest}) => {
+const FilterLink = ({children, ...rest}) => {
   return (
-    <Button
-        type={'button'}
+    <Link
+        as={RouteLink}
+        display={'inline-flex'}
+        alignItems={'center'}
         width={'fit-content'}
-        height={['35px', null, '35px', '47px']}
+        height={{base:'35px', md:'47px'}}
         px={7}
-        py={[2, null, 2, 2.5]}
+        py={{base:'8px', md:'10px'}}
         bg={'white'}
         color={'#111111'}
         border={'2px solid'}
         borderColor={'accent.100'}
         borderRadius={'40px'}
-        fontSize={['sm', null, 'sm', 'xl']}
+        fontSize={{base:'sm', md:'xl'}}
         fontWeight={'500'}
         lineHeight={'short'}
         letterSpacing={'0.04em'}
@@ -21,12 +24,14 @@ const FilterButton = ({children, ...rest}) => {
                     color: 'white' }}
         _focus={{   bg: 'accent.100',
                     color: 'white' }}
+        _activeLink={{  bg: 'accent.100',
+                    color: 'white' }}
         _active={{  bg: 'accent.100',
                     color: 'white' }}
         {...rest}
             >{children}
-    </Button>
+    </Link>
   )
 }
 
-export default FilterButton
+export default FilterLink

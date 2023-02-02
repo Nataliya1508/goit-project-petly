@@ -9,7 +9,9 @@ const NoticesCategoriesList = () => {
     <SimpleGrid
       as='ul'
       mx={'auto'}
-      maxWidth={'280px'}
+      maxWidth={{base:'280px', md:'704px', xl: '1248px'}}
+      gridTemplateColumns={{base:'1fr', md:'1fr 1fr', xl: '1fr 1fr 1fr 1fr'}}
+      gap={'32px'}
       width={'full'}
       listStyleType={'none'}
       key={userPets.id}>

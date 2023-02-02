@@ -1,14 +1,8 @@
-import { useMediaQuery } from '@chakra-ui/react'
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu'
 import React, { useState } from 'react'
-import DesktopHeader from './DesktopHeader'
-import MobileHeader from './MobileHeader'
-import TabletHeader from './TabletHeader'
+import HeaderMenu from './HeaderMenu'
 
-export default function Header() {
-    const [isMobile] = useMediaQuery('(max-width: 767px)')
-    const [isTablet] = useMediaQuery('(min-width: 768px) and (max-width: 1279px)')
-    const [isDesktop] = useMediaQuery('(min-width: 1280px)')
+const Header = () => {
 
     const [menuActive, setMenuActive] = useState(false)
 
@@ -26,10 +20,10 @@ export default function Header() {
 
     return (
         <>
-            {isMobile && <MobileHeader active={menuActive} setActive={onBurgerBtnClick} />}
-            {isTablet && <TabletHeader active={menuActive} setActive={onBurgerBtnClick} action={setMenuActive} />}
-            {isDesktop && <DesktopHeader action={setMenuActive} />}
+            <HeaderMenu active={menuActive} setActive={onBurgerBtnClick} action={setMenuActive} />
             <BurgerMenu active={menuActive} setActive={setMenuActive} />
         </>
     )
 }
+
+export default Header

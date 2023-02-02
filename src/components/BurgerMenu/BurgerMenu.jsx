@@ -1,14 +1,14 @@
-import { Box, useMediaQuery } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import React from 'react'
 import UserNav from 'components/UserNav/UserNav'
 import AuthNav from 'components/AuthNav/AuthNav'
 import Nav from 'components/Nav/Nav'
+import PropTypes from 'prop-types'
 
-export default function BurgerMenu({ active, setActive }) {
-    const [isMobile] = useMediaQuery('(max-width: 767px)')
+const BurgerMenu = ({ active, setActive }) => {
     const isOpen = active ? 'translateY(0%)' : 'translateY(-120%)'
 
-    const isLogin = false    ////////  Временно
+    const isLogin = true   ////////  Временно
 
     return (
         <Box
@@ -26,9 +26,18 @@ export default function BurgerMenu({ active, setActive }) {
                 flexDirection='column'
                 padding='30px 0'
             >
-                {isMobile && (isLogin ? <UserNav onClick={setActive} /> : <AuthNav onClick={setActive} />)}
+                <Box display={{ md: 'none' }} mr='auto' ml='auto'>
+                    {isLogin ? <UserNav onClick={setActive} /> : <AuthNav onClick={setActive} />}
+                </Box>
                 <Nav onClick={setActive} />
             </Box>
         </Box>
     )
+}
+
+export default BurgerMenu
+
+BurgerMenu.propTypes = {
+    active: PropTypes.bool.isRequired,
+    setActive: PropTypes.func.isRequired,
 }

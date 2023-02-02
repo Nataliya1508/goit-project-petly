@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 const BurgerMenu = ({ active, setActive }) => {
     const isOpen = active ? 'translateY(0%)' : 'translateY(-120%)'
 
-    const isLogin = true   ////////  Временно
+    const isLogin = false   ////////  Временно
 
     return (
         <Box
@@ -27,7 +27,7 @@ const BurgerMenu = ({ active, setActive }) => {
                 padding='30px 0'
             >
                 <Box display={{ md: 'none' }} mr='auto' ml='auto'>
-                    {isLogin ? <UserNav onClick={setActive} /> : <AuthNav onClick={setActive} />}
+                    {isLogin ? <UserNav onClick={() => setActive()} /> : <AuthNav onClick={() => setActive()} />}
                 </Box>
                 <Nav onClick={setActive} />
             </Box>

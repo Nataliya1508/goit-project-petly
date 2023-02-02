@@ -21,7 +21,7 @@ const Header = () => {
     return (
         <>
             <HeaderMenu active={menuActive} setActive={onBurgerBtnClick} action={setMenuActive} />
-            <BurgerMenu active={menuActive} setActive={setMenuActive} />
+            <BurgerMenu active={menuActive} setActive={onBurgerBtnClick} />
         </>
     )
 }

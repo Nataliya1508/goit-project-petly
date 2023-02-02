@@ -33,7 +33,8 @@ const CustomInput = ({label, name, id, mb='16px', type='text', show, handleClick
                     minH={'none'}
                     h={{base:'40px', md:'52px'}}
                     p={{base:"11px 14px", md:"14px 32px"}}
-                    fontSize="14px"
+                    fontSize={{base:'14px', md:'18px'}}
+                    lineHeight={'short'}
                     bg='#FDF7F2'
                     border= "1px solid rgba(245, 146, 86, 0.5)"
                     borderRadius='40px'

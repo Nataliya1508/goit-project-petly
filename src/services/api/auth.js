@@ -28,13 +28,13 @@ export const login = async (loginData) => {
 }
 
 export const logout = async () => {
-    const { data } = await instance.post("/logout");
+    const { data } = await instance.post("/api/users/logout");
     token.unset();
     return data;
 }
 
 export const getCurrentUser = async (persistedToken) => {
     token.set(persistedToken);
-    const data = await instance.get("/current");
+    const data = await instance.get("/api/users/current");
     return data;
 }

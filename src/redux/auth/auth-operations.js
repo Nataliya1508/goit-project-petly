@@ -29,23 +29,39 @@ export const login = createAsyncThunk('auth/login', async(credentials, {rejectWi
     }
 });
 
-// export const getCurrentUser = createAsyncThunk("auth/current", async(_, { rejectWithValue, getState }) => {
-//     try {
-//         const { auth } = getState();
-//         const persistedToken = auth.token;
+export const logout = createAsyncThunk(
+    "auth/logout",
+    async(_, { rejectWithValue }) => {
+        try {
+            const result = await api.logout();
+            return result;
+        } catch ({response}) {
+            const error = {
+                status: response.status,
+                message: response.data.message
+            }
+            return rejectWithValue(error);
+        }
+    }
+)
 
-//         if (!persistedToken) {
-//             rejectWithValue('Unable to fetch user');
-//         };
+export const getCurrentUser = createAsyncThunk("auth/current", async(_, { rejectWithValue, getState }) => {
+    try {
+        const { auth } = getState();
+        const persistedToken = auth.token;
+
+        if (!persistedToken) {
+            rejectWithValue('Unable to fetch user');
+        };
         
-//         const {data} = await api.getCurrentUser(persistedToken);
-//         return data;
-//     } catch ({response}) {
-//         const error = {
-//             status: response.status,
-//             message: response.data.message
-//         }
-//         return rejectWithValue(error);
-//     }
-//     }
-// )
+        const {data} = await api.getCurrentUser(persistedToken);
+        return data;
+    } catch ({response}) {
+        const error = {
+            status: response.status,
+            message: response.data.message
+        }
+        return rejectWithValue(error);
+    }
+    }
+)

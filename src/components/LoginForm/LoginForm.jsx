@@ -1,16 +1,26 @@
 import React from 'react'
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heading, Box, Text } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import { getIsRefreshing } from 'redux/auth/auth-selectors';
 import { Button, FormikControl } from 'shared/components';
 import { loginYupSchema } from 'schemas/validationYupSchemas';
 import { login } from 'redux/auth/auth-operations';
 
 
 const LoginForm = () => {
+    const isRefreshing = useSelector(getIsRefreshing);
     const dispatch = useDispatch();
+    const[showPassword, setShowPassword] = useState(false);
+    
+    const handleShowPasswordClick =() => {
+        setShowPassword((prevState)=> !prevState)    
+    }
 
     const initialValues = {
         email: "",
@@ -21,11 +31,21 @@ const LoginForm = () => {
         const authData = ({'email': values.email, 'password': values.password });
         const data = await dispatch(login(authData));
         resetForm();             
-        data.error.message && alert(data.payload.message);                
+        data.error.message && data.error && toast.error(data.payload.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });          ;                
     }
 
     return (
         <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'80px'}} pt={{base:'42px', md:'60px'}} pb={{base:'0', md:'40px', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'#FDF7F2', md:'white'}} mx='auto'>
+            <ToastContainer/>
             <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Login</Heading>
             <Formik 
                 initialValues={initialValues}
@@ -41,9 +61,6 @@ const LoginForm = () => {
                             name='email' 
                             id='lg-email' 
                             placeholder='Email'
-                            h={{md:'52px'}}
-                            width={{base:'280px', md:'448px', xl:'458px'}}
-                            p={{base:"11px 14px", md:"14px 32px"}} 
                         />
                         <FormikControl
                             control='input'
@@ -51,12 +68,11 @@ const LoginForm = () => {
                             name='password' 
                             id='lg-password' 
                             placeholder='Password'
-                            h={{md:'52px'}}
-                            width={{base:'280px', md:'448px', xl:'458px'}} 
-                            p={{base:"11px 14px", md:"14px 32px"}}
+                            show={showPassword}
+                            handleClick={handleShowPasswordClick}
                             mb='0' 
                         />
-                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}}>Login</Button>
+                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} isLoading={isRefreshing} loadingText={"Login"}>Login</Button>
                         <Box display='flex' justifyContent='center' >
                             <Text 
                                 fontFamily='body' 

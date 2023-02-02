@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Box, Heading, Spinner } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import Container from '../../shared/components/Box/Container';
 import Section from '../../shared/components/Box/Section';
 import { NewsList } from 'components/NewsList/NewsList';
 import { getNews } from './getNews';
 import { NewsSearch } from 'components/NewsSearch/NewsSearch';
+import Loader from 'components/Loader/Loader';
 
 
 
@@ -62,19 +63,18 @@ const News = () => {
 			mb={['28px', '28px', '28px', '40px']}
 			>News</Heading>
 			{isLoading ? (
-				<Spinner
-				thickness='4px'
-				speed='0.85s'
-				emptyColor='#F59256;'
-				color='#F5F5F5'
-				size='xl' />
+				<Loader />
 			) : (	
 				<>
 			<NewsSearch searchFunction={searchNews} />
 			<NewsList news={news} />	
 			</>
 			)}
-			
+			{news.length === 0 && !isLoading && (
+					<Text textAlign='center'>
+						There are not news according to your request. Please try again.
+					</Text>
+					)}
 		</Section>
     </Container>
     </Box>

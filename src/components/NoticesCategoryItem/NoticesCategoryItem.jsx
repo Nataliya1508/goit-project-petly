@@ -13,7 +13,8 @@ const NoticesCategoryItem = (
   age,
   price,
   condition,
-  onDeletePets
+  onDeletePets,
+  onLearnMore,
   }) => {
   return (
     <Card
@@ -100,10 +101,10 @@ const NoticesCategoryItem = (
           display={'flex'}
           alignItems={'center'}
           flexDirection={'column'}>
-            <CardButton mb={favorite && '12px'}>
+            <CardButton type="submit" onClick={() => onLearnMore(id)} mb={favorite && '12px'}>
               Learn more
             </CardButton>
-            {favorite &&  <CardButton controle='delete'>
+            {favorite &&  <CardButton type="submit" onClick={() => onDeletePets(id)} controle='delete'>
                             Delete
                           </CardButton>}
         </CardFooter>

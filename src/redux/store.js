@@ -11,7 +11,7 @@ import { authReducer } from './auth/auth-slice';
 //   REGISTER,
 // } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
-import { newsReducer } from './news/news-slice';
+// import { newsReducer } from './news/news-slice';
 import { noticesReducer } from './notices/notices-slice';
 import { partnersReducer } from './partners/partners-slice';
 
@@ -32,7 +32,7 @@ import { partnersReducer } from './partners/partners-slice';
 
 export const store = configureStore({
   reducer: {
-    news: newsReducer,
+    // news: newsReducer,
     notices: noticesReducer,
     partners: partnersReducer,
     auth: authReducer,

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heading, Box, Text } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getIsRefreshing } from 'redux/auth/auth-selectors';
@@ -29,11 +31,21 @@ const LoginForm = () => {
         const authData = ({'email': values.email, 'password': values.password });
         const data = await dispatch(login(authData));
         resetForm();             
-        data.error.message && alert(data.payload.message);                
+        data.error.message && data.error && toast.error(data.payload.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });          ;                
     }
 
     return (
         <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'80px'}} pt={{base:'42px', md:'60px'}} pb={{base:'0', md:'40px', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'#FDF7F2', md:'white'}} mx='auto'>
+            <ToastContainer/>
             <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Login</Heading>
             <Formik 
                 initialValues={initialValues}

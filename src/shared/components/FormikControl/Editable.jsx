@@ -21,13 +21,17 @@ const CustomEditable = ({label, name, id, defaultValue, mb='16px', ...rest}) => 
       } = useEditableControls()
   
       return isEditing    ? <IconButton
-                              size='xs'
+                              minW={'none'}
+                              w={{base:'20px', md:'32px'}}
+                              h={{base:'20px', md:'32px'}}
                               bg='#FDF7F2'
                               color='#F59256'
                               borderRadius='50%'
                               icon={<CheckIcon />} {...getSubmitButtonProps()} />
                           : <IconButton
-                              size='xs'
+                              minW={'none'}
+                              w={{base:'20px', md:'32px'}}
+                              h={{base:'20px', md:'32px'}}
                               bg='#FDF7F2'
                               color='rgba(17, 17, 17, 0.6);'
                               borderRadius='50%'
@@ -35,7 +39,7 @@ const CustomEditable = ({label, name, id, defaultValue, mb='16px', ...rest}) => 
     }
 
   return (
-    <Box  w="252px" mb={mb}>
+    <Box  w={{base:'252px', md:'379px'}} mb={mb}>
           <Field>
             {({ form }) => (
               <FormControl isInvalid={form.errors[name] && form.touched[name]}>
@@ -46,36 +50,45 @@ const CustomEditable = ({label, name, id, defaultValue, mb='16px', ...rest}) => 
                       <FormLabel
                           display="inline-flex"
                           htmlFor={id}
-                          fontSize="12px"
+                          fontSize={{base:'12px', md:'18px'}}
+                          lineHeight={'short'}
+                          letterSpacing={'0.04em'}
+                          fontWeight={'medium'}
                           alignItems='center'
                           m='0'
-                          h='24px'
-                          w='56px'
-                          mr='8px'
+                          h={{base:'24px', md:'32px'}}
+                          w={{base:'56px', md:'83px'}}
+                          mr={{base:'9px', md:'24px'}}
                           >{label}
                       </FormLabel>
                       <EditablePreview
-                          w='159px'
-                          h='24px'
-                          p="4px 18px"
-                          mr='9px'
-                          fontSize="12px"/>
+                          w={{base:'159px', md:'216px'}}
+                          h={{base:'24px', md:'32px'}}
+                          p={{base:'4px 18px', md:'4px 12px'}}
+                          fontSize={{base:'12px', md:'18px'}}
+                          letterSpacing={'0.04em'}
+                          lineHeight={'short'}
+                          border= "1px solid transparent"
+                          mr={{base:'9px', md:'24px'}}
+                      />
                       <Field
                           as={EditableInput}
                           id={id}
                           name={name}
                           variant='filled'
-                          h='24px'
-                          w='159px'
-                          p="4px 18px"
-                          mr='9px'
-                          fontSize="12px"
+                          h={{base:'24px', md:'32px'}}
+                          w={{base:'159px', md:'216px'}}
+                          p={{base:'4px 18px', md:'4px 12px'}}
+                          mr={{base:'9px', md:'24px'}}
+                          fontSize={{base:'12px', md:'18px'}}
+                          letterSpacing={'0.04em'}
+                          lineHeight={'short'}
                           bg='#FDF7F2'
                           border= "1px solid rgba(245, 146, 86, 0.5)"
                           borderRadius='40px'
                           _placeholder={{ color: '#111111' }}
                           {...rest}
-                          />
+                      />
                       <EditableControls />
                       <FormErrorMessage
                           fontSize="12px">

@@ -1,7 +1,8 @@
-import { Button, Icon } from '@chakra-ui/react'
-import { AiOutlineHeart } from "react-icons/ai"
+import { Button, Image } from '@chakra-ui/react'
+import heart from './heart.svg'
+import heartFull from './heartFull.svg'
 
-const FavoriteButton = ({...rest}) => {
+const FavoriteButton = ({favorite, ...rest}) => {
   return (
     <Button
         type={'button'}
@@ -15,7 +16,10 @@ const FavoriteButton = ({...rest}) => {
         backdropFilter={'blur(2px)'}
         borderRadius={'50%'}
         {...rest}
-            ><Icon as={AiOutlineHeart} width={'28px'} height={'28px'} fill={'accent.100'}/>
+            ><Image
+              src={favorite ? heartFull : heart}
+              width={'28px'}
+              height={'28px'}/>
     </Button>
   )
 }

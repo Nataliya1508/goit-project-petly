@@ -6,16 +6,19 @@ import {
   Image,
   Text,
   VisuallyHiddenInput } from "@chakra-ui/react"
-import { default as male } from './el_male.jpg'
-import { default as female } from './el_female.jpg'
+import male from './male.svg'
+import female from './female.svg'
 
-const SexRadioButtons = ({label, name, options, ...rest}) => {
+const SexRadioButtons = ({label, name, ...rest}) => {
     const id = useMemo(()=> nanoid(), [])
-
+    const options = [{value: "male", text: "male"}, {value: "female", text: "female"}]
   return (
-    <Box mb='32px'>
+    <Box mb={{base:'32px', md:'40px'}}>
         <Box
-          mb='16px'>
+          fontSize={{base:'18px', md:'24px'}}
+          fontWeight={'500'}
+          lineHeight={{base:'1.44', md:'1.08'}}
+          mb={{base:'16px', md:'28px'}}>
             {label}
         </Box>
         <Box
@@ -30,7 +33,10 @@ const SexRadioButtons = ({label, name, options, ...rest}) => {
                                 <Box
                                   as='li'
                                   key={value}
-                                  mr='40px'>
+                                  _focusWithin={{outline: '1px solid #F59256',
+                                                borderRadius: '8px' }}
+                                  mr={{base:'40px', md:'60px'}}
+                                >
                                     <VisuallyHiddenInput
                                         type='radio'
                                         {...field}
@@ -38,13 +44,17 @@ const SexRadioButtons = ({label, name, options, ...rest}) => {
                                         value={value}
                                         checked={field.value === value}
                                     />
-                                    <Box as='label' htmlFor={id+value}>
-                                      <Image  boxSize='40px'
+                                    <Box as='label' htmlFor={id+value} textAlign={'center'} mb={'0'}>
+                                      <Image  boxSize={{base:'40px', md:'60px'}}
                                               objectFit='cover'
-                                              mb='12px'
+                                              mb={{base:'12px', md:'20px'}}
                                               src={value === 'male' ? male : female}
                                               alt={value}/>
                                       <Text
+                                        fontSize={{base:'18px', md:'20px'}}
+                                        fontWeight={'500'}
+                                        lineHeight={{base:'1.44', md:'1.08'}}
+                                        _hover={{color: '#F59256'}}
                                         color={field.value === value ? '#F59256' : '#000000'}>
                                         {text}
                                       </Text>

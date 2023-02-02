@@ -1,0 +1,41 @@
+[
+    {
+        "favorite": false,
+        "avatar": "https://loremflickr.com/320/240/dog",
+        "breed": "Shimon",
+        "location": "Dnipro",
+        "age": "age 1",
+        "condition": "condition 1",
+        "price": "20",
+        "id": "id1"
+    },
+    {
+        "favorite": true,
+        "title": "Сute dog looking for a home",
+        "avatar": "https://loremflickr.com/320/240/dog",
+        "breed": "Semon",
+        "location": "Kiev",
+        "age": "age 2",
+        "condition": "condition 2",
+        "id": "id2"
+    },
+    {
+        "favorite": false,
+        "avatar": "https://loremflickr.com/320/240/dog",
+        "breed": "Telomain",
+        "location": "Harkiv",
+        "age": "age 3",
+        "condition": "condition 3",
+        "id": "id3"
+    },
+    {
+        "favorite": false,
+        "avatar": "https://loremflickr.com/320/240/dog",
+        "breed": "Bouvier",
+        "location": "Lviv",
+        "age": "age 4",
+        "condition": "condition 4",
+        "id": "id4"
+    }
+
+]

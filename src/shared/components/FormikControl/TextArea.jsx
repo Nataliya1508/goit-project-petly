@@ -6,15 +6,16 @@ import {
     FormErrorMessage, } from "@chakra-ui/react"
 import { Field } from 'formik';
   
-const CustomTextArea = ({label, name, id, mb='16px', ...rest}) => {
+const CustomTextArea = ({label, name, id, mb='40px', ...rest}) => {
   return (
-    <Box  w="240px" mb={mb}>
+    <Box  w={{base:'240px', md:'394px'}} mb={mb}>
           <Field>
             {({ form }) => (
               <FormControl isInvalid={form.errors[name] && form.touched[name]}>
                 {label  ? <FormLabel 
                             htmlFor={id}
-                            mb='8px'
+                            mb={{base:'8px', md:'12px'}}
+                            fontSize={{base:'18px', md:'24px'}}
                             mr='0'
                               >{label}
                           </FormLabel>
@@ -25,9 +26,9 @@ const CustomTextArea = ({label, name, id, mb='16px', ...rest}) => {
                     name={name}
                     resize='none'
                     variant='filled'
-                    h='137px'
-                    p="12px 14px"
-                    fontSize="14px"
+                    h={{base:'137px', md:'116px'}}
+                    p={{base:'12px 14px', md:'16px 16px'}}
+                    fontSize={{base:'14px', md:'16px'}}
                     bg='#FDF7F2'
                     border= "1px solid rgba(245, 146, 86, 0.5)"
                     borderRadius='20px'

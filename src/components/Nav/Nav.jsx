@@ -21,7 +21,7 @@ const Nav = ({ onClick }) => {
                 align='center'
             >
                 {navItems.map(({ href, text }) => <Link
-                    onClick={() => onClick(false)}
+                    onClick={() => onClick()}
                     to={href}
                     key={href}
 

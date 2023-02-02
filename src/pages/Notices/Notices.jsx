@@ -12,7 +12,7 @@ const Notices = () => {
       <Section>
         <Heading
           as={'h1'}
-          fontSize={'2xl'}
+          fontSize={{base:'24px', md:'48px'}}
           fontWeight={'bold'}
           lineHeight={'short'}
           textAlign={'center'}

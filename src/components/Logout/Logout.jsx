@@ -9,8 +9,8 @@ const Logout = () => {
       lineHeight="1.35"
       display="flex"
       alignContent="center"
-      ml={{ sm: 'auto', md: '0px', lg: 'auto' }}
-      mr={{ sm: '0px', md: 'auto', lg: '0px' }}
+      ml={{ base: 'auto', md: '0px', xl: 'auto' }}
+      mr={{ base: '0px', md: 'auto', xl: '0px' }}
       bgColor="#FFFFFF"
       p="0px"
       h="22px"

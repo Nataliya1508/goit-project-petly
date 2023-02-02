@@ -13,20 +13,20 @@ const UserDataItem = ({ name }) => {
       <FormLabel
         m="0px"
         fontFamily={{}}
-        fontSize={{ sm: '12px', md: '18px' }}
-        lineHeight={{ sm: '1.35' }}
-        fontWeight={{ sm: '500' }}
-        w={{ sm: '56px', md: '83px' }}
+        fontSize={{ base: '12px', md: '18px' }}
+        lineHeight={{ base: '1.35' }}
+        fontWeight={{ base: '500' }}
+        w={{ base: '56px', md: '83px' }}
       >
         {name}
       </FormLabel>
       <Input
-        fontSize={{ sm: '12px', md: '18px' }}
-        lineHeight={{ sm: '1.35' }}
-        fontWeight={{ sm: '500', md: '400' }}
+        fontSize={{ base: '12px', md: '18px' }}
+        lineHeight={{ base: '1.35' }}
+        fontWeight={{ base: '500', md: '400' }}
         px="12px"
-        w={{ sm: '159px', md: '216px' }}
-        h={{ sm: '24px', md: '32px' }}
+        w={{ base: '159px', md: '216px' }}
+        h={{ base: '24px', md: '32px' }}
         border="1px solid rgba(245, 146, 86, 0.5)"
         borderRadius="40px"
         placeholder="value"
@@ -37,12 +37,12 @@ const UserDataItem = ({ name }) => {
         type="button"
         borderRadius="100%"
         p="0px"
-        w={{ sm: '20px', md: '32px' }}
-        h={{ sm: '20px', md: '32px' }}
+        w={{ base: '20px', md: '32px' }}
+        h={{ base: '20px', md: '32px' }}
         padding="5px"
         bg="#FDF7F2"
       >
-        <FaPen fill="#F59256" size={{ sm: '10px', md: '15px' }} />
+        <FaPen fill="#F59256" size={{ base: '10px', md: '15px' }} />
       </Box>
     </FormControl>
   );

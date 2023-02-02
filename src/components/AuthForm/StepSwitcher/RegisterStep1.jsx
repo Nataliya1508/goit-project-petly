@@ -1,14 +1,13 @@
-// import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-// import { Box } from '@chakra-ui/layout';
 import React from 'react';
 import { useState } from 'react';
 import FormikControl from 'shared/components/FormikControl/FormikControl';
 
 
 const RegisterStep1 = () => {
-    const[show, setShow] = useState(false);
-    const handleClick =() => {
-        setShow((prevState)=> !prevState);
+    const[showPassword, setShowPassword] = useState(false);
+    const[showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const handleClick =(name) => {
+        name === 'password' ? setShowPassword((prevState)=> !prevState) : setShowConfirmPassword((prevState)=> !prevState);    
     }
     return (
         <>
@@ -18,32 +17,26 @@ const RegisterStep1 = () => {
                 name='email' 
                 id='reg-email' 
                 placeholder='Email'
-                h={{md:'52px'}}
-                width={{base:'280px', md:'448px', xl:'458px'}}
-                p={{base:"11px 14px", md:"14px 32px"}} />
+                />
             <FormikControl
                 control='input'
-                // type= 'password'
-                type={show ? 'text' : 'password'}
-                handleClick={handleClick}
-                show = {show}
+                type= 'password'
+                handleClick={()=>handleClick('password')}
+                show = {showPassword}
                 name='password' 
                 id='reg-password' 
                 placeholder='Password'
-                h={{md:'52px'}}
-                width={{base:'280px', md:'448px', xl:'458px'}} 
-                p={{base:"11px 14px", md:"14px 32px"}} />
+                />
             <FormikControl 
                 control='input'
-                // type={isShowConfirm ? 'text' : 'password'}
-                type= 'password' 
+                type= 'password'
+                handleClick={handleClick}
+                show = {showConfirmPassword} 
                 name='confirm' 
-                id='reg-confirm Password' 
+                id='reg-confirm-password' 
                 placeholder='Confirm Password'
-                h={{md:'52px'}}
-                width={{base:'280px', md:'448px', xl:'458px'}}
                 mb='0' 
-                p={{base:"11px 14px", md:"14px 32px"}}/>
+                />
         </>                   
     )
 }

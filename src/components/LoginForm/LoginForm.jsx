@@ -1,16 +1,24 @@
 import React from 'react'
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heading, Box, Text } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import { getIsRefreshing } from 'redux/auth/auth-selectors';
 import { Button, FormikControl } from 'shared/components';
 import { loginYupSchema } from 'schemas/validationYupSchemas';
 import { login } from 'redux/auth/auth-operations';
 
 
 const LoginForm = () => {
+    const isRefreshing = useSelector(getIsRefreshing);
     const dispatch = useDispatch();
+    const[showPassword, setShowPassword] = useState(false);
+    
+    const handleShowPasswordClick =() => {
+        setShowPassword((prevState)=> !prevState)    
+    }
 
     const initialValues = {
         email: "",
@@ -41,9 +49,6 @@ const LoginForm = () => {
                             name='email' 
                             id='lg-email' 
                             placeholder='Email'
-                            h={{md:'52px'}}
-                            width={{base:'280px', md:'448px', xl:'458px'}}
-                            p={{base:"11px 14px", md:"14px 32px"}} 
                         />
                         <FormikControl
                             control='input'
@@ -51,12 +56,11 @@ const LoginForm = () => {
                             name='password' 
                             id='lg-password' 
                             placeholder='Password'
-                            h={{md:'52px'}}
-                            width={{base:'280px', md:'448px', xl:'458px'}} 
-                            p={{base:"11px 14px", md:"14px 32px"}}
+                            show={showPassword}
+                            handleClick={handleShowPasswordClick}
                             mb='0' 
                         />
-                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}}>Login</Button>
+                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} isLoading={isRefreshing} loadingText={"Login"}>Login</Button>
                         <Box display='flex' justifyContent='center' >
                             <Text 
                                 fontFamily='body' 

@@ -16,6 +16,7 @@ const theme = extendTheme({
     lg: '960px',
     xl: '1280px',
   },
+  
 });
 
 export default theme;

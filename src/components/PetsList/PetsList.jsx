@@ -4,9 +4,10 @@ import PetsItem from "./PetsItem";
 // тут буде рендеринг PetsItem за допомогою map
 
 const PetsList = () => {
-    return <Box>
+  return (
+    <Box>
       <PetsItem/>
-    </Box>;
+    </Box>)
 };
 
 export default PetsList;

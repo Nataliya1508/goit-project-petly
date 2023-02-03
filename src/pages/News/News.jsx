@@ -7,8 +7,6 @@ import { getNews } from './getNews';
 import { NewsSearch } from 'components/NewsSearch/NewsSearch';
 import Loader from 'components/Loader/Loader';
 
-
-
 const News = () => {
 	const [news, setNews] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +22,6 @@ const News = () => {
 		}
 		fetch();
 	}, []);
-
 
 	const searchNews = async query => {
 		const searchQuery = query.toLowerCase();

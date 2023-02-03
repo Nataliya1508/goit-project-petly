@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+// import { createSlice } from '@reduxjs/toolkit';
 
 // const handlePending = state => {
 //   state.isLoading = true;
@@ -9,16 +9,16 @@ import { createSlice } from '@reduxjs/toolkit';
 //   state.error = action.payload;
 // };
 
-const initialState = {
-  data: [],
-  isLoading: false,
-  error: null,
-};
+// const initialState = {
+//   data: [],
+//   isLoading: false,
+//   error: null,
+// };
 
-const partnersSlice = createSlice({
-  name: 'partners',
-  initialState,
-  extraReducers: {},
-});
+// const partnersSlice = createSlice({
+//   name: 'partners',
+//   initialState,
+//   extraReducers: {},
+// });
 
-export const partnersReducer = partnersSlice.reducer;
+// export const partnersReducer = partnersSlice.reducer;

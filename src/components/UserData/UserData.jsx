@@ -1,33 +1,23 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-// import { CustomInput } from "shared/components/FormikControl";
-import { Box, Flex, Text, Heading, Image } from '@chakra-ui/react';
+import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
 
 const UserData = () => {
   return (
     <Box mx="0px">
-      <Heading
-        as="h2"
-        fontSize={{ sm: '20px', md: '28px' }}
-        lineHeight={{ sm: '1.35' }}
-        mb={{ sm: '18px', md: '24px' }}
-        fontWeight={{ sm: '500' }}
-      >
-        My information:
-      </Heading>
+      
       <Flex
         display="flex"
         justifyContent="center"
         alignContent="center"
-        direction={{ sm: 'column', md: 'row-reverse', xl: 'column' }}
-        w={{ sm: '100%', md: '100%', xl: '411px' }}
-        mb={{ sm: '42px', md: '8px', xl: '26px' }}
-        mx="auto"
-      >
+        direction={{ base: 'column', md: 'row-reverse', xl: 'column' }}
+        w={{ base: '100%', md: '100%', xl: '411px' }}
+        mb={{ base: '42px', md: '8px', xl: '26px' }}
+        mx="auto">
         <Box
           position="relative"
           mx="auto"
-          mb={{ sm: '66px', md: '0px', xl: '32px' }}
+          mb={{ base: '66px', md: '0px', xl: '32px' }}
         >
           <Image
             src=""
@@ -48,8 +38,10 @@ const UserData = () => {
             fontWeight="400"
             position="absolute"
             p="0px"
-            top="218px"
-            right="-60px"
+            top={{ base: '242px', md: '242px', xl: '218px' }}
+            right={{ base: '0px', md: '0px', xl: '-65px' }}
+            _hover={{ color: '#F59256' }}
+            _focus={{ color: '#F59256' }}
           >
             <BsCameraFill size="20px" fill="#F59256" />
             <Text ml="4px">Edit photo</Text>
@@ -60,7 +52,7 @@ const UserData = () => {
           alignItems="center"
           justifyContent="center"
           mb="-8px"
-          w={{ sm: '100%', md: '379px', xl: '411px' }}
+          w={{ base: '100%', md: '379px', xl: '411px' }}
         >
           <UserDataItem name="Name" />
           <UserDataItem name="Email" />

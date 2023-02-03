@@ -5,7 +5,7 @@ import PetsItem from "./PetsItem";
 
 const PetsList = () => {
   return (
-    <Box>
+    <Box >
       <PetsItem/>
     </Box>)
 };

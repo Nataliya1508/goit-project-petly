@@ -8,6 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from 'redux/store';
 import './index.css';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter basename="/goit-project-petly">
           <ChakraProvider theme={theme}>
             <App />
+            <ToastContainer />
           </ChakraProvider>
         </BrowserRouter>
       </PersistGate>

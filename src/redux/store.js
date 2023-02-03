@@ -10,12 +10,11 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { noticesReducer } from './notices/notices-slice';
-import { partnersReducer } from './partners/partners-slice';
+// import { partnersReducer } from './partners/partners-slice';
 
 export const store = configureStore({
   reducer: {
     notices: noticesReducer,
-    partners: partnersReducer,
     auth: authReducer,
   },
   middleware: getDefaultMiddleware =>

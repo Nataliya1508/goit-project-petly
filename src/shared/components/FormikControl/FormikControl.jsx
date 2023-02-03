@@ -1,4 +1,4 @@
-import { CustomInput, CustomTextArea, CustomEditable, CustomInputFile, CustomRadio} from './index'
+import { CustomInput, CustomTextArea, CustomEditable, CustomInputFile, SexRadio, CategoryRadio} from './index'
 
 const FormikControl = ({control = 'input', ...rest}) => {
     switch (control) {
@@ -10,8 +10,10 @@ const FormikControl = ({control = 'input', ...rest}) => {
             return <CustomEditable {...rest}/>
         case 'file':
             return <CustomInputFile {...rest}/>
-        case 'radio':
-            return <CustomRadio {...rest}/>
+        case 'sex-radio':
+            return <SexRadio {...rest}/>
+        case 'category-radio':
+            return <CategoryRadio {...rest}/>
         default: return null
     }
 }

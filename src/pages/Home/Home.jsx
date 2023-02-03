@@ -1,8 +1,23 @@
 import { Heading } from '@chakra-ui/react';
 import React from 'react';
+import { AddPetButton, Modal } from 'shared/components';
+import { useDisclosure } from '@chakra-ui/react';
+import { ModalAddsPet } from 'components/ModalAddsPet';
+
+
 
 const Home = () => {
-  return <Heading color={'accent.accent'}>Home</Heading>;
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return <>
+    <AddPetButton onClick={onOpen}/>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={'Add pet'}
+    >
+      <ModalAddsPet onClose={onClose}/>
+    </Modal>
+  </>;
 };
 
 export default Home;

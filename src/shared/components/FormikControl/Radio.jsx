@@ -44,7 +44,7 @@ const SexRadioButtons = ({label, name, ...rest}) => {
                                         value={value}
                                         checked={field.value === value}
                                     />
-                                    <Box as='label' htmlFor={id+value} textAlign={'center'} mb={'0'}>
+                                    <Box as='label' htmlFor={id+value} display={'flex'} flexDirection={'column'} alignItems={'center'} mb={'0'}>
                                       <Image  boxSize={{base:'40px', md:'60px'}}
                                               objectFit='cover'
                                               mb={{base:'12px', md:'20px'}}

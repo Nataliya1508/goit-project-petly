@@ -69,6 +69,23 @@ export const getMyNotice = createAsyncThunk(
   }
 );
 
+export const getFavorites = createAsyncThunk(
+  'notices/getFavorites ',
+  async (_, { rejectWithValue }) => {
+    try {
+      const result = await api.getFavorites();
+      return result;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const addToFavorites = createAsyncThunk(
   'notices/addToFavorites',
   async (id, { rejectWithValue }) => {

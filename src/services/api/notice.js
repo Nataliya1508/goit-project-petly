@@ -24,6 +24,11 @@ export const getMyNotice = async () => {
   return data;
 };
 
+export const getFavorites = async () => {
+  const { data } = await instance.get(`/notices/favorites`);
+  console.log(data);
+  return data;
+};
 export const addToFavorites = async id => {
   const { data } = await instance.patch(`/notices/favorites/${id}`);
   console.log(data);

@@ -32,7 +32,7 @@ const ModalAddsPet = ({onClose}) => {
                 onSubmit={handleSubmit}
                 validateOnChange={false}
                 validateOnBlur={true}>
-                {() => (
+                {({form}) => (
                     <Form autoComplete='off'>
                         {firstStep
                             ?   <>
@@ -63,20 +63,21 @@ const ModalAddsPet = ({onClose}) => {
                                     />
                                     <Box    
                                         maxW={'none'}
-                                        display={{md:'flex'}}
-                                        justifyContent={{md:'center'}}
+                                        display={'flex'}
+                                        flexDirection={{base:'column', md:'row-reverse'}}
+                                        justifyContent={{base:'center', md:'center'}}
                                     >
                                         <Button
+                                            controle='secondary'
                                             onClick={()=>setFirstStep(false)}
                                             mb={{base:'12px', md:'0'}}
-                                            mr={{md:'20px'}}
                                             width={{md:'180px'}}
                                         >
                                             Next
                                         </Button>
                                         <Button
                                             onClick={onClose}
-                                            controle='secondary'
+                                            mr={{md:'20px'}}
                                             width={{md:'180px'}}
                                         >
                                             Cancel
@@ -102,6 +103,7 @@ const ModalAddsPet = ({onClose}) => {
                                         control="file"
                                         name='photo'
                                         id={photoId}
+                                        size={'208px'}
                                     />
                                     <FormikControl
                                         control="textarea"
@@ -113,20 +115,21 @@ const ModalAddsPet = ({onClose}) => {
                                     <Box
                                         maxW={'none'}
                                         width={'100%'}
-                                        display={{md:'flex'}}
-                                        justifyContent={{md:'center'}}
+                                        display={'flex'}
+                                        flexDirection={{base:'column', md:'row-reverse'}}
+                                        justifyContent={{base:'center', md:'center'}}
                                     >
                                         <Button
                                             type='submit'
                                             mb={{base:'12px', md:'0'}}
-                                            mr={{md:'20px'}}
+                                            controle='secondary'
                                             width={{md:'180px'}}
                                         >
                                             Done
                                         </Button>
                                         <Button
                                             onClick={()=>setFirstStep(true)}
-                                            controle='secondary'
+                                            mr={{md:'20px'}}
                                             width={{md:'180px'}}
                                         >
                                             Back

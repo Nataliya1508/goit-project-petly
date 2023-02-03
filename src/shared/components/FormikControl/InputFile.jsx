@@ -7,32 +7,33 @@ import {
 import Plus from './akar-icons_plus.svg'
 import { Field } from 'formik';
   
-const CustomInputFile = ({label, name, id, mb: marginbot='20px', labelmb='20px', w='116px', ...rest}) => {
+const CustomInputFile = ({label, name, id, mb: marginbot='20px', borderRadius='40px', size, ...rest}) => {
     return (
-        <Box w="240px" mb={marginbot}>
+        <Box w={size} h={size} mb={marginbot}>
             <Field>
                 {({ form }) => (
-                <FormControl isInvalid={form.errors[name] && form.touched[name]} _focusWithin={{}}>
+                <FormControl isInvalid={form.errors[name] && form.touched[name]}>
                     <FormLabel 
                         htmlFor={id}
                         display='flex'
                         flexDirection='column'
-                        mr='0'
+                        w={size}
+                        h={size}
+                        m='0'
                         _after={{ 
                             content: '""',
                             display: 'flex',
                             justifyContent:'center',
                             alignItems:'center',
-                            h: `${w}`,
-                            w: `${w}`,
+                            h: `${size}`,
+                            w: `${size}`,
                             bg: '#FDF7F2',
                             bgImage: `url(${Plus})`,
                             bgRepeat: 'no-repeat',
-                            bgSize: '60%',
+                            bgSize: '30%',
                             bgPosition: '50% 50%',
-                            mt: `${labelmb}`,
                             border: "none",
-                            borderRadius: '20px'}}
+                            borderRadius: `${borderRadius}`}}
                         >{label ? label : null}
                     </FormLabel>
 

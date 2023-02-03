@@ -1,14 +1,15 @@
 import { IconButton } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
-const AddPetButton = ({onClick, ...rest}) => {
+const AddPetButton = ({onClick, size='40px', ...rest}) => {
   return (
     <IconButton
         type={'button'}
         onClick={onClick}
         aria-label='Add pet'
-        w={'40px'}
-        h={'40px'}
+        w={size}
+        h={size}
+        minWidth={size}
         borderRadius={'50%'}
         backgroundColor={'accent.100'}
         icon={<AddIcon color={'white'}/>}

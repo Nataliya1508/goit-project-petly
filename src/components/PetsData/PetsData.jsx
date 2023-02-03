@@ -8,8 +8,8 @@ const PetsData = () => {
             <Flex
                 direction='baseline'
                 justifyContent='space-between'
-                pt={{ base: '40px', md: '20px', xl: '17px' }}
-                mb={{ base: '26px', md: '22px', xl: '25px' }}>
+                pt={{ base: '40px', md: '20px', xl: '0px' }}
+                mb={{ base: '26px', md: '22px', xl: '24px' }}>
                 <Heading
                     as='h2'
                     my='auto'
@@ -24,7 +24,10 @@ const PetsData = () => {
                     fontSize={{ base: '20px', md: '28px' }}
                     lineHeight={{ base: "1.35" }}
                     fontWeight={{ base: '500' }}
-                    type="button">
+                    type="button"
+                    px='0px'
+                    _hover={{ color: '#F59256' }}
+                    _focus={{ color: '#F59256' }}>
                     <Text mr='7px'>Add pet</Text>
                 </Button>
             </Flex>

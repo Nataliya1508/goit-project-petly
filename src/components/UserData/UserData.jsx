@@ -1,20 +1,11 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-// import { CustomInput } from "shared/components/FormikControl";
-import { Box, Flex, Text, Heading, Image } from '@chakra-ui/react';
+import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
 
 const UserData = () => {
   return (
     <Box mx="0px">
-      <Heading
-        as="h2"
-        fontSize={{ base: '20px', md: '28px' }}
-        lineHeight={{ base: '1.35' }}
-        mb={{ base: '18px', md: '24px' }}
-        fontWeight={{ base: '500' }}
-      >
-        My information:
-      </Heading>
+      
       <Flex
         display="flex"
         justifyContent="center"
@@ -22,8 +13,7 @@ const UserData = () => {
         direction={{ base: 'column', md: 'row-reverse', xl: 'column' }}
         w={{ base: '100%', md: '100%', xl: '411px' }}
         mb={{ base: '42px', md: '8px', xl: '26px' }}
-        mx="auto"
-      >
+        mx="auto">
         <Box
           position="relative"
           mx="auto"
@@ -50,6 +40,8 @@ const UserData = () => {
             p="0px"
             top={{ base: '242px', md: '242px', xl: '218px' }}
             right={{ base: '0px', md: '0px', xl: '-65px' }}
+            _hover={{ color: '#F59256' }}
+            _focus={{ color: '#F59256' }}
           >
             <BsCameraFill size="20px" fill="#F59256" />
             <Text ml="4px">Edit photo</Text>

@@ -12,7 +12,6 @@ const UserDataItem = ({ name }) => {
     >
       <FormLabel
         m="0px"
-        fontFamily={{}}
         fontSize={{ base: '12px', md: '18px' }}
         lineHeight={{ base: '1.35' }}
         fontWeight={{ base: '500' }}
@@ -34,6 +33,9 @@ const UserDataItem = ({ name }) => {
 
       <Box
         as="Button"
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
         type="button"
         borderRadius="100%"
         p="0px"
@@ -41,8 +43,11 @@ const UserDataItem = ({ name }) => {
         h={{ base: '20px', md: '32px' }}
         padding="5px"
         bg="#FDF7F2"
+        color='rgba(17, 17, 17, 0.6)'
+        _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', color: '#F59256' }}
+        _focus={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', color: '#F59256' }}
       >
-        <FaPen fill="#F59256" size={{ base: '10px', md: '15px' }} />
+        <FaPen color="inherit" h={{ base: '10px', md: '15px' }} w={{ base: '10px', md: '15px' }} />
       </Box>
     </FormControl>
   );

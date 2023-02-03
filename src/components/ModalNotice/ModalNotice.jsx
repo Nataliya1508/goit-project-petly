@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactComponent as HeartIcon } from '../ModalNotice/akar-icons_heart.svg';
 import petTemlate from '../ModalNotice/no_img.jpg';
-import { Button, CardButton } from '../../shared/components';
+import { Button } from '../../shared/components';
 //import { Container } from '../../shared/components/Box';
 import {
   ModalOverlay,
@@ -43,7 +43,7 @@ const receivedItem = {
   favorite: null,
 };
 
-function ModalNotice({ Data, favorite }) {
+function ModalNotice({ open, handleClose }) {
   //   const {
   //     title,
   //     avatarURL,
@@ -124,12 +124,10 @@ function ModalNotice({ Data, favorite }) {
     },
   };
 
-  const { isOpen, onClose, title, children, onOpen, ...rest } = useDisclosure();
+  const { title, children, ...rest } = useDisclosure();
   return (
     <>
-      <CardButton onClick={onOpen}>Open Modal</CardButton>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={open} onClose={handleClose}>
         <ModalOverlay bg="rgba(17, 17, 17, 0.6);" />
         <ModalContent
           w={['280px', null, '280px', '704px']}

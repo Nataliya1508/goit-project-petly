@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Box,
@@ -24,6 +24,15 @@ const NoticesCategoryItem = ({
   onDeletePets,
   onLearnMore,
 }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Card
       as={'li'}
@@ -125,7 +134,13 @@ const NoticesCategoryItem = ({
         >
           Learn more
         </CardButton> */}
-        <ModalNotice />
+
+        <CardButton onClick={handleOpen} modalButton>
+          Learn more
+        </CardButton>
+
+        <ModalNotice open={open} handleClose={handleClose} />
+
         {favorite && (
           <CardButton
             mt={favorite && '12px'}

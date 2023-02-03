@@ -12,8 +12,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   categories: [],
   isLoading: false,
-  notices: [],
+  userNotices: [],
+  favorite: [],
   error: null,
+  isAddedSuccess: false,
 };
 
 const noticesSlice = createSlice({

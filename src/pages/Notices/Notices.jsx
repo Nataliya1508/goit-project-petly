@@ -1,12 +1,16 @@
+import {useState} from 'react';
+import { useParams } from 'react-router-dom';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoriesList from "components/NoticesCategoriesList/NoticesCategoriesList";
 // import NoticesCategoryItem from "components/NoticesCategoryItem/NoticesCategoryItem";
-// import AddNoticeButton from "components/AddNoticeButton/AddNoticeButton";
+import AddNoticeButton from "components/AddNoticeButton/AddNoticeButton";
 import { Container, Section } from 'shared/components';
 import { Heading } from '@chakra-ui/react'
 
 const Notices = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const {categoryName} = useParams();
   return (
     <Container>
       <Section>
@@ -19,10 +23,11 @@ const Notices = () => {
           mb={7}>
             Find your favorite pet
         </Heading>
-        <NoticesSearch/>
+        <NoticesSearch setSearchQuery={setSearchQuery}/>
         <NoticesCategoriesNav />
-        <NoticesCategoriesList />
-        {/* <AddNoticeButton />  */}
+        <AddNoticeButton /> 
+        <NoticesCategoriesList category={categoryName} searchQuery={searchQuery}/>
+        
       </Section>
     </Container>
   );

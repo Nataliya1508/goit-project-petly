@@ -10,14 +10,18 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { Field } from 'formik';
 
-const CustomInput = ({label, name, id, mb='16px', type='text', show, handleClick, ...rest}) => {
+const CustomInput = ({label, name, id, mb='16px', width='280px', type='text', show, handleClick, ...rest}) => {
   return (
-    <Box  w={{base:'280px', md:'448px', xl:'458px'}} mb={mb}>
+    <Box  w={{base: `${width}`, md:'448px', xl:'458px'}} mb={mb}>
           <Field>
             {({ form }) => (
               <FormControl isInvalid={form.errors[name] && form.touched[name]}>
                 {label  ? <FormLabel 
                             htmlFor={id}
+                            fontSize={'18px'}
+                            fontWeight={'500'}
+                            lineHeight={'1.44'}
+                            color={'#111111'}
                             mb='8px'
                             mr='0'
                               >{label}

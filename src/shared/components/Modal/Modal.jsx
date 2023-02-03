@@ -35,6 +35,8 @@ const CustomModal = ({isOpen, onClose, title, children, ...rest}) => {
             right={'20px'}
             bg={'#FDF7F2'}
             borderRadius={'50%'}
+            _hover={{backgroundColor: 'accent.100'}}
+            _focus={{backgroundColor: 'accent.100'}}
         />
         <ModalBody
             p={'0'}

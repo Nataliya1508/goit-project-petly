@@ -1,8 +1,11 @@
 import { Outlet } from 'react-router-dom'
 import { FilterLink } from 'shared/components'
 import { Box } from '@chakra-ui/react'
+import { useSelector } from 'react-redux'
+import { getIsLoggedIn } from 'redux/auth/auth-selectors'
 
 const NoticesCategoriesNav = () => {
+  const isLoggedIn = useSelector(getIsLoggedIn)
   return (
     <Box>
         <Box
@@ -14,11 +17,15 @@ const NoticesCategoriesNav = () => {
           mb={{base:'30px', md:'60px'}}
           mr={'auto'}
           ml={{base:'auto', md:'0'}}>
-            <FilterLink to={"lost-found"}>lost/found</FilterLink>
-            <FilterLink to={"free"}>in good hand</FilterLink>
-            <FilterLink to={"sell"}>sell</FilterLink>
-            <FilterLink to={"favorite"}>favorite ads</FilterLink>
-            <FilterLink to={"own"}>my ads</FilterLink>
+            <FilterLink to={"/notices/lost-found"}>lost/found</FilterLink>
+            <FilterLink to={"/notices/free"}>in good hand</FilterLink>
+            <FilterLink to={"/notices/sell"}>sell</FilterLink>
+              {isLoggedIn && (
+              <> 
+              <FilterLink to={"/notices/favorite"}>favorite ads</FilterLink> 
+              <FilterLink to={"/notices/own"}>my ads</FilterLink> 
+              </>
+              )}
         </Box>
         <Outlet />
     </Box>

@@ -37,9 +37,9 @@ export const getNoticeById = createAsyncThunk(
 
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
-  async (id, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const result = await api.addNotice(id);
+      const result = await api.addNotice(data);
       return result;
     } catch ({ response }) {
       const { status, data } = response;
@@ -105,9 +105,9 @@ export const addToFavorites = createAsyncThunk(
 
 export const deleteMyNotice = createAsyncThunk(
   'notices/deleteMyNotice',
-  async (_, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const result = await api.deleteMyNotice();
+      const result = await api.deleteMyNotice(id);
       return result;
     } catch ({ response }) {
       const { status, data } = response;

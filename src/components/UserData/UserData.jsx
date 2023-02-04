@@ -2,7 +2,9 @@ import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
 
-const UserData = () => {
+const UserData = ({ userData }) => {
+  const { email, name, address, birthday, phone, avatarURL } = userData
+  console.log(address)
   return (
     <Box mx="0px">
       
@@ -20,7 +22,7 @@ const UserData = () => {
           mb={{ base: '66px', md: '0px', xl: '32px' }}
         >
           <Image
-            src=""
+            src={avatarURL}
             alt="user photo"
             w="233px"
             h="233px"
@@ -54,11 +56,11 @@ const UserData = () => {
           mb="-8px"
           w={{ base: '100%', md: '379px', xl: '411px' }}
         >
-          <UserDataItem name="Name" />
-          <UserDataItem name="Email" />
-          <UserDataItem name="Birthday" />
-          <UserDataItem name="Phone" />
-          <UserDataItem name="City" />
+          <UserDataItem nameInput={"Name"} valueInput={name} />
+          <UserDataItem nameInput={"Email"}  valueInput={email} />
+          <UserDataItem nameInput={"Birthday"}  valueInput={birthday} />
+          <UserDataItem nameInput={"Phone"}  valueInput={phone} />
+          <UserDataItem nameInput={"Adress"}  valueInput={address} />
         </Flex>
       </Flex>
     </Box>

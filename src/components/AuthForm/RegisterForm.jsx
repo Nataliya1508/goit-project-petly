@@ -43,8 +43,8 @@ const RegisterForm = () => {
     }
 
     return (
-        <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'80px'}} pt={{base:'42px', md:'60px'}} pb={{base:'0', md:'40px', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'#FDF7F2', md:'white'}} mx='auto'>
-            <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Registration</Heading>
+        <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'20'}} pt={{base:'22px', md:'60px'}} pb={{base:'0', md:'10', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'accent.background', md:'white'}} mx='auto'>
+            <Heading as='h1' mb='10' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Registration</Heading>
             <Formik 
             initialValues={initialValues}
             validationSchema={regesterYupSchema}
@@ -53,15 +53,15 @@ const RegisterForm = () => {
                 {formik => (
                 <Box as={Form} position='relative' width={{base:'280px', md:'448px', xl:'458px'}} >
                     <StepSwitcher step={step} isDisabled={formik.isSubmitting} handleBackClick={handleBackClick}/>
-                    {step === 'step1' && <Button  controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={async()=>{Object.keys(await formik.validateForm()).length === 0 ? setStep('step2') : formik.submitForm()}}>Next</Button> }
+                    {step === 'step1' && <Button  controle='secondary' mb='10' mt='10' h={{base:'44px', xl:'12'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={async()=>{Object.keys(await formik.validateForm()).length === 0 ? setStep('step2') : formik.submitForm()}}>Next</Button> }
                     <Box display='flex' justifyContent='center' >
                         <Text 
                         fontFamily='body' 
-                        fontSize='12px' 
+                        fontSize='xs' 
                         fontWeight='normal' 
                         lineHeight='1.33' 
                         letterSpacing='0.04em' 
-                        color='rgba(17, 17, 17, 0.6)'
+                        color='accent.grey'
                         textAlign='center'
                         >
                             Already have an account? 
@@ -70,7 +70,7 @@ const RegisterForm = () => {
                         as='span'
                         textDecoration='underline' 
                         fontFamily='body' 
-                        fontSize='12px' 
+                        fontSize='xs' 
                         fontWeight='normal' 
                         lineHeight='1.33' 
                         letterSpacing='0.04em' 

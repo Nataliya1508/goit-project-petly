@@ -33,8 +33,8 @@ const RegisterStep2 = ({handleBackClick, isDisabled}) => {
                 mb='0' />
             <Button 
                 controle='secondary' 
-                mb='16px' 
-                mt='40px' 
+                mb='4' 
+                mt='10' 
                 type='submit' 
                 isDisabled={isDisabled} 
                 isLoading={isRefreshing} 
@@ -43,7 +43,7 @@ const RegisterStep2 = ({handleBackClick, isDisabled}) => {
                 Register
             </Button>
             <Button 
-                mb='40px' 
+                mb='10' 
                 onClick={handleBackClick} 
                 isDisabled={isDisabled} 
             >

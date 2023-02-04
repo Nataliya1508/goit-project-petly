@@ -46,5 +46,6 @@ const AuthNav = ({ onClick }) => {
 export default AuthNav;
 
 AuthNav.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  // onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };

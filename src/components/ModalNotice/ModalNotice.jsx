@@ -43,7 +43,7 @@ const receivedItem = {
   favorite: null,
 };
 
-function ModalNotice({ open, handleClose }) {
+function ModalNotice({ open, handleClose, Data }) {
   //   const {
   //     title,
   //     avatarURL,
@@ -57,72 +57,6 @@ function ModalNotice({ open, handleClose }) {
   //     price,
   //     sex,
   //   } = Data;
-
-  const labelStyles = {
-    minWidth: '118px',
-    fontWeight: '600',
-    fontSize: '16px',
-    lineHeight: '1.36',
-    m: '0',
-  };
-
-  const description = {
-    fontSize: '16px',
-    lineHeight: '1.36',
-    color: '#000000',
-  };
-
-  const itemsStyles = {
-    display: 'flex',
-    _notLast: { marginBottom: '8px' },
-  };
-
-  const bthContact = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: [null, null, '100%', '160px'],
-    height: [10, null, 10, null, 10],
-    marginBottom: [null, null, '12px', '0px'],
-    fontSize: '16px',
-    lineHeight: '1.375',
-    letterSpacing: '0.04em',
-    color: '#ffffff',
-    textAlign: 'center',
-    backgroundColor: '#F59256',
-    borderRadius: '40px',
-    cursor: 'pointer',
-
-    _hover: {
-      backgroundColor: '#FF6101',
-    },
-    _focus: {
-      backgroundColor: '#FF6101',
-    },
-  };
-
-  const bthFavorite = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: [null, null, '100%', '160px'],
-    height: [10, null, 10, null, 10],
-    marginRight: [null, null, '0px', '12px'],
-
-    fontSize: '16px',
-    lineHeight: '1.375',
-    letterSpacing: '0.04em',
-    cursor: 'pointer',
-
-    borderRadius: '40px',
-
-    _hover: {
-      borderColor: '#FF6101',
-    },
-    _focus: {
-      borderColor: '#FF6101',
-    },
-  };
 
   const { title, children, ...rest } = useDisclosure();
   return (
@@ -211,40 +145,114 @@ function ModalNotice({ open, handleClose }) {
                   marginBottom="28px"
                   _notLast={{ marginBottom: '0px' }}
                 >
-                  <ListItem sx={itemsStyles}>
-                    <FormLabel sx={labelStyles}>Name:</FormLabel>
-                    <Text sx={description}>{pets.name ? pets.name : '-'}</Text>
+                  <ListItem
+                    minWidth="118px"
+                    fontWeight="600"
+                    fontSize="16px"
+                    lineHeight="1.36"
+                    m="0"
+                  >
+                    <FormLabel
+                      minWidth="118px"
+                      fontWeight="600"
+                      fontSize="16px"
+                      lineHeight="1.36"
+                      m="0"
+                    >
+                      Name:
+                    </FormLabel>
+                    <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                      {pets.name ? pets.name : '-'}
+                    </Text>
                   </ListItem>
-                  <ListItem sx={itemsStyles}>
-                    <FormLabel sx={labelStyles}>Birthday:</FormLabel>
-                    <Text sx={description}>
+                  <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
+                    <FormLabel
+                      minWidth="118px"
+                      fontWeight="600"
+                      fontSize="16px"
+                      lineHeight="1.36"
+                      m="0"
+                    >
+                      Birthday:
+                    </FormLabel>
+                    <Text fontSize="16px" lineHeight="1.36" color="#000000">
                       {pets.birthdate ? pets.birthdate : '-'}
                     </Text>
                   </ListItem>
-                  <ListItem sx={itemsStyles}>
-                    <FormLabel sx={labelStyles}>Breed:</FormLabel>
-                    <Text sx={description}>
+                  <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
+                    <FormLabel
+                      minWidth="118px"
+                      fontWeight="600"
+                      fontSize="16px"
+                      lineHeight="1.36"
+                      m="0"
+                    >
+                      Breed:
+                    </FormLabel>
+                    <Text fontSize="16px" lineHeight="1.36" color="#000000">
                       {pets.breed ? pets.breed : '-'}
                     </Text>
                   </ListItem>
-                  <ListItem sx={itemsStyles}>
-                    <FormLabel sx={labelStyles}>Loсation:</FormLabel>
-                    <Text sx={description}>{pets.location}</Text>
+                  <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
+                    <FormLabel
+                      minWidth="118px"
+                      fontWeight="600"
+                      fontSize="16px"
+                      lineHeight="1.36"
+                      m="0"
+                    >
+                      Loсation:
+                    </FormLabel>
+                    <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                      {pets.location}
+                    </Text>
                   </ListItem>
-                  <ListItem sx={itemsStyles}>
-                    <FormLabel sx={labelStyles}>The sex:</FormLabel>
-                    <Text sx={description}>{pets.sex}</Text>
+                  <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
+                    <FormLabel
+                      minWidth="118px"
+                      fontWeight="600"
+                      fontSize="16px"
+                      lineHeight="1.36"
+                      m="0"
+                    >
+                      The sex:
+                    </FormLabel>
+                    <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                      {pets.sex}
+                    </Text>
                   </ListItem>
                   {pets.owner && (
                     <>
-                      <ListItem sx={itemsStyles}>
-                        <FormLabel sx={labelStyles}>Email:</FormLabel>
+                      <ListItem
+                        display="flex"
+                        _notLast={{ marginBottom: '8px' }}
+                      >
+                        <FormLabel
+                          minWidth="118px"
+                          fontWeight="600"
+                          fontSize="16px"
+                          lineHeight="1.36"
+                          m="0"
+                        >
+                          Email:
+                        </FormLabel>
                         <Link href={`mailto: ${pets.owner?.email}`}>
                           {pets.owner?.email}
                         </Link>
                       </ListItem>
-                      <ListItem sx={itemsStyles}>
-                        <FormLabel sx={labelStyles}>Phone:</FormLabel>
+                      <ListItem
+                        display="flex"
+                        _notLast={{ marginBottom: '8px' }}
+                      >
+                        <FormLabel
+                          minWidth="118px"
+                          fontWeight="600"
+                          fontSize="16px"
+                          lineHeight="1.36"
+                          m="0"
+                        >
+                          Phone:
+                        </FormLabel>
                         <Link href={`tel: ${pets.owner?.phone}`}>
                           {pets.owner?.phone}
                         </Link>
@@ -252,8 +260,16 @@ function ModalNotice({ open, handleClose }) {
                     </>
                   )}
                   {pets.price && (
-                    <ListItem sx={itemsStyles}>
-                      <FormLabel sx={labelStyles}>Price:</FormLabel>
+                    <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
+                      <FormLabel
+                        minWidth="118px"
+                        fontWeight="600"
+                        fontSize="16px"
+                        lineHeight="1.36"
+                        m="0"
+                      >
+                        Price:
+                      </FormLabel>
                       <Text>{pets.price} $</Text>
                     </ListItem>
                   )}
@@ -273,11 +289,45 @@ function ModalNotice({ open, handleClose }) {
               marginTop={[null, null, '40px', '32px']}
               flexDirection="row-reverse"
             >
-              <Link sx={bthContact} href={`tel: ${pets.owner?.phone}`}>
+              <Link
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                width={[null, null, '100%', '160px']}
+                height={[10, null, 10, null, 10]}
+                marginBottom={[null, null, '12px', '0px']}
+                fontSize="16px"
+                lineHeight="1.375"
+                letterSpacing="0.04em"
+                cursor="pointer"
+                color="#ffffff"
+                textAlign="center"
+                backgroundColor="#F59256"
+                borderRadius="40px"
+                _hover={{
+                  backgroundColor: '#FF6101',
+                }}
+                _focus={{
+                  backgroundColor: '#FF6101',
+                }}
+                href={`tel: ${pets.owner?.phone}`}
+              >
                 Contact
               </Link>
               <Button
-                sx={bthFavorite}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                width={[null, null, '100%', '160px']}
+                height={[10, null, 10, null, 10]}
+                marginRight={[null, null, '0px', '12px']}
+                fontSize="16px"
+                lineHeight="1.375"
+                letterSpacing="0.04em"
+                cursor="pointer"
+                borderRadius="40px"
+                _hover={{ borderColor: '#FF6101' }}
+                _focus={{ borderColor: '#FF6101' }}
                 rightIcon={<HeartIcon />}
                 variant="solid"
               >

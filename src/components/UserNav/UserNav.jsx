@@ -44,9 +44,9 @@ const UserNav = ({ onClick }) => {
     </Flex>
   );
 };
-
 export default UserNav;
 
 UserNav.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  // onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };

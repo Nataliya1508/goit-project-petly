@@ -40,6 +40,6 @@ const BurgerMenu = ({ active, setActive }) => {
 export default BurgerMenu;
 
 BurgerMenu.propTypes = {
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
   setActive: PropTypes.func.isRequired,
 };

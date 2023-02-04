@@ -19,7 +19,7 @@ export const addNotice = async data => {
 };
 
 export const getMyNotice = async () => {
-  const { data } = await instance.get(`/api/notices/myNotice`);
+  const { data } = await instance.get(`/api/notices/`);
   console.log(data);
   return data;
 };
@@ -42,7 +42,7 @@ export const deleteMyNotice = async id => {
 };
 
 export const removeFromFavorites = async id => {
-  const { data } = await instance.patch(`/api/notices/favorites/${id}`);
+  const { data } = await instance.put(`/api/notices/favorites/${id}`);
   console.log(data);
   return data;
 };

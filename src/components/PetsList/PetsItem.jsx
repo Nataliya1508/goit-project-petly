@@ -9,10 +9,8 @@ const PetsItem = () => {
       borderRadius="40px"
       direction={{ base: 'column', md: 'row', xl: 'row' }}
       mb={{ base: '20px', xl: '22px' }}
-      pr={{ base: '20px', md: '20px', xl: '28px' }}
-      pl={{ base: '20px', md: '20px', xl: '20px' }}
-      pb={{ base: '40px', md: '20px', xl: '20px' }}
-      pt={{ base: '16px', md: '20px', xl: '20px' }}
+      px={{ base: '20px', md: '20px', xl: '28px' }}
+      py={{ base: '40px', md: '20px', xl: '20px' }}
     >
       <Box
         as="image"

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 import RegisterForm from 'components/AuthForm/RegisterForm';
-import backgroundMobile from './bg-auth-mobile.png';
-import backgroundTablet from './bg-auth-tablet.png';
-import backgroundLaptop from './bg-auth-laptop.png';
+import backgroundMobile from '../../media/bg-auth-mobile.png';
+import backgroundTablet from '../../media/bg-auth-tablet.png';
+import backgroundLaptop from '../../media/bg-auth-laptop.png';
 
 
 

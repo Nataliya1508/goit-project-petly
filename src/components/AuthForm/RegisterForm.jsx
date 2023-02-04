@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 import { Heading, Box, Text } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { Button } from 'shared/components';
 import StepSwitcher from 'components/AuthForm/StepSwitcher/StepSwitcher';
 import { regesterYupSchema } from 'schemas/validationYupSchemas';
 import { login, register } from 'redux/auth/auth-operations';
+import { errorToast } from 'shared/components/Toast';
 
 
 const RegisterForm = () => {
@@ -34,17 +32,10 @@ const RegisterForm = () => {
             dispatch(login({'email': values.email, 'password': values.password}));
             resetForm();            
         }
-
-        data.error && toast.error(data.payload.message, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });                
+        if(!data.payload) {
+            errorToast("Please try again later");
+        }
+        data.error && errorToast(data.payload.message);                
     }
     
     const handleBackClick = () => {
@@ -53,7 +44,6 @@ const RegisterForm = () => {
 
     return (
         <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'80px'}} pt={{base:'42px', md:'60px'}} pb={{base:'0', md:'40px', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'#FDF7F2', md:'white'}} mx='auto'>
-            <ToastContainer />
             <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Registration</Heading>
             <Formik 
             initialValues={initialValues}

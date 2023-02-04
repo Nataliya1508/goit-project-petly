@@ -38,3 +38,5 @@ export const getCurrentUser = async (persistedToken) => {
     const data = await instance.get("/api/users/current");
     return data;
 }
+
+export default instance;

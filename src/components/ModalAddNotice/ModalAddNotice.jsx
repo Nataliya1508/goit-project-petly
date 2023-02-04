@@ -1,6 +1,7 @@
 import { Formik, Form } from "formik"
 import { useMemo, useState } from "react"
 import { nanoid } from "nanoid"
+import moment from "moment/moment"
 import { Text, Box } from "@chakra-ui/react"
 import { FormikControl, Button } from "shared/components"
 import { addNoticeInitialState, addNoticeSchema } from "./index"
@@ -15,6 +16,12 @@ const ModalAddsNotice = ({onClose}) => {
     const photoId = useMemo(()=> nanoid(), [])
     const commentsId = useMemo(()=> nanoid(), [])
 
+    function isDisabled(dirty, errors) {
+        const {title, name, birthday, breed} = errors
+        return !dirty || title !== undefined || name !== undefined || birthday !== undefined || breed !== undefined
+    }
+    
+
     const [firstStep, setFirstStep] = useState(true)
 
     const handleSubmit = ({category, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
@@ -22,13 +29,13 @@ const ModalAddsNotice = ({onClose}) => {
             category,
             title: title.trim(),
             name: name.trim(),
-            birthday,
-            breed,
+            birthday: moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY'),
+            breed: breed.trim(),
             sex,
             location,
             price,
             photo,
-            comments
+            comments: comments.trim()
         }
         console.log(newPet)
         resetForm()
@@ -38,10 +45,10 @@ const ModalAddsNotice = ({onClose}) => {
         <Formik initialValues={addNoticeInitialState}
                 validationSchema={addNoticeSchema}
                 onSubmit={handleSubmit}
-                validateOnChange={false}
+                validateOnChange={true}
                 validateOnBlur={true}>
-                {({form}) => (
-                    <Form autoComplete='off'>
+                {({values, errors, dirty}) => (
+                    <Form autoComplete='off' encType="multipart/form-data">
                         {firstStep
                             ?   <>
                                     <FormikControl
@@ -65,10 +72,9 @@ const ModalAddsNotice = ({onClose}) => {
                                         width={'240px'}
                                     />
                                     <FormikControl
-                                        type='text'
+                                        type='date'
                                         name='birthday'
                                         label='Date of birthday'
-                                        placeholder='Type date of birthday'
                                         id={birthdayId}
                                         width={'240px'}
                                     />
@@ -90,6 +96,7 @@ const ModalAddsNotice = ({onClose}) => {
                                         <Button
                                             controle='secondary'
                                             onClick={()=>setFirstStep(false)}
+                                            isDisabled={isDisabled(dirty, errors)} 
                                             mb={{base:'12px', md:'0'}}
                                             width={{md:'180px'}}
                                         >
@@ -122,14 +129,15 @@ const ModalAddsNotice = ({onClose}) => {
                                         id={locationId}
                                         width={'240px'}
                                     />
-                                    <FormikControl
-                                        type='text'
-                                        name='price'
-                                        label='Price*:'
-                                        placeholder='Type price'
-                                        id={priceId}
-                                        width={'240px'}
-                                    />
+                                    {(values.category === 'sell') && <FormikControl
+                                                                        type='text'
+                                                                        name='price'
+                                                                        label='Price*:'
+                                                                        placeholder='Type price'
+                                                                        id={priceId}
+                                                                        width={'240px'}
+                                                                    />
+                                    }
                                     <Text
                                         fontSize={{base:'16px', md:'20px'}}
                                         fontWeight={'500'}
@@ -141,10 +149,11 @@ const ModalAddsNotice = ({onClose}) => {
                                     </Text>
                                     <FormikControl
                                         control="file"
-                                        name='photo'
                                         id={photoId}
+                                        name={'photo'}
                                         size={'116px'}
                                         borderRadius={'20px'}
+
                                     />
                                     <FormikControl
                                         control="textarea"

@@ -1,6 +1,7 @@
 import { Formik, Form } from "formik"
 import { useMemo, useState } from "react"
 import { nanoid } from "nanoid"
+import moment from "moment/moment"
 import { Text, Box } from "@chakra-ui/react"
 import { FormikControl, Button } from "shared/components"
 import { addPetInitialState, addPetSchema } from "./index"
@@ -17,10 +18,10 @@ const ModalAddsPet = ({onClose}) => {
     const handleSubmit = ({name, birthday, breed, photo, comments}, {resetForm}) => {
         const newPet = {
             name: name.trim(),
-            birthday,
-            breed,
+            birthday: moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY'),
+            breed: breed.trim(),
             photo,
-            comments
+            comments: comments.trim()
         }
         console.log(newPet)
         resetForm()
@@ -32,7 +33,7 @@ const ModalAddsPet = ({onClose}) => {
                 onSubmit={handleSubmit}
                 validateOnChange={false}
                 validateOnBlur={true}>
-                {({form}) => (
+                {({}) => (
                     <Form autoComplete='off'>
                         {firstStep
                             ?   <>
@@ -45,10 +46,9 @@ const ModalAddsPet = ({onClose}) => {
                                         width={'240px'}
                                     />
                                     <FormikControl
-                                        type='text'
+                                        type='date'
                                         name='birthday'
                                         label='Date of birthday'
-                                        placeholder='Type date of birthday'
                                         id={birthdayId}
                                         width={'240px'}
                                     />

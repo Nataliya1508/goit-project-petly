@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Nav = ({ onClick }) => {
   const navItems = [
     { href: '/news', text: 'News' },
-    { href: '/notices', text: 'Find pet' },
+    { href: '/notices/sell', text: 'Find pet' },
     { href: '/friends', text: 'Our friends' },
   ];
 

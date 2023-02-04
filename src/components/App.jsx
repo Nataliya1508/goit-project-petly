@@ -1,6 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { getCurrentUser } from 'redux/auth/auth-operations';
 import { getIsRefreshing } from 'redux/auth/auth-selectors';
 import { PrivateRoute } from './SecureRoutes/PrivatRoute';
@@ -58,9 +58,8 @@ export const App = () => {
             />
 
             <Route path="news" element={<News />} />
-            <Route path="notices" element={<Notices />} />
-            <Route path="notices/:categoryName" element={<Notices />}>
-              <Route path="sell" element={<Navigate to="sell" />} />
+            <Route path="notices/" element={<Notices />}>
+              <Route path="sell" element={<p>Sell</p>} />
               <Route path="lost-found" element={<p>lost-found</p>} />
               <Route path="free" element={<p>in good hands</p>} />
               <Route

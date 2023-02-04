@@ -5,10 +5,8 @@ import AuthNav from 'components/AuthNav/AuthNav'
 import Nav from 'components/Nav/Nav'
 import PropTypes from 'prop-types'
 
-const BurgerMenu = ({ active, setActive }) => {
+const BurgerMenu = ({ active, setActive, isLogin }) => {
     const isOpen = active ? 'translateY(0%)' : 'translateY(-120%)'
-
-    const isLogin = false   ////////  Временно
 
     return (
         <Box
@@ -16,7 +14,7 @@ const BurgerMenu = ({ active, setActive }) => {
             h='100vh'
             bg='#FDF7F2'
             position='absolute'
-            zIndex='1'
+            zIndex='5'
             transition='transform 0.5s'
             overflow='auto'
             style={{ transform: isOpen }}
@@ -27,7 +25,7 @@ const BurgerMenu = ({ active, setActive }) => {
                 padding='30px 0'
             >
                 <Box display={{ md: 'none' }} mr='auto' ml='auto'>
-                    {isLogin ? <UserNav onClick={() => setActive()} /> : <AuthNav onClick={() => setActive()} />}
+                    {isLogin ? <UserNav onClick={setActive} /> : <AuthNav onClick={setActive} />}
                 </Box>
                 <Nav onClick={setActive} />
             </Box>
@@ -38,6 +36,6 @@ const BurgerMenu = ({ active, setActive }) => {
 export default BurgerMenu
 
 BurgerMenu.propTypes = {
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     setActive: PropTypes.func.isRequired,
 }

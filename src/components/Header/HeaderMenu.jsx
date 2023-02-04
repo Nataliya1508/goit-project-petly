@@ -1,4 +1,5 @@
-import { Box, Container, Flex, Image } from '@chakra-ui/react'
+import { Box, Flex, Image } from '@chakra-ui/react'
+import { Container } from 'shared/components'
 import React from 'react'
 import logo from '../../media/logo.svg'
 import UserNav from 'components/UserNav/UserNav'
@@ -6,21 +7,16 @@ import AuthNav from 'components/AuthNav/AuthNav'
 import Nav from 'components/Nav/Nav'
 import PropTypes from 'prop-types'
 
-const HeaderMenu = ({ active, setActive, action }) => {
-    const isLogin = false ///////// Временно
-
+const HeaderMenu = ({ active, setActive, isLogin }) => {
     return (
         <Box
             bg='#FDF7F2'
         >
             <Container
-                maxW={{ base: '320px', md: '768px', xl: '1280px' }}
-                pt={{ base: 4, md: 6, xl: 5 }}
-                pr={{ base: 5, md: 8, xl: 4 }}
-                pb={{ base: 4, md: 6, xl: 5 }}
-                pl={{ base: 5, md: 8, xl: 4 }}
+                py={{ base: 4, md: 6, xl: 5 }}
                 pos='relative'
                 zIndex={{ base: 10, md: 10 }}
+                bg='#FDF7F2'
             >
                 <Flex
                     justify='space-between'
@@ -41,7 +37,7 @@ const HeaderMenu = ({ active, setActive, action }) => {
                         <Box
                             display={{ base: 'none', md: 'flex' }}
                         >
-                            {isLogin ? <UserNav onClick={action} /> : <AuthNav onClick={action} />}
+                            {isLogin ? <UserNav onClick={() => setActive(false)} /> : <AuthNav onClick={() => setActive(false)} />}
                         </Box>
                         <Flex
                             justify='center'
@@ -53,7 +49,8 @@ const HeaderMenu = ({ active, setActive, action }) => {
                                 position='relative'
                                 width='30px'
                                 height='20px'
-                                onClick={() => setActive()}
+                                onClick={setActive}
+                                _hover={{ cursor: 'pointer' }}
                             >
                                 <Box
                                     className={active ? 'active' : ''}
@@ -106,7 +103,7 @@ const HeaderMenu = ({ active, setActive, action }) => {
                         </Flex>
                     </Flex>
                     <Flex display={{ base: 'none', md: 'none', xl: 'flex' }}>
-                        {isLogin ? <UserNav onClick={action} /> : <AuthNav onClick={action} />}
+                        {isLogin ? <UserNav onClick={() => setActive(false)} /> : <AuthNav onClick={() => setActive(false)} />}
                     </Flex>
                 </Flex>
             </Container>
@@ -117,7 +114,6 @@ const HeaderMenu = ({ active, setActive, action }) => {
 export default HeaderMenu
 
 HeaderMenu.propTypes = {
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     setActive: PropTypes.func.isRequired,
-    action: PropTypes.func
 }

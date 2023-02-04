@@ -13,7 +13,7 @@ const AuthNav = ({ onClick }) => {
         <Flex m='0 auto' align='center'>
             {authItems.map(({ href, text }) =>
                 <Link
-                    onClick={() => onClick(false)}
+                    onClick={onClick}
                     to={href}
                     key={href}
 
@@ -38,6 +38,7 @@ const AuthNav = ({ onClick }) => {
                     _last={{ mr: 0 }}
                     _hover={{ bg: '#FDF7F2', color: '#111111' }}
                     _focus={{ bg: '#FDF7F2', color: '#111111' }}
+                    _activeLink={{ bg: '#FDF7F2', color: '#111111' }}
                 >
                     {text}
                 </Link>)}
@@ -48,5 +49,5 @@ const AuthNav = ({ onClick }) => {
 export default AuthNav
 
 AuthNav.propTypes = {
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func
 }

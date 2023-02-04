@@ -38,6 +38,7 @@ const Nav = ({ onClick }) => {
                     _last={{ mb: 0 }}
                     _hover={{ fontWeight: '700', textDecorationLine: 'underline', color: '#F59256' }}
                     _focus={{ fontWeight: '700', textDecorationLine: 'underline', color: '#F59256' }}
+                    _activeLink={{ fontWeight: '700', textDecorationLine: 'underline', color: '#F59256' }}
                 >
                     {text}
                 </Link>)}
@@ -67,6 +68,7 @@ const Nav = ({ onClick }) => {
                         _last={{ mb: 0 }}
                         _hover={{ fontWeight: '700', textDecorationLine: 'underline', color: '#F59256' }}
                         _focus={{ fontWeight: '700', textDecorationLine: 'underline', color: '#F59256' }}
+                        _activeLink={{ fontWeight: '700', textDecorationLine: 'underline', color: '#F59256' }}
                     >
                         {text}
                     </Link>)

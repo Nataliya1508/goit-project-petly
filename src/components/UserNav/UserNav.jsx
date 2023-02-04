@@ -44,7 +44,6 @@ const UserNav = ({ onClick }) => {
     </Flex>
   );
 };
-
 export default UserNav;
 
 UserNav.propTypes = {

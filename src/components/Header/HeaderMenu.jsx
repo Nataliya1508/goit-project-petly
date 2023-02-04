@@ -15,10 +15,8 @@ const HeaderMenu = ({ active, setActive, action }) => {
     <Box bg="#FDF7F2">
       <Container
         maxW={{ base: '320px', md: '768px', xl: '1280px' }}
-        pt={{ base: 4, md: 6, xl: 5 }}
-        pr={{ base: 5, md: 8, xl: 4 }}
-        pb={{ base: 4, md: 6, xl: 5 }}
-        pl={{ base: 5, md: 8, xl: 4 }}
+        py={{ base: 4, md: 6, xl: 5 }}
+        px={{ base: 5, md: 8, xl: 4 }}
         pos="relative"
         zIndex={{ base: 10, md: 10 }}
       >

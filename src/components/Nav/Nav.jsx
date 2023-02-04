@@ -92,7 +92,6 @@ const Nav = ({ onClick }) => {
     </Box>
   );
 };
-
 export default Nav;
 
 Nav.propTypes = {

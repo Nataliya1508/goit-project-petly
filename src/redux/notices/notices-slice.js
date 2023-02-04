@@ -64,7 +64,7 @@ const noticesSlice = createSlice({
       })
       .addCase(addToFavorites.fulfilled, (state, { payload }) => {
         console.log(payload);
-        state.favorites = [payload.user.favorites, ...state.favorites];
+        state.favorite = [payload.user.favorites, ...state.favorite];
         state.isLoading = false;
         state.error = null;
       })
@@ -94,7 +94,7 @@ const noticesSlice = createSlice({
       })
       .addCase(removeFromFavorites.fulfilled, (state, { payload }) => {
         console.log(payload);
-        state.favorites = payload.user.favorites;
+        state.favorite = payload.user.favorite;
         state.isLoading = false;
         state.error = null;
       })

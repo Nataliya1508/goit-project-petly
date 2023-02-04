@@ -1,17 +1,21 @@
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
-import { Box, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+  Text,
+} from '@chakra-ui/react';
 
 export const WorkTime = ({ workDays }) => {
   const days = ['MN: ', 'TU: ', 'WE: ', 'TH: ', 'FR: ', 'SA: ', 'SU: '];
   const currentDate = new Date();
   const currentDay = currentDate.getDay();
 
-  const [modalOpened, setModalOpened] = useState(false);
+  console.log(currentDay);
 
-  const handleClick = () => {
-    setModalOpened(!modalOpened);
-  };
   const indexUpdater = () => {
     if (currentDay === 0) {
       return 6;
@@ -20,64 +24,68 @@ export const WorkTime = ({ workDays }) => {
   };
   return (
     <>
-      <Button 
-      alignItems={'start'}
-      justifyContent={'start'}
-      variant='link'
-      color={'#111111'} 
-      fontWeight={'medium'}
-      fontSize={{base: 'xs', md: 'sm', lg: 'md'}}
-      lineHeight={{base: '1.33', md: '1.35', lg: 'short'}} 
-      type="click" onClick={handleClick}>
-        {workDays[indexUpdater()].from && workDays[indexUpdater()].to
-          ? `${workDays[indexUpdater()]?.from} - ${
-              workDays[indexUpdater()]?.to
-            }`
-          : 'Closed'}
-      </Button>
-
-      {modalOpened && (
-        <>
-          <Box 
-          position={'absolute'}
-          zIndex={'2'}
-          top={{base: '115%'}}
-          display={'inline-block'}
-          p={'12px'}
-          border={'1px solid #f59256'}
-          minW={'120px'}
-          cursor={'pointer'}
-          bgColor={'#FFFFFF'}
-          boxShadow={'4px 4px 8px rgba(0, 0, 0, 0.25)'}
-          borderRadius={'8px'}
-          fontWeight={'medium'}
-          fontSize={'12px'}
-          lineHeight={'1.34'}
+      <Popover>
+        <PopoverTrigger>
+          <Button
+            alignItems={'start'}
+            justifyContent={'start'}
+            variant="link"
+            color={'#111111'}
+            fontWeight={'medium'}
+            fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}
+            lineHeight={{ base: '1.33', md: '1.35', lg: 'short' }}
+            type="click"
+          >
+            {workDays[indexUpdater()].from && workDays[indexUpdater()].to
+              ? `${workDays[indexUpdater()]?.from} - ${
+                  workDays[indexUpdater()]?.to
+                }`
+              : 'Closed'}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent maxW={'120px'}>
+          <PopoverBody
+            display={'inline-block'}
+            p={'12px'}
+            border={'1px solid #f59256'}
+            cursor={'pointer'}
+            bgColor={'#FFFFFF'}
+            boxShadow={'4px 4px 8px rgba(0, 0, 0, 0.25)'}
+            borderRadius={'8px'}
+            fontWeight={'medium'}
+            fontSize={'12px'}
+            lineHeight={'1.34'}
           >
             {workDays.map(({ from, to, isOpen }, index) => (
               <Box key={nanoid()}>
                 {isOpen ? (
-                  <Box 
-                  display={'flex'}
-                  justifyContent={'space-between'}>
-                    <p>{days[index]} </p>
-                    <p>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    bgColor={
+                      index + 1 === currentDay
+                        ? 'accent.accentOrange'
+                        : 'inherit'
+                    }
+                    borderRadius={'sm'}
+                    px={'2px'}
+                  >
+                    <Text>{days[index]}</Text>
+                    <Text>
                       {from}-{to}
-                    </p>
+                    </Text>
                   </Box>
                 ) : (
-                  <Box
-                  display={'flex'}
-                  justifyContent={'space-between'}>
-                    <p>{days[index]} </p>
-                    <p>Closed</p>
+                  <Box display={'flex'} justifyContent={'space-between'}>
+                    <Text>{days[index]} </Text>
+                    <Text>Closed</Text>
                   </Box>
                 )}
               </Box>
             ))}
-          </Box>
-        </>
-      )}
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
     </>
   );
 };

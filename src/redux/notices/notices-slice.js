@@ -28,115 +28,124 @@ const initialState = {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
-  extraReducers: {
-    //getNoticesByCategory
-    [getNoticesByCategory.pending]: handlePending,
-    [getNoticesByCategory.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.categories = payload;
-      state.isLoading = false;
-      state.error = null;
-    },
-    [getNoticesByCategory.rejected](state, { payload }) {
-      state.categories = [];
-      state.isLoading = false;
-      state.error = payload;
-    },
+  extraReducers: builder => {
+    builder
+      //getNoticesByCategory
+      .addCase(getNoticesByCategory.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(getNoticesByCategory.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.categories = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getNoticesByCategory.rejected, (state, { payload }) => {
+        state.categories = [];
+        state.isLoading = false;
+        state.error = payload;
+      })
+      //getNoticeById
+      .addCase(getNoticeById.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(getNoticeById.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getNoticeById.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      // addToFavorites
+      .addCase(addToFavorites.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(addToFavorites.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.favorites = [payload.user.favorites, ...state.favorites];
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addToFavorites.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
 
-    // getNoticesByCategory
-    [getNoticeById.pending]: handlePending,
-    [getNoticeById.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.isLoading = false;
-      state.error = null;
-    },
-    [getNoticeById.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
+      //getFavorites
+      .addCase(getFavorites.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(getFavorites.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getFavorites.rejected, (state, { payload }) => {
+        state.favorites = [];
+        state.isLoading = false;
+        state.error = payload;
+      })
 
-    // addToFavorites
-    [addToFavorites.pending]: handlePending,
-    [addToFavorites.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.favorites = [payload.user.favorites, ...state.favorites];
-      state.isLoading = false;
-      state.error = null;
-    },
-    [addToFavorites.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
+      // removeFromFavorites
+      .addCase(removeFromFavorites.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(removeFromFavorites.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.favorites = payload.user.favorites;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(removeFromFavorites.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
 
-    //getFavorites
-    [getFavorites.pending]: handlePending,
-    [getFavorites.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.isLoading = false;
-      state.error = null;
-    },
-    [getFavorites.rejected](state, { payload }) {
-      state.favorites = [];
-      state.isLoading = false;
-      state.error = payload;
-    },
+      // addNotice
+      .addCase(addNotice.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(addNotice.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.categories = [payload, ...state.categories];
+        state.userNotices = [payload, ...state.userNotices];
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addNotice.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
 
-    // removeFromFavorites
-    [removeFromFavorites.pending]: handlePending,
-    [removeFromFavorites.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.favorites = payload.user.favorites;
-      state.isLoading = false;
-      state.error = null;
-    },
-    [removeFromFavorites.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
+      //getMyNotice
+      .addCase(getMyNotice.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(getMyNotice.fulfilled, (store, { payload }) => {
+        store.isLoading = false;
+        store.userNotices = payload;
+      })
+      .addCase(getMyNotice.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
+      })
 
-    // addNotice
-    [addNotice.pending]: handlePending,
-    [addNotice.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.categories = [payload, ...state.categories];
-      state.userNotices = [payload, ...state.userNotices];
-      state.isLoading = false;
-      state.error = null;
-    },
-    [addNotice.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
-
-    //getMyNotice
-    [getMyNotice.pending]: store => {
-      store.loading = true;
-      store.error = null;
-    },
-    [getMyNotice.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.userNotices = payload;
-    },
-    [getMyNotice.rejected]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
-    },
-
-    //deleteMyNotice
-    [deleteMyNotice.pending]: store => {
-      store.loading = true;
-      store.error = null;
-    },
-    [deleteMyNotice.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.userNotices = store.userNotices.filter(
-        ({ _id }) => _id !== payload.id
-      );
-    },
-    [deleteMyNotice.rejected]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
-    },
+      //deleteMyNotice
+      .addCase(deleteMyNotice.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(deleteMyNotice.fulfilled, (store, { payload }) => {
+        store.isLoading = false;
+        store.userNotices = store.userNotices.filter(
+          ({ _id }) => _id !== payload.id
+        );
+      })
+      .addCase(deleteMyNotice.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
+      });
   },
 });
 

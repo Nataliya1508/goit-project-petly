@@ -1,15 +1,12 @@
 import { Avatar, Flex, Link } from '@chakra-ui/react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import user from '../../media/user.svg';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
 
 const UserNav = ({ onClick }) => {
-  // const userItems = [{ href: '/user', text: 'Account', icon: `${user}` }];
   const userMail = useSelector(getUser);
-
   return (
     <Flex m="0 auto" align="center">
       <Link
@@ -36,9 +33,9 @@ const UserNav = ({ onClick }) => {
         <Avatar
           bg="white"
           color={'accent.accentOrange'}
-          name={userMail}
-          w={{ base: '20px', md: '28px' }}
-          h={{ base: '20px', md: '28px' }}
+          name={userMail.name}
+          size={'sm'}
+          // h={{ base: '20px', md: '28px' }}
           mr="12px"
           mb="1px"
         />

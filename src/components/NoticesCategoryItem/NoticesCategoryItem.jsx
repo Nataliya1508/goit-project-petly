@@ -1,4 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
+
+import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
+import { addToFavorites } from '../../redux/notices/notices-operations';
 import {
   Text,
   Box,
@@ -13,17 +20,24 @@ import ModalNotice from '../ModalNotice/ModalNotice';
 
 const NoticesCategoryItem = ({
   id,
-  avatar,
+  photo,
   favorite,
   title,
   breed,
   location,
-  age,
+  birthdate,
   price,
-  condition,
-  onDeletePets,
-  onLearnMore,
+  categoryName,
+  deleteMyNotice,
 }) => {
+  const dispatch = useDispatch();
+
+  const user = useSelector(getUser);
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const favoriteNotices = useSelector(getFavoriteNotices);
+
+  useEffect(() => {}, [favoriteNotices]);
+
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -33,6 +47,16 @@ const NoticesCategoryItem = ({
   const handleClose = () => {
     setOpen(false);
   };
+
+  // const toggleFavorite = () => {
+  //   if (!isLoggedIn) {
+  //     toast.info('You should be logged in to add to favorites');
+  //     return;
+  //   }
+
+  //   dispatch(addToFavorites(id));
+  // };
+
   return (
     <Card
       as={'li'}
@@ -42,7 +66,7 @@ const NoticesCategoryItem = ({
     >
       <CardBody p={'0'} mb={price || favorite ? '0' : '30px'}>
         <Box position={'relative'}>
-          <Image src={avatar} alt={breed} width={'100%'} height={'288px'} />
+          <Image src={photo} alt={breed} width={'100%'} height={'288px'} />
           <Box
             as={'span'}
             position={'absolute'}
@@ -63,7 +87,7 @@ const NoticesCategoryItem = ({
             backgroundColor={'rgba(255, 255, 255, 0.6)'}
             backdropFilter={'blur(2px)'}
           >
-            {condition}
+            {categoryName}
           </Box>
           <FavoriteButton />
         </Box>
@@ -103,7 +127,7 @@ const NoticesCategoryItem = ({
             lineHeight={'short'}
             color={'#111111'}
           >
-            Age: {age}
+            Age: {birthdate}
           </Text>
           {price && (
             <Text
@@ -129,7 +153,7 @@ const NoticesCategoryItem = ({
       >
         {/* <CardButton
           type="submit"
-          onClick={() => onLearnMore(id)}
+          onClick={() =>
           mb={favorite && '12px'}
         >
           Learn more
@@ -139,13 +163,13 @@ const NoticesCategoryItem = ({
           Learn more
         </CardButton>
 
-        <ModalNotice open={open} handleClose={handleClose} />
+        {open && <ModalNotice open={open} handleClose={handleClose} id={id} />}
 
         {favorite && (
           <CardButton
             mt={favorite && '12px'}
             type="submit"
-            onClick={() => onDeletePets(id)}
+            onClick={() => deleteMyNotice(id)}
             controle="delete"
           >
             Delete

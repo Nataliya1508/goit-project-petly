@@ -35,7 +35,6 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(getNoticesByCategory.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.categories = payload;
         state.isLoading = false;
         state.error = null;
@@ -50,7 +49,7 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(getNoticeById.fulfilled, (state, { payload }) => {
-        console.log(payload);
+        state.currentNotice = payload;
         state.isLoading = false;
         state.error = null;
       })
@@ -63,7 +62,6 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(addToFavorites.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.favorite = [payload.user.favorites, ...state.favorite];
         state.isLoading = false;
         state.error = null;
@@ -78,7 +76,6 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(getFavorites.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.isLoading = false;
         state.error = null;
       })
@@ -93,7 +90,6 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(removeFromFavorites.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.favorite = payload.user.favorite;
         state.isLoading = false;
         state.error = null;
@@ -108,7 +104,6 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(addNotice.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.categories = [payload, ...state.categories];
         state.userNotices = [payload, ...state.userNotices];
         state.isLoading = false;

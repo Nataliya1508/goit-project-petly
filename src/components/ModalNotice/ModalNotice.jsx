@@ -1,4 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
+import {
+  getFavoriteNotices,
+  selectCurrentNotice,
+  selectNoticesByCategory,
+} from '../../redux/notices/notices-selectors';
+
+import {
+  addToFavorites,
+  getNoticeById,
+} from '../../redux/notices/notices-operations';
 import { ReactComponent as HeartIcon } from '../ModalNotice/akar-icons_heart.svg';
 import petTemlate from '../ModalNotice/no_img.jpg';
 import { Button } from '../../shared/components';
@@ -34,7 +48,7 @@ const pets = {
   sex: 'male',
   location: 'Kiev, Ukraine',
   price: null,
-  avatarURL:
+  photo:
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjI80NrzAYuiUgBDcg8wkGbPbZOxfHF7540w&s',
   comments:
     'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem.',
@@ -43,20 +57,21 @@ const receivedItem = {
   favorite: null,
 };
 
-function ModalNotice({ open, handleClose, Data }) {
-  //   const {
-  //     title,
-  //     avatarURL,
-  //     birthdate,
-  //     breed,
-  //     category,
-  //     comments,
-  //     location,
-  //     name,
-  //     owner,
-  //     price,
-  //     sex,
-  //   } = Data;
+function ModalNotice({ open, handleClose, id }) {
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const favoriteNotices = useSelector(getFavoriteNotices);
+  const notice = useSelector(selectCurrentNotice);
+
+  console.log(
+    '🚀 ~ file: ModalNotice.jsx:69 ~ ModalNotice ~ breed',
+    notice?.breed
+  );
+
+  useEffect(() => {
+    dispatch(getNoticeById(id));
+  }, [dispatch, id]);
 
   const { title, children, ...rest } = useDisclosure();
   return (
@@ -103,8 +118,8 @@ function ModalNotice({ open, handleClose, Data }) {
                   borderRadius="0px 0px 40px 40px"
                   w="100%"
                   h="100%"
-                  src={pets.avatarURL || petTemlate}
-                  alt={pets.breed}
+                  src={notice?.photo || petTemlate}
+                  alt={notice?.breed}
                   onError={e => {
                     e.target.src = petTemlate;
                   }}
@@ -125,7 +140,7 @@ function ModalNotice({ open, handleClose, Data }) {
                   borderBottomRightRadius="20px"
                   bg="rgba(255, 255, 255, 0.6)"
                 >
-                  {pets.category.split('-').join(' ')}
+                  {notice?.categoryName.split('-').join(' ')}
                 </Text>
               </Box>
 
@@ -137,7 +152,7 @@ function ModalNotice({ open, handleClose, Data }) {
                   lineHeight="1.36"
                   letterSpacing="-0.01em"
                 >
-                  {pets.title}
+                  {notice?.title}
                 </Text>
                 <List
                   display="flex"
@@ -162,7 +177,7 @@ function ModalNotice({ open, handleClose, Data }) {
                       Name:
                     </FormLabel>
                     <Text fontSize="16px" lineHeight="1.36" color="#000000">
-                      {pets.name ? pets.name : '-'}
+                      {notice?.name ? notice?.name : '-'}
                     </Text>
                   </ListItem>
                   <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
@@ -176,7 +191,7 @@ function ModalNotice({ open, handleClose, Data }) {
                       Birthday:
                     </FormLabel>
                     <Text fontSize="16px" lineHeight="1.36" color="#000000">
-                      {pets.birthdate ? pets.birthdate : '-'}
+                      {notice?.birthdate ? notice?.birthdate : '-'}
                     </Text>
                   </ListItem>
                   <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
@@ -190,7 +205,7 @@ function ModalNotice({ open, handleClose, Data }) {
                       Breed:
                     </FormLabel>
                     <Text fontSize="16px" lineHeight="1.36" color="#000000">
-                      {pets.breed ? pets.breed : '-'}
+                      {notice?.breed ? notice?.breed : '-'}
                     </Text>
                   </ListItem>
                   <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
@@ -204,7 +219,7 @@ function ModalNotice({ open, handleClose, Data }) {
                       Loсation:
                     </FormLabel>
                     <Text fontSize="16px" lineHeight="1.36" color="#000000">
-                      {pets.location}
+                      {notice?.location}
                     </Text>
                   </ListItem>
                   <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
@@ -218,10 +233,10 @@ function ModalNotice({ open, handleClose, Data }) {
                       The sex:
                     </FormLabel>
                     <Text fontSize="16px" lineHeight="1.36" color="#000000">
-                      {pets.sex}
+                      {notice?.sex}
                     </Text>
                   </ListItem>
-                  {pets.owner && (
+                  {notice?.owner && (
                     <>
                       <ListItem
                         display="flex"
@@ -236,8 +251,8 @@ function ModalNotice({ open, handleClose, Data }) {
                         >
                           Email:
                         </FormLabel>
-                        <Link href={`mailto: ${pets.owner?.email}`}>
-                          {pets.owner?.email}
+                        <Link href={`mailto: ${notice?.owner?.email}`}>
+                          {notice?.owner?.email}
                         </Link>
                       </ListItem>
                       <ListItem
@@ -253,8 +268,8 @@ function ModalNotice({ open, handleClose, Data }) {
                         >
                           Phone:
                         </FormLabel>
-                        <Link href={`tel: ${pets.owner?.phone}`}>
-                          {pets.owner?.phone}
+                        <Link href={`tel: ${notice?.owner?.phone}`}>
+                          {notice?.owner?.phone}
                         </Link>
                       </ListItem>
                     </>
@@ -270,7 +285,7 @@ function ModalNotice({ open, handleClose, Data }) {
                       >
                         Price:
                       </FormLabel>
-                      <Text>{pets.price} $</Text>
+                      <Text>{notice?.price} $</Text>
                     </ListItem>
                   )}
                 </List>
@@ -278,7 +293,7 @@ function ModalNotice({ open, handleClose, Data }) {
             </Box>
 
             <Text>
-              <b>Comments:</b> {pets.comments}
+              <b>Comments:</b> {notice?.comments}
             </Text>
 
             <Box
@@ -310,7 +325,7 @@ function ModalNotice({ open, handleClose, Data }) {
                 _focus={{
                   backgroundColor: '#FF6101',
                 }}
-                href={`tel: ${pets.owner?.phone}`}
+                href={`tel: ${notice?.owner?.phone}`}
               >
                 Contact
               </Link>
@@ -331,7 +346,7 @@ function ModalNotice({ open, handleClose, Data }) {
                 rightIcon={<HeartIcon />}
                 variant="solid"
               >
-                {!receivedItem.favorite ? 'Add to' : 'Remove from'}
+                {!notice?.favorite ? 'Add to' : 'Remove from'}
               </Button>
             </Box>
           </Box>

@@ -6,7 +6,6 @@ import {default as userPets} from './ListTest.json'
 import getNoticesByCategory from 'components/NoticesCategoryItem/NoticesCategoryItem'
 import {Spinner} from '@chakra-ui/react';
 
-
 const NoticesCategoriesList = ({query}) => {
   const [pets, setPets] = useState([])
   const [loading, setLoading] = useState(false);

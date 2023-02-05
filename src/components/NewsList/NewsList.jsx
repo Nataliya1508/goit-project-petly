@@ -1,21 +1,18 @@
 import { Box, SimpleGrid, Heading, Text, Link } from '@chakra-ui/react';
 
 export const NewsList = ({ news }) => {
-  //   const editDate = (date = '2020-12-12') => {
-  //     return date.split('-').reverse().join('/');
-  //   };
   return (
     <SimpleGrid
       justifyItems={'center'}
       mt={'60px'}
-      columns={[1, 1, 1, 2, 3]}
-      spacing={['48px', '48px', '48px', '60px', '60px']}
+      columns={{base: 1, md: 2, lg: 3}}
+      spacing={{base: '12', md: '60px'}}
       p={2}
     >
       {news.map(({ _id, title, description, date, url }) => (
         <Box
           position={'relative'}
-          maxWidth={['330px', null, null, null, null, '394px']}
+          maxWidth={{base: '330px', lg: '394px'}}
           p={2}
           transitionProperty={'box-shadow'}
           transitionDuration={'250ms'}
@@ -23,34 +20,34 @@ export const NewsList = ({ news }) => {
           _before={{
             content: '" "',
             position: 'absolute',
-            top: '-4px',
+            top: '-1',
             left: '0',
             w: '85%',
-            height: '4px',
+            h: '1',
             bg: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
-            borderRadius: '40px',
+            borderRadius: '10',
           }}
           _hover={{
             shadow: 'md',
-          }}
+            }}
           key={_id}
         >
           <Heading
             noOfLines={2}
             as="h3"
             length={60}
-            fontSize="24px"
-            lineHeight="1.375"
+            fontSize={'2xl'}
+            lineHeight={'short'}
             letterSpacing="-0.01em"
           >
             {title}
           </Heading>
           <Text
             noOfLines={5}
-            mt={'16px'}
-            fontSize={'16px'}
-            lineHeight="1.375"
-            overflow="hidden"
+            mt={'4'}
+            fontSize={'md'}
+            lineHeight={'short'}
+            overflow={'hidden'}
             color={'#111321'}
           >
             {description}
@@ -59,19 +56,19 @@ export const NewsList = ({ news }) => {
             display={'flex'}
             justifyContent="space-between"
             alignItems={'center'}
-            mt={['20px', '20px', '20px', '20px', '40px']}
+            mt={{base: '5', lg: '10'}}
           >
             <Text
-              fontSize={'16px'}
+              fontSize={'md'}
               color={'rgba(17, 17, 17, 0.6)'}
-              lineHeight="1.375"
+              lineHeight={'short'}
             >
-              {date}
+              {date?.split("-").reverse().join("/")}
             </Text>
             <Link
               position={'relative'}
-              fontSize="16px"
-              lineHeight="1.375"
+              fontSize={'md'}
+              lineHeight={'short'}
               color={'#F59256'}
               bgColor={'transparent'}
               as="a"

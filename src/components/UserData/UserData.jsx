@@ -1,7 +1,7 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
-import defaultAvatar from '../../media/defaultAvatar.jpg';
+import defaultAvatar from '../../media/defaultAvatar.png';
 const UserData = ({ userData }) => {
   const { email, name, address, birthday, phone, avatarURL } = userData
   // const defaultAvatarPath = 'media/defaultAvatar.jpg'

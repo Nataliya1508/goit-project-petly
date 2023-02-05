@@ -8,7 +8,7 @@ const Header = () => {
   const isUserLogin = useSelector(getIsLoggedIn);
   const [menuActive, setMenuActive] = useState(false);
 
-  const isModalOpen = bool => {
+  const isModalOpen = (bool) => {
     if (!bool) {
       return setMenuActive(bool);
     }

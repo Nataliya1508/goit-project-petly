@@ -1,11 +1,11 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
-
+import defaultAvatar from '../../media/defaultAvatar.jpg';
 const UserData = ({ userData }) => {
   const { email, name, address, birthday, phone, avatarURL } = userData
-  console.log(address)
-  const defaultAvatarPath = 'src/media/DefaultAvatar.jpg'
+  // const defaultAvatarPath = 'media/defaultAvatar.jpg'
+  // bgImage={{base:backgroundMobile, md:backgroundTablet, xl:backgroundLaptop }}
   return (
     <Box mx="0px">
       
@@ -23,15 +23,17 @@ const UserData = ({ userData }) => {
           mb={{ base: '66px', md: '0px', xl: '32px' }}
         >
           <Image
-            src={defaultAvatarPath}
+            src={avatarURL ?? defaultAvatar}
             alt="user photo"
             w="233px"
             h="233px"
-            
-            
+            bgSize='contain'
+            bgRepeat='no-repeat'
+            bgColor='#FDF7F2'
             borderRadius="50%"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
           />
+          <img src="" alt='./media/defaultAvatar.jpg' />
           <Box
             display="flex"
             alignItems="center"

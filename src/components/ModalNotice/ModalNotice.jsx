@@ -14,7 +14,7 @@ import {
   getNoticeById,
 } from '../../redux/notices/notices-operations';
 import { ReactComponent as HeartIcon } from '../ModalNotice/akar-icons_heart.svg';
-import petTemlate from '../ModalNotice/no_img.jpg';
+import petTemlate from '../ModalNotice/no_img.png';
 import { Button } from '../../shared/components';
 //import { Container } from '../../shared/components/Box';
 import {
@@ -63,11 +63,6 @@ function ModalNotice({ open, handleClose, id }) {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const favoriteNotices = useSelector(getFavoriteNotices);
   const notice = useSelector(selectCurrentNotice);
-
-  console.log(
-    '🚀 ~ file: ModalNotice.jsx:69 ~ ModalNotice ~ breed',
-    notice?.breed
-  );
 
   useEffect(() => {
     dispatch(getNoticeById(id));
@@ -160,13 +155,7 @@ function ModalNotice({ open, handleClose, id }) {
                   marginBottom="28px"
                   _notLast={{ marginBottom: '0px' }}
                 >
-                  <ListItem
-                    minWidth="118px"
-                    fontWeight="600"
-                    fontSize="16px"
-                    lineHeight="1.36"
-                    m="0"
-                  >
+                  <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
                     <FormLabel
                       minWidth="118px"
                       fontWeight="600"

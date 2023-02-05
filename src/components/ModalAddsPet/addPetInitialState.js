@@ -2,7 +2,7 @@ const addPetInitialState = {
     name: '',
     birthday: '',
     breed: '',
-    photo: '',
+    photo: null,
     comments: '',
 }
 

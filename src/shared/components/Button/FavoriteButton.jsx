@@ -7,19 +7,19 @@ const FavoriteButton = ({favorite, ...rest}) => {
     <Button
         type={'button'}
         position={'absolute'}
-        top={'12px'}
-        right={'12px'}
+        top={3}
+        right={3}
         width={'44px'}
         height={'44px'}
         p={'0'}
-        backgroundColor={'rgba(255, 255, 255, 0.6)'}
+        backgroundColor={'#ffffff99'}
         backdropFilter={'blur(2px)'}
         borderRadius={'50%'}
         {...rest}
             ><Image
               src={favorite ? heartFull : heart}
-              width={'28px'}
-              height={'28px'}/>
+              width={7}
+              height={7}/>
     </Button>
   )
 }

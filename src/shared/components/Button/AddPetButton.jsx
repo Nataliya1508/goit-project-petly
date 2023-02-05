@@ -11,7 +11,7 @@ const AddPetButton = ({onClick, size='40px', ...rest}) => {
         h={size}
         minWidth={size}
         borderRadius={'50%'}
-        backgroundColor={'accent.100'}
+        backgroundColor={'accent.accentOrange'}
         icon={<AddIcon color={'white'}/>}
         _hover={{backgroundColor: '#FF6101'}}
         _focus={{backgroundColor: '#FF6101'}}

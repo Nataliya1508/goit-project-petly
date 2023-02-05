@@ -2,7 +2,6 @@ import * as yup from 'yup';
 import moment from 'moment/moment'
 
 const regexPrice = /^[1-9]+[0-9]?$/
-
 const regexAdress = /^(?:(?:\w+-\w+)+|(?:\w+)+),\s(?:(?:\w+-\w+)+|(?:\w+)+)$/
 
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png']
@@ -15,7 +14,7 @@ const addNoticeSchema = yup.object().shape({
     breed: yup.string().min(2).max(24),
     sex: yup.string().oneOf(['male', 'female']).required("Required"),
     location: yup.string().matches(regexAdress, 'Must be in format City, Region').required("Required"),
-    price: yup.string().matches(regexPrice, 'Must be a positive integer number').nullable(),
+    price: yup.string().matches(regexPrice, 'Must be a positive integer number').nullable().defined(),
     photo: yup.mixed().test(
       'fileFormat',
       'Unsupported file type',

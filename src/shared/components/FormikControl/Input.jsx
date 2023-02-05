@@ -1,6 +1,5 @@
 import {
   Box,
-  Text,
   FormControl,
   FormLabel,
   Input,
@@ -32,11 +31,11 @@ const CustomInput = ({label, name, id, mb='16px', width='280px', type='text', sh
                 {label  ? <FormLabel
                             display={'inline-flex'}
                             htmlFor={id}
-                            fontSize={{base:'18px', md:'24px'}}
-                            fontWeight={'500'}
+                            fontSize={{base:'18px', md:'2xl'}}
+                            fontWeight={'medium'}
                             lineHeight={'1.44'}
-                            color={'#111111'}
-                            mb='8px'
+                            color={'accent.black'}
+                            mb={2}
                             mr='0'
                               >
                                 {label}
@@ -50,30 +49,30 @@ const CustomInput = ({label, name, id, mb='16px', width='280px', type='text', sh
                     name={name}
                     variant='filled'
                     minH={'none'}
-                    h={{base:'40px', md:'52px'}}
+                    h={{base:'10', md:'52px'}}
                     p={{base:"11px 14px", md:"14px 32px"}}
-                    fontSize={{base:'14px', md:'18px'}}
+                    fontSize={{base:'sm', md:'18px'}}
                     lineHeight={'short'}
-                    color={(type === 'date' && form.values.birthday === '') ? 'rgba(27, 27, 27, 0.6)' : '#111111'}
-                    bg='#FDF7F2'
+                    color={(type === 'date' && form.values.birthday === '') ? 'rgba(27, 27, 27, 0.6)' : 'accent.black'}
+                    bg='accent.background'
                     border= "1px solid rgba(245, 146, 86, 0.5)"
                     borderRadius='40px'
-                    _placeholder={{ color: '#111111' }}
+                    _placeholder={{ color: 'accent.black' }}
                     {...rest}
                   />
-                  {type === 'password' && <InputRightElement width={{base:'40px', md:'52px'}} height={{base:'40px', md:'52px'}}>
+                  {type === 'password' && <InputRightElement width={{base:'10', md:'52px'}} height={{base:'10', md:'52px'}}>
                                             <IconButton
                                               onClick={handleClick}
                                               icon={show ? <ViewOffIcon/> : <ViewIcon/>}
-                                              width={{base:'30px', md:'40px'}}
-                                              height={{base:'30px', md:'40px'}}
+                                              width={{base:'30px', md:'10'}}
+                                              height={{base:'30px', md:'10'}}
                                               minW={'none'}
                                               backgroundColor={'transparent'}
                                               borderRadius={'50%'}/>
                                           </InputRightElement>}
                 </InputGroup>
                 <FormErrorMessage
-                  fontSize="12px">
+                  fontSize="xs">
                     {form.errors[name]}
                 </FormErrorMessage>
               </FormControl>

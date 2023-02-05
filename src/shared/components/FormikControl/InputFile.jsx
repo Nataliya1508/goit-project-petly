@@ -52,7 +52,7 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', border
                         :   <Box
                                 w={size}
                                 h={size}
-                                bgColor={'#FDF7F2'}
+                                bgColor={'accent.background'}
                                 borderRadius={borderRadius}
                                 bgImage={Plus}
                                 bgRepeat={'no-repeat'}

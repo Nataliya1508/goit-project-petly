@@ -13,13 +13,13 @@ const SexRadioButtons = ({label, name, ...rest}) => {
     const id = useMemo(()=> nanoid(), [])
     const options = [{value: "male", text: "male"}, {value: "female", text: "female"}]
   return (
-    <Box mb={{base:'32px', md:'40px'}}>
+    <Box mb={{base:'8', md:'10'}}>
         <Box
           display={'inline-flex'}
-          fontSize={{base:'18px', md:'24px'}}
-          fontWeight={'500'}
+          fontSize={{base:'18px', md:'2xl'}}
+          fontWeight={'medium'}
           lineHeight={{base:'1.44', md:'1.08'}}
-          mb={{base:'16px', md:'28px'}}>
+          mb={{base:'4', md:'7'}}>
             {label}
         </Box>
         <Box
@@ -37,7 +37,7 @@ const SexRadioButtons = ({label, name, ...rest}) => {
                                   w={{base:'55px', md:'65px'}}
                                   _focusWithin={{outline: '2px solid #FF6101',
                                                 borderRadius: '8px' }}
-                                  mr={{base:'40px', md:'60px'}}
+                                  mr={{base:'10', md:'60px'}}
                                 >
                                     <VisuallyHiddenInput
                                         type='radio'
@@ -49,15 +49,15 @@ const SexRadioButtons = ({label, name, ...rest}) => {
                                     <Box as='label' htmlFor={id+value} display={'flex'} flexDirection={'column'} alignItems={'center'} mb={'0'}>
                                       <Image  boxSize={{base:'40px', md:'60px'}}
                                               objectFit='cover'
-                                              mb={{base:'12px', md:'20px'}}
+                                              mb={{base:'3', md:'5'}}
                                               src={value === 'male' ? male : female}
                                               alt={value}/>
                                       <Text
-                                        fontSize={{base:'18px', md:'20px'}}
-                                        fontWeight={'500'}
+                                        fontSize={{base:'18px', md:'xl'}}
+                                        fontWeight={'medium'}
                                         lineHeight={{base:'1.44', md:'1.08'}}
-                                        _hover={{color: '#F59256'}}
-                                        color={field.value === value ? '#F59256' : '#000000'}>
+                                        _hover={{color: 'accent.accentOrange'}}
+                                        color={field.value === value ? 'accent.accentOrange' : 'black'}>
                                         {text}
                                       </Text>
                                     </Box> 

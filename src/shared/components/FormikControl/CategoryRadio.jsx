@@ -12,12 +12,12 @@ const CategoryRadioButtons = ({label, name, ...rest}) => {
                       {value: "for-free", text: "in good hands"},
                       {value: "sell", text: "sell"}]
   return (
-    <Box mb={{base:'32px', md:'40px'}}>
+    <Box mb={{base:'8', md:'10'}}>
         {label && <Box
-                    fontSize={{base:'18px', md:'24px'}}
-                    fontWeight={'500'}
+                    fontSize={{base:'18px', md:'2xl'}}
+                    fontWeight={'medium'}
                     lineHeight={{base:'1.44', md:'1.08'}}
-                    mb={{base:'16px', md:'28px'}}>
+                    mb={{base:'4', md:'7'}}>
                       {label}
                   </Box>}
         <Box
@@ -42,7 +42,7 @@ const CategoryRadioButtons = ({label, name, ...rest}) => {
                                       htmlFor={id+value}
                                       mb={'0'}
                                       px={6}
-                                      py={{base:'8px', md:'10px'}}
+                                      py={{base:'2', md:'2.5'}}
                                       border={'2px solid'}
                                       borderColor={'accent.accentOrange'}
                                       borderRadius={'40px'}
@@ -52,7 +52,7 @@ const CategoryRadioButtons = ({label, name, ...rest}) => {
                                       height={{base:'35px', md:'47px'}}
                                       _hover={{ bg: 'accent.accentOrange',
                                                 color: 'white' }}
-                                      _focusWithin={{backgroundColor: '#F59256',
+                                      _focusWithin={{backgroundColor: 'accent.accentOrange',
                                                       outline: '2px solid #FF6101'}}>                                      
                                         {
                                           <>
@@ -66,7 +66,7 @@ const CategoryRadioButtons = ({label, name, ...rest}) => {
                                             <Text
                                               width={'fit-content'}
                                               fontSize={{base:'sm', md:'xl'}}
-                                              fontWeight={'500'}
+                                              fontWeight={'medium'}
                                               lineHeight={'short'}
                                               letterSpacing={'0.04em'}
                                             >

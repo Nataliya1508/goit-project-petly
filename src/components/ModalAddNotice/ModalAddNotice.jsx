@@ -60,7 +60,7 @@ const ModalAddsNotice = ({onClose}) => {
                                         label={<>Title of ad<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type title'
                                         id={titleId}
-                                        width={'240px'}
+                                        width={60}
                                     />
                                     <FormikControl
                                         type='text'
@@ -68,14 +68,14 @@ const ModalAddsNotice = ({onClose}) => {
                                         label='Name pet'
                                         placeholder='Type name pet'
                                         id={nameId}
-                                        width={'240px'}
+                                        width={60}
                                     />
                                     <FormikControl
                                         type='date'
                                         name='birthday'
                                         label='Date of birthday'
                                         id={birthdayId}
-                                        width={'240px'}
+                                        width={60}
                                     />
                                     <FormikControl
                                         type='text'
@@ -83,7 +83,7 @@ const ModalAddsNotice = ({onClose}) => {
                                         label='Breed'
                                         placeholder='Type breed'
                                         id={breedId}
-                                        width={'240px'}
+                                        width={60}
                                         mb={'40px'}
                                     />
                                     <Box    
@@ -96,14 +96,14 @@ const ModalAddsNotice = ({onClose}) => {
                                             controle='secondary'
                                             onClick={()=>setFirstStep(false)}
                                             isDisabled={isDisabled(dirty, errors)} 
-                                            mb={{base:'12px', md:'0'}}
+                                            mb={{base:'3', md:'0'}}
                                             width={{md:'180px'}}
                                         >
                                             Next
                                         </Button>
                                         <Button
                                             onClick={onClose}
-                                            mr={{md:'20px'}}
+                                            mr={{md:'5'}}
                                             width={{md:'180px'}}
                                         >
                                             Cancel
@@ -126,23 +126,23 @@ const ModalAddsNotice = ({onClose}) => {
                                         label={<>Location<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type location'
                                         id={locationId}
-                                        width={'240px'}
+                                        width={'60'}
                                     />
-                                    {(values.category === 'sell') && <FormikControl
+                                    {(values.categoryName === 'sell') && <FormikControl
                                                                         type='text'
                                                                         name='price'
                                                                         label={<>Price<Text color={'accent.accentOrange'}>*</Text></>}
                                                                         placeholder='Type price'
                                                                         id={priceId}
-                                                                        width={'240px'}
+                                                                        width={'60'}
                                                                     />
                                     }
                                     <Text
-                                        fontSize={{base:'18px', md:'24px'}}
-                                        fontWeight={'500'}
+                                        fontSize={{base:'18px', md:'2xl'}}
+                                        fontWeight={'medium'}
                                         lineHeight={{base:'short', md:'1.2'}}
                                         letterSpacing={'-0.01em'}
-                                        mb={'20px'}    
+                                        mb={'5'}    
                                     >
                                         Load the pet`s image
                                     </Text>
@@ -164,14 +164,14 @@ const ModalAddsNotice = ({onClose}) => {
                                     />
                                     <Box
                                         maxW={'none'}
-                                        width={'100%'}
+                                        width={'full'}
                                         display={'flex'}
                                         flexDirection={{base:'column', md:'row-reverse'}}
                                         justifyContent={{base:'center', md:'center'}}
                                     >
                                         <Button
                                             type='submit'
-                                            mb={{base:'12px', md:'0'}}
+                                            mb={{base:'3', md:'0'}}
                                             controle='secondary'
                                             width={{md:'180px'}}
                                         >
@@ -179,7 +179,7 @@ const ModalAddsNotice = ({onClose}) => {
                                         </Button>
                                         <Button
                                             onClick={()=>setFirstStep(true)}
-                                            mr={{md:'20px'}}
+                                            mr={{md:'5'}}
                                             width={{md:'180px'}}
                                         >
                                             Back

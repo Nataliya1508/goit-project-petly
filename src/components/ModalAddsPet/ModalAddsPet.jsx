@@ -48,7 +48,7 @@ const ModalAddsPet = ({onClose}) => {
                                         label={<>Name pet<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder={'Type name pet'}
                                         id={nameId}
-                                        width={'240px'}
+                                        width={'60'}
                                         req={true}
                                     />
                                     <FormikControl
@@ -56,7 +56,7 @@ const ModalAddsPet = ({onClose}) => {
                                         name='birthday'
                                         label={<>Date of birthday<Text color={'accent.accentOrange'}>*</Text></>}
                                         id={birthdayId}
-                                        width={'240px'}
+                                        width={'60'}
                                     />
                                     <FormikControl
                                         type='text'
@@ -64,8 +64,8 @@ const ModalAddsPet = ({onClose}) => {
                                         label={<>Breed<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type breed'
                                         id={breedId}
-                                        width={'240px'}
-                                        mb={'40px'}
+                                        width={'60'}
+                                        mb={'10'}
                                     />
                                     <Box    
                                         maxW={'none'}
@@ -76,7 +76,7 @@ const ModalAddsPet = ({onClose}) => {
                                         <Button
                                             controle='secondary'
                                             onClick={()=>setFirstStep(false)}
-                                            mb={{base:'12px', md:'0'}}
+                                            mb={{base:'3', md:'0'}}
                                             width={{md:'180px'}}
                                             isDisabled={isDisabled(dirty, errors)}
                                         >
@@ -84,7 +84,7 @@ const ModalAddsPet = ({onClose}) => {
                                         </Button>
                                         <Button
                                             onClick={onClose}
-                                            mr={{md:'20px'}}
+                                            mr={{md:'5'}}
                                             width={{md:'180px'}}
                                         >
                                             Cancel
@@ -99,11 +99,11 @@ const ModalAddsPet = ({onClose}) => {
                                 >  
                                     <Text
                                         display={'inline-flex'}
-                                        fontSize={{base:'16px', md:'20px'}}
-                                        fontWeight={'500'}
+                                        fontSize={{base:'md', md:'xl'}}
+                                        fontWeight={'medium'}
                                         lineHeight={{base:'short', md:'1.2'}}
                                         letterSpacing={'-0.01em'}
-                                        mb={'20px'}    
+                                        mb={'5'}    
                                     >
                                         Add photo and some comments{<Text color={'accent.accentOrange'}>*</Text>}
                                     </Text>
@@ -124,14 +124,14 @@ const ModalAddsPet = ({onClose}) => {
                                     />
                                     <Box
                                         maxW={'none'}
-                                        width={'100%'}
+                                        width={'full'}
                                         display={'flex'}
                                         flexDirection={{base:'column', md:'row-reverse'}}
                                         justifyContent={{base:'center', md:'center'}}
                                     >
                                         <Button
                                             type='submit'
-                                            mb={{base:'12px', md:'0'}}
+                                            mb={{base:'3', md:'0'}}
                                             controle='secondary'
                                             width={{md:'180px'}}
                                         >
@@ -139,7 +139,7 @@ const ModalAddsPet = ({onClose}) => {
                                         </Button>
                                         <Button
                                             onClick={()=>setFirstStep(true)}
-                                            mr={{md:'20px'}}
+                                            mr={{md:'5'}}
                                             width={{md:'180px'}}
                                         >
                                             Back

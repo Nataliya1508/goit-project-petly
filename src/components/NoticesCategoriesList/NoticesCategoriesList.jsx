@@ -5,8 +5,6 @@ import { SimpleGrid } from '@chakra-ui/react';
 import {default as userPets} from './ListTest.json'
 import getNoticesByCategory from 'components/NoticesCategoryItem/NoticesCategoryItem'
 import {Spinner} from '@chakra-ui/react';
-import { ToastContainer, toast } from 'react-toastify'
-
 
 const NoticesCategoriesList = ({query}) => {
   const [pets, setPets] = useState([])
@@ -65,8 +63,7 @@ const NoticesCategoriesList = ({query}) => {
         )}
     </SimpleGrid>
     )}
-    {error && toast('Something went wrong')}
-    <ToastContainer />
+    {error && <p>Something went wrong</p>}
     {loading && <Spinner/>}
     </>
   );

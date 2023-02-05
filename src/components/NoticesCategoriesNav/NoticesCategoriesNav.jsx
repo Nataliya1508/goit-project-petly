@@ -1,14 +1,17 @@
 import { Outlet } from 'react-router-dom'
-import { FilterLink, AddPetButton, Modal } from 'shared/components'
-import { Box, useDisclosure } from '@chakra-ui/react'
+import { FilterLink, Modal } from 'shared/components'
+// import {  AddPetButton } from 'shared/components'
+import { Box, useDisclosure, Text,  } from '@chakra-ui/react'
 import { ModalAddNotice } from 'components/ModalAddNotice'
 import { useSelector } from 'react-redux'
 import { getIsLoggedIn } from 'redux/auth/auth-selectors'
 import { toast } from 'react-toastify';
+import { AddIcon } from '@chakra-ui/icons'
 
 const NoticesCategoriesNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const isLoggedIn = useSelector(getIsLoggedIn);
+
 
   const handleClick = () => {
     if (!isLoggedIn) {
@@ -33,12 +36,58 @@ const NoticesCategoriesNav = () => {
               <FilterLink to={"favorite"}>favorite ads</FilterLink>
               <FilterLink to={"own"}>my ads</FilterLink>
           </Box>
-          <Box
-          display={'flex'} 
+            <Box
+              display={'flex'}
+              w={{ base: '80px', md: '140px'}}
+              h={{ base: '80px'}}
+              flexDirection= {{ base: 'column-reverse', md: 'row'}}
+              alignItems= {{ base: 'center'}}
+              justifyContent= {{ base: 'center'}}
+              borderRadius={{ base: '50%', md: '100%' }}
+              bgColor={{ base: '#F59256', md: 'transparent'}}
+              as={'Button'}
+              position={{base:'fixed', md:'static'}}
+              top={'455px'}
+              right={'20px'}
+              zIndex={'2'}
+            >
+                <Text 
+                  maxWidth={{ xl: '767px'}} 
+                  size={{w:'74px', h:'27px'}}
+                  textAlign={'center'}
+                  fontStyle= {"normal"}
+                  fontWeight={ "500"}
+                  fontSize= {{base: '12px', md: '20px'}}
+                  lineHeight= {'27px'}
+                  mr={{base: '0px', md: '12px'}}
+                  color={{base:'white', md:'#111111'}}
+            >Add pet</Text>
+            <Box
+            display={'flex'}
+            alignItems= {{ base: 'center'}}
+            justifyContent= {{ base: 'center'}}
+            w={{ base: '21px', md: '44px'}}
+            h={{ base: '21px', md: '44px'}}
+            backgroundColor={'#F59256'}
+            borderRadius={'50%'}
+               _hover={{backgroundColor: '#FF6101'}}
+               _focus={{backgroundColor: '#FF6101'}}
+            >
+              <AddIcon
+                onClick={handleClick}
+                w={{ base: '21px', md: '16px'}}
+                h={{ base: '21px', md: '16px'}}
+                color={'white'}
+              />
+            </Box>
+            </Box>
+          {/* <Box
+          display={"flex"}
           flexDir={'row'}
-          alignItems={'center'} 
+          alignItems={'center'}
           >
-          <Box 
+          <Text 
+                maxWidth={{ xl: '767px'}} 
                 size={{w:'74px', h:'27px'}}
                 textAlign={'center'}
                 fontStyle= {"normal"}
@@ -47,7 +96,7 @@ const NoticesCategoriesNav = () => {
                 lineHeight= {'27px'}
                 mr={'12px'}
                 color='#111111'
-          >Add pet</Box>
+          >Add pet</Text>
           <AddPetButton
             onClick={handleClick}
             size={{base:'80px', md:'44px'}}
@@ -56,7 +105,8 @@ const NoticesCategoriesNav = () => {
             right={'20px'}
             zIndex={'2'}
           />
-          </Box>
+ 
+          </Box> */}
           <Modal
             isOpen={isOpen}
             onClose={onClose}

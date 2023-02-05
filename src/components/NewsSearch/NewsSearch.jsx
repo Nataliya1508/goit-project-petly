@@ -21,7 +21,7 @@ export const NewsSearch = ({ searchFunction }) => {
     value={searchQuery} 
     onChange={searchHandler}
 	handleClear={removeQuery}
-	maxWidth={['280px', '280px', '280px', '608px', '608px' ]}
+	maxWidth={{base: '280px', md: '608px'}}
 	/>
 	
     )

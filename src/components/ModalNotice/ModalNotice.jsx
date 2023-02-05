@@ -57,7 +57,7 @@ const receivedItem = {
   favorite: null,
 };
 
-function ModalNotice({ open, handleClose, id }) {
+function ModalNotice({ open, handleClose, id, toggleFavorite }) {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -334,6 +334,8 @@ function ModalNotice({ open, handleClose, id }) {
                 _focus={{ borderColor: '#FF6101' }}
                 rightIcon={<HeartIcon />}
                 variant="solid"
+                favorite={!notice?.favorite}
+                onClick={toggleFavorite}
               >
                 {!notice?.favorite ? 'Add to' : 'Remove from'}
               </Button>

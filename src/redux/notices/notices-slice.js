@@ -80,7 +80,7 @@ const noticesSlice = createSlice({
         state.error = null;
       })
       .addCase(getFavorites.rejected, (state, { payload }) => {
-        state.favorites = [];
+        state.favorite = [];
         state.isLoading = false;
         state.error = payload;
       })

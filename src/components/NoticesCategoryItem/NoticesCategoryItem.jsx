@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import petTemlate from '../ModalNotice/no_img.png';
 
 import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
 
@@ -48,14 +49,14 @@ const NoticesCategoryItem = ({
     setOpen(false);
   };
 
-  // const toggleFavorite = () => {
-  //   if (!isLoggedIn) {
-  //     toast.info('You should be logged in to add to favorites');
-  //     return;
-  //   }
+  const toggleFavorite = () => {
+    if (!isLoggedIn) {
+      toast.info('You should be logged in to add to favorites');
+      return;
+    }
 
-  //   dispatch(addToFavorites(id));
-  // };
+    dispatch(addToFavorites(id));
+  };
 
   return (
     <Card
@@ -66,7 +67,12 @@ const NoticesCategoryItem = ({
     >
       <CardBody p={'0'} mb={price || favorite ? '0' : '30px'}>
         <Box position={'relative'}>
-          <Image src={photo} alt={breed} width={'100%'} height={'288px'} />
+          <Image
+            src={photo || petTemlate}
+            alt={breed}
+            width={'100%'}
+            height={'288px'}
+          />
           <Box
             as={'span'}
             position={'absolute'}
@@ -163,7 +169,14 @@ const NoticesCategoryItem = ({
           Learn more
         </CardButton>
 
-        {open && <ModalNotice open={open} handleClose={handleClose} id={id} />}
+        {open && (
+          <ModalNotice
+            open={open}
+            handleClose={handleClose}
+            id={id}
+            toggleFavorite={toggleFavorite}
+          />
+        )}
 
         {favorite && (
           <CardButton

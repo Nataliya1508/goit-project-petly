@@ -28,7 +28,7 @@ import { Spinner } from '@chakra-ui/react';
 const categoriesOjb = {
   sell: 'sell',
   'lost-found': 'lost-found',
-  'in-good-hands': 'in-good-hands',
+  free: 'free',
 };
 
 const NoticesCategoriesList = () => {
@@ -77,10 +77,10 @@ const NoticesCategoriesList = () => {
     if (category === categoriesOjb[category]) {
       dispatch(getNoticesByCategory(category));
     }
-    if (category === 'favorites-ads') {
+    if (category === 'favorite') {
       dispatch(getFavorites());
     }
-    if (category === 'my-ads') {
+    if (category === 'own') {
       dispatch(getMyNotice());
     }
   }, [dispatch, category]);

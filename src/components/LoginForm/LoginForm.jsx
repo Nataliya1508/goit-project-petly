@@ -12,12 +12,11 @@ import { login } from 'redux/auth/auth-operations';
 import { errorToast } from 'shared/components/Toast';
 
 
-
 const LoginForm = () => {
     const isRefreshing = useSelector(getIsRefreshing);
     const dispatch = useDispatch();
-    const[showPassword, setShowPassword] = useState(false);
     
+    const[showPassword, setShowPassword] = useState(false);
     const handleShowPasswordClick =() => {
         setShowPassword((prevState)=> !prevState)    
     }
@@ -38,8 +37,8 @@ const LoginForm = () => {
     }
 
     return (
-        <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'80px'}} pt={{base:'42px', md:'60px'}} pb={{base:'0', md:'40px', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'#FDF7F2', md:'white'}} mx='auto'>
-            <Heading as='h1' mb='40px' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Login</Heading>
+        <Box width={{base:'280px', md:'608px', xl:'618px'}} px={{base:'0', md:'20'}} pt={{base:'22px', md:'60px'}} pb={{base:'0', md:'10', xl:'60px'}} borderRadius='40px' boxShadow={{base:'0', md:'7px 4px 14px rgba(0, 0, 0, 0.11)'}} bgColor={{base:'accent.background', md:'white'}} mx='auto'>
+            <Heading as='h1' mb='10' mt={{base:'0'}} textAlign='center' fontWeight='medium'>Login</Heading>
             <Formik 
                 initialValues={initialValues}
                 validationSchema={loginYupSchema}
@@ -69,11 +68,11 @@ const LoginForm = () => {
                         <Box display='flex' justifyContent='center' >
                             <Text 
                                 fontFamily='body' 
-                                fontSize='12px' 
+                                fontSize='xs' 
                                 fontWeight='normal' 
                                 lineHeight='1.33' 
                                 letterSpacing='0.04em' 
-                                color='rgba(17, 17, 17, 0.6)'
+                                color='accent.grey'
                                 textAlign='center'
                                 >
                                 Don't have an account? 
@@ -82,7 +81,7 @@ const LoginForm = () => {
                                 as='span'
                                 textDecoration='underline' 
                                 fontFamily='body' 
-                                fontSize='12px' 
+                                fontSize='xs' 
                                 fontWeight='normal' 
                                 lineHeight='1.33' 
                                 letterSpacing='0.04em' 

@@ -7,7 +7,6 @@ const AuthNav = ({ onClick }) => {
     { href: '/login', text: 'Login' },
     { href: '/register', text: 'Registration' },
   ];
-
   return (
     <Flex m="0 auto" align="center">
       {authItems.map(({ href, text }) => (
@@ -47,5 +46,6 @@ const AuthNav = ({ onClick }) => {
 export default AuthNav;
 
 AuthNav.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  // onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };

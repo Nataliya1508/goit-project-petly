@@ -1,30 +1,40 @@
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import HeaderMenu from './HeaderMenu';
 
 const Header = () => {
+  const isUserLogin = useSelector(getIsLoggedIn);
   const [menuActive, setMenuActive] = useState(false);
 
-  const onBurgerBtnClick = () => {
+  const isModalOpen = bool => {
+    if (!bool) {
+      return setMenuActive(bool);
+    }
     setMenuActive(!menuActive);
-
-    if (!menuActive) {
-      return (document.body.style.overflow = 'hidden');
-    }
-
-    if (menuActive) {
-      return (document.body.style.overflow = '');
-    }
   };
+
+  useEffect(() => {
+    if (menuActive) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [menuActive]);
 
   return (
     <>
       <HeaderMenu
         active={menuActive}
-        setActive={onBurgerBtnClick}
-        action={setMenuActive}
+        setActive={isModalOpen}
+        isLogin={isUserLogin}
       />
-      <BurgerMenu active={menuActive} setActive={onBurgerBtnClick} />
+      <BurgerMenu
+        active={menuActive}
+        setActive={isModalOpen}
+        isLogin={isUserLogin}
+      />
     </>
   );
 };

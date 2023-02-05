@@ -9,7 +9,7 @@ import {
 const CategoryRadioButtons = ({label, name, ...rest}) => {
     const id = useMemo(()=> nanoid(), [])
     const options = [ {value: "lost-found", text: "lost/found"},
-                      {value: "good-hands", text: "in good hands"},
+                      {value: "for-free", text: "in good hands"},
                       {value: "sell", text: "sell"}]
   return (
     <Box mb={{base:'32px', md:'40px'}}>
@@ -44,13 +44,13 @@ const CategoryRadioButtons = ({label, name, ...rest}) => {
                                       px={6}
                                       py={{base:'8px', md:'10px'}}
                                       border={'2px solid'}
-                                      borderColor={'accent.100'}
+                                      borderColor={'accent.accentOrange'}
                                       borderRadius={'40px'}
-                                      bg={field.value === value ? 'accent.100' :'white'}
+                                      bg={field.value === value ? 'accent.accentOrange' :'white'}
                                       color={field.value === value ? 'white' : '#111111'}
                                       width={'fit-content'}
                                       height={{base:'35px', md:'47px'}}
-                                      _hover={{ bg: 'accent.100',
+                                      _hover={{ bg: 'accent.accentOrange',
                                                 color: 'white' }}
                                       _focusWithin={{backgroundColor: '#F59256',
                                                       outline: '2px solid #FF6101'}}>                                      

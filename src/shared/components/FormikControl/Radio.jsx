@@ -15,6 +15,7 @@ const SexRadioButtons = ({label, name, ...rest}) => {
   return (
     <Box mb={{base:'32px', md:'40px'}}>
         <Box
+          display={'inline-flex'}
           fontSize={{base:'18px', md:'24px'}}
           fontWeight={'500'}
           lineHeight={{base:'1.44', md:'1.08'}}
@@ -33,7 +34,8 @@ const SexRadioButtons = ({label, name, ...rest}) => {
                                 <Box
                                   as='li'
                                   key={value}
-                                  _focusWithin={{outline: '1px solid #F59256',
+                                  w={{base:'55px', md:'65px'}}
+                                  _focusWithin={{outline: '2px solid #FF6101',
                                                 borderRadius: '8px' }}
                                   mr={{base:'40px', md:'60px'}}
                                 >

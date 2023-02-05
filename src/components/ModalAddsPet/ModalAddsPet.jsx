@@ -15,6 +15,11 @@ const ModalAddsPet = ({onClose}) => {
 
     const [firstStep, setFirstStep] = useState(true)
 
+    function isDisabled(dirty, errors) {
+        const {name, birthday, breed} = errors
+        return !dirty || name !== undefined || birthday !== undefined || breed !== undefined
+    }
+
     const handleSubmit = ({name, birthday, breed, photo, comments}, {resetForm}) => {
         const newPet = {
             name: name.trim(),
@@ -31,31 +36,32 @@ const ModalAddsPet = ({onClose}) => {
         <Formik initialValues={addPetInitialState}
                 validationSchema={addPetSchema}
                 onSubmit={handleSubmit}
-                validateOnChange={false}
+                validateOnChange={true}
                 validateOnBlur={true}>
-                {({}) => (
-                    <Form autoComplete='off'>
+                {({errors, dirty}) => (
+                    <Form autoComplete='off' encType="multipart/form-data">
                         {firstStep
                             ?   <>
                                     <FormikControl
                                         type='text'
                                         name='name'
-                                        label='Name pet'
-                                        placeholder='Type name pet'
+                                        label={<>Name pet<Text color={'accent.accentOrange'}>*</Text></>}
+                                        placeholder={'Type name pet'}
                                         id={nameId}
                                         width={'240px'}
+                                        req={true}
                                     />
                                     <FormikControl
                                         type='date'
                                         name='birthday'
-                                        label='Date of birthday'
+                                        label={<>Date of birthday<Text color={'accent.accentOrange'}>*</Text></>}
                                         id={birthdayId}
                                         width={'240px'}
                                     />
                                     <FormikControl
                                         type='text'
                                         name='breed'
-                                        label='Breed'
+                                        label={<>Breed<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type breed'
                                         id={breedId}
                                         width={'240px'}
@@ -72,6 +78,7 @@ const ModalAddsPet = ({onClose}) => {
                                             onClick={()=>setFirstStep(false)}
                                             mb={{base:'12px', md:'0'}}
                                             width={{md:'180px'}}
+                                            isDisabled={isDisabled(dirty, errors)}
                                         >
                                             Next
                                         </Button>
@@ -91,24 +98,27 @@ const ModalAddsPet = ({onClose}) => {
                                     maxW={'none'}
                                 >  
                                     <Text
+                                        display={'inline-flex'}
                                         fontSize={{base:'16px', md:'20px'}}
                                         fontWeight={'500'}
                                         lineHeight={{base:'short', md:'1.2'}}
                                         letterSpacing={'-0.01em'}
                                         mb={'20px'}    
                                     >
-                                        Add photo and some comments
+                                        Add photo and some comments{<Text color={'accent.accentOrange'}>*</Text>}
                                     </Text>
                                     <FormikControl
                                         control="file"
-                                        name='photo'
                                         id={photoId}
-                                        size={'208px'}
+                                        name={'photo'}
+                                        size={{base:'208px', md:'182px'}}
+                                        borderRadius={{base:'20px', md:'40px'}}
+                                        plusSize={{base:'30%', md:'40%'}}
                                     />
                                     <FormikControl
                                         control="textarea"
                                         name='comments'
-                                        label='Comments'
+                                        label={<>Comments<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type comments'
                                         id={commentsId}
                                     />

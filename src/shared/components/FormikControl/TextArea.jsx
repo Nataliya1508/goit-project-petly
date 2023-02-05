@@ -12,7 +12,8 @@ const CustomTextArea = ({label, name, id, mb='40px', ...rest}) => {
           <Field>
             {({ form }) => (
               <FormControl isInvalid={form.errors[name] && form.touched[name]}>
-                {label  ? <FormLabel 
+                {label  ? <FormLabel
+                            display={'inline-flex'}
                             htmlFor={id}
                             mb={{base:'8px', md:'12px'}}
                             fontSize={{base:'18px', md:'24px'}}

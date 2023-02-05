@@ -21,19 +21,18 @@ const ModalAddsNotice = ({onClose}) => {
         return !dirty || title !== undefined || name !== undefined || birthday !== undefined || breed !== undefined
     }
     
-
     const [firstStep, setFirstStep] = useState(true)
 
-    const handleSubmit = ({category, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
+    const handleSubmit = ({categoryName, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
         const newPet = {
-            category,
+            categoryName,
             title: title.trim(),
             name: name.trim(),
             birthday: moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY'),
             breed: breed.trim(),
             sex,
-            location,
-            price,
+            location: location.trim(),
+            price: Number(price),
             photo,
             comments: comments.trim()
         }
@@ -53,12 +52,12 @@ const ModalAddsNotice = ({onClose}) => {
                             ?   <>
                                     <FormikControl
                                         control='category-radio'
-                                        name='category'
+                                        name='categoryName'
                                     />
                                     <FormikControl
                                         type='text'
                                         name='title'
-                                        label='Title of ad*'
+                                        label={<>Title of ad<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type title'
                                         id={titleId}
                                         width={'240px'}
@@ -119,12 +118,12 @@ const ModalAddsNotice = ({onClose}) => {
                                     <FormikControl
                                         control='sex-radio'
                                         name='sex'
-                                        label='The sex*:'
+                                        label={<>The sex<Text color={'accent.accentOrange'}>*</Text></>}
                                     />
                                     <FormikControl
                                         type='text'
                                         name='location'
-                                        label='Location*:'
+                                        label={<>Location<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type location'
                                         id={locationId}
                                         width={'240px'}
@@ -132,14 +131,14 @@ const ModalAddsNotice = ({onClose}) => {
                                     {(values.category === 'sell') && <FormikControl
                                                                         type='text'
                                                                         name='price'
-                                                                        label='Price*:'
+                                                                        label={<>Price<Text color={'accent.accentOrange'}>*</Text></>}
                                                                         placeholder='Type price'
                                                                         id={priceId}
                                                                         width={'240px'}
                                                                     />
                                     }
                                     <Text
-                                        fontSize={{base:'16px', md:'20px'}}
+                                        fontSize={{base:'18px', md:'24px'}}
                                         fontWeight={'500'}
                                         lineHeight={{base:'short', md:'1.2'}}
                                         letterSpacing={'-0.01em'}
@@ -151,14 +150,15 @@ const ModalAddsNotice = ({onClose}) => {
                                         control="file"
                                         id={photoId}
                                         name={'photo'}
-                                        size={'116px'}
+                                        size={{base:'116px', md:'140px'}}
                                         borderRadius={'20px'}
+                                        plusSize={{base:'55%', md:'50%'}}
 
                                     />
                                     <FormikControl
                                         control="textarea"
                                         name='comments'
-                                        label='Comments'
+                                        label={<>Comments<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type comments'
                                         id={commentsId}
                                     />

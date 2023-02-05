@@ -25,8 +25,7 @@ const UserData = ({ userData }) => {
             alt="user photo"
             w="233px"
             h="233px"
-            bgSize='contain'
-            bgRepeat='no-repeat'
+            backgroundPosition={'center'}
             bgColor='#FDF7F2'
             borderRadius="50%"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"

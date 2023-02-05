@@ -1,6 +1,6 @@
 import { FaPen } from 'react-icons/fa';
 import { FormControl, FormLabel, Input, Box } from '@chakra-ui/react';
-// import { useDispatch } from 'react-redux';
+
 
 const UserDataItem = ({ nameInput, valueInput }) => {
   

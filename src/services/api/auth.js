@@ -28,8 +28,10 @@ export const login = async (loginData) => {
 }
 
 export const logout = async () => {
+    console.log(3)
     const { data } = await instance.post("/api/users/logout");
     token.unset();
+    debugger
     return data;
 }
 

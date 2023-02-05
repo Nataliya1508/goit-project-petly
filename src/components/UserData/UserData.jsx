@@ -4,8 +4,6 @@ import { BsCameraFill } from 'react-icons/bs';
 import defaultAvatar from '../../media/defaultAvatar.svg';
 const UserData = ({ userData }) => {
   const { email, name, address, birthday, phone, avatarURL } = userData
-  // const defaultAvatarPath = 'media/defaultAvatar.jpg'
-  // bgImage={{base:backgroundMobile, md:backgroundTablet, xl:backgroundLaptop }}
   return (
     <Box mx="0px">
       
@@ -33,7 +31,6 @@ const UserData = ({ userData }) => {
             borderRadius="50%"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
           />
-          <img src="" alt='./media/defaultAvatar.jpg' />
           <Box
             display="flex"
             alignItems="center"

@@ -1,13 +1,11 @@
 import { FaPen } from 'react-icons/fa';
-import { FormControl, FormLabel, Input, Box } from '@chakra-ui/react';
-
+import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 
 const UserDataItem = ({ nameInput, valueInput }) => {
-  
   // const dispatch = useDispatch();
 
   // const filter = useSelector(state => state.filter);
-  
+
   // const handleChange = (e) => {
   //   dispatch(setFilter(e.target.value));
   // }
@@ -41,24 +39,36 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         value={valueInput}
       />
 
-      <Box
-        as="Button"
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
+      <Button
+        display="flex"
+        alignItems="center"
         type="button"
+        variant="link"
+        fontSize="12px"
+        lineHeight="1.35"
+        fontWeight="400"
         borderRadius="100%"
         p="0px"
         w={{ base: '20px', md: '32px' }}
         h={{ base: '20px', md: '32px' }}
         padding="5px"
         bg="#FDF7F2"
-        color='rgba(17, 17, 17, 0.6)'
-        _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', color: '#F59256' }}
-        _focus={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', color: '#F59256' }}
+        color="rgba(17, 17, 17, 0.6)"
+        _hover={{
+          filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
+          color: '#F59256',
+        }}
+        _focus={{
+          filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
+          color: '#F59256',
+        }}
       >
-        <FaPen color="inherit" h={{ base: '10px', md: '15px' }} w={{ base: '10px', md: '15px' }} />
-      </Box>
+        <FaPen
+          color="inherit"
+          h={{ base: '10px', md: '15px' }}
+          w={{ base: '10px', md: '15px' }}
+        />
+      </Button>
     </FormControl>
   );
 };

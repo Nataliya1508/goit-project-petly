@@ -20,8 +20,8 @@ export const getMyNotice = async () => {
   return data;
 };
 
-export const getFavorites = async () => {
-  const { data } = await instance.get(`/api/notices/favorites`);
+export const getFavorites = async id => {
+  const { data } = await instance.get(`/api/notices/favorites/${id}`);
   return data;
 };
 export const addToFavorites = async id => {

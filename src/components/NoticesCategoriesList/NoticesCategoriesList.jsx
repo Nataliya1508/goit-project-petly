@@ -21,7 +21,7 @@ import {
   // getFavoriteNotices,
 } from '../../redux/notices/notices-selectors';
 
-// import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
+import { getUser } from '../../redux/auth/auth-selectors';
 
 //import { default as userPets } from './ListTest.json';
 //import getNoticesByCategory from 'components/NoticesCategoryItem/NoticesCategoryItem';
@@ -66,7 +66,7 @@ const NoticesCategoriesList = () => {
   const categories = useSelector(selectNoticesByCategory);
   const isLoading = useSelector(getNoticesLoading);
   // const isLoggedIn = useSelector(getIsLoggedIn);
-  // const user = useSelector(getUser);
+  const user = useSelector(getUser);
   const error = useSelector(getNoticesError);
   // const favorite = useSelector(getFavoriteNotices);
 
@@ -80,12 +80,12 @@ const NoticesCategoriesList = () => {
       dispatch(getNoticesByCategory(category));
     }
     if (category === 'favorite') {
-      dispatch(getFavorites());
+      dispatch(getFavorites(user._id));
     }
     if (category === 'own') {
       dispatch(getMyNotice());
     }
-  }, [dispatch, category]);
+  }, [dispatch, category, user._id]);
 
   return (
     <>
@@ -107,7 +107,6 @@ const NoticesCategoriesList = () => {
         {categories.map(
           ({
             _id,
-            favorite,
             photo,
             title,
             breed,
@@ -120,7 +119,6 @@ const NoticesCategoriesList = () => {
               key={_id}
               id={_id}
               photo={photo}
-              favorite={favorite}
               title={title}
               breed={breed}
               location={location}

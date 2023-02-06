@@ -1,9 +1,19 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { Box, Flex, Text, Image } from '@chakra-ui/react';
+import { Box, Flex, Text, Image, Button } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
 import defaultAvatar from '../../media/defaultAvatar.svg';
-const UserData = ({ userData }) => {
-  const { email, name, address, birthday, phone, avatarURL } = userData
+import { useSelector } from 'react-redux';
+import { getUser } from 'redux/auth/auth-selectors';
+const UserData = () => {
+  const {
+    email = '',
+    name = '',
+    address = '',
+    birthday = '',
+    phone = '',
+    avatarURL,
+  } = useSelector(getUser);
+
   return (
     <Box
       mr="0px">
@@ -14,7 +24,8 @@ const UserData = ({ userData }) => {
         direction={{ base: 'column', md: 'row-reverse', xl: 'column' }}
         w={{ base: '100%', md: '100%', xl: '411px' }}
         mb={{ base: '42px', md: '8px', xl: '26px' }}
-        mx="auto">
+        mx="auto"
+      >
         <Box
           position="relative"
           mx="auto"
@@ -30,11 +41,11 @@ const UserData = ({ userData }) => {
             borderRadius="50%"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
           />
-          <Box
+          <Button
             display="flex"
             alignItems="center"
             type="button"
-            as="button"
+            variant="link"
             fontSize="12px"
             lineHeight="1.35"
             fontWeight="400"
@@ -50,7 +61,7 @@ const UserData = ({ userData }) => {
           >
             <BsCameraFill size="20px" fill='#F59256' />
             <Text ml="4px">Edit photo</Text>
-          </Box>
+          </Button>
         </Box>
         <Flex
           direction="column"
@@ -59,11 +70,11 @@ const UserData = ({ userData }) => {
           mb="-8px"
           w={{ base: '100%', md: '379px', xl: '411px' }}
         >
-          <UserDataItem nameInput={"Name"} valueInput={name} />
-          <UserDataItem nameInput={"Email"}  valueInput={email} />
-          <UserDataItem nameInput={"Birthday"}  valueInput={birthday} />
-          <UserDataItem nameInput={"Phone"}  valueInput={phone} />
-          <UserDataItem nameInput={"Adress"}  valueInput={address} />
+          <UserDataItem nameInput={'Name'} valueInput={name} />
+          <UserDataItem nameInput={'Email'} valueInput={email} />
+          <UserDataItem nameInput={'Birthday'} valueInput={birthday} />
+          <UserDataItem nameInput={'Phone'} valueInput={phone} />
+          <UserDataItem nameInput={'Adress'} valueInput={address} />
         </Flex>
       </Flex>
     </Box>

@@ -11,7 +11,11 @@ export const getNoticeById = async id => {
 };
 
 export const addNotice = async data => {
-  const { data: result } = await instance.post('/api/notices', data);
+  const { data: result } = await instance.post('/api/notices', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
   return result;
 };
 
@@ -20,8 +24,8 @@ export const getMyNotice = async () => {
   return data;
 };
 
-export const getFavorites = async () => {
-  const { data } = await instance.get(`/api/notices/favorites`);
+export const getFavorites = async id => {
+  const { data } = await instance.get(`/api/notices/favorites/${id}`);
   return data;
 };
 export const addToFavorites = async id => {

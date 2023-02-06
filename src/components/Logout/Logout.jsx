@@ -1,23 +1,27 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { IoLogOutOutline } from 'react-icons/io5';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/auth-operations';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onLogoutClick = () => {
-    dispatch(logout())
-    navigate('/')
-  }
-  
+    dispatch(logout());
+    // navigate('/')
+  };
+
   return (
-    <Box
+    <Button
       onClick={onLogoutClick}
-      as='button'
       display="flex"
       alignItems="center"
+      type="button"
+      variant="link"
+      fontSize="12px"
+      lineHeight="1.35"
+      fontWeight="400"
       ml={{ base: 'auto', md: '0px', xl: 'auto' }}
       mr={{ base: '0px', md: 'auto', xl: '0px' }}
       bc="transparent"
@@ -29,13 +33,11 @@ const Logout = () => {
       transitionDuration={'250ms'}
       transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
     >
-      <IoLogOutOutline color="#F59256" size="18px"/>
-      <Text
-      fontSize="16px"
-      fontWeight="500px"
-      lineHeight="1.35"
-      ml='8px'>Logout</Text>
-    </Box>
+      <IoLogOutOutline color="#F59256" size="18px" />
+      <Text fontSize="16px" fontWeight="500px" lineHeight="1.35" ml="8px">
+        Logout
+      </Text>
+    </Button>
   );
 };
 

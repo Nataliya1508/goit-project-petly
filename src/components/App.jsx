@@ -80,7 +80,12 @@ export const App = () => {
             </Route>
 
             <Route path="friends" element={<OurFriends />} />
-            <Route path="user" element={<UserAccount />} />
+            <Route
+              path="user"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserAccount />} />
+              }
+            />
             <Route path="*" element={<h1>Page Not Found 🥶</h1>} />
           </Route>
         </Routes>

@@ -1,9 +1,7 @@
 import { FaPen } from 'react-icons/fa';
-import { FormControl, FormLabel, Input, Box } from '@chakra-ui/react';
-
+import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 
 const UserDataItem = ({ nameInput, valueInput }) => {
-  
   return (
     <FormControl
       display="flex"
@@ -33,12 +31,14 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         value={valueInput}
       />
 
-      <Box
-        as="Button"
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
+      <Button
+        display="flex"
+        alignItems="center"
         type="button"
+        variant="link"
+        fontSize="12px"
+        lineHeight="1.35"
+        fontWeight="400"
         borderRadius="100%"
         p="0px"
         w={{ base: '20px', md: '32px' }}
@@ -52,8 +52,12 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         transitionDuration={'250ms'}
         transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
       >
-        <FaPen color="inherit" h={{ base: '10px', md: '15px' }} w={{ base: '10px', md: '15px' }} />
-      </Box>
+        <FaPen
+          color="inherit"
+          h={{ base: '10px', md: '15px' }}
+          w={{ base: '10px', md: '15px' }}
+        />
+      </Button>
     </FormControl>
   );
 };

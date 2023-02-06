@@ -8,8 +8,8 @@ import {
 } from '../../redux/notices/notices-selectors';
 
 import { getNoticeById } from '../../redux/notices/notices-operations';
-import { ReactComponent as HeartIcon } from '../ModalNotice/akar-icons_heart.svg';
-import petTemlate from '../ModalNotice/no_img.png';
+import { ReactComponent as HeartIcon } from '../../media/akar-icons_heart.svg';
+import petTemlate from '../../media/no_img.png';
 import { Button } from '../../shared/components';
 
 import {
@@ -29,7 +29,7 @@ import {
   Modal,
 } from '@chakra-ui/react';
 
-function ModalNotice({ open, handleClose, id, toggleFavorite }) {
+function ModalNotice({ open, handleClose, id, toggleFavorite, favorite }) {
   const dispatch = useDispatch();
   // const user = useSelector(getUser);
   // const isLoggedIn = useSelector(getIsLoggedIn);
@@ -306,10 +306,9 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                 _focus={{ borderColor: '#FF6101' }}
                 rightIcon={<HeartIcon />}
                 variant="solid"
-                favorite={!notice?.favorite}
                 onClick={toggleFavorite}
               >
-                {!notice?.favorite ? 'Add to' : 'Remove from'}
+                {!favorite ? 'Add to' : 'Remove from'}
               </Button>
             </Box>
           </Box>

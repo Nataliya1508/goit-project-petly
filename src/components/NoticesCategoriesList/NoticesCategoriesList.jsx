@@ -107,7 +107,6 @@ const NoticesCategoriesList = () => {
         {categories.map(
           ({
             _id,
-            favorite,
             photo,
             title,
             breed,
@@ -120,7 +119,6 @@ const NoticesCategoriesList = () => {
               key={_id}
               id={_id}
               photo={photo}
-              favorite={favorite}
               title={title}
               breed={breed}
               location={location}

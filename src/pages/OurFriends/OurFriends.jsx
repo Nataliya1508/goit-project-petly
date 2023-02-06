@@ -30,11 +30,11 @@ const OurFriends = () => {
       <Section pt={{ base: '58px', md: '94px', lg: '72px' }}>
         <Heading
           as={'h1'}
-          fontSize={{ base: '24px', md: '48px' }}
+          fontSize={{ base: '2xl', md: '5xl' }}
           fontWeight={'bold'}
           lineHeight={'short'}
           textAlign={'center'}
-          mb={{ base: '40px', md: '45px', xl: '60px' }}
+          mb={{ base: '10', md: '45px', xl: '60px' }}
         >
           Our friend
         </Heading>

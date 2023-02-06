@@ -27,13 +27,19 @@ const LoginForm = () => {
     }
 
     const handleSubmit = async (values, {resetForm}) => {
+        
         const authData = ({'email': values.email, 'password': values.password });
         const data = await dispatch(login(authData));
-        resetForm();
+        console.log(data);
+        if(data.type === 'auth/login/fulfilled') {
+            resetForm();
+        }
+        
         if(!data.payload) {
             errorToast("Please try again later");
         }             
-        data.error.message && data.error && errorToast(data.payload.message);                
+        data.error.message && data.error && errorToast(data.payload.message);
+        // resetForm();                        
     }
 
     return (

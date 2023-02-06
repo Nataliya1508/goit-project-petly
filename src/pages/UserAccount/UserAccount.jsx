@@ -14,7 +14,7 @@ const UserAccount = () => {
   const user = useSelector(getUser)
   console.log('User', user)
   return (
-    <Box className='container' bg='#FDF7F2' h='100vh' pt={{ base: '45px', md: '64px', xl: '38px' }} >
+    <Box  bg='#FDF7F2' m={'0 auto'}  pt={{ base: '45px', md: '64px', xl: '38px' }} >
         <Flex
           bg='#FDF7F2'
           w={{ base: '320px', md: '768px', xl: '1280px' }}
@@ -42,7 +42,7 @@ const UserAccount = () => {
             </Box>
           </Box>
           
-          <PetsData/>
+        <PetsData pets={user.pets} />
         </Flex>
     </Box>)
 };

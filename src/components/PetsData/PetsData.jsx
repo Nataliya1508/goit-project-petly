@@ -6,7 +6,7 @@ import {ModalAddsPet} from 'components/ModalAddsPet'
 
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 
-const PetsData = () => {
+const PetsData = ({ pets }) => {
     const { onOpen, onClose, isOpen } = useDisclosure()
     return (
         <Box ml={{xl:'32px'}}>
@@ -38,7 +38,7 @@ const PetsData = () => {
                     <Text mr='7px'>Add pet</Text>
                 </Button>
             </Flex>
-            <PetsList />
+            <PetsList pets={pets} />
             <Modal isOpen={isOpen} onClose={onClose} title={"Add pet"} >
                 <ModalAddsPet/>
             </Modal>

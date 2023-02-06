@@ -62,7 +62,6 @@ export const getCurrentUser = createAsyncThunk(
       }
 
       const { data } = await api.getCurrentUser(persistedToken);
-      console.log(data)
       return data;
     } catch ({ response }) {
       const error = {
@@ -143,7 +142,7 @@ export const addNewPet = createAsyncThunk(
   }
 );
 
-export const DeletePet = createAsyncThunk(
+export const deletePet = createAsyncThunk(
   'auth/deletePet',
   async (id, { rejectWithValue, getState }) => {
     try {
@@ -154,8 +153,8 @@ export const DeletePet = createAsyncThunk(
         rejectWithValue('Unable delete pet');
       }
 
-      const { data } = await api.deletePet(id);
-      return data;
+      await api.deletePet(id);
+      return id;
     } catch ({ response }) {
       const error = {
         status: response.status,

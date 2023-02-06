@@ -8,7 +8,6 @@ import {
   } from '@chakra-ui/react'
 
 const CustomModal = ({ isOpen, onClose, title, children, ...rest }) => {
-  console.log(children)
   return (
   <Modal isOpen={isOpen} onClose={onClose}>
     <ModalOverlay bg={'rgba(17, 17, 17, 0.6);'} />

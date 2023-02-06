@@ -1,6 +1,6 @@
-import { List, ListItem, Box, Text, Flex } from '@chakra-ui/react';
+import { List, ListItem, Box, Text, Flex, Image } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
-
+import petDefaultAvatar from '../../media/petDefaultAvatar.svg';
 const PetsItem = () => {
   return (
     <Flex
@@ -10,19 +10,18 @@ const PetsItem = () => {
       direction={{ base: 'column', md: 'row', xl: 'row' }}
       mb={{ base: '20px', xl: '22px' }}
       px={{ base: '20px', md: '20px', xl: '28px' }}
-      py={{ base: '40px', md: '20px', xl: '20px' }}
-    >
+      py={{ base: '40px', md: '20px', xl: '20px' }}>
       <Box
-        as="image"
-        src=""
-        alt="pet photo"
-        display="block"
         w={{ base: '240px', md: '161px' }}
         h={{ base: '240px', md: '161px' }}
         mr={{ base: '0px', md: '32px' }}
-        bg="#F59256"
-        borderRadius={{ base: '40px', md: '20px' }}
-      />
+        bgColor='#FDF7F2'
+        borderRadius={{ base: '40px', md: '20px' }}>
+        <Image
+          boxSize={{ base: '240px', md: '161px' }}
+          src={petDefaultAvatar}
+          alt="pet photo"/>
+      </Box>
       <Box
         position="relative"
         w={{ base: '235px', md: '471px', xl: '580px' }}

@@ -1,5 +1,5 @@
 const addNoticeInitialState = {
-    category: 'lost-found',
+    categoryName: 'lost-found',
     title: '',
     name: '',
     birthday: '',
@@ -7,7 +7,7 @@ const addNoticeInitialState = {
     sex: 'male',
     location: '',
     price: '',
-    photo: '',
+    photo: null,
     comments: '',
 }
 

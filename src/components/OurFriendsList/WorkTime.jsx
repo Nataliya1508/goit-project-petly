@@ -51,9 +51,9 @@ export const WorkTime = ({ workDays }) => {
             cursor={'pointer'}
             bgColor={'#FFFFFF'}
             boxShadow={'4px 4px 8px rgba(0, 0, 0, 0.25)'}
-            borderRadius={'8px'}
+            borderRadius={'2'}
             fontWeight={'medium'}
-            fontSize={'12px'}
+            fontSize={'xs'}
             lineHeight={'1.34'}
           >
             {workDays.map(({ from, to, isOpen }, index) => (
@@ -68,7 +68,7 @@ export const WorkTime = ({ workDays }) => {
                         : 'inherit'
                     }
                     borderRadius={'sm'}
-                    px={'2px'}
+                    px={'0.5'}
                   >
                     <Text>{days[index]}</Text>
                     <Text>

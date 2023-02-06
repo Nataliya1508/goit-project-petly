@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import {
+  useLocation,
+  // useSearchParams
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NoticesCategoryItem from '../NoticesCategoryItem/NoticesCategoryItem';
@@ -15,10 +18,10 @@ import {
   selectNoticesByCategory,
   getNoticesLoading,
   getNoticesError,
-  getFavoriteNotices,
+  // getFavoriteNotices,
 } from '../../redux/notices/notices-selectors';
 
-import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
+// import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
 
 //import { default as userPets } from './ListTest.json';
 //import getNoticesByCategory from 'components/NoticesCategoryItem/NoticesCategoryItem';
@@ -62,15 +65,15 @@ const NoticesCategoriesList = () => {
 
   const categories = useSelector(selectNoticesByCategory);
   const isLoading = useSelector(getNoticesLoading);
-  const isLoggedIn = useSelector(getIsLoggedIn);
-  const user = useSelector(getUser);
+  // const isLoggedIn = useSelector(getIsLoggedIn);
+  // const user = useSelector(getUser);
   const error = useSelector(getNoticesError);
-  const favorite = useSelector(getFavoriteNotices);
+  // const favorite = useSelector(getFavoriteNotices);
 
   const category = location.pathname.split('/')[2];
 
-  const [search] = useSearchParams();
-  const query = search.get('name');
+  // const [search] = useSearchParams();
+  // const query = search.get('name');
 
   useEffect(() => {
     if (category === categoriesOjb[category]) {

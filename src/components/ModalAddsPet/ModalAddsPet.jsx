@@ -27,13 +27,12 @@ const ModalAddsPet = ({onClose}) => {
     }
 
     const handleSubmit = ({name, birthday, breed, photo, comments}, {resetForm}) => {
-        const newPet = {
-            name: name.trim(),
-            birthdate: birthday ? moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY') : null,
-            breed: breed.trim(),
-            photo,
-            comments: comments.trim()
-        }
+        const newPet = new FormData()
+        newPet.append('name', name.trim())
+        newPet.append('birthdate', birthday ? moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY') : null)
+        newPet.append('breed', breed.trim())
+        newPet.append('photo', photo)
+        newPet.append('comments', comments.trim())
 
         // dispatch(addPet(newPet))
         // .then(

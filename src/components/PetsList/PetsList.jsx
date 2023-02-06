@@ -16,7 +16,7 @@ const PetsList = ({ pets }) => {
       {pets.map(({ _id, name, birthday, breed, photo, comments }) => (
         <Flex
           key = {_id}
-          bgColor="#FFFFFF"
+          bgColor='accent.white'
           box-shadow="7px 4px 14px rgba(0, 0, 0, 0.11)"
           borderRadius="40px"
           direction={{ base: 'column', md: 'row', xl: 'row' }}
@@ -27,7 +27,7 @@ const PetsList = ({ pets }) => {
             w={{ base: '240px', md: '161px' }}
             h={{ base: '240px', md: '161px' }}
             mr={{ base: '0px', md: '32px' }}
-            bgColor='#FDF7F2'
+            bgColor='accent.background'
             borderRadius={{ base: '40px', md: '20px' }}>
             <Image
               boxSize={{ base: '240px', md: '161px' }}
@@ -47,7 +47,7 @@ const PetsList = ({ pets }) => {
               position="absolute"
               top={{ base: '-4px', md: '0px' }}
               right="0px"
-              bg={{ base: 'transparent', md: '#FDF7F2' }}
+              bg={{ base: 'transparent', md: 'accent.background' }}
               w={{ base: '20px', md: '44px' }}
               h={{ base: '20px', md: '44px' }}
               borderRadius="50%"
@@ -55,12 +55,15 @@ const PetsList = ({ pets }) => {
               color="rgba(17, 17, 17, 0.6)"
               _hover={{
                 filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
-                color: '#F59256',
+                color: 'accent.accentOrange',
               }}
               _focus={{
                 filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
-                color: '#F59256',
+                color: 'accent.accentOrange',
               }}
+              transitionProperty={'color, filter'}
+              transitionDuration={'250ms'}
+              transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
             >
               <DeleteIcon
                 h={{ base: '20px', md: '24px' }}
@@ -73,7 +76,7 @@ const PetsList = ({ pets }) => {
                 <Text
                   fontSize={{ base: '14px', md: '16px' }}
                   lineHeight={{ base: '1.35' }}
-                  fontWeight="500"
+                  fontWeight="600"
                   display="block"
                   mr="5px"
                   >Name:
@@ -86,7 +89,7 @@ const PetsList = ({ pets }) => {
                 <Text
                   fontSize={{ base: '14px', md: '16px' }}
                   lineHeight={{ base: '1.35' }}
-                  fontWeight="500"
+                  fontWeight="600"
                   display="block"
                   mr="5px"
                   >Date of birth:
@@ -99,7 +102,7 @@ const PetsList = ({ pets }) => {
                 <Text
                   fontSize={{ base: '14px', md: '16px' }}
                   lineHeight={{ base: '1.35' }}
-                  fontWeight="500"
+                  fontWeight="600"
                   display="block"
                   mr="5px"
                   >Breed:
@@ -112,7 +115,7 @@ const PetsList = ({ pets }) => {
                 <Text
                   fontSize={{ base: '14px', md: '16px' }}
                   lineHeight={{ base: '1.35' }}
-                  fontWeight="500"
+                  fontWeight="600"
                   display="block"
                   mr="5px"
                   >Comments:

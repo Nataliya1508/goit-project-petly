@@ -8,6 +8,7 @@ const theme = extendTheme({
       black: '#111111',
       grey: '#11111199',
       darkGreyInSearchInput: '#535353',
+      white: '#FFFFFF'
     },
   },
   fonts: {

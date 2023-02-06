@@ -40,25 +40,21 @@ export const getCurrentUser = async (persistedToken) => {
 
 export const updateUserData = async (updateData) => {    
     const { data } = await instance.patch("/api/users/update", updateData);
-    console.log(data);
     return data;
 }
 
 export const updateUserAvatar = async (updateAvatar) => {    
     const { data } = await instance.patch("/api/users/avatar", updateAvatar);
-    console.log(data);
     return data;
 }
 
 export const addPet = async (newPet) => {    
     const { data } = await instance.post("/api/pets", newPet);
-    console.log(data);
     return data;
 }
 
 export const deletePet = async (id) => {    
     const { data } = await instance.delete(`/api/pets/${id}`);
-    console.log(data);
     return data;
 }
 

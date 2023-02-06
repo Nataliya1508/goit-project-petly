@@ -4,14 +4,6 @@ import { FormControl, FormLabel, Input, Box } from '@chakra-ui/react';
 
 const UserDataItem = ({ nameInput, valueInput }) => {
   
-  // const dispatch = useDispatch();
-
-  // const filter = useSelector(state => state.filter);
-  
-  // const handleChange = (e) => {
-  //   dispatch(setFilter(e.target.value));
-  // }
-
   return (
     <FormControl
       display="flex"
@@ -24,7 +16,7 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         m="0px"
         fontSize={{ base: '12px', md: '18px' }}
         lineHeight={{ base: '1.35' }}
-        fontWeight={{ base: '500' }}
+        fontWeight={{ base: '600' }}
         w={{ base: '56px', md: '83px' }}
       >
         {nameInput}
@@ -34,7 +26,7 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         lineHeight={{ base: '1.35' }}
         fontWeight={{ base: '500', md: '400' }}
         px="12px"
-        w={{ base: '159px', md: '216px' }}
+        w={{ base: '159px', md: '200px' }}
         h={{ base: '24px', md: '32px' }}
         border="1px solid rgba(245, 146, 86, 0.5)"
         borderRadius="40px"
@@ -52,10 +44,13 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         w={{ base: '20px', md: '32px' }}
         h={{ base: '20px', md: '32px' }}
         padding="5px"
-        bg="#FDF7F2"
-        color='rgba(17, 17, 17, 0.6)'
+        bg='accent.background'
+        color='accent.grey'
         _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', color: '#F59256' }}
         _focus={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', color: '#F59256' }}
+        transitionProperty={'filter, color'}
+        transitionDuration={'250ms'}
+        transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
       >
         <FaPen color="inherit" h={{ base: '10px', md: '15px' }} w={{ base: '10px', md: '15px' }} />
       </Box>

@@ -33,8 +33,11 @@ const PetsData = ({ pets }) => {
                     fontWeight={{ base: '500' }}
                     type="button"
                     px='0px'
-                    _hover={{ color: '#F59256' }}
-                    _focus={{ color: '#F59256' }}>
+                    _hover={{ color: 'accent.accentOrange' }}
+                    _focus={{ color: 'accent.accentOrange' }}
+                    transitionProperty={'color'}
+                    transitionDuration={'250ms'}
+                    transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}>
                     <Text mr='7px'>Add pet</Text>
                 </Button>
             </Flex>

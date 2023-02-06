@@ -1,12 +1,20 @@
 import { Formik, Form } from "formik"
 import { useMemo, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { nanoid } from "nanoid"
 import moment from "moment/moment"
 import { Text, Box } from "@chakra-ui/react"
-import { FormikControl, Button } from "shared/components"
+import { addNotice } from "redux/notices/notices-operations"
+import { getNoticesLoading } from "redux/notices/notices-selectors"
+import { FormikControl, Button, errorToast, successToast } from "shared/components"
 import { addNoticeInitialState, addNoticeSchema } from "./index"
 
+
 const ModalAddsNotice = ({onClose}) => {
+    const dispatch = useDispatch()
+    const isLoading = useSelector(getNoticesLoading)
+    const [firstStep, setFirstStep] = useState(true)
+
     const titleId = useMemo(()=> nanoid(), [])
     const nameId = useMemo(()=> nanoid(), [])
     const birthdayId = useMemo(()=> nanoid(), [])
@@ -20,24 +28,33 @@ const ModalAddsNotice = ({onClose}) => {
         const {title, name, birthday, breed} = errors
         return !dirty || title !== undefined || name !== undefined || birthday !== undefined || breed !== undefined
     }
-    
-    const [firstStep, setFirstStep] = useState(true)
 
     const handleSubmit = ({categoryName, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
-        const newPet = {
-            categoryName,
-            title: title.trim(),
-            name: name.trim(),
-            birthday: moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY'),
-            breed: breed.trim(),
-            sex,
-            location: location.trim(),
-            price: Number(price),
-            photo,
-            comments: comments.trim()
-        }
-        console.log(newPet)
-        resetForm()
+        const newPet = new FormData()
+        newPet.append('categoryName', categoryName)
+        newPet.append('title', title.trim())
+        newPet.append('name', name.trim())
+        newPet.append('birthdate', birthday ? moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY') : null)
+        newPet.append('breed', breed.trim())
+        newPet.append('sex', sex)
+        newPet.append('location', location.trim())
+        newPet.append('price', price ? Number(price) : null)
+        newPet.append('photo', photo)
+        newPet.append('comments', comments.trim())
+
+        dispatch(addNotice(newPet))
+        .then(
+            ({error}) => {
+            if (error) {
+                return errorToast(error.message)
+            }
+            successToast('Notice successfully added')
+            resetForm()
+            onClose()
+            }
+        ).catch(
+            (e) => errorToast(e.message)
+        )
     }
 
     return (
@@ -175,7 +192,7 @@ const ModalAddsNotice = ({onClose}) => {
                                             controle='secondary'
                                             width={{md:'180px'}}
                                         >
-                                            Done
+                                            {isLoading ? 'Adding...' : 'Done'}
                                         </Button>
                                         <Button
                                             onClick={()=>setFirstStep(true)}

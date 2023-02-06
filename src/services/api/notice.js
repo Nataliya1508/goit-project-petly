@@ -11,7 +11,11 @@ export const getNoticeById = async id => {
 };
 
 export const addNotice = async data => {
-  const { data: result } = await instance.post('/api/notices', data);
+  const { data: result } = await instance.post('/api/notices', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
   return result;
 };
 

@@ -1,12 +1,18 @@
 import { Formik, Form } from "formik"
 import { useMemo, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { nanoid } from "nanoid"
 import moment from "moment/moment"
 import { Text, Box } from "@chakra-ui/react"
-import { FormikControl, Button } from "shared/components"
+// import { addPet } from "redux/user/user-operations"
+// import { getPetLoading } from "redux/user/user-selectors"
+import { FormikControl, Button, errorToast, successToast } from "shared/components"
 import { addPetInitialState, addPetSchema } from "./index"
 
 const ModalAddsPet = ({onClose}) => {
+    const dispatch = useDispatch()
+    // const isLoading = useSelector(getPetLoading)
+
     const nameId = useMemo(()=> nanoid(), [])
     const birthdayId = useMemo(()=> nanoid(), [])
     const breedId = useMemo(()=> nanoid(), [])
@@ -21,15 +27,26 @@ const ModalAddsPet = ({onClose}) => {
     }
 
     const handleSubmit = ({name, birthday, breed, photo, comments}, {resetForm}) => {
-        const newPet = {
-            name: name.trim(),
-            birthday: moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY'),
-            breed: breed.trim(),
-            photo,
-            comments: comments.trim()
-        }
-        console.log(newPet)
-        resetForm()
+        const newPet = new FormData()
+        newPet.append('name', name.trim())
+        newPet.append('birthdate', birthday ? moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY') : null)
+        newPet.append('breed', breed.trim())
+        newPet.append('photo', photo)
+        newPet.append('comments', comments.trim())
+
+        // dispatch(addPet(newPet))
+        // .then(
+        //     ({error}) => {
+        //     if (error) {
+        //         return errorToast(error.message)
+        //     }
+        //     successToast('Pet successfully added')
+        //     resetForm()
+        //     onClose()
+        //     }
+        // ).catch(
+        //     (e) => errorToast(e.message)
+        // )
     }
 
     return (
@@ -135,6 +152,7 @@ const ModalAddsPet = ({onClose}) => {
                                             controle='secondary'
                                             width={{md:'180px'}}
                                         >
+                                            {/* {isLoading ? 'Adding...' : 'Done'} */}
                                             Done
                                         </Button>
                                         <Button

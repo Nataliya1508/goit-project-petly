@@ -221,8 +221,8 @@ function ModalNotice({
                         >
                           Email:
                         </FormLabel>
-                        <Link href={`mailto: ${notice?.owner?.email}`}>
-                          {notice?.owner?.email}
+                        <Link href={`mailto: ${notice?.email}`}>
+                          {notice?.email ? notice?.email : '-'}
                         </Link>
                       </ListItem>
                       <ListItem
@@ -238,8 +238,8 @@ function ModalNotice({
                         >
                           Phone:
                         </FormLabel>
-                        <Link href={`tel: ${notice?.owner?.phone}`}>
-                          {notice?.owner?.phone}
+                        <Link href={`tel: ${notice?.phone}`}>
+                          {notice?.phone ? notice?.phone : '-'}
                         </Link>
                       </ListItem>
                     </>

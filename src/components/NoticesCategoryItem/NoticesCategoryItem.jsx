@@ -45,7 +45,6 @@ const NoticesCategoryItem = ({
   const isLoggedIn = useSelector(getIsLoggedIn);
   const favoriteNotices = useSelector(getFavoriteNotices);
   const favorite = favoriteNotices.includes(id);
-  console.log('🚀 ~ file: NoticesCategoryItem.jsx:45 ~ favorite', favorite);
   const [isFavorite, setIsFavorite] = useState(favorite);
 
   useEffect(() => {}, [isFavorite]);

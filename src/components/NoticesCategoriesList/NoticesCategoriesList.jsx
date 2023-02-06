@@ -82,10 +82,6 @@ const NoticesCategoriesList = () => {
     if (category === 'favorite') {
       dispatch(getFavorites(user._id));
     }
-    console.log(
-      '🚀 ~ file: NoticesCategoriesList.jsx:85 ~ useEffect ~ user._id',
-      user._id
-    );
     if (category === 'own') {
       dispatch(getMyNotice());
     }

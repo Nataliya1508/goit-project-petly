@@ -3,7 +3,6 @@ import { IoLogOutOutline } from 'react-icons/io5';
 import { useDispatch} from 'react-redux';
 import { logout } from 'redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
-// import {getUser} from 'redux/auth/auth-selectors'
 
 const Logout = () => {
   const dispatch = useDispatch();

@@ -18,8 +18,7 @@ const PetsItem = () => {
         bgColor='#FDF7F2'
         borderRadius={{ base: '40px', md: '20px' }}>
         <Image
-          w={{ base: '240px', md: '161px' }}
-          h={{ base: '240px', md: '161px' }}
+          boxSize={{ base: '240px', md: '161px' }}
           src={petDefaultAvatar}
           alt="pet photo"/>
       </Box>

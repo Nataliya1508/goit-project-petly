@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import petTemlate from '../ModalNotice/no_img.png';
 
-import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
+import {
+  // getUser,
+  getIsLoggedIn,
+} from '../../redux/auth/auth-selectors';
 
 import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
 import { addToFavorites } from '../../redux/notices/notices-operations';
@@ -33,7 +36,7 @@ const NoticesCategoryItem = ({
 }) => {
   const dispatch = useDispatch();
 
-  const user = useSelector(getUser);
+  // const user = useSelector(getUser);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const favoriteNotices = useSelector(getFavoriteNotices);
 

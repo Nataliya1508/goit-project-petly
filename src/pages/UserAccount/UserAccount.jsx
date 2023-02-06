@@ -38,7 +38,7 @@ const UserAccount = () => {
               pl={{base:'16px', md:'32px', xl:'16px'}}
               >
             <UserData userData={user}/>
-              <Logout/>
+            <Logout/>
             </Box>
           </Box>
           

@@ -17,7 +17,6 @@ const token = {
 
 export const register = async (signupData) => {    
     const { data } = await instance.post("/api/users/register", signupData);
-    console.log(data);
     return data;
 }
 
@@ -28,15 +27,38 @@ export const login = async (loginData) => {
 }
 
 export const logout = async () => {
-    const { data } = await instance.post("/api/users/logout");
+    const { data } = await instance.get("/api/users/logout");
     token.unset();
-    debugger
     return data;
 }
 
 export const getCurrentUser = async (persistedToken) => {
     token.set(persistedToken);
     const data = await instance.get("/api/users/current");
+    return data;
+}
+
+export const updateUserData = async (updateData) => {    
+    const { data } = await instance.patch("/api/users/update", updateData);
+    console.log(data);
+    return data;
+}
+
+export const updateUserAvatar = async (updateAvatar) => {    
+    const { data } = await instance.patch("/api/users/avatar", updateAvatar);
+    console.log(data);
+    return data;
+}
+
+export const addPet = async (newPet) => {    
+    const { data } = await instance.post("/api/users/avatar", newPet);
+    console.log(data);
+    return data;
+}
+
+export const deletePet = async (deletedPet) => {    
+    const { data } = await instance.delete("/api/users/avatar", deletedPet);
+    console.log(data);
     return data;
 }
 

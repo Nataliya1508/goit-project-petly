@@ -30,19 +30,18 @@ const ModalAddsNotice = ({onClose}) => {
     }
 
     const handleSubmit = ({categoryName, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
-        const newPet = {
-            categoryName,
-            title: title.trim(),
-            name: name.trim(),
-            birthdate: birthday ? moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY') : null,
-            breed: breed.trim(),
-            sex,
-            location: location.trim(),
-            price: price ? Number(price) : null,
-            photo,
-            comments: comments.trim()
-        }
-        
+        const newPet = new FormData()
+        newPet.append('categoryName', categoryName)
+        newPet.append('title', title.trim())
+        newPet.append('name', name.trim())
+        newPet.append('birthdate', birthday ? moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY') : null)
+        newPet.append('breed', breed.trim())
+        newPet.append('sex', sex)
+        newPet.append('location', location.trim())
+        newPet.append('price', price ? Number(price) : null)
+        newPet.append('photo', photo)
+        newPet.append('comments', comments.trim())
+
         dispatch(addNotice(newPet))
         .then(
             ({error}) => {

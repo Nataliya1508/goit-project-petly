@@ -1,12 +1,20 @@
 import { Formik, Form } from "formik"
 import { useMemo, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { nanoid } from "nanoid"
 import moment from "moment/moment"
 import { Text, Box } from "@chakra-ui/react"
-import { FormikControl, Button } from "shared/components"
+import { addNotice } from "redux/notices/notices-operations"
+import { getNoticesLoading } from "redux/notices/notices-selectors"
+import { FormikControl, Button, errorToast, successToast } from "shared/components"
 import { addNoticeInitialState, addNoticeSchema } from "./index"
 
+
 const ModalAddsNotice = ({onClose}) => {
+    const dispatch = useDispatch()
+    const isLoading = useSelector(getNoticesLoading)
+    const [firstStep, setFirstStep] = useState(true)
+
     const titleId = useMemo(()=> nanoid(), [])
     const nameId = useMemo(()=> nanoid(), [])
     const birthdayId = useMemo(()=> nanoid(), [])
@@ -20,24 +28,34 @@ const ModalAddsNotice = ({onClose}) => {
         const {title, name, birthday, breed} = errors
         return !dirty || title !== undefined || name !== undefined || birthday !== undefined || breed !== undefined
     }
-    
-    const [firstStep, setFirstStep] = useState(true)
 
     const handleSubmit = ({categoryName, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
         const newPet = {
             categoryName,
             title: title.trim(),
             name: name.trim(),
-            birthday: moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY'),
+            birthdate: birthday ? moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY') : null,
             breed: breed.trim(),
             sex,
             location: location.trim(),
-            price: Number(price),
+            price: price ? Number(price) : null,
             photo,
             comments: comments.trim()
         }
-        console.log(newPet)
-        resetForm()
+        
+        dispatch(addNotice(newPet))
+        .then(
+            ({error}) => {
+            if (error) {
+                return errorToast(error.message)
+            }
+            successToast('Notice successfully added')
+            resetForm()
+            onClose()
+            }
+        ).catch(
+            (e) => errorToast(e.message)
+        )
     }
 
     return (
@@ -175,7 +193,7 @@ const ModalAddsNotice = ({onClose}) => {
                                             controle='secondary'
                                             width={{md:'180px'}}
                                         >
-                                            Done
+                                            {isLoading ? 'Adding...' : 'Done'}
                                         </Button>
                                         <Button
                                             onClick={()=>setFirstStep(true)}

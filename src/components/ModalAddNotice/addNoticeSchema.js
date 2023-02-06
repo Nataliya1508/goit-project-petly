@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import moment from 'moment/moment'
 
-const regexPrice = /^[1-9]+[0-9]?$/
+const regexPrice = /(^[1-9])(\d*)$/
 const regexAdress = /^(?:(?:\w+-\w+)+|(?:\w+)+),\s(?:(?:\w+-\w+)+|(?:\w+)+)$/
 
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png']

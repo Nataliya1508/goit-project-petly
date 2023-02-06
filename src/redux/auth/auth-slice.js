@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
-import { register, login, logout, getCurrentUser } from './auth-operations';
+import { register, login, logout, getCurrentUser, updateUserAvatar, updateUser } from './auth-operations';
 
 const handlePending = state => {
   state.isRefreshing = true;
@@ -74,6 +74,28 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(getCurrentUser.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(updateUser.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.user = { ...state, ...payload };
+        state.isLoggedIn = true;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(updateUserAvatar.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.user = { ...state, ...payload };
+        state.isLoggedIn = true;
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
         handleRejected(state, action);
       });
   },

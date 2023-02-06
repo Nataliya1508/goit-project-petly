@@ -51,13 +51,13 @@ export const updateUserAvatar = async (updateAvatar) => {
 }
 
 export const addPet = async (newPet) => {    
-    const { data } = await instance.post("/api/users/avatar", newPet);
+    const { data } = await instance.post("/api/pets", newPet);
     console.log(data);
     return data;
 }
 
-export const deletePet = async (deletedPet) => {    
-    const { data } = await instance.delete("/api/users/avatar", deletedPet);
+export const deletePet = async (id) => {    
+    const { data } = await instance.delete(`/api/pets/${id}`);
     console.log(data);
     return data;
 }

@@ -12,7 +12,7 @@ import {
 const UserAccount = () => {
 
   const user = useSelector(getUser)
-  
+  console.log('User', user)
   return (
     <Box className='container' bg='#FDF7F2' h='100vh' pt={{ base: '45px', md: '64px', xl: '38px' }} >
         <Flex

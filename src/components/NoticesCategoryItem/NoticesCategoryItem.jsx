@@ -65,10 +65,10 @@ const NoticesCategoryItem = ({
       boxShadow={'7px 4px 14px rgba(49, 21, 4, 0.07)'}
       borderBottomRadius={'20px'}
     >
-      <CardBody p={'0'} mb={price || favorite ? '0' : '30px'}>
+      <CardBody p={'0'} mb={price ?? favorite ? '0' : '30px'}>
         <Box position={'relative'}>
           <Image
-            src={photo || petTemlate}
+            src={photo ?? petTemlate}
             alt={breed}
             width={'100%'}
             height={'288px'}

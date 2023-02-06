@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 
 import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import {
   getFavoriteNotices,
   selectCurrentNotice,
-  selectNoticesByCategory,
 } from '../../redux/notices/notices-selectors';
 
-import {
-  addToFavorites,
-  getNoticeById,
-} from '../../redux/notices/notices-operations';
+import { getNoticeById } from '../../redux/notices/notices-operations';
 import { ReactComponent as HeartIcon } from '../ModalNotice/akar-icons_heart.svg';
 import petTemlate from '../ModalNotice/no_img.png';
 import { Button } from '../../shared/components';
-//import { Container } from '../../shared/components/Box';
+
 import {
   ModalOverlay,
   ModalContent,
@@ -33,29 +28,6 @@ import {
   Box,
   Modal,
 } from '@chakra-ui/react';
-
-const pets = {
-  owner: {
-    email: 'test@gmail.com',
-    phone: '+380123456789',
-  },
-  _id: '63836ccf17d61119e7b318d2',
-  category: 'In good hands',
-  title: 'Super golden retriever',
-  name: 'Bred',
-  birthdate: '20.10.2022',
-  breed: 'Golden retriever',
-  sex: 'male',
-  location: 'Kiev, Ukraine',
-  price: null,
-  photo:
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjI80NrzAYuiUgBDcg8wkGbPbZOxfHF7540w&s',
-  comments:
-    'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem.',
-};
-const receivedItem = {
-  favorite: null,
-};
 
 function ModalNotice({ open, handleClose, id, toggleFavorite }) {
   const dispatch = useDispatch();
@@ -113,7 +85,7 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                   borderRadius="0px 0px 40px 40px"
                   w="100%"
                   h="100%"
-                  src={notice?.photo || petTemlate}
+                  src={notice?.photo ?? petTemlate}
                   alt={notice?.breed}
                   onError={e => {
                     e.target.src = petTemlate;

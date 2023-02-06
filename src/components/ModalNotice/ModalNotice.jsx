@@ -29,7 +29,14 @@ import {
   Modal,
 } from '@chakra-ui/react';
 
-function ModalNotice({ open, handleClose, id, toggleFavorite, favorite }) {
+function ModalNotice({
+  open,
+  handleClose,
+  id,
+  toggleFavorite,
+  favorite,
+  calculatePetsAgeModal,
+}) {
   const dispatch = useDispatch();
   // const user = useSelector(getUser);
   // const isLoggedIn = useSelector(getIsLoggedIn);
@@ -152,7 +159,9 @@ function ModalNotice({ open, handleClose, id, toggleFavorite, favorite }) {
                       Birthday:
                     </FormLabel>
                     <Text fontSize="16px" lineHeight="1.36" color="#000000">
-                      {notice?.birthdate ? notice?.birthdate : '-'}
+                      {calculatePetsAgeModal(notice?.birthdate)
+                        ? calculatePetsAgeModal(notice?.birthdate)
+                        : '-'}
                     </Text>
                   </ListItem>
                   <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>

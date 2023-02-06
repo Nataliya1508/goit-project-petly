@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import petTemlate from '../../media/no_img.png';
+import moment from 'moment';
 
 import {
   // getUser,
@@ -25,6 +26,8 @@ import {
 import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
 
+moment().format();
+
 const NoticesCategoryItem = ({
   id,
   photo,
@@ -42,9 +45,20 @@ const NoticesCategoryItem = ({
   const isLoggedIn = useSelector(getIsLoggedIn);
   const favoriteNotices = useSelector(getFavoriteNotices);
   const favorite = favoriteNotices.includes(id);
+  console.log('🚀 ~ file: NoticesCategoryItem.jsx:45 ~ favorite', favorite);
   const [isFavorite, setIsFavorite] = useState(favorite);
 
   useEffect(() => {}, [isFavorite]);
+
+  const calculatePetsAge = birthdate => {
+    const petsAge = moment(birthdate, 'LLLL').fromNow(true);
+    return petsAge;
+  };
+
+  const calculatePetsAgeModal = birthdate => {
+    const petsAge = moment(birthdate, 'LLLL').format('DD.MM.YYYY');
+    return petsAge;
+  };
 
   const [open, setOpen] = useState(false);
 
@@ -151,7 +165,7 @@ const NoticesCategoryItem = ({
             lineHeight={'short'}
             color={'#111111'}
           >
-            Age: {birthdate}
+            Age: {calculatePetsAge(birthdate)}
           </Text>
           {price && (
             <Text
@@ -194,6 +208,7 @@ const NoticesCategoryItem = ({
             id={id}
             toggleFavorite={toggleFavorite}
             favorite={isFavorite}
+            calculatePetsAgeModal={calculatePetsAgeModal}
           />
         )}
 

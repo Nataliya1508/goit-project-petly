@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
+// import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import {
-  getFavoriteNotices,
+  // getFavoriteNotices,
   selectCurrentNotice,
 } from '../../redux/notices/notices-selectors';
 
@@ -31,9 +31,9 @@ import {
 
 function ModalNotice({ open, handleClose, id, toggleFavorite }) {
   const dispatch = useDispatch();
-  const user = useSelector(getUser);
-  const isLoggedIn = useSelector(getIsLoggedIn);
-  const favoriteNotices = useSelector(getFavoriteNotices);
+  // const user = useSelector(getUser);
+  // const isLoggedIn = useSelector(getIsLoggedIn);
+  // const favoriteNotices = useSelector(getFavoriteNotices);
   const notice = useSelector(selectCurrentNotice);
 
   useEffect(() => {
@@ -235,7 +235,7 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                       </ListItem>
                     </>
                   )}
-                  {pets.price && (
+                  {/* {pets.price && (
                     <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
                       <FormLabel
                         minWidth="118px"
@@ -248,7 +248,7 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                       </FormLabel>
                       <Text>{notice?.price} $</Text>
                     </ListItem>
-                  )}
+                  )} */}
                 </List>
               </Box>
             </Box>

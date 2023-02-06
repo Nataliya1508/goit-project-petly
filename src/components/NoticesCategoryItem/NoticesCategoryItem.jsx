@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import petTemlate from '../ModalNotice/no_img.png';
+import petTemlate from '../../media/no_img.png';
+import moment from 'moment';
 
 import {
   // getUser,
@@ -9,7 +10,10 @@ import {
 } from '../../redux/auth/auth-selectors';
 
 import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
-import { addToFavorites } from '../../redux/notices/notices-operations';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux/notices/notices-operations';
 import {
   Text,
   Box,
@@ -22,10 +26,11 @@ import {
 import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
 
+moment().format();
+
 const NoticesCategoryItem = ({
   id,
   photo,
-  favorite,
   title,
   breed,
   location,
@@ -39,8 +44,20 @@ const NoticesCategoryItem = ({
   // const user = useSelector(getUser);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const favoriteNotices = useSelector(getFavoriteNotices);
+  const favorite = favoriteNotices.includes(id);
+  const [isFavorite, setIsFavorite] = useState(favorite);
 
-  useEffect(() => {}, [favoriteNotices]);
+  useEffect(() => {}, [isFavorite]);
+
+  const calculatePetsAge = birthdate => {
+    const petsAge = moment(birthdate, 'LLLL').fromNow(true);
+    return petsAge;
+  };
+
+  const calculatePetsAgeModal = birthdate => {
+    const petsAge = moment(birthdate, 'LLLL').format('DD.MM.YYYY');
+    return petsAge;
+  };
 
   const [open, setOpen] = useState(false);
 
@@ -54,11 +71,22 @@ const NoticesCategoryItem = ({
 
   const toggleFavorite = () => {
     if (!isLoggedIn) {
-      toast.info('You should be logged in to add to favorites');
+      toast.warn('You must sign in for add to favorites!');
       return;
     }
-
-    dispatch(addToFavorites(id));
+    try {
+      if (!isFavorite) {
+        dispatch(addToFavorites(id));
+        setIsFavorite(true);
+      }
+      if (isFavorite) {
+        dispatch(removeFromFavorites(id));
+        setIsFavorite(false);
+      }
+    } catch (error) {
+      setIsFavorite(isFavorite);
+      console.log(error);
+    }
   };
 
   return (
@@ -136,7 +164,7 @@ const NoticesCategoryItem = ({
             lineHeight={'short'}
             color={'#111111'}
           >
-            Age: {birthdate}
+            Age: {calculatePetsAge(birthdate)}
           </Text>
           {price && (
             <Text
@@ -178,6 +206,8 @@ const NoticesCategoryItem = ({
             handleClose={handleClose}
             id={id}
             toggleFavorite={toggleFavorite}
+            favorite={isFavorite}
+            calculatePetsAgeModal={calculatePetsAgeModal}
           />
         )}
 

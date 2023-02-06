@@ -8,8 +8,8 @@ import {
 } from '../../redux/notices/notices-selectors';
 
 import { getNoticeById } from '../../redux/notices/notices-operations';
-import { ReactComponent as HeartIcon } from '../ModalNotice/akar-icons_heart.svg';
-import petTemlate from '../ModalNotice/no_img.png';
+import { ReactComponent as HeartIcon } from '../../media/akar-icons_heart.svg';
+import petTemlate from '../../media/no_img.png';
 import { Button } from '../../shared/components';
 
 import {
@@ -29,7 +29,14 @@ import {
   Modal,
 } from '@chakra-ui/react';
 
-function ModalNotice({ open, handleClose, id, toggleFavorite }) {
+function ModalNotice({
+  open,
+  handleClose,
+  id,
+  toggleFavorite,
+  favorite,
+  calculatePetsAgeModal,
+}) {
   const dispatch = useDispatch();
   // const user = useSelector(getUser);
   // const isLoggedIn = useSelector(getIsLoggedIn);
@@ -152,7 +159,9 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                       Birthday:
                     </FormLabel>
                     <Text fontSize="16px" lineHeight="1.36" color="#000000">
-                      {notice?.birthdate ? notice?.birthdate : '-'}
+                      {calculatePetsAgeModal(notice?.birthdate)
+                        ? calculatePetsAgeModal(notice?.birthdate)
+                        : '-'}
                     </Text>
                   </ListItem>
                   <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
@@ -212,8 +221,8 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                         >
                           Email:
                         </FormLabel>
-                        <Link href={`mailto: ${notice?.owner?.email}`}>
-                          {notice?.owner?.email}
+                        <Link href={`mailto: ${notice?.email}`}>
+                          {notice?.email ? notice?.email : '-'}
                         </Link>
                       </ListItem>
                       <ListItem
@@ -229,8 +238,8 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                         >
                           Phone:
                         </FormLabel>
-                        <Link href={`tel: ${notice?.owner?.phone}`}>
-                          {notice?.owner?.phone}
+                        <Link href={`tel: ${notice?.phone}`}>
+                          {notice?.phone ? notice?.phone : '-'}
                         </Link>
                       </ListItem>
                     </>
@@ -306,10 +315,9 @@ function ModalNotice({ open, handleClose, id, toggleFavorite }) {
                 _focus={{ borderColor: '#FF6101' }}
                 rightIcon={<HeartIcon />}
                 variant="solid"
-                favorite={!notice?.favorite}
                 onClick={toggleFavorite}
               >
-                {!notice?.favorite ? 'Add to' : 'Remove from'}
+                {!favorite ? 'Add to' : 'Remove from'}
               </Button>
             </Box>
           </Box>

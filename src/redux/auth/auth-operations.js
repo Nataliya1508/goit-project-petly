@@ -72,3 +72,95 @@ export const getCurrentUser = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'auth/update',
+  async (credentials, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const persistedToken = auth.token;
+
+      if (!persistedToken) {
+        rejectWithValue('Unable update user');
+      }
+
+      const { data } = await api.updateUserData(credentials);
+      return data;
+    } catch ({ response }) {
+      const error = {
+        status: response.status,
+        message: response.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const updateUserAvatar = createAsyncThunk(
+  'auth/avatar',
+  async (avatar, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const persistedToken = auth.token;
+
+      if (!persistedToken) {
+        rejectWithValue('Unable update avatar');
+      }
+
+      const { data } = await api.updateUserAvatar(avatar);
+      return data;
+    } catch ({ response }) {
+      const error = {
+        status: response.status,
+        message: response.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const addNewPet = createAsyncThunk(
+  'auth/addPet',
+  async (newPet, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const persistedToken = auth.token;
+
+      if (!persistedToken) {
+        rejectWithValue('Unable add new pet');
+      }
+
+      const { data } = await api.addPet(newPet);
+      return data;
+    } catch ({ response }) {
+      const error = {
+        status: response.status,
+        message: response.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deletePet = createAsyncThunk(
+  'auth/deletePet',
+  async (id, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const persistedToken = auth.token;
+
+      if (!persistedToken) {
+        rejectWithValue('Unable delete pet');
+      }
+
+      await api.deletePet(id);
+      return id;
+    } catch ({ response }) {
+      const error = {
+        status: response.status,
+        message: response.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);

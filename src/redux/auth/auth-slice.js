@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
-import { register, login, logout, getCurrentUser } from './auth-operations';
+import { register, login, logout, getCurrentUser, updateUserAvatar, updateUser, addNewPet, deletePet } from './auth-operations';
 
 const handlePending = state => {
   state.isRefreshing = true;
@@ -71,11 +71,52 @@ const authSlice = createSlice({
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
         state.user = payload;
-        state.isLoggedIn = true;
       })
       .addCase(getCurrentUser.rejected, (state, action) => {
         handleRejected(state, action);
-      });
+      })
+      .addCase(updateUser.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.user = { ...state, ...payload };
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(updateUserAvatar.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.user = { ...state, ...payload };
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(addNewPet.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(addNewPet.fulfilled, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.user.pets = [ ...payload, ...state.user.pet];
+      })
+      .addCase(addNewPet.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(deletePet.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(deletePet.fulfilled, (state, { payload }) => {
+        state.isRefreshing = false;
+        state.user.pets = state.user.pets.filter(
+          ({ _id }) => _id !== payload
+        );
+      })
+      .addCase(deletePet.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
   },
 });
 

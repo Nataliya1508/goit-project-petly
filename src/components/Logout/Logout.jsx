@@ -27,8 +27,11 @@ const Logout = () => {
       bc="transparent"
       p="0px"
       h="22px"
-      _hover={{ color: '#F59256' }}
+      _hover={{color:'#F59256'}}
       _focus={{ color: '#F59256' }}
+      transitionProperty={'color'}
+      transitionDuration={'250ms'}
+      transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
     >
       <IoLogOutOutline color="#F59256" size="18px" />
       <Text fontSize="16px" fontWeight="500px" lineHeight="1.35" ml="8px">

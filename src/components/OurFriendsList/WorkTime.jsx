@@ -14,8 +14,6 @@ export const WorkTime = ({ workDays }) => {
   const currentDate = new Date();
   const currentDay = currentDate.getDay();
 
-  console.log(currentDay);
-
   const indexUpdater = () => {
     if (currentDay === 0) {
       return 6;
@@ -76,7 +74,17 @@ export const WorkTime = ({ workDays }) => {
                     </Text>
                   </Box>
                 ) : (
-                  <Box display={'flex'} justifyContent={'space-between'}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    bgColor={
+                      index + 1 === currentDay
+                        ? 'accent.accentOrange'
+                        : 'inherit'
+                    }
+                    borderRadius={'sm'}
+                    px={'0.5'}
+                  >
                     <Text>{days[index]} </Text>
                     <Text>Closed</Text>
                   </Box>

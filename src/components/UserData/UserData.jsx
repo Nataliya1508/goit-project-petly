@@ -1,11 +1,21 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { Box, Flex, Text, Image } from '@chakra-ui/react';
+import { Box, Flex, Text, Image, Button } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
-
+import defaultAvatar from '../../media/defaultAvatar.svg';
+import { useSelector } from 'react-redux';
+import { getUser } from 'redux/auth/auth-selectors';
 const UserData = () => {
+  const {
+    email = '',
+    name = '',
+    address = '',
+    birthday = '',
+    phone = '',
+    avatarURL,
+  } = useSelector(getUser);
+
   return (
     <Box mx="0px">
-      
       <Flex
         display="flex"
         justifyContent="center"
@@ -13,26 +23,28 @@ const UserData = () => {
         direction={{ base: 'column', md: 'row-reverse', xl: 'column' }}
         w={{ base: '100%', md: '100%', xl: '411px' }}
         mb={{ base: '42px', md: '8px', xl: '26px' }}
-        mx="auto">
+        mx="auto"
+      >
         <Box
           position="relative"
           mx="auto"
           mb={{ base: '66px', md: '0px', xl: '32px' }}
         >
           <Image
-            src=""
+            src={avatarURL ?? defaultAvatar}
             alt="user photo"
             w="233px"
             h="233px"
-            bg="azure"
+            backgroundPosition={'center'}
+            bgColor="#FDF7F2"
             borderRadius="50%"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
           />
-          <Box
+          <Button
             display="flex"
             alignItems="center"
             type="button"
-            as="button"
+            variant="link"
             fontSize="12px"
             lineHeight="1.35"
             fontWeight="400"
@@ -45,7 +57,7 @@ const UserData = () => {
           >
             <BsCameraFill size="20px" fill="#F59256" />
             <Text ml="4px">Edit photo</Text>
-          </Box>
+          </Button>
         </Box>
         <Flex
           direction="column"
@@ -54,11 +66,11 @@ const UserData = () => {
           mb="-8px"
           w={{ base: '100%', md: '379px', xl: '411px' }}
         >
-          <UserDataItem name="Name" />
-          <UserDataItem name="Email" />
-          <UserDataItem name="Birthday" />
-          <UserDataItem name="Phone" />
-          <UserDataItem name="City" />
+          <UserDataItem nameInput={'Name'} valueInput={name} />
+          <UserDataItem nameInput={'Email'} valueInput={email} />
+          <UserDataItem nameInput={'Birthday'} valueInput={birthday} />
+          <UserDataItem nameInput={'Phone'} valueInput={phone} />
+          <UserDataItem nameInput={'Adress'} valueInput={address} />
         </Flex>
       </Flex>
     </Box>

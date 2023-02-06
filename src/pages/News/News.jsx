@@ -52,14 +52,13 @@ const News = () => {
   return (
     <Box bgColor={'#FDF7F2'}>
       <Container>
-        <Section pt={['54px', '54px', '54px', '94px', '60px']}>
+        <Section pt={{base: '54px', md: '94px', lg: '60px'}}>
           <Heading
             as="h2"
-            size="3xl"
-            fontSize={['24px', '24px', '24px', '48px']}
+            size={'3xl'}
+            fontSize={{base: '2xl', md: '5xl'}}
             textAlign={'center'}
-            // mt={['54px', '54px', '54px', '94px', '60px']}
-            mb={['28px', '28px', '28px', '40px']}
+            mb={{base: '7', lg: '10'}}
           >
             News
           </Heading>

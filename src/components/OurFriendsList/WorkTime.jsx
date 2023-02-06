@@ -14,8 +14,6 @@ export const WorkTime = ({ workDays }) => {
   const currentDate = new Date();
   const currentDay = currentDate.getDay();
 
-  console.log(currentDay);
-
   const indexUpdater = () => {
     if (currentDay === 0) {
       return 6;
@@ -51,9 +49,9 @@ export const WorkTime = ({ workDays }) => {
             cursor={'pointer'}
             bgColor={'#FFFFFF'}
             boxShadow={'4px 4px 8px rgba(0, 0, 0, 0.25)'}
-            borderRadius={'8px'}
+            borderRadius={'2'}
             fontWeight={'medium'}
-            fontSize={'12px'}
+            fontSize={'xs'}
             lineHeight={'1.34'}
           >
             {workDays.map(({ from, to, isOpen }, index) => (
@@ -68,7 +66,7 @@ export const WorkTime = ({ workDays }) => {
                         : 'inherit'
                     }
                     borderRadius={'sm'}
-                    px={'2px'}
+                    px={'0.5'}
                   >
                     <Text>{days[index]}</Text>
                     <Text>
@@ -76,7 +74,17 @@ export const WorkTime = ({ workDays }) => {
                     </Text>
                   </Box>
                 ) : (
-                  <Box display={'flex'} justifyContent={'space-between'}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    bgColor={
+                      index + 1 === currentDay
+                        ? 'accent.accentOrange'
+                        : 'inherit'
+                    }
+                    borderRadius={'sm'}
+                    px={'0.5'}
+                  >
                     <Text>{days[index]} </Text>
                     <Text>Closed</Text>
                   </Box>

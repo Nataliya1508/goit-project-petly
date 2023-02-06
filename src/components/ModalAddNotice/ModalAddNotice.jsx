@@ -1,6 +1,7 @@
 import { Formik, Form } from "formik"
 import { useMemo, useState } from "react"
 import { nanoid } from "nanoid"
+import moment from "moment/moment"
 import { Text, Box } from "@chakra-ui/react"
 import { FormikControl, Button } from "shared/components"
 import { addNoticeInitialState, addNoticeSchema } from "./index"
@@ -15,20 +16,25 @@ const ModalAddsNotice = ({onClose}) => {
     const photoId = useMemo(()=> nanoid(), [])
     const commentsId = useMemo(()=> nanoid(), [])
 
+    function isDisabled(dirty, errors) {
+        const {title, name, birthday, breed} = errors
+        return !dirty || title !== undefined || name !== undefined || birthday !== undefined || breed !== undefined
+    }
+    
     const [firstStep, setFirstStep] = useState(true)
 
-    const handleSubmit = ({category, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
+    const handleSubmit = ({categoryName, title, name, birthday, breed, sex, location, price, photo, comments}, {resetForm}) => {
         const newPet = {
-            category,
+            categoryName,
             title: title.trim(),
             name: name.trim(),
-            birthday,
-            breed,
+            birthday: moment(birthday, "YYYYY-MM-DD").format('DD.MM.YYYY'),
+            breed: breed.trim(),
             sex,
-            location,
-            price,
+            location: location.trim(),
+            price: Number(price),
             photo,
-            comments
+            comments: comments.trim()
         }
         console.log(newPet)
         resetForm()
@@ -38,23 +44,23 @@ const ModalAddsNotice = ({onClose}) => {
         <Formik initialValues={addNoticeInitialState}
                 validationSchema={addNoticeSchema}
                 onSubmit={handleSubmit}
-                validateOnChange={false}
+                validateOnChange={true}
                 validateOnBlur={true}>
-                {({form}) => (
-                    <Form autoComplete='off'>
+                {({values, errors, dirty}) => (
+                    <Form autoComplete='off' encType="multipart/form-data">
                         {firstStep
                             ?   <>
                                     <FormikControl
                                         control='category-radio'
-                                        name='category'
+                                        name='categoryName'
                                     />
                                     <FormikControl
                                         type='text'
                                         name='title'
-                                        label='Title of ad*'
+                                        label={<>Title of ad<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type title'
                                         id={titleId}
-                                        width={'240px'}
+                                        width={60}
                                     />
                                     <FormikControl
                                         type='text'
@@ -62,15 +68,14 @@ const ModalAddsNotice = ({onClose}) => {
                                         label='Name pet'
                                         placeholder='Type name pet'
                                         id={nameId}
-                                        width={'240px'}
+                                        width={60}
                                     />
                                     <FormikControl
-                                        type='text'
+                                        type='date'
                                         name='birthday'
                                         label='Date of birthday'
-                                        placeholder='Type date of birthday'
                                         id={birthdayId}
-                                        width={'240px'}
+                                        width={60}
                                     />
                                     <FormikControl
                                         type='text'
@@ -78,7 +83,7 @@ const ModalAddsNotice = ({onClose}) => {
                                         label='Breed'
                                         placeholder='Type breed'
                                         id={breedId}
-                                        width={'240px'}
+                                        width={60}
                                         mb={'40px'}
                                     />
                                     <Box    
@@ -90,14 +95,15 @@ const ModalAddsNotice = ({onClose}) => {
                                         <Button
                                             controle='secondary'
                                             onClick={()=>setFirstStep(false)}
-                                            mb={{base:'12px', md:'0'}}
+                                            isDisabled={isDisabled(dirty, errors)} 
+                                            mb={{base:'3', md:'0'}}
                                             width={{md:'180px'}}
                                         >
                                             Next
                                         </Button>
                                         <Button
                                             onClick={onClose}
-                                            mr={{md:'20px'}}
+                                            mr={{md:'5'}}
                                             width={{md:'180px'}}
                                         >
                                             Cancel
@@ -112,57 +118,60 @@ const ModalAddsNotice = ({onClose}) => {
                                     <FormikControl
                                         control='sex-radio'
                                         name='sex'
-                                        label='The sex*:'
+                                        label={<>The sex<Text color={'accent.accentOrange'}>*</Text></>}
                                     />
                                     <FormikControl
                                         type='text'
                                         name='location'
-                                        label='Location*:'
+                                        label={<>Location<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type location'
                                         id={locationId}
-                                        width={'240px'}
+                                        width={'60'}
                                     />
-                                    <FormikControl
-                                        type='text'
-                                        name='price'
-                                        label='Price*:'
-                                        placeholder='Type price'
-                                        id={priceId}
-                                        width={'240px'}
-                                    />
+                                    {(values.categoryName === 'sell') && <FormikControl
+                                                                        type='text'
+                                                                        name='price'
+                                                                        label={<>Price<Text color={'accent.accentOrange'}>*</Text></>}
+                                                                        placeholder='Type price'
+                                                                        id={priceId}
+                                                                        width={'60'}
+                                                                    />
+                                    }
                                     <Text
-                                        fontSize={{base:'16px', md:'20px'}}
-                                        fontWeight={'500'}
+                                        fontSize={{base:'18px', md:'2xl'}}
+                                        fontWeight={'medium'}
                                         lineHeight={{base:'short', md:'1.2'}}
                                         letterSpacing={'-0.01em'}
-                                        mb={'20px'}    
+                                        mb={'5'}    
                                     >
                                         Load the pet`s image
                                     </Text>
                                     <FormikControl
                                         control="file"
-                                        name='photo'
                                         id={photoId}
-                                        size={'116px'}
+                                        name={'photo'}
+                                        size={{base:'116px', md:'140px'}}
                                         borderRadius={'20px'}
+                                        plusSize={{base:'55%', md:'50%'}}
+
                                     />
                                     <FormikControl
                                         control="textarea"
                                         name='comments'
-                                        label='Comments'
+                                        label={<>Comments<Text color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type comments'
                                         id={commentsId}
                                     />
                                     <Box
                                         maxW={'none'}
-                                        width={'100%'}
+                                        width={'full'}
                                         display={'flex'}
                                         flexDirection={{base:'column', md:'row-reverse'}}
                                         justifyContent={{base:'center', md:'center'}}
                                     >
                                         <Button
                                             type='submit'
-                                            mb={{base:'12px', md:'0'}}
+                                            mb={{base:'3', md:'0'}}
                                             controle='secondary'
                                             width={{md:'180px'}}
                                         >
@@ -170,7 +179,7 @@ const ModalAddsNotice = ({onClose}) => {
                                         </Button>
                                         <Button
                                             onClick={()=>setFirstStep(true)}
-                                            mr={{md:'20px'}}
+                                            mr={{md:'5'}}
                                             width={{md:'180px'}}
                                         >
                                             Back

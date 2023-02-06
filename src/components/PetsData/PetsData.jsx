@@ -1,8 +1,13 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text, useDisclosure } from "@chakra-ui/react";
 import PetsList from "components/PetsList/PetsList";
+import {Modal} from "shared/components/Modal"
+import {ModalAddsPet} from 'components/ModalAddsPet'
+
 
 import { BsFillPlusCircleFill } from 'react-icons/bs'
+
 const PetsData = () => {
+    const { onOpen, onClose, isOpen } = useDisclosure()
     return (
         <Box ml={{xl:'32px'}}>
             <Flex
@@ -19,9 +24,11 @@ const PetsData = () => {
                     My pets:
                 </Heading>
                 <Button
+                    onClick={onOpen}
                     rightIcon={<BsFillPlusCircleFill size='40px' fill='#F59256' m='0px' />}
-                    bg='#FDF7F2'
+                    bg='transparent'
                     fontSize={{ base: '20px', md: '28px' }}
+                    color='black'
                     lineHeight={{ base: "1.35" }}
                     fontWeight={{ base: '500' }}
                     type="button"
@@ -31,8 +38,12 @@ const PetsData = () => {
                     <Text mr='7px'>Add pet</Text>
                 </Button>
             </Flex>
-            <PetsList/>
-        </Box>)
+            <PetsList />
+            <Modal isOpen={isOpen} onClose={onClose} title={"Add pet"} >
+                <ModalAddsPet/>
+            </Modal>
+        </Box>
+    )
 };
 
 export default PetsData;

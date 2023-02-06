@@ -1,7 +1,7 @@
 [
     {
         "favorite": false,
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=1",
         "breed": "Shimon",
         "location": "Dnipro",
         "age": "age 1",
@@ -12,7 +12,7 @@
     {
         "favorite": true,
         "title": "Cute dog looking for a home",
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=2",
         "breed": "Semon",
         "location": "Kiev",
         "age": "age 2",
@@ -21,7 +21,7 @@
     },
     {
         "favorite": false,
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=3",
         "breed": "Telomain",
         "location": "Harkiv",
         "age": "age 3",
@@ -30,7 +30,7 @@
     },
     {
         "favorite": false,
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=4",
         "breed": "Bouvier",
         "location": "Lviv",
         "age": "age 4",
@@ -39,7 +39,7 @@
     },
     {
         "favorite": false,
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=5",
         "breed": "Shimon",
         "location": "Odessa",
         "age": "age 5",
@@ -50,7 +50,7 @@
     {
         "favorite": true,
         "title": "Cute dog looking for a home",
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=6",
         "breed": "Semon",
         "location": "Ivano-frankivsk",
         "age": "age 6",
@@ -59,7 +59,7 @@
     },
     {
         "favorite": false,
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=7",
         "breed": "Telomain",
         "location": "Harkiv",
         "age": "age 7",
@@ -68,7 +68,7 @@
     },
     {
         "favorite": false,
-        "avatar": "https://loremflickr.com/320/240/dog",
+        "avatar": "https://loremflickr.com/320/240?random=8",
         "breed": "Bouvier",
         "location": "Lviv",
         "age": "age 8",

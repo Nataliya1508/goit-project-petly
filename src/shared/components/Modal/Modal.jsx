@@ -7,36 +7,37 @@ import {
     ModalCloseButton,
   } from '@chakra-ui/react'
 
-const CustomModal = ({isOpen, onClose, title, children, ...rest}) => {
+const CustomModal = ({ isOpen, onClose, title, children, ...rest }) => {
+  console.log(children)
   return (
   <Modal isOpen={isOpen} onClose={onClose}>
     <ModalOverlay bg={'rgba(17, 17, 17, 0.6);'} />
     <ModalContent
-        w={['280px', null, '280px', '608px']}
+        w={{base:'280px', md:'608px'}}
         maxW={'none'}
-        px={['20px', null, '20px', '80px']}
-        py={'40px'}
-        borderRadius={['20px', null, '20px', '40px']}
+        px={{base:'5', md:'20'}}
+        py={10}
+        borderRadius={{base:'20px', md:'40px'}}
         {...rest}>
         {title && <ModalHeader
                       mx={'auto'}
-                      mb={['20px', null, '20px', '40px']}
+                      mb={{base:'5', md:'10'}}
                       p={'0'}
-                      fontSize={['2xl', null, '2xl', '4xl']}
-                      fontWeight={'500'}
+                      fontSize={{base:'2xl', md:'4xl'}}
+                      fontWeight={'medium'}
                       lineHeight={'short'}
-                      color={'#111111'}
+                      color={'accent.black'}
                           >{title}
                   </ModalHeader>}
         <ModalCloseButton
-            width={['34px', null, '34px', '44px']}
-            height={['34px', null, '34px', '44px']}
-            top={'20px'}
-            right={'20px'}
-            bg={'#FDF7F2'}
+            width={{base:'34px', md:'44px'}}
+            height={{base:'34px', md:'44px'}}
+            top={5}
+            right={5}
+            bg={'accent.background'}
             borderRadius={'50%'}
-            _hover={{backgroundColor: 'accent.100'}}
-            _focus={{backgroundColor: 'accent.100'}}
+            _hover={{backgroundColor: 'accent.accentOrange'}}
+            _focus={{backgroundColor: 'accent.accentOrange'}}
         />
         <ModalBody
             p={'0'}

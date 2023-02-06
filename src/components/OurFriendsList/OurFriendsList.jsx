@@ -16,7 +16,7 @@ export const OurFriendsList = ({ friends }) => {
     <SimpleGrid
       justifyItems={'center'}
       columns={{ base: 1, md: 2, lg: 3 }}
-      spacing={{ base: '12px', md: '32px' }}
+      spacing={{ base: '3', md: '8' }}
     >
       {friends.map(
         ({
@@ -32,11 +32,11 @@ export const OurFriendsList = ({ friends }) => {
         }) => (
           <Card
             bgColor={'#FFFFFF'}
-            borderRadius={'40px'}
+            borderRadius={'10'}
             boxShadow={'7px 4px 14px rgba(49, 21, 4, 0.07)'}
             key={_id}
-            maxW={{ base: '280px', md: '336px', lg: '394px' }}
-            p={{ base: '12px', md: '16px' }}
+            w={{ base: '280px', md: '336px', lg: '394px' }}
+            p={{ base: '3', md: '4' }}
           >
             <CardHeader
               as={'h3'}
@@ -52,21 +52,6 @@ export const OurFriendsList = ({ friends }) => {
               <Link
                 position={'relative'}
                 color={'#f59256'}
-                _after={{
-                  content: '""',
-                  pos: 'absolute',
-                  left: 0,
-                  bottom: 0,
-                  w: 0,
-                  h: '1px',
-                  bg: '#f59256',
-                  transition: 'width 300ms linear',
-                }}
-                __css={{
-                  '&.hover::after': {
-                    w: '100%',
-                  },
-                }}
                 href={url}
                 target="_blank"
                 rel="noreferrer"
@@ -77,9 +62,9 @@ export const OurFriendsList = ({ friends }) => {
 
             <Stack
               direction={{ base: 'column', sm: 'row' }}
-              mt={{ base: '12px', md: '16px' }}
+              mt={{ base: '3', md: '4' }}
             >
-              <Box w={{ base: '110px', md: '120px', xl: '158px' }}>
+              <Box maxWidth={{ base: '110px', md: '120px', xl: '158px' }}>
                 <Image m={0} src={imageUrl} alt={title} />
               </Box>
               <Stack>
@@ -89,7 +74,7 @@ export const OurFriendsList = ({ friends }) => {
                     display={'flex'}
                     flexDirection={'column'}
                     textAlign={'start'}
-                    mb={{ base: '4px', md: '8px', lg: '12px' }}
+                    mb={{ base: '1', md: '2', lg: '3' }}
                     fontWeight={'medium'}
                     fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}
                     lineHeight={{ base: '1.33', md: '1.35', lg: 'short' }}
@@ -104,7 +89,7 @@ export const OurFriendsList = ({ friends }) => {
                     display={'flex'}
                     flexDirection={'column'}
                     textAlign={'start'}
-                    mb={{ base: '4px', md: '8px', lg: '12px' }}
+                    mb={{ base: '1', md: '2', lg: '3' }}
                     fontWeight={'medium'}
                     fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}
                     lineHeight={{ base: '1.33', md: '1.35', lg: 'short' }}
@@ -121,7 +106,7 @@ export const OurFriendsList = ({ friends }) => {
                     display={'flex'}
                     flexDirection={'column'}
                     textAlign={'start'}
-                    mb={{ base: '4px', md: '8px', lg: '12px' }}
+                    mb={{ base: '1', md: '2', lg: '3' }}
                     fontWeight={'medium'}
                     fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}
                     lineHeight={{ base: '1.33', md: '1.35', lg: 'short' }}
@@ -130,7 +115,6 @@ export const OurFriendsList = ({ friends }) => {
                   >
                     Email:
                     <Link href="mailto:{address}">
-                      {' '}
                       {email ? email : <Text />}{' '}
                     </Link>
                   </Box>

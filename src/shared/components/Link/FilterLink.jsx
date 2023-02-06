@@ -10,23 +10,23 @@ const FilterLink = ({children, ...rest}) => {
         width={'fit-content'}
         height={{base:'35px', md:'47px'}}
         px={7}
-        py={{base:'8px', md:'10px'}}
+        py={{base:'2', md:'2.5'}}
         bg={'white'}
-        color={'#111111'}
+        color={'accent.black'}
         border={'2px solid'}
-        borderColor={'accent.100'}
+        borderColor={'accent.accentOrange'}
         borderRadius={'40px'}
         fontSize={{base:'sm', md:'xl'}}
-        fontWeight={'500'}
+        fontWeight={'medium'}
         lineHeight={'short'}
         letterSpacing={'0.04em'}
-        _hover={{   bg: 'accent.100',
+        _hover={{   bg: 'accent.accentOrange',
                     color: 'white' }}
-        _focus={{   bg: 'accent.100',
+        _focus={{   bg: 'accent.accentOrange',
                     color: 'white' }}
-        _activeLink={{  bg: 'accent.100',
+        _activeLink={{  bg: 'accent.accentOrange',
                     color: 'white' }}
-        _active={{  bg: 'accent.100',
+        _active={{  bg: 'accent.accentOrange',
                     color: 'white' }}
         {...rest}
             >{children}

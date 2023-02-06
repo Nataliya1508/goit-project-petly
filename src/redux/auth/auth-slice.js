@@ -1,7 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
-import { register, login, logout, getCurrentUser, updateUserAvatar, updateUser, addNewPet, deletePet } from './auth-operations';
+import {
+  register,
+  login,
+  logout,
+  getCurrentUser,
+  updateUserAvatar,
+  updateUser,
+  addNewPet,
+  deletePet,
+} from './auth-operations';
 
 const handlePending = state => {
   state.isRefreshing = true;
@@ -70,6 +79,7 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
+        state.isLoggedIn = true;
         state.user = payload;
       })
       .addCase(getCurrentUser.rejected, (state, action) => {
@@ -100,7 +110,7 @@ const authSlice = createSlice({
       })
       .addCase(addNewPet.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
-        state.user.pets = [ ...payload, ...state.user.pet];
+        state.user.pets = [...payload, ...state.user.pet];
       })
       .addCase(addNewPet.rejected, (state, action) => {
         handleRejected(state, action);
@@ -110,13 +120,11 @@ const authSlice = createSlice({
       })
       .addCase(deletePet.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
-        state.user.pets = state.user.pets.filter(
-          ({ _id }) => _id !== payload
-        );
+        state.user.pets = state.user.pets.filter(({ _id }) => _id !== payload);
       })
       .addCase(deletePet.rejected, (state, action) => {
         handleRejected(state, action);
-      })
+      });
   },
 });
 

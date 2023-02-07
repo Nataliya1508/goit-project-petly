@@ -40,6 +40,7 @@ export const getCurrentUser = async (persistedToken) => {
 
 export const updateUserData = async (updateData) => {    
     const { data } = await instance.patch("/api/users/update", updateData);
+    console.log(data)
     return data;
 }
 

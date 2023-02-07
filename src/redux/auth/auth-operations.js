@@ -84,7 +84,8 @@ export const updateUser = createAsyncThunk(
         rejectWithValue('Unable update user');
       }
 
-      const { data } = await api.updateUserData(credentials);
+      const data = await api.updateUserData(credentials);
+      console.log(data)
       return data;
     } catch ({ response }) {
       const error = {
@@ -107,7 +108,7 @@ export const updateUserAvatar = createAsyncThunk(
         rejectWithValue('Unable update avatar');
       }
 
-      const { data } = await api.updateUserAvatar(avatar);
+      const data = await api.updateUserAvatar(avatar);
       return data;
     } catch ({ response }) {
       const error = {
@@ -130,7 +131,7 @@ export const addNewPet = createAsyncThunk(
         rejectWithValue('Unable add new pet');
       }
 
-      const { data } = await api.addPet(newPet);
+      const data = await api.addPet(newPet);
       return data;
     } catch ({ response }) {
       const error = {

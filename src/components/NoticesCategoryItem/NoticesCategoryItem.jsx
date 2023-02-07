@@ -54,12 +54,12 @@ const NoticesCategoryItem = ({
   const isOwner = owner === _id;
 
   const calculatePetsAge = birthdate => {
-    const petsAge = moment(birthdate, 'LLLL').fromNow(true);
+    const petsAge = moment(birthdate, 'YYYY-MM-DD').fromNow(true);
     return petsAge;
   };
 
   const calculatePetsAgeModal = birthdate => {
-    const petsAge = moment(birthdate, 'LLLL').format('DD.MM.YYYY');
+    const petsAge = moment(birthdate, 'YYYY-MM-DD').format('DD.MM.YYYY');
     return petsAge;
   };
 

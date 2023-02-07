@@ -32,14 +32,13 @@ const PetsData = ({ pets }) => {
                     type="button"
                     px='0px'
                     _hover={{ color: 'accent.accentOrange' }}
-                    _focus={{ color: 'accent.accentOrange' }}
                     transitionProperty={'color'}
                     transitionDuration={'250ms'}
                     transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}>
                     <Text mr='7px'>Add pet</Text>
                 </Button>
             </Flex>
-            <PetsList pets={pets} />
+            <PetsList/>
             <Modal isOpen={isOpen} onClose={onClose} title={"Add pet"} >
                 <ModalAddsPet/>
             </Modal>

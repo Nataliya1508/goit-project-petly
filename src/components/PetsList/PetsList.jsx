@@ -2,17 +2,22 @@
 import { List, ListItem, Box, Text, Flex, Image } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import petDefaultAvatar from '../../media/petDefaultAvatar.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deletePet } from 'redux/auth/auth-operations';
+import { getUser } from 'redux/auth/auth-selectors';
 
+const PetsList = () => {
 
-const PetsList = ({ pets }) => {
+  const {
+    pets = [],
+  } = useSelector(getUser);
 
   const dispatch = useDispatch();
   const onDeleteBtnClick = (e, id) => {
     dispatch(deletePet(id))
     e.preventdefault()
   }
+  console.log(pets)
   return  ( pets.length > 0 ?
      <Box >
       { pets.map(({ _id, name, birthday, breed, photo, comments }) => (

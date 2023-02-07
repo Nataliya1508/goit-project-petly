@@ -38,7 +38,7 @@ const UserAccount = () => {
             </Box>
           </Box>
           
-        <PetsData pets={user.pets} />
+        <PetsData />
         </Flex>
     </Box>)
 };

@@ -44,7 +44,11 @@ export const updateUserData = async (updateData) => {
 }
 
 export const updateUserAvatar = async (updateAvatar) => {    
-    const { data } = await instance.patch("/api/users/avatar", updateAvatar);
+    const { data } = await instance.patch("/api/users/avatar", updateAvatar, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    });
     return data;
 }
 

@@ -2,8 +2,6 @@ import { Box, Button, Flex, Heading, Text, useDisclosure } from "@chakra-ui/reac
 import PetsList from "components/PetsList/PetsList";
 import {Modal} from "shared/components/Modal"
 import {ModalAddsPet} from 'components/ModalAddsPet'
-
-
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 
 const PetsData = ({ pets }) => {
@@ -34,14 +32,13 @@ const PetsData = ({ pets }) => {
                     type="button"
                     px='0px'
                     _hover={{ color: 'accent.accentOrange' }}
-                    _focus={{ color: 'accent.accentOrange' }}
                     transitionProperty={'color'}
                     transitionDuration={'250ms'}
                     transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}>
                     <Text mr='7px'>Add pet</Text>
                 </Button>
             </Flex>
-            <PetsList pets={pets} />
+            <PetsList/>
             <Modal isOpen={isOpen} onClose={onClose} title={"Add pet"} >
                 <ModalAddsPet/>
             </Modal>

@@ -1,17 +1,13 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { Box, Flex, Text, Image, Button, useDisclosure, FormControl, FormLabel, VisuallyHiddenInput } from '@chakra-ui/react';
+import { Box, Flex, Text, Image, Input, FormLabel } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
 import defaultAvatar from '../../media/defaultAvatar.svg';
 import { useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
-// import { Modal } from "shared/components/Modal"
-import { CustomInputFile } from "shared/components/FormikControl"
-import { Formik, Form  } from 'formik';
-import { FormikControl, Modal } from 'shared/components'
-import {default as Plus} from 'shared/components/FormikControl/plus.svg' 
+import { useDispatch } from 'react-redux';
+import { updateUserAvatar } from 'redux/auth/auth-operations';
 
 const UserData = () => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
   const {
     email = '',
     name = '',
@@ -21,18 +17,13 @@ const UserData = () => {
     avatarURL,
   } = useSelector(getUser);
 
-  const addAvatarInitialState = {
-    categoryName: 'lost-found',
-    title: '',
-    name: '',
-    birthday: '',
-    breed: '',
-    sex: 'male',
-    location: '',
-    price: '',
-    photo: null,
-    comments: '',
-}
+    const dispatch = useDispatch();
+
+  function onChange (e) {
+    const newPhoto = new FormData()
+    newPhoto.append('avatar', e.target.files[0])
+    dispatch(updateUserAvatar(newPhoto))
+  }
 
   return (
     <Box
@@ -61,12 +52,9 @@ const UserData = () => {
             borderRadius="50%"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
           />
-          <Button
-            onClick={onOpen}
+          <FormLabel
             display="flex"
             alignItems="center"
-            type="button"
-            variant="link"
             fontSize="12px"
             lineHeight="1.35"
             fontWeight="400"
@@ -78,11 +66,20 @@ const UserData = () => {
             _focus={{ color: 'accent.accentOrange' }}
             transitionProperty={'color'}
             transitionDuration={'250ms'}
-            transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
-          >
+            transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}>
             <BsCameraFill size="20px" fill='#F59256' />
             <Text ml="4px">Edit photo</Text>
-          </Button>
+            <Input
+              onChange={(e)=> onChange(e)}
+              type="file"
+              w="0px"
+              h="0px"
+              position= "absolute"
+              z-index= "-1"
+              opacity= "0"
+              display= "block"
+          />
+          </FormLabel>
         </Box>
         <Flex
           direction="column"
@@ -98,25 +95,6 @@ const UserData = () => {
           <UserDataItem nameInput={'Adress'} valueInput={address} />
         </Flex>
       </Flex>
-      <Modal isOpen={isOpen} onClose={onClose} title={"Edit photo"} >
-          <FormControl
-            size={{ base: '208px', md: '182px' }}
-            borderRadius={{ base: '20px', md: '40px' }}
-            plusSize={{ base: '30%', md: '40%' }}>
-          <FormLabel
-              htmlFor='photoInpun'>
-            <Text>Add photo</Text>
-            </FormLabel>
-            <VisuallyHiddenInput
-              id='photoInpun'
-                name={name}
-                onClick={(event) => {
-                  console.log('hi')
-                }}
-              />
-            
-          </FormControl>
-        </Modal>
     </Box>
   );
 };

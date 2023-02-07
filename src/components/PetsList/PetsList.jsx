@@ -4,7 +4,7 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import petDefaultAvatar from '../../media/petDefaultAvatar.svg';
 import { useDispatch } from 'react-redux';
 import { deletePet } from 'redux/auth/auth-operations';
-import {getUser}  from 'redux/auth/auth-selectors';
+
 
 const PetsList = ({ pets }) => {
 

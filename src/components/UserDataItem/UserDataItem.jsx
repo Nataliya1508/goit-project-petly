@@ -40,7 +40,7 @@ const UserDataItem = ({ nameInput, valueInput, type }) => {
         fontWeight={{ base: '600' }}
         w={{ base: '56px', md: '83px' }}
       >
-        {nameInput}
+        {nameInput}:
       </FormLabel>
       <Input
         fontSize={{ base: '12px', md: '18px' }}
@@ -62,8 +62,8 @@ const UserDataItem = ({ nameInput, valueInput, type }) => {
         onChange={handleValueChange}
         disabled={conditionInput}
         _disabled={{opacity:"1.0", border:'1px solid transparent'}}
-        _hover={ 'none'}
-        _focus={'none'}
+        _hover={{ border:'1px solid rgba(245, 146, 86, 0.5)' }}
+        
         pointerEvents={conditionInput ? 'none' : 'text'}
       />
 

@@ -17,7 +17,6 @@ const PetsList = () => {
     dispatch(deletePet(id))
     e.preventdefault()
   }
-  console.log(pets)
   return  ( pets.length > 0 ?
      <Box >
       { pets.map(({ _id, name, birthday, breed, photo, comments }) => (

@@ -4,11 +4,7 @@ import { toast } from 'react-toastify';
 import petTemlate from '../../media/no_img.png';
 import moment from 'moment';
 
-import {
-  // getUser,
-  getIsLoggedIn,
-  getUser,
-} from '../../redux/auth/auth-selectors';
+import { getIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
 
 import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
 import {
@@ -44,7 +40,7 @@ const NoticesCategoryItem = ({
 }) => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const user = useSelector(getUser);
+
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   const favoriteNotices = useSelector(getFavoriteNotices);
@@ -54,6 +50,9 @@ const NoticesCategoryItem = ({
   const [isFavorite, setIsFavorite] = useState(() => Boolean(favorite));
 
   const { _id } = useSelector(getUser);
+
+  const isOwner = owner === _id;
+
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'LLLL').fromNow(true);
     return petsAge;
@@ -84,6 +83,7 @@ const NoticesCategoryItem = ({
       console.log(error);
     }
   };
+
   return (
     <Card
       as={'li'}
@@ -203,9 +203,9 @@ const NoticesCategoryItem = ({
           calculatePetsAgeModal={calculatePetsAgeModal}
         />
 
-        {_id === owner && (
+        {isOwner && (
           <CardButton
-            mt={favorite && '12px'}
+            mt={'12px'}
             type="submit"
             onClick={() => deleteMyNotice(id)}
             controle="delete"

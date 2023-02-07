@@ -2,6 +2,8 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { getCurrentUser } from 'redux/auth/auth-operations';
+// import { getIsRefreshing } from 'redux/auth/auth-selectors';
+import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
 import { PrivateRoute } from './SecureRoutes/PrivatRoute';
 import { RedirectedRoute } from './SecureRoutes/RedirectedRoute';
 import { SharedLayout } from './SharedLayout';
@@ -30,6 +32,7 @@ const UserAccount = lazy(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
+  // const isLoading = useSelector(getIsRefreshing);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -37,55 +40,60 @@ export const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
+      {/* {!isLoading && ( */}
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
 
-          <Route
-            path="login"
-            element={
-              <RedirectedRoute redirectTo="/user" component={<Login />} />
-            }
-          />
-          <Route
-            path="register"
-            element={
-              <RedirectedRoute redirectTo="/user" component={<Register />} />
-            }
-          />
-
-          <Route path="news" element={<News />} />
-          <Route path="notices/" element={<Notices />}>
-            <Route path="sell" element={<p>Sell</p>} />
-            <Route path="lost-found" element={<p>lost-found</p>} />
-            <Route path="free" element={<p>in good hands</p>} />
             <Route
-              path="own"
+              path="login"
               element={
-                <PrivateRoute redirectTo="/login" component={<p>own</p>} />
+                <RedirectedRoute redirectTo="/user" component={<Login />} />
               }
             />
             <Route
-              path="favorite"
+              path="register"
               element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<p>favorite</p>}
-                />
+                <RedirectedRoute redirectTo="/user" component={<Register />} />
               }
             />
+
+            <Route path="news" element={<News />} />
+            <Route path="notices/" element={<Notices />}>
+              <Route path="sell" element={<NoticesCategoriesList />} />
+              <Route path="lost-found" element={<NoticesCategoriesList />} />
+              <Route path="free" element={<NoticesCategoriesList />} />
+              <Route
+                path="own"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<NoticesCategoriesList />}
+                  />
+                }
+              />
+              <Route
+                path="favorite"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<NoticesCategoriesList />}
+                  />
+                }
+              />
+            </Route>
+
+            <Route path="friends" element={<OurFriends />} />
+            <Route
+              path="user"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserAccount />} />
+              }
+            />
+            <Route path="*" element={<h1>Page Not Found 🥶</h1>} />
           </Route>
-
-          <Route path="friends" element={<OurFriends />} />
-          <Route
-            path="user"
-            element={
-              <PrivateRoute redirectTo="/login" component={<UserAccount />} />
-            }
-          />
-          <Route path="*" element={<h1>Page Not Found 🥶</h1>} />
-        </Route>
-      </Routes>
+        </Routes>
+      {/* )} */}
     </>
   );
 };

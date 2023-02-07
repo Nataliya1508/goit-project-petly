@@ -35,7 +35,7 @@ export const OurFriendsList = ({ friends }) => {
             borderRadius={'10'}
             boxShadow={'7px 4px 14px rgba(49, 21, 4, 0.07)'}
             key={_id}
-            w={{ base: '280px', md: '336px', lg: '394px' }}
+            w={{ base: '280px', md: '336px', lg: '280px', xl: '394px'}}
             p={{ base: '3', md: '4' }}
           >
             <CardHeader

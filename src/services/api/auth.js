@@ -49,7 +49,11 @@ export const updateUserAvatar = async (updateAvatar) => {
 }
 
 export const addPet = async (newPet) => {    
-    const { data } = await instance.post("/api/pets", newPet);
+    const { data } = await instance.post("/api/pets", newPet, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
     return data;
 }
 

@@ -23,7 +23,7 @@ const FavoriteButton = ({ noticeId, toggleFav, ...rest }) => {
       {...rest}
     >
       <Image
-        src={favorites.includes(noticeId) ? heartFull : heart}
+        src={favorites?.includes(noticeId) ? heartFull : heart}
         width={7}
         height={7}
       />

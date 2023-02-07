@@ -1,5 +1,5 @@
 import { FilterLink, Modal } from 'shared/components';
-import { Box, useDisclosure, Text } from '@chakra-ui/react';
+import { Box, useDisclosure, Text, Button } from '@chakra-ui/react';
 import { ModalAddNotice } from 'components/ModalAddNotice';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
@@ -71,7 +71,7 @@ const NoticesCategoriesNav = () => {
           >
             Add pet
           </Text>
-          <Box
+          <Button
             display={'flex'}
             alignItems={{ base: 'center' }}
             justifyContent={{ base: 'center' }}
@@ -88,7 +88,7 @@ const NoticesCategoriesNav = () => {
               h={{ base: '21px', md: '16px' }}
               color={'white'}
             />
-          </Box>
+          </Button>
         </Box>
         <Modal isOpen={isOpen} onClose={onClose} title={'Add pet'}>
           <ModalAddNotice onClose={onClose} />

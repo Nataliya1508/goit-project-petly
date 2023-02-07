@@ -7,6 +7,7 @@ import moment from 'moment';
 import {
   // getUser,
   getIsLoggedIn,
+  getUser,
 } from '../../redux/auth/auth-selectors';
 
 import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
@@ -22,6 +23,7 @@ import {
   CardBody,
   Heading,
   CardFooter,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
@@ -31,6 +33,7 @@ moment().format();
 const NoticesCategoryItem = ({
   id,
   photo,
+  owner,
   title,
   breed,
   location,
@@ -40,19 +43,17 @@ const NoticesCategoryItem = ({
   deleteMyNotice,
 }) => {
   const dispatch = useDispatch();
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   // const user = useSelector(getUser);
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   const favoriteNotices = useSelector(getFavoriteNotices);
 
   const favorite = favoriteNotices.find(item => item._id === id);
-  console.log(favoriteNotices);
 
-  const [isFavorite, setIsFavorite] = useState(() => favorite);
+  const [isFavorite, setIsFavorite] = useState(() => Boolean(favorite));
 
-  // useEffect(() => {}, [isFavorite]);
-
+  const { _id } = useSelector(getUser);
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'LLLL').fromNow(true);
     return petsAge;
@@ -61,16 +62,6 @@ const NoticesCategoryItem = ({
   const calculatePetsAgeModal = birthdate => {
     const petsAge = moment(birthdate, 'LLLL').format('DD.MM.YYYY');
     return petsAge;
-  };
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const toggleFavorite = () => {
@@ -93,7 +84,6 @@ const NoticesCategoryItem = ({
       console.log(error);
     }
   };
-  console.log(isFavorite);
   return (
     <Card
       as={'li'}
@@ -202,20 +192,18 @@ const NoticesCategoryItem = ({
           Learn more
         </CardButton> */}
 
-        <CardButton onClick={handleOpen}>Learn more</CardButton>
+        <CardButton onClick={onOpen}>Learn more</CardButton>
 
-        {open && (
-          <ModalNotice
-            open={open}
-            handleClose={handleClose}
-            id={id}
-            toggleFavorite={toggleFavorite}
-            favorite={isFavorite}
-            calculatePetsAgeModal={calculatePetsAgeModal}
-          />
-        )}
+        <ModalNotice
+          isOpen={isOpen}
+          onClose={onClose}
+          id={id}
+          toggleFavorite={toggleFavorite}
+          favorite={isFavorite}
+          calculatePetsAgeModal={calculatePetsAgeModal}
+        />
 
-        {isFavorite && (
+        {_id === owner && (
           <CardButton
             mt={favorite && '12px'}
             type="submit"

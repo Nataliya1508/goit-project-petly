@@ -77,6 +77,7 @@ const NoticesCategoriesList = () => {
                 {categoryForRender.map(
                   ({
                     _id,
+                    owner,
                     photo,
                     title,
                     breed,
@@ -88,6 +89,7 @@ const NoticesCategoriesList = () => {
                     <NoticesCategoryItem
                       key={_id}
                       id={_id}
+                      owner={owner}
                       photo={photo}
                       title={title}
                       breed={breed}

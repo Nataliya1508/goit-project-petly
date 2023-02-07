@@ -3,4 +3,5 @@ export const getNoticesLoading = ({ notices }) => notices.isLoading;
 export const getUserNotices = ({ notices }) => notices.userNotices;
 export const getFavoriteNotices = ({ notices }) => notices.favorite;
 export const selectNoticesByCategory = ({ notices }) => notices.categories;
+export const selectTotalCountNotices = ({ notices }) => notices.total;
 export const selectCurrentNotice = ({ notices }) => notices.currentNotice;

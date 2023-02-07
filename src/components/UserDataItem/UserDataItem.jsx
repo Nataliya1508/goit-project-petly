@@ -7,7 +7,7 @@ import { updateUser } from 'redux/auth/auth-operations';
 
 
 
-const UserDataItem = ({ nameInput, valueInput }) => {
+const UserDataItem = ({ nameInput, valueInput, type }) => {
   const dispatch = useDispatch()
   const [value, setValue] = useState(valueInput)
   const [conditionInput, setConditionInput] = useState(true)
@@ -47,22 +47,28 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         lineHeight={{ base: '1.35' }}
         fontWeight={{ base: '500', md: '400' }}
         name={nameInput}
+        type={type}
+        placeholder=''
         required="true.sting"
         px="12px"
         w={{ base: '159px', md: '220px' }}
         h={{ base: '24px', md: '32px' }}
-        bgColor='accent.background'
+        bgColor={conditionInput ? 'accent.white' : 'accent.background'}
         outline='none'
         focusBorderColor='rgba(245, 146, 86, 0.5)'
-        border={ conditionInput ? "1px solid transparent" : "1px solid rgba(245, 146, 86, 0.5)" }
+        border= "1px solid rgba(245, 146, 86, 0.5)" 
         borderRadius="40px"
         value={value ?? ""}
         onChange={handleValueChange}
-        disabled = {conditionInput}
+        disabled={conditionInput}
+        _disabled={{opacity:"1.0", border:'1px solid transparent'}}
+        _hover={ 'none'}
+        _focus={'none'}
+        pointerEvents={conditionInput ? 'none' : 'text'}
       />
 
       <Box
-        as="Button"
+        as='button'
         onClick={onBtnClick}
         display='flex'
         alignItems='center'
@@ -82,7 +88,7 @@ const UserDataItem = ({ nameInput, valueInput }) => {
         transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
       >
         {conditionInput ?  <FaPen color="inherit" h={{ base: '10px', md: '15px' }} w={{ base: '10px', md: '15px' }} /> : 
-        <FaCheck color="inherit" h={{ base: '10px', md: '15px' }} w={{ base: '10px', md: '15px' }} />}
+        <FaCheck color='#F59256' h={{ base: '10px', md: '15px' }} w={{ base: '10px', md: '15px' }} />}
       </Box>
     </FormControl>
   );

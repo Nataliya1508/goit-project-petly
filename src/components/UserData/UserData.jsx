@@ -53,6 +53,7 @@ const UserData = () => {
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
           />
           <FormLabel
+            cursor='pointer'
             display="flex"
             alignItems="center"
             fontSize="12px"
@@ -88,11 +89,11 @@ const UserData = () => {
           mb="-8px"
           w={{ base: '100%', md: '379px', xl: '411px' }}
         >
-          <UserDataItem nameInput={'Name'} valueInput={name} />
-          <UserDataItem nameInput={'Email'} valueInput={email} />
-          <UserDataItem nameInput={'Birthday'} valueInput={birthday} />
-          <UserDataItem nameInput={'Phone'} valueInput={phone} />
-          <UserDataItem nameInput={'Adress'} valueInput={address} />
+          <UserDataItem nameInput={'Name'} valueInput={name} type={'text'} />
+          <UserDataItem nameInput={'Email'} valueInput={email} type={'email'} />
+          <UserDataItem nameInput={'Birthday'} valueInput={birthday} type={'date'} />
+          <UserDataItem nameInput={'Phone'} valueInput={phone} type={'tel'} />
+          <UserDataItem nameInput={'Adress'} valueInput={address} type={'string'} />
         </Flex>
       </Flex>
     </Box>

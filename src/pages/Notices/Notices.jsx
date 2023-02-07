@@ -1,16 +1,22 @@
-import { Suspense, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
-import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
-// import NoticesCategoryItem from "components/NoticesCategoryItem/NoticesCategoryItem";
-import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 import { Container, Section } from 'shared/components';
 import { Heading } from '@chakra-ui/react';
 
 const Notices = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { categoryName } = useParams();
+  console.log(searchQuery);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const category = location.pathname;
+
+  useEffect(() => {
+    if (category === '/notices') navigate('sell');
+  }, [category, navigate]);
+
   return (
     <>
       <Container>
@@ -27,11 +33,6 @@ const Notices = () => {
           </Heading>
           <NoticesSearch setSearchQuery={setSearchQuery} />
           <NoticesCategoriesNav />
-          <AddNoticeButton />
-          <NoticesCategoriesList
-            category={categoryName}
-            searchQuery={searchQuery}
-          />
           <Suspense fallback={null}>
             <Outlet />
           </Suspense>

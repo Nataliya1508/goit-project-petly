@@ -30,12 +30,11 @@ const noticesSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      //getNoticesByCategory
       .addCase(getNoticesByCategory.pending, (state, _) => {
         handlePending(state);
       })
       .addCase(getNoticesByCategory.fulfilled, (state, { payload }) => {
-        state.categories = payload;
+        state.categories = payload.result;
         state.isLoading = false;
         state.error = null;
       })
@@ -58,11 +57,11 @@ const noticesSlice = createSlice({
         state.error = payload;
       })
       // addToFavorites
-      .addCase(addToFavorites.pending, (state, _) => {
-        handlePending(state);
-      })
+      // .addCase(addToFavorites.pending, (state, _) => {
+      //   handlePending(state);
+      // })
       .addCase(addToFavorites.fulfilled, (state, { payload }) => {
-        state.favorite = [payload.user.favorites, ...state.favorite];
+        state.favorite = [payload.notice, ...state.favorite];
         state.isLoading = false;
         state.error = null;
       })
@@ -76,6 +75,7 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(getFavorites.fulfilled, (state, { payload }) => {
+        state.favorite = [...payload.favorites];
         state.isLoading = false;
         state.error = null;
       })

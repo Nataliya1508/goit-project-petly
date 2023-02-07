@@ -269,7 +269,7 @@ function ModalNotice({
                           </ListItem>
                         </>
                       )}
-                      {notice.price && (
+                      {notice?.price && (
                         <ListItem
                           display="flex"
                           _notLast={{ marginBottom: '8px' }}

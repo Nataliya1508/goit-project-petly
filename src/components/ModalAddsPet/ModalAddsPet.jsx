@@ -1,21 +1,21 @@
 import { Formik, Form } from 'formik';
 import { useMemo, useState } from 'react';
-// import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { nanoid } from 'nanoid';
 import moment from 'moment/moment';
 import { Text, Box } from '@chakra-ui/react';
-// import { addPet } from "redux/user/user-operations"
-// import { getPetLoading } from "redux/user/user-selectors"
+import { addNewPet } from "redux/auth/auth-operations"
+import { getIsRefreshing } from "redux/auth/auth-selectors"
 import {
   FormikControl,
   Button,
-  // errorToast, successToast
+  errorToast, successToast
 } from 'shared/components';
 import { addPetInitialState, addPetSchema } from './index';
 
 const ModalAddsPet = ({ onClose }) => {
-  // const dispatch = useDispatch()
-  // const isLoading = useSelector(getPetLoading)
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getIsRefreshing)
 
   const nameId = useMemo(() => nanoid(), []);
   const birthdayId = useMemo(() => nanoid(), []);
@@ -42,26 +42,25 @@ const ModalAddsPet = ({ onClose }) => {
     const newPet = new FormData();
     newPet.append('name', name.trim());
     newPet.append(
-      'birthdate',
-      birthday ? moment(birthday, 'YYYYY-MM-DD').format('DD.MM.YYYY') : null
+      'birthday', moment(birthday, 'YYYYY-MM-DD').format('DD.MM.YYYY')
     );
     newPet.append('breed', breed.trim());
     newPet.append('photo', photo);
     newPet.append('comments', comments.trim());
-
-    // dispatch(addPet(newPet))
-    // .then(
-    //     ({error}) => {
-    //     if (error) {
-    //         return errorToast(error.message)
-    //     }
-    //     successToast('Pet successfully added')
-    //     resetForm()
-    //     onClose()
-    //     }
-    // ).catch(
-    //     (e) => errorToast(e.message)
-    // )
+      console.log()
+    dispatch(addNewPet(newPet))
+    .then(
+        ({error}) => {
+        if (error) {
+            return errorToast(error.message)
+        }
+        successToast('Pet successfully added')
+        resetForm()
+        onClose()
+        }
+    ).catch(
+        (e) => errorToast(e.message)
+    )
   };
 
   return (
@@ -81,20 +80,19 @@ const ModalAddsPet = ({ onClose }) => {
                 name="name"
                 label={
                   <>
-                    Name pet<Text color={'accent.accentOrange'}>*</Text>
+                    Name pet<Text as={'span'} color={'accent.accentOrange'}>*</Text>
                   </>
                 }
                 placeholder={'Type name pet'}
                 id={nameId}
                 width={'60'}
-                req={true}
               />
               <FormikControl
                 type="date"
                 name="birthday"
                 label={
                   <>
-                    Date of birthday<Text color={'accent.accentOrange'}>*</Text>
+                    Date of birthday<Text as={'span'} color={'accent.accentOrange'}>*</Text>
                   </>
                 }
                 id={birthdayId}
@@ -105,7 +103,7 @@ const ModalAddsPet = ({ onClose }) => {
                 name="breed"
                 label={
                   <>
-                    Breed<Text color={'accent.accentOrange'}>*</Text>
+                    Breed<Text as={'span'} color={'accent.accentOrange'}>*</Text>
                   </>
                 }
                 placeholder="Type breed"
@@ -153,7 +151,7 @@ const ModalAddsPet = ({ onClose }) => {
                 mb={'5'}
               >
                 Add photo and some comments
-                {<Text color={'accent.accentOrange'}>*</Text>}
+                {<Text as={'span'} color={'accent.accentOrange'}>*</Text>}
               </Text>
               <FormikControl
                 control="file"
@@ -168,7 +166,7 @@ const ModalAddsPet = ({ onClose }) => {
                 name="comments"
                 label={
                   <>
-                    Comments<Text color={'accent.accentOrange'}>*</Text>
+                    Comments<Text as={'span'} color={'accent.accentOrange'}>*</Text>
                   </>
                 }
                 placeholder="Type comments"
@@ -187,8 +185,7 @@ const ModalAddsPet = ({ onClose }) => {
                   controle="secondary"
                   width={{ md: '180px' }}
                 >
-                  {/* {isLoading ? 'Adding...' : 'Done'} */}
-                  Done
+                  {isLoading ? 'Adding...' : 'Done'}
                 </Button>
                 <Button
                   onClick={() => setFirstStep(true)}

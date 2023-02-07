@@ -35,7 +35,7 @@ const NoticesCategoriesNav = () => {
         >
           <FilterLink to={'lost-found'}>lost/found</FilterLink>
           <FilterLink to={'free'}>in good hand</FilterLink>
-          <FilterLink to={'sell'}>sell</FilterLink>
+          <FilterLink exact to={'sell'}>sell</FilterLink>
           {isLoggedIn && (
             <>
               <FilterLink to={'favorite'}>favorite ads</FilterLink>

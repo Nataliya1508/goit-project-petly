@@ -44,9 +44,9 @@ const noticesSlice = createSlice({
         state.error = payload;
       })
       //getNoticeById
-      .addCase(getNoticeById.pending, (state, _) => {
-        handlePending(state);
-      })
+      // .addCase(getNoticeById.pending, (state, _) => {
+      //   handlePending(state);
+      // })
       .addCase(getNoticeById.fulfilled, (state, { payload }) => {
         state.currentNotice = payload;
         state.isLoading = false;
@@ -86,9 +86,9 @@ const noticesSlice = createSlice({
       })
 
       // removeFromFavorites
-      .addCase(removeFromFavorites.pending, (state, _) => {
-        handlePending(state);
-      })
+      // .addCase(removeFromFavorites.pending, (state, _) => {
+      //   handlePending(state);
+      // })
       .addCase(removeFromFavorites.fulfilled, (state, { payload }) => {
         state.favorite = payload.user.favorite;
         state.isLoading = false;

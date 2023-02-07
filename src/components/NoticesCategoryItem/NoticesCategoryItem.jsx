@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import petTemlate from '../../media/no_img.png';
@@ -43,11 +43,15 @@ const NoticesCategoryItem = ({
 
   // const user = useSelector(getUser);
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const favoriteNotices = useSelector(getFavoriteNotices);
-  const favorite = favoriteNotices.includes(id);
-  const [isFavorite, setIsFavorite] = useState(favorite);
 
-  useEffect(() => {}, [isFavorite]);
+  const favoriteNotices = useSelector(getFavoriteNotices);
+
+  const favorite = favoriteNotices.find(item => item._id === id);
+  console.log(favoriteNotices);
+
+  const [isFavorite, setIsFavorite] = useState(() => favorite);
+
+  // useEffect(() => {}, [isFavorite]);
 
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'LLLL').fromNow(true);
@@ -80,6 +84,7 @@ const NoticesCategoryItem = ({
         setIsFavorite(true);
       }
       if (isFavorite) {
+        console.log(0);
         dispatch(removeFromFavorites(id));
         setIsFavorite(false);
       }
@@ -88,7 +93,7 @@ const NoticesCategoryItem = ({
       console.log(error);
     }
   };
-
+  console.log(isFavorite);
   return (
     <Card
       as={'li'}
@@ -101,6 +106,7 @@ const NoticesCategoryItem = ({
           <Image
             src={photo ?? petTemlate}
             alt={breed}
+            objectFit={'cover'}
             width={'100%'}
             height={'288px'}
           />
@@ -126,7 +132,7 @@ const NoticesCategoryItem = ({
           >
             {categoryName}
           </Box>
-          <FavoriteButton />
+          <FavoriteButton noticeId={id} toggleFav={toggleFavorite} />
         </Box>
         <Box p={'20px'}>
           <Heading
@@ -196,9 +202,7 @@ const NoticesCategoryItem = ({
           Learn more
         </CardButton> */}
 
-        <CardButton onClick={handleOpen} modalButton>
-          Learn more
-        </CardButton>
+        <CardButton onClick={handleOpen}>Learn more</CardButton>
 
         {open && (
           <ModalNotice
@@ -211,7 +215,7 @@ const NoticesCategoryItem = ({
           />
         )}
 
-        {favorite && (
+        {isFavorite && (
           <CardButton
             mt={favorite && '12px'}
             type="submit"

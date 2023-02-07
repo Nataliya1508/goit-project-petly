@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { getCurrentUser } from 'redux/auth/auth-operations';
 import { getIsRefreshing } from 'redux/auth/auth-selectors';
+import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
 import { PrivateRoute } from './SecureRoutes/PrivatRoute';
 import { RedirectedRoute } from './SecureRoutes/RedirectedRoute';
 import { SharedLayout } from './SharedLayout';
@@ -59,13 +60,16 @@ export const App = () => {
 
             <Route path="news" element={<News />} />
             <Route path="notices/" element={<Notices />}>
-              <Route path="sell" element={<p>Sell</p>} />
-              <Route path="lost-found" element={<p>lost-found</p>} />
-              <Route path="free" element={<p>in good hands</p>} />
+              <Route path="sell" element={<NoticesCategoriesList />} />
+              <Route path="lost-found" element={<NoticesCategoriesList />} />
+              <Route path="free" element={<NoticesCategoriesList />} />
               <Route
                 path="own"
                 element={
-                  <PrivateRoute redirectTo="/login" component={<p>own</p>} />
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<NoticesCategoriesList />}
+                  />
                 }
               />
               <Route
@@ -73,7 +77,7 @@ export const App = () => {
                 element={
                   <PrivateRoute
                     redirectTo="/login"
-                    component={<p>favorite</p>}
+                    component={<NoticesCategoriesList />}
                   />
                 }
               />

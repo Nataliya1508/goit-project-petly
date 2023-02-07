@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FilterInput } from 'shared/components';
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify';
 
 const NoticesSearch = ({ searchFunction }) => {
   const [query, setQuery] = useState('');
@@ -20,24 +20,23 @@ const NoticesSearch = ({ searchFunction }) => {
   };
 
   const clearInput = () => {
-    setQuery("");
-    searchFunction("");
+    setQuery('');
+    searchFunction('');
   };
 
   return (
     <>
-    <FilterInput
-      name={'search'}
-      onChange={handleChange}
-      handleSearch={handleSubmit}
-      handleClear={clearInput}
-      value={query}
-      mb={'28px'}
-    />
-    <ToastContainer />
+      <FilterInput
+        name={'search'}
+        onChange={handleChange}
+        handleSearch={handleSubmit}
+        handleClear={clearInput}
+        value={query}
+        mb={'28px'}
+      />
+      <ToastContainer />
     </>
   );
 };
-
 
 export default NoticesSearch;

@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
-import {
-  useLocation,
-  // useSearchParams
-} from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import NoticesCategoryItem from '../NoticesCategoryItem/NoticesCategoryItem';
-import { SimpleGrid } from '@chakra-ui/react';
-
+import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
 import {
   getNoticesByCategory,
   getFavorites,
@@ -18,14 +13,10 @@ import {
   selectNoticesByCategory,
   getNoticesLoading,
   getNoticesError,
-  // getFavoriteNotices,
+  getFavoriteNotices,
+  getUserNotices,
 } from '../../redux/notices/notices-selectors';
-
-import { getUser } from '../../redux/auth/auth-selectors';
-
-//import { default as userPets } from './ListTest.json';
-//import getNoticesByCategory from 'components/NoticesCategoryItem/NoticesCategoryItem';
-import { Spinner } from '@chakra-ui/react';
+import Loader from 'components/Loader/Loader';
 
 const categoriesOjb = {
   sell: 'sell',
@@ -34,105 +25,92 @@ const categoriesOjb = {
 };
 
 const NoticesCategoriesList = () => {
-  // const [pets, setPets] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
-  // let filteredPets = pets;
-
-  // if (query !== '') {
-  //   filteredPets = pets.filter(({ title }) => {
-  //     return title.toLowerCase().includes(query.toLowerCase());
-  //   });
-  // }
-  // useEffect(() => {
-  //   const fetchPets = async () => {
-  //     setLoading(true);
-
-  //     try {
-  //       const data = await getNoticesByCategory();
-  //       setPets(prevPets => [...prevPets, ...data]);
-  //     } catch (error) {
-  //       setError(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchPets();
-  // }, []);
-  // const filterPets = userPets.filter(pets => pets.condition === condition);
   const dispatch = useDispatch();
   const location = useLocation();
 
   const categories = useSelector(selectNoticesByCategory);
-  const isLoading = useSelector(getNoticesLoading);
-  // const isLoggedIn = useSelector(getIsLoggedIn);
-  const user = useSelector(getUser);
-  const error = useSelector(getNoticesError);
-  // const favorite = useSelector(getFavoriteNotices);
-
+  const favoriteNotices = useSelector(getFavoriteNotices);
+  const ownNotices = useSelector(getUserNotices);
   const category = location.pathname.split('/')[2];
 
-  // const [search] = useSearchParams();
-  // const query = search.get('name');
+  const categoryForRender =
+    category === 'sell' || category === 'lost-found' || category === 'free'
+      ? categories
+      : category === 'favorite'
+      ? favoriteNotices
+      : ownNotices;
+
+  const isLoading = useSelector(getNoticesLoading);
+  const error = useSelector(getNoticesError);
 
   useEffect(() => {
     if (category === categoriesOjb[category]) {
       dispatch(getNoticesByCategory(category));
     }
     if (category === 'favorite') {
-      dispatch(getFavorites(user._id));
+      dispatch(getFavorites());
     }
     if (category === 'own') {
       dispatch(getMyNotice());
     }
-  }, [dispatch, category, user._id]);
+  }, [dispatch, category]);
 
   return (
     <>
-      {/* {filteredPets && ( */}
-      <SimpleGrid
-        as="ul"
-        mx={'auto'}
-        maxWidth={{ base: '280px', md: '704px', xl: '1248px' }}
-        gridTemplateColumns={{
-          base: '1fr',
-          md: '1fr 1fr',
-          xl: '1fr 1fr 1fr 1fr',
-        }}
-        gap={'32px'}
-        width={'full'}
-        listStyleType={'none'}
-        key={categories._id}
-      >
-        {categories.map(
-          ({
-            _id,
-            photo,
-            title,
-            breed,
-            location,
-            birthdate,
-            price,
-            categoryName,
-          }) => (
-            <NoticesCategoryItem
-              key={_id}
-              id={_id}
-              photo={photo}
-              title={title}
-              breed={breed}
-              location={location}
-              birthdate={birthdate}
-              price={price}
-              categoryName={categoryName}
-              deleteMyNotice={deleteMyNotice}
-            />
-          )
-        )}
-      </SimpleGrid>
-      {/* )} */}
+      {!isLoading ? (
+        <SimpleGrid
+          as="ul"
+          mx={'auto'}
+          maxWidth={{ base: '280px', md: '704px', xl: '1248px' }}
+          gridTemplateColumns={{
+            base: '1fr',
+            md: '1fr 1fr',
+            xl: '1fr 1fr 1fr 1fr',
+          }}
+          gap={'32px'}
+          width={'full'}
+          listStyleType={'none'}
+        >
+          <>
+            {categoryForRender.length !== 0 ? (
+              <>
+                {categoryForRender.map(
+                  ({
+                    _id,
+                    photo,
+                    title,
+                    breed,
+                    location,
+                    birthdate,
+                    price,
+                    categoryName,
+                  }) => (
+                    <NoticesCategoryItem
+                      key={_id}
+                      id={_id}
+                      photo={photo}
+                      title={title}
+                      breed={breed}
+                      location={location}
+                      birthdate={birthdate}
+                      price={price}
+                      categoryName={categoryName}
+                      deleteMyNotice={deleteMyNotice}
+                    />
+                  )
+                )}
+              </>
+            ) : (
+              <Box textAlign={'center'}>
+                <Heading>This Category is empty ^_^</Heading>
+              </Box>
+            )}
+          </>
+        </SimpleGrid>
+      ) : (
+        <Loader />
+      )}
       {error && <p>Something went wrong</p>}
-      {isLoading && <Spinner />}
     </>
   );
 };

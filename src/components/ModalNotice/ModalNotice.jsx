@@ -269,20 +269,23 @@ function ModalNotice({
                           </ListItem>
                         </>
                       )}
-                      {/* {pets.price && (
-                    <ListItem display="flex" _notLast={{ marginBottom: '8px' }}>
-                      <FormLabel
-                        minWidth="118px"
-                        fontWeight="600"
-                        fontSize="16px"
-                        lineHeight="1.36"
-                        m="0"
-                      >
-                        Price:
-                      </FormLabel>
-                      <Text>{notice?.price} $</Text>
-                    </ListItem>
-                  )} */}
+                      {notice?.price && (
+                        <ListItem
+                          display="flex"
+                          _notLast={{ marginBottom: '8px' }}
+                        >
+                          <FormLabel
+                            minWidth="118px"
+                            fontWeight="600"
+                            fontSize="16px"
+                            lineHeight="1.36"
+                            m="0"
+                          >
+                            Price:
+                          </FormLabel>
+                          <Text>{notice?.price} $</Text>
+                        </ListItem>
+                      )}
                     </List>
                   </Box>
                 </Box>

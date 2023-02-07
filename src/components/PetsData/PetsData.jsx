@@ -2,8 +2,6 @@ import { Box, Button, Flex, Heading, Text, useDisclosure } from "@chakra-ui/reac
 import PetsList from "components/PetsList/PetsList";
 import {Modal} from "shared/components/Modal"
 import {ModalAddsPet} from 'components/ModalAddsPet'
-
-
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 
 const PetsData = ({ pets }) => {

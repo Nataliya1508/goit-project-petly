@@ -4,16 +4,18 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import petDefaultAvatar from '../../media/petDefaultAvatar.svg';
 import { useDispatch } from 'react-redux';
 import { deletePet } from 'redux/auth/auth-operations';
+import {getUser}  from 'redux/auth/auth-selectors';
 
 const PetsList = ({ pets }) => {
+
   const dispatch = useDispatch();
   const onDeleteBtnClick = (e, id) => {
     dispatch(deletePet(id))
     e.preventdefault()
   }
-  return (
-    <Box >
-      {pets.map(({ _id, name, birthday, breed, photo, comments }) => (
+  return  ( pets.length > 0 ?
+     <Box >
+      { pets.map(({ _id, name, birthday, breed, photo, comments }) => (
         <Flex
           key = {_id}
           bgColor='accent.white'
@@ -131,7 +133,20 @@ const PetsList = ({ pets }) => {
         </Flex>
       )
       )}
-    </Box>)
+    </Box > :
+    <Flex
+      bgColor='accent.white'
+      box-shadow="7px 4px 14px rgba(0, 0, 0, 0.11)"
+      borderRadius="40px"
+      direction={{ base: 'column', md: 'row', xl: 'row' }}
+      mb={{ base: '20px', xl: '22px' }}
+      px={{ base: '20px', md: '20px', xl: '28px' }}
+      py={{ base: '40px', md: '20px', xl: '20px' }}
+      w={{ base: '280px', md: '704px', xl: '821px' }}>
+      <Text mx='auto'> You are have no pets yet </Text>
+    </Flex>
+   
+    )
 };
 
 export default PetsList;

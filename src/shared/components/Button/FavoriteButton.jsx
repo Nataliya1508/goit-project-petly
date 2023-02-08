@@ -7,6 +7,7 @@ const FavoriteButton = ({ toggleFav, isFavorite, ...rest }) => {
     <Button
       type={'button'}
       position={'absolute'}
+      aria-label='Add to favorite'
       top={3}
       right={3}
       width={'44px'}

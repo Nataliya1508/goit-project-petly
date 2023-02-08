@@ -96,7 +96,7 @@ const NoticesCategoryItem = ({
             src={photo ?? petTemlate}
             alt={breed}
             objectFit={'cover'}
-            width={'100%'}
+            width={{ base: '280px', md: '336px', xl: '288px' }}
             height={'288px'}
           />
           <Box

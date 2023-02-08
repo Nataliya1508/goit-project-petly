@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Button } from '@chakra-ui/react'
 
 const CustomButton = ({children, controle='primary', ...rest}) => {
@@ -28,3 +29,8 @@ const CustomButton = ({children, controle='primary', ...rest}) => {
 }
 
 export default CustomButton
+
+CustomButton.propTypes = {
+  children: PropTypes.node,
+  controle: PropTypes.oneOf(['secondary', 'primary'])
+}

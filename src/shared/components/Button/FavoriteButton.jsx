@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 import { Button, Image } from '@chakra-ui/react';
-import heart from './heart.svg';
-import heartFull from './heartFull.svg';
+import { heart, heartFull } from 'media';
 
 const FavoriteButton = ({ toggleFav, isFavorite, ...rest }) => {
   return (
@@ -24,3 +24,8 @@ const FavoriteButton = ({ toggleFav, isFavorite, ...rest }) => {
 };
 
 export default FavoriteButton;
+
+FavoriteButton.propTypes = {
+  toggleFav: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+}

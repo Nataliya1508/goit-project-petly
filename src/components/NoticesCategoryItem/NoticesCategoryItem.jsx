@@ -22,12 +22,7 @@ import {
   CardFooter,
   useDisclosure,
 } from '@chakra-ui/react';
-import {
-  CardButton,
-  errorToast,
-  FavoriteButton,
-  successToast,
-} from 'shared/components';
+import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
 
 moment().format();

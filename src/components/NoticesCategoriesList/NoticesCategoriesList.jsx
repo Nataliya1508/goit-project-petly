@@ -22,7 +22,7 @@ import NoticesPagination from 'components/NoticesPagination/NoticesPagination';
 const categoriesOjb = {
   sell: 'sell',
   'lost-found': 'lost-found',
-  free: 'free',
+  free: 'for-free',
 };
 
 const NoticesCategoriesList = () => {
@@ -35,8 +35,8 @@ const NoticesCategoriesList = () => {
   const ownNotices = useSelector(getUserNotices);
   const category = location.pathname.split('/')[2];
 
-  const [serchParams] = useSearchParams();
-  const page = serchParams.get('page');
+  const [searchParams] = useSearchParams();
+  const page = searchParams.get('page');
   const query = `?page=${page === null ? 1 : page}`;
 
   const categoryForRender =

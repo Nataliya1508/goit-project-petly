@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import {
     Modal,
     ModalOverlay,
@@ -48,3 +49,10 @@ const CustomModal = ({ isOpen, onClose, title, children, ...rest }) => {
 }
 
 export default CustomModal
+
+CustomModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node
+}

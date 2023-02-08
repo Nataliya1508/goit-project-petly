@@ -26,7 +26,8 @@ const NoticesSearch = ({ searchFunction }) => {
 
   return (
     <>
-      <FilterInput
+    <FilterInput
+        type="text"
         name={'search'}
         onChange={handleChange}
         handleSearch={handleSubmit}

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import {
     Box,
     Image,
@@ -6,7 +7,7 @@ import {
     FormErrorMessage,
     VisuallyHiddenInput } from "@chakra-ui/react"
 import { useState, useEffect } from "react";
-import {default as Plus} from './plus.svg' 
+import { plus } from "media";
 import { Field, useFormikContext } from 'formik';
   
 const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', borderRadius='40px', size, ...rest}) => {
@@ -54,7 +55,7 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', border
                                 h={size}
                                 bgColor={'accent.background'}
                                 borderRadius={borderRadius}
-                                bgImage={Plus}
+                                bgImage={plus}
                                 bgRepeat={'no-repeat'}
                                 bgPosition={'50% 50%'}
                                 bgSize={plusSize}>
@@ -84,3 +85,28 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', border
 }
 
 export default CustomInputFile
+
+CustomInputFile.propTypes = {
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    plusSize: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object
+    ]),
+    mb: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object
+    ]),
+    borderRadius: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object
+    ]),
+    size: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object
+    ]).isRequired
+  }

@@ -34,10 +34,8 @@ const NoticesCategoriesNav = () => {
           ml={{ base: 'auto', md: '0' }}
         >
           <FilterLink to={'lost-found'}>lost/found</FilterLink>
-          <FilterLink to={'free'}>in good hand</FilterLink>
-          <FilterLink exact="true" to={'sell'}>
-            sell
-          </FilterLink>
+          <FilterLink to={'for-free'}>in good hand</FilterLink>
+          <FilterLink exact='true' to={'sell'}>sell</FilterLink>
           {isLoggedIn && (
             <>
               <FilterLink to={'favorite'}>favorite ads</FilterLink>

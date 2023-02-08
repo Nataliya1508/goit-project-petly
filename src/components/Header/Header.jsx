@@ -17,9 +17,11 @@ const Header = () => {
 
     useEffect(() => {
         if (menuActive) {
-            document.body.style.overflow = 'hidden'
+            document.documentElement.classList.toggle('disable-fix')
+            document.body.style.overflowY = 'hidden'
         } else {
-            document.body.style.overflow = ''
+            document.documentElement.classList.toggle('disable-fix')
+            document.body.style.overflowY = 'initial'
         }
     }, [menuActive]);
 

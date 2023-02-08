@@ -1,4 +1,18 @@
-@import-normalize; /* bring in normalize.css styles */
+@import-normalize;
+
+/* bring in normalize.css styles */
+
+@media screen and (max-width: 1280px) {
+  html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+  }
+}
+
+html.disable-fix {
+  overflow-x: initial;
+  margin-right: initial;
+}
 
 body {
   margin: 0;

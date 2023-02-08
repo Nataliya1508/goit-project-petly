@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Field } from "formik"
 import { useMemo } from "react"
 import { nanoid } from "nanoid"
@@ -88,3 +89,8 @@ const CategoryRadioButtons = ({label, name, ...rest}) => {
 }
 
 export default CategoryRadioButtons
+
+CategoryRadioButtons.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+}

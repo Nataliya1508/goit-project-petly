@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
 function Section({children, ...rest}) {
@@ -14,3 +15,7 @@ function Section({children, ...rest}) {
 }
 
 export default Section
+
+Section.propTypes = {
+    children: PropTypes.node
+}

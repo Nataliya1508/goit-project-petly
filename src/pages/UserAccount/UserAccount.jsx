@@ -8,7 +8,7 @@ import {
 const UserAccount = () => {
 
   return (
-    <Box  bg="accent.background" m={'auto auto'}  pt={{ base: '45px', md: '64px', xl: '38px' }} pb={{xl:'40px'}} >
+    <Box  bg="accent.background" m={'0 auto'} h={{base:"calc(100vh - 74px)", md:"calc(100vh - 88px)"}}  pt={{ base: '45px', md: '64px', xl: '38px' }} pb={{xl:'40px'}} >
         <Flex
           bgColor="accent.background"
           w={{ base: '320px', md: '768px', xl: '1280px' }}

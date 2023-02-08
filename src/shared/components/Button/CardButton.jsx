@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Button } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 
@@ -31,3 +32,8 @@ const CardButton = ({children, controle, ...rest}) => {
 }
 
 export default CardButton
+
+CardButton.propTypes = {
+  children: PropTypes.node,
+  controle: PropTypes.oneOf(['delete'])
+}

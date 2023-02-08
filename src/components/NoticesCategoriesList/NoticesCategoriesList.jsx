@@ -40,7 +40,7 @@ const NoticesCategoriesList = () => {
   const query = `?page=${page === null ? 1 : page}`;
 
   const categoryForRender =
-    category === 'sell' || category === 'lost-found' || category === 'free'
+    category === 'sell' || category === 'lost-found' || category === 'for-free'
       ? categories
       : category === 'favorite'
       ? favoriteNotices

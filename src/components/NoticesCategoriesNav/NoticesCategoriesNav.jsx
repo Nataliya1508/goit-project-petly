@@ -35,7 +35,9 @@ const NoticesCategoriesNav = () => {
         >
           <FilterLink to={'lost-found'}>lost/found</FilterLink>
           <FilterLink to={'free'}>in good hand</FilterLink>
-          <FilterLink exact='true' to={'sell'}>sell</FilterLink>
+          <FilterLink exact="true" to={'sell'}>
+            sell
+          </FilterLink>
           {isLoggedIn && (
             <>
               <FilterLink to={'favorite'}>favorite ads</FilterLink>
@@ -52,7 +54,7 @@ const NoticesCategoriesNav = () => {
           justifyContent={{ base: 'center' }}
           borderRadius={{ base: '50%', md: '100%' }}
           bgColor={{ base: '#F59256', md: 'transparent' }}
-          as={'Button'}
+          // as={'Button'}
           position={{ base: 'fixed', md: 'static' }}
           top={'455px'}
           right={'20px'}

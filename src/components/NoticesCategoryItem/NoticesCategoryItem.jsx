@@ -10,6 +10,7 @@ import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
 import {
   addToFavorites,
   removeFromFavorites,
+  deleteMyNotice,
 } from '../../redux/notices/notices-operations';
 import {
   Text,
@@ -36,7 +37,6 @@ const NoticesCategoryItem = ({
   birthdate,
   price,
   categoryName,
-  deleteMyNotice,
 }) => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,7 +52,6 @@ const NoticesCategoryItem = ({
   const { _id } = useSelector(getUser);
 
   const isOwner = owner === _id;
-
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'YYYY-MM-DD').fromNow(true);
     return petsAge;
@@ -68,20 +67,20 @@ const NoticesCategoryItem = ({
       toast.warn('You must sign in for add to favorites!');
       return;
     }
-    try {
-      if (!isFavorite) {
-        dispatch(addToFavorites(id));
-        setIsFavorite(true);
-      }
-      if (isFavorite) {
-        console.log(0);
-        dispatch(removeFromFavorites(id));
-        setIsFavorite(false);
-      }
-    } catch (error) {
-      setIsFavorite(isFavorite);
-      console.log(error);
+    if (!isFavorite) {
+      dispatch(addToFavorites(id));
+      setIsFavorite(true);
+      return;
     }
+    if (isFavorite) {
+      dispatch(removeFromFavorites(id));
+      setIsFavorite(false);
+      return;
+    }
+  };
+
+  const handlerDeleteNotice = () => {
+    dispatch(deleteMyNotice(id));
   };
 
   return (
@@ -122,7 +121,11 @@ const NoticesCategoryItem = ({
           >
             {categoryName}
           </Box>
-          <FavoriteButton noticeId={id} toggleFav={toggleFavorite} />
+          <FavoriteButton
+            // noticeId={id}
+            toggleFav={toggleFavorite}
+            isFavorite={isFavorite}
+          />
         </Box>
         <Box p={'20px'}>
           <Heading
@@ -184,14 +187,6 @@ const NoticesCategoryItem = ({
         alignItems={'center'}
         flexDirection={'column'}
       >
-        {/* <CardButton
-          type="submit"
-          onClick={() =>
-          mb={favorite && '12px'}
-        >
-          Learn more
-        </CardButton> */}
-
         <CardButton onClick={onOpen}>Learn more</CardButton>
 
         <ModalNotice
@@ -207,7 +202,7 @@ const NoticesCategoryItem = ({
           <CardButton
             mt={'12px'}
             type="submit"
-            onClick={() => deleteMyNotice(id)}
+            onClick={handlerDeleteNotice}
             controle="delete"
           >
             Delete

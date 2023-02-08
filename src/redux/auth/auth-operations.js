@@ -1,5 +1,6 @@
 import * as api from '../../services/api/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { errorToast, successToast } from 'shared/components';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -25,6 +26,7 @@ export const login = createAsyncThunk(
       const data = await api.login(credentials);
       return data;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const error = {
         status: response.status,
         message: response.data.message,
@@ -41,6 +43,7 @@ export const logout = createAsyncThunk(
       const result = await api.logout();
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const error = {
         status: response.status,
         message: response.data.message,
@@ -85,9 +88,10 @@ export const updateUser = createAsyncThunk(
       }
 
       const data = await api.updateUserData(credentials);
-      console.log(data)
+      console.log(data);
       return data;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const error = {
         status: response.status,
         message: response.data.message,
@@ -111,6 +115,7 @@ export const updateUserAvatar = createAsyncThunk(
       const data = await api.updateUserAvatar(avatar);
       return data;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const error = {
         status: response.status,
         message: response.data.message,
@@ -132,8 +137,10 @@ export const addNewPet = createAsyncThunk(
       }
 
       const data = await api.addPet(newPet);
+      successToast('Pet was successfully created');
       return data;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const error = {
         status: response.status,
         message: response.data.message,
@@ -153,10 +160,11 @@ export const deletePet = createAsyncThunk(
       if (!persistedToken) {
         rejectWithValue('Unable delete pet');
       }
-
+      successToast('Pet was successfully deleted');
       await api.deletePet(id);
       return id;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const error = {
         status: response.status,
         message: response.data.message,

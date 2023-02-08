@@ -6,7 +6,6 @@ import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
 import {
   getNoticesByCategory,
   getFavorites,
-  deleteMyNotice,
   getMyNotice,
 } from '../../redux/notices/notices-operations';
 import {
@@ -36,16 +35,16 @@ const NoticesCategoriesList = () => {
   const ownNotices = useSelector(getUserNotices);
   const category = location.pathname.split('/')[2];
 
-  const [serchParams] = useSearchParams()
-  const page = serchParams.get('page')
-  const query = `?page=${page === null ? 1 : page}`
+  const [serchParams] = useSearchParams();
+  const page = serchParams.get('page');
+  const query = `?page=${page === null ? 1 : page}`;
 
   const categoryForRender =
     category === 'sell' || category === 'lost-found' || category === 'free'
       ? categories
       : category === 'favorite'
-        ? favoriteNotices
-        : ownNotices;
+      ? favoriteNotices
+      : ownNotices;
 
   const isLoading = useSelector(getNoticesLoading);
   const error = useSelector(getNoticesError);
@@ -92,6 +91,7 @@ const NoticesCategoriesList = () => {
                       birthdate,
                       price,
                       categoryName,
+                      owner,
                     }) => (
                       <NoticesCategoryItem
                         key={_id}
@@ -103,7 +103,7 @@ const NoticesCategoriesList = () => {
                         birthdate={birthdate}
                         price={price}
                         categoryName={categoryName}
-                        deleteMyNotice={deleteMyNotice}
+                        owner={owner}
                       />
                     )
                   )}
@@ -119,7 +119,9 @@ const NoticesCategoriesList = () => {
       ) : (
         <Loader />
       )}
-      {(category !== 'favorite' && category !== 'own') && <NoticesPagination total={totalNotices} />}
+      {category !== 'favorite' && category !== 'own' && (
+        <NoticesPagination total={totalNotices} />
+      )}
       {error && <p>Something went wrong</p>}
     </>
   );

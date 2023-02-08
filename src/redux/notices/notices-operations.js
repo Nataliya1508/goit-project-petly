@@ -1,5 +1,6 @@
 import * as api from '../../services/api/notice';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { errorToast, successToast } from 'shared/components';
 
 export const getNoticesByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
@@ -8,6 +9,7 @@ export const getNoticesByCategory = createAsyncThunk(
       const result = await api.getNoticesByCategory(categoryName);
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,
@@ -25,6 +27,7 @@ export const getNoticeById = createAsyncThunk(
       const result = await api.getNoticeById(id);
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,
@@ -40,8 +43,10 @@ export const addNotice = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.addNotice(data);
+      successToast('Pet was successfully added !');
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,
@@ -59,6 +64,7 @@ export const getMyNotice = createAsyncThunk(
       const result = await api.getMyNotice();
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,
@@ -76,6 +82,7 @@ export const getFavorites = createAsyncThunk(
       const result = await api.getFavorites();
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,
@@ -91,8 +98,10 @@ export const addToFavorites = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await api.addToFavorites(id);
+      successToast('Pet was successfully added to favorite !');
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,
@@ -108,8 +117,10 @@ export const deleteMyNotice = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await api.deleteMyNotice(id);
-      return result;
+      successToast('Pet was successfully deleted !');
+      return { result, id };
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,
@@ -125,8 +136,10 @@ export const removeFromFavorites = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await api.removeFromFavorites(id);
+      successToast('Pet was successfully removed to favorite !');
       return result;
     } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
       const error = {
         status,

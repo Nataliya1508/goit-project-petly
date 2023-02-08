@@ -47,11 +47,9 @@ function ModalNotice({
 
   useEffect(() => {
     if (isOpen) {
-      console.log(1231313123131);
       dispatch(getNoticeById(id));
     }
   }, [dispatch, id, isOpen]);
-  console.log(isOpen);
 
   // const { title, children, ...rest } = useDisclosure();
   return (

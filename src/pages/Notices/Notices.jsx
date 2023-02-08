@@ -6,8 +6,7 @@ import { Container, Section } from 'shared/components';
 import { Heading } from '@chakra-ui/react';
 
 const Notices = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  console.log(searchQuery);
+  const [, setSearchQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 

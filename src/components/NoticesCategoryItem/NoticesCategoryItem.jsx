@@ -10,6 +10,7 @@ import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
 import {
   addToFavorites,
   removeFromFavorites,
+  deleteMyNotice,
 } from '../../redux/notices/notices-operations';
 import {
   Text,
@@ -20,6 +21,16 @@ import {
   Heading,
   CardFooter,
   useDisclosure,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  PopoverFooter,
+  ButtonGroup,
+  Button,
 } from '@chakra-ui/react';
 import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
@@ -36,7 +47,6 @@ const NoticesCategoryItem = ({
   birthdate,
   price,
   categoryName,
-  deleteMyNotice,
 }) => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,7 +62,6 @@ const NoticesCategoryItem = ({
   const { _id } = useSelector(getUser);
 
   const isOwner = owner === _id;
-
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'YYYY-MM-DD').fromNow(true);
     return petsAge;
@@ -68,20 +77,20 @@ const NoticesCategoryItem = ({
       toast.warn('You must sign in for add to favorites!');
       return;
     }
-    try {
-      if (!isFavorite) {
-        dispatch(addToFavorites(id));
-        setIsFavorite(true);
-      }
-      if (isFavorite) {
-        console.log(0);
-        dispatch(removeFromFavorites(id));
-        setIsFavorite(false);
-      }
-    } catch (error) {
-      setIsFavorite(isFavorite);
-      console.log(error);
+    if (!isFavorite) {
+      dispatch(addToFavorites(id));
+      setIsFavorite(true);
+      return;
     }
+    if (isFavorite) {
+      dispatch(removeFromFavorites(id));
+      setIsFavorite(false);
+      return;
+    }
+  };
+
+  const handlerDeleteNotice = () => {
+    dispatch(deleteMyNotice(id));
   };
 
   return (
@@ -122,7 +131,11 @@ const NoticesCategoryItem = ({
           >
             {categoryName}
           </Box>
-          <FavoriteButton noticeId={id} toggleFav={toggleFavorite} />
+          <FavoriteButton
+            // noticeId={id}
+            toggleFav={toggleFavorite}
+            isFavorite={isFavorite}
+          />
         </Box>
         <Box p={'20px'}>
           <Heading
@@ -184,16 +197,34 @@ const NoticesCategoryItem = ({
         alignItems={'center'}
         flexDirection={'column'}
       >
-        {/* <CardButton
-          type="submit"
-          onClick={() =>
-          mb={favorite && '12px'}
-        >
-          Learn more
-        </CardButton> */}
-
         <CardButton onClick={onOpen}>Learn more</CardButton>
 
+        {isOwner && (
+          <Popover closeOnBlur={false}>
+            <PopoverTrigger placement="bottom">
+              <CardButton mt={'12px'} position={'relative'} controle="delete">
+                Delete
+              </CardButton>
+              {/* <Button>delete</Button> */}
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverBody>
+                Are you sure you want to delete this notice?
+              </PopoverBody>
+              <PopoverFooter display="flex" justifyContent="flex-end">
+                <ButtonGroup size="sm">
+                  {/* <Button variant="outline">Cancel</Button> */}
+                  <Button colorScheme="red" onClick={handlerDeleteNotice}>
+                    Apply
+                  </Button>
+                </ButtonGroup>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )}
         <ModalNotice
           isOpen={isOpen}
           onClose={onClose}
@@ -202,17 +233,6 @@ const NoticesCategoryItem = ({
           favorite={isFavorite}
           calculatePetsAgeModal={calculatePetsAgeModal}
         />
-
-        {isOwner && (
-          <CardButton
-            mt={'12px'}
-            type="submit"
-            onClick={() => deleteMyNotice(id)}
-            controle="delete"
-          >
-            Delete
-          </CardButton>
-        )}
       </CardFooter>
     </Card>
   );

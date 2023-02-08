@@ -85,7 +85,6 @@ export const updateUser = createAsyncThunk(
       }
 
       const data = await api.updateUserData(credentials);
-      console.log(data)
       return data;
     } catch ({ response }) {
       const error = {

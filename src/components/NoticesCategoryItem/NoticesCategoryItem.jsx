@@ -22,7 +22,12 @@ import {
   CardFooter,
   useDisclosure,
 } from '@chakra-ui/react';
-import { CardButton, FavoriteButton } from 'shared/components';
+import {
+  CardButton,
+  errorToast,
+  FavoriteButton,
+  successToast,
+} from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
 
 moment().format();
@@ -52,7 +57,6 @@ const NoticesCategoryItem = ({
   const { _id } = useSelector(getUser);
 
   const isOwner = owner === _id;
-
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'YYYY-MM-DD').fromNow(true);
     return petsAge;
@@ -68,19 +72,15 @@ const NoticesCategoryItem = ({
       toast.warn('You must sign in for add to favorites!');
       return;
     }
-    try {
-      if (!isFavorite) {
-        dispatch(addToFavorites(id));
-        setIsFavorite(true);
-      }
-      if (isFavorite) {
-        console.log(0);
-        dispatch(removeFromFavorites(id));
-        setIsFavorite(false);
-      }
-    } catch (error) {
-      setIsFavorite(isFavorite);
-      console.log(error);
+    if (!isFavorite) {
+      dispatch(addToFavorites(id));
+      setIsFavorite(true);
+      return;
+    }
+    if (isFavorite) {
+      dispatch(removeFromFavorites(id));
+      setIsFavorite(false);
+      return;
     }
   };
 
@@ -126,7 +126,11 @@ const NoticesCategoryItem = ({
           >
             {categoryName}
           </Box>
-          <FavoriteButton noticeId={id} toggleFav={toggleFavorite} />
+          <FavoriteButton
+            // noticeId={id}
+            toggleFav={toggleFavorite}
+            isFavorite={isFavorite}
+          />
         </Box>
         <Box p={'20px'}>
           <Heading

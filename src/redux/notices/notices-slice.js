@@ -86,13 +86,13 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-
-      // removeFromFavorites
-      // .addCase(removeFromFavorites.pending, (state, _) => {
-      //   handlePending(state);
-      // })
+      // removeFromFav
       .addCase(removeFromFavorites.fulfilled, (state, { payload }) => {
-        state.favorite = payload.user.favorite;
+        const index = state.favorite.findIndex(
+          item => item._id === payload.notice._id
+        );
+        state.favorite.splice(index, 1);
+
         state.isLoading = false;
         state.error = null;
       })
@@ -120,28 +120,34 @@ const noticesSlice = createSlice({
       .addCase(getMyNotice.pending, (state, _) => {
         handlePending(state);
       })
-      .addCase(getMyNotice.fulfilled, (store, { payload }) => {
-        store.isLoading = false;
-        store.userNotices = payload;
+      .addCase(getMyNotice.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.userNotices = payload;
       })
-      .addCase(getMyNotice.rejected, (store, { payload }) => {
-        store.isLoading = false;
-        store.error = payload;
+      .addCase(getMyNotice.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       })
 
       //deleteMyNotice
-      .addCase(deleteMyNotice.pending, (state, _) => {
-        handlePending(state);
-      })
-      .addCase(deleteMyNotice.fulfilled, (store, { payload }) => {
-        store.isLoading = false;
-        store.userNotices = store.userNotices.filter(
-          ({ _id }) => _id !== payload.id
+      // .addCase(deleteMyNotice.pending, (state, _) => {
+      //   handlePending(state);
+      // })
+      .addCase(deleteMyNotice.fulfilled, (state, { payload }) => {
+        const ownIndex = state.userNotices.findIndex(
+          item => item._id === payload.id
         );
+        const categoryIndex = state.categories.findIndex(
+          item => item._id === payload.id
+        );
+        state.userNotices.splice(ownIndex, 1);
+        state.categories.splice(categoryIndex, 1);
+        state.isLoading = false;
+        state.error = null;
       })
-      .addCase(deleteMyNotice.rejected, (store, { payload }) => {
-        store.isLoading = false;
-        store.error = payload;
+      .addCase(deleteMyNotice.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       });
   },
 });

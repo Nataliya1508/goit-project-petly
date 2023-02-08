@@ -6,7 +6,7 @@ import {
     FormErrorMessage,
     VisuallyHiddenInput } from "@chakra-ui/react"
 import { useState, useEffect } from "react";
-import {default as Plus} from './plus.svg' 
+import { plus } from "media";
 import { Field, useFormikContext } from 'formik';
   
 const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', borderRadius='40px', size, ...rest}) => {
@@ -54,7 +54,7 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', border
                                 h={size}
                                 bgColor={'accent.background'}
                                 borderRadius={borderRadius}
-                                bgImage={Plus}
+                                bgImage={plus}
                                 bgRepeat={'no-repeat'}
                                 bgPosition={'50% 50%'}
                                 bgSize={plusSize}>

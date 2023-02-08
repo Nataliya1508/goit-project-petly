@@ -6,8 +6,7 @@ import {
   Image,
   Text,
   VisuallyHiddenInput } from "@chakra-ui/react"
-import male from './male.svg'
-import female from './female.svg'
+import { male, female } from 'media'
 
 const SexRadioButtons = ({label, name, ...rest}) => {
     const id = useMemo(()=> nanoid(), [])

@@ -40,11 +40,11 @@ export const getNoticeById = createAsyncThunk(
 
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
-  async (data, { rejectWithValue }) => {
+  async ({ newPet, category }, { rejectWithValue }) => {
     try {
-      const result = await api.addNotice(data);
-      successToast('Notice was successfully created !');
-      return result;
+
+      const result = await api.addNotice(newPet);
+      return {result, category};
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;

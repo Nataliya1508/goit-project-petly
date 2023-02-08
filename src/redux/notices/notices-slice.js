@@ -106,8 +106,11 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(addNotice.fulfilled, (state, { payload }) => {
-        state.categories = [payload, ...state.categories];
-        state.userNotices = [payload, ...state.userNotices];
+        console.log(payload);
+        if (payload.category === payload.result.categoryName) {
+          state.categories = [payload.result, ...state.categories];
+        }
+        state.userNotices = [payload.result, ...state.userNotices];
         state.isLoading = false;
         state.error = null;
       })

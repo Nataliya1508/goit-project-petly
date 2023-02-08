@@ -43,7 +43,7 @@ export const addNotice = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.addNotice(data);
-      successToast('Pet was successfully added !');
+      successToast('Notice was successfully created !');
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');

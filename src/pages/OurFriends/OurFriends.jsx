@@ -27,16 +27,16 @@ const OurFriends = () => {
 
   return (
     <Container>
-      <Section pt={{ base: '58px', md: '94px', lg: '72px' }}>
+      <Section pt={{ base: '26px', md: '64px', xl: '41px' }}>
         <Heading
           as={'h1'}
           fontSize={{ base: '2xl', md: '5xl' }}
           fontWeight={'bold'}
           lineHeight={'short'}
           textAlign={'center'}
-          mb={{ base: '10', md: '45px', xl: '60px' }}
+          mb={{ base: '7', md: '10', xl: '60px' }}
         >
-          Our friend
+          Our friends
         </Heading>
         {isLoading ? <Loader /> : <OurFriendsList friends={friends} />}
       </Section>

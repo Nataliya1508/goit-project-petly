@@ -21,6 +21,16 @@ import {
   Heading,
   CardFooter,
   useDisclosure,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  PopoverFooter,
+  ButtonGroup,
+  Button,
 } from '@chakra-ui/react';
 import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
@@ -189,6 +199,32 @@ const NoticesCategoryItem = ({
       >
         <CardButton onClick={onOpen}>Learn more</CardButton>
 
+        {isOwner && (
+          <Popover closeOnBlur={false}>
+            <PopoverTrigger placement="bottom">
+              <CardButton mt={'12px'} position={'relative'} controle="delete">
+                Delete
+              </CardButton>
+              {/* <Button>delete</Button> */}
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverBody>
+                Are you sure you want to delete this notice?
+              </PopoverBody>
+              <PopoverFooter display="flex" justifyContent="flex-end">
+                <ButtonGroup size="sm">
+                  {/* <Button variant="outline">Cancel</Button> */}
+                  <Button colorScheme="red" onClick={handlerDeleteNotice}>
+                    Apply
+                  </Button>
+                </ButtonGroup>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )}
         <ModalNotice
           isOpen={isOpen}
           onClose={onClose}
@@ -197,17 +233,6 @@ const NoticesCategoryItem = ({
           favorite={isFavorite}
           calculatePetsAgeModal={calculatePetsAgeModal}
         />
-
-        {isOwner && (
-          <CardButton
-            mt={'12px'}
-            type="submit"
-            onClick={handlerDeleteNotice}
-            controle="delete"
-          >
-            Delete
-          </CardButton>
-        )}
       </CardFooter>
     </Card>
   );

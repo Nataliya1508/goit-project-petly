@@ -30,8 +30,8 @@ export const WorkTime = ({ workDays }) => {
             variant="link"
             color={'#111111'}
             fontWeight={'medium'}
-            fontSize={{ base: 'xs', md: 'sm', lg: 'md' }}
-            lineHeight={{ base: '1.33', md: '1.35', lg: 'short' }}
+            fontSize={{ base: 'xs', md: 'sm', xl: 'md' }}
+            lineHeight={{ base: '1.33', md: '1.35', xl: 'short' }}
             type="click"
           >
             {workDays[indexUpdater()].from && workDays[indexUpdater()].to

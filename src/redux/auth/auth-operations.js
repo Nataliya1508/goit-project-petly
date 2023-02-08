@@ -88,7 +88,6 @@ export const updateUser = createAsyncThunk(
       }
 
       const data = await api.updateUserData(credentials);
-      console.log(data);
       return data;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');

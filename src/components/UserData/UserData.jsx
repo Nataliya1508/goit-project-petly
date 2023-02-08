@@ -8,7 +8,8 @@ import { updateUserAvatar } from 'redux/auth/auth-operations';
 import Loader from 'components/Loader/Loader';
 import {useState} from 'react'
 const UserData = () => {
-  const {
+  
+  let {
     email = '',
     name = '',
     address = '',
@@ -18,18 +19,14 @@ const UserData = () => {
   } = useSelector(getUser);
 
   const[isLoading, setIsLoading] = useState(false)
-  // const[avatar, setAvatar] = useState(avatarURL)
-
-
-
   const dispatch = useDispatch();
-
-  function onChange(e) {
-    setIsLoading(false)
+  
+  const onChange = async(e) => {
     const newPhoto = new FormData()
     newPhoto.append('avatar', e.target.files[0])
-    dispatch(updateUserAvatar(newPhoto))
-
+    setIsLoading(true)
+    await dispatch(updateUserAvatar(newPhoto))
+    setIsLoading(false)
   }
 
   return (

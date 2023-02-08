@@ -142,7 +142,7 @@ const ModalAddsNotice = ({onClose}) => {
                                         type='text'
                                         name='location'
                                         label={<>Location<Text as={'span'} color={'accent.accentOrange'}>*</Text></>}
-                                        placeholder='Type location'
+                                        placeholder='Type location, e.g. "Kyiv, UA"'
                                         id={locationId}
                                         width={'60'}
                                     />

@@ -17,6 +17,7 @@ const handlePending = state => {
 };
 
 const initialState = {
+  total: 0,
   categories: [],
   isLoading: false,
   userNotices: [],
@@ -34,6 +35,7 @@ const noticesSlice = createSlice({
         handlePending(state);
       })
       .addCase(getNoticesByCategory.fulfilled, (state, { payload }) => {
+        state.total = payload.total;
         state.categories = payload.result;
         state.isLoading = false;
         state.error = null;

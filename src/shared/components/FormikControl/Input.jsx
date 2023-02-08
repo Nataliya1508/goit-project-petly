@@ -7,22 +7,10 @@ import {
   InputRightElement,
   IconButton, 
   InputGroup} from "@chakra-ui/react"
-import { useEffect } from "react";
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import { Field, useFormikContext } from 'formik';
+import { Field } from 'formik';
 
 const CustomInput = ({label, name, id, mb='16px', width='280px', type='text', show, handleClick, ...rest}) => {
-  const { values, setFieldValue } = useFormikContext();
-
-  useEffect(() => {
-    if (values.categoryName !== 'sell') {
-      setFieldValue('price', null)
-    }
-    if (values.categoryName === 'sell') {
-      setFieldValue('price', '')
-    }
-  }, [values.categoryName, setFieldValue]);
-
   return (
     <Box  w={{base: `${width}`, md:'448px', xl:'458px'}} mb={mb}>
           <Field>

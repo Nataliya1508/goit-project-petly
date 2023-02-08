@@ -1,9 +1,12 @@
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { Box, Flex, Text, Image, Button } from '@chakra-ui/react';
+import { Box, Flex, Text, Image, Input, FormLabel } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
 import defaultAvatar from '../../media/defaultAvatar.svg';
 import { useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
+import { useDispatch } from 'react-redux';
+import { updateUserAvatar } from 'redux/auth/auth-operations';
+
 const UserData = () => {
   const {
     email = '',
@@ -13,6 +16,14 @@ const UserData = () => {
     phone = '',
     avatarURL,
   } = useSelector(getUser);
+
+    const dispatch = useDispatch();
+
+  function onChange (e) {
+    const newPhoto = new FormData()
+    newPhoto.append('avatar', e.target.files[0])
+    dispatch(updateUserAvatar(newPhoto))
+  }
 
   return (
     <Box
@@ -41,11 +52,10 @@ const UserData = () => {
             borderRadius="50%"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
           />
-          <Button
+          <FormLabel
+            cursor='pointer'
             display="flex"
             alignItems="center"
-            type="button"
-            variant="link"
             fontSize="12px"
             lineHeight="1.35"
             fontWeight="400"
@@ -57,11 +67,20 @@ const UserData = () => {
             _focus={{ color: 'accent.accentOrange' }}
             transitionProperty={'color'}
             transitionDuration={'250ms'}
-            transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
-          >
+            transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}>
             <BsCameraFill size="20px" fill='#F59256' />
             <Text ml="4px">Edit photo</Text>
-          </Button>
+            <Input
+              onChange={(e)=> onChange(e)}
+              type="file"
+              w="0px"
+              h="0px"
+              position= "absolute"
+              z-index= "-1"
+              opacity= "0"
+              display= "block"
+          />
+          </FormLabel>
         </Box>
         <Flex
           direction="column"
@@ -70,11 +89,11 @@ const UserData = () => {
           mb="-8px"
           w={{ base: '100%', md: '379px', xl: '411px' }}
         >
-          <UserDataItem nameInput={'Name'} valueInput={name} />
-          <UserDataItem nameInput={'Email'} valueInput={email} />
-          <UserDataItem nameInput={'Birthday'} valueInput={birthday} />
-          <UserDataItem nameInput={'Phone'} valueInput={phone} />
-          <UserDataItem nameInput={'Adress'} valueInput={address} />
+          <UserDataItem nameInput={'Name'} valueInput={name} type={'text'} />
+          <UserDataItem nameInput={'Email'} valueInput={email} type={'email'} />
+          <UserDataItem nameInput={'Birthday'} valueInput={birthday} type={'date'} />
+          <UserDataItem nameInput={'Phone'} valueInput={phone} type={'tel'} />
+          <UserDataItem nameInput={'Adress'} valueInput={address} type={'string'} />
         </Flex>
       </Flex>
     </Box>

@@ -110,7 +110,8 @@ const authSlice = createSlice({
       })
       .addCase(addNewPet.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
-        state.user.pets = [...payload, ...state.user.pet];
+        state.user.pets = [...payload, ...state.user.pets];
+        state.error = null;
       })
       .addCase(addNewPet.rejected, (state, action) => {
         handleRejected(state, action);

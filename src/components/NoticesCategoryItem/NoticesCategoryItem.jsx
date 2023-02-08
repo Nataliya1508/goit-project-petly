@@ -4,10 +4,7 @@ import { toast } from 'react-toastify';
 import petTemlate from '../../media/no_img.png';
 import moment from 'moment';
 
-import {
-  // getUser,
-  getIsLoggedIn,
-} from '../../redux/auth/auth-selectors';
+import { getIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
 
 import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
 import {
@@ -22,6 +19,7 @@ import {
   CardBody,
   Heading,
   CardFooter,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
@@ -31,6 +29,7 @@ moment().format();
 const NoticesCategoryItem = ({
   id,
   photo,
+  owner,
   title,
   breed,
   location,
@@ -40,37 +39,28 @@ const NoticesCategoryItem = ({
   deleteMyNotice,
 }) => {
   const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // const user = useSelector(getUser);
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   const favoriteNotices = useSelector(getFavoriteNotices);
 
   const favorite = favoriteNotices.find(item => item._id === id);
-  console.log(favoriteNotices);
 
-  const [isFavorite, setIsFavorite] = useState(() => favorite);
+  const [isFavorite, setIsFavorite] = useState(() => Boolean(favorite));
 
-  // useEffect(() => {}, [isFavorite]);
+  const { _id } = useSelector(getUser);
+
+  const isOwner = owner === _id;
 
   const calculatePetsAge = birthdate => {
-    const petsAge = moment(birthdate, 'LLLL').fromNow(true);
+    const petsAge = moment(birthdate, 'YYYY-MM-DD').fromNow(true);
     return petsAge;
   };
 
   const calculatePetsAgeModal = birthdate => {
-    const petsAge = moment(birthdate, 'LLLL').format('DD.MM.YYYY');
+    const petsAge = moment(birthdate, 'YYYY-MM-DD').format('DD.MM.YYYY');
     return petsAge;
-  };
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const toggleFavorite = () => {
@@ -93,7 +83,7 @@ const NoticesCategoryItem = ({
       console.log(error);
     }
   };
-  console.log(isFavorite);
+
   return (
     <Card
       as={'li'}
@@ -202,22 +192,20 @@ const NoticesCategoryItem = ({
           Learn more
         </CardButton> */}
 
-        <CardButton onClick={handleOpen}>Learn more</CardButton>
+        <CardButton onClick={onOpen}>Learn more</CardButton>
 
-        {open && (
-          <ModalNotice
-            open={open}
-            handleClose={handleClose}
-            id={id}
-            toggleFavorite={toggleFavorite}
-            favorite={isFavorite}
-            calculatePetsAgeModal={calculatePetsAgeModal}
-          />
-        )}
+        <ModalNotice
+          isOpen={isOpen}
+          onClose={onClose}
+          id={id}
+          toggleFavorite={toggleFavorite}
+          favorite={isFavorite}
+          calculatePetsAgeModal={calculatePetsAgeModal}
+        />
 
-        {isFavorite && (
+        {isOwner && (
           <CardButton
-            mt={favorite && '12px'}
+            mt={'12px'}
             type="submit"
             onClick={() => deleteMyNotice(id)}
             controle="delete"

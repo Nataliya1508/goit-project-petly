@@ -14,7 +14,11 @@ const addNoticeSchema = yup.object().shape({
     breed: yup.string().min(2).max(24),
     sex: yup.string().oneOf(['male', 'female']).required("Required"),
     location: yup.string().matches(regexAdress, 'Must be in format City, Region').required("Required"),
-    price: yup.string().matches(regexPrice, 'Must be a positive integer number').nullable().defined(),
+    price: yup.string().when('categoryName', {
+      is: 'sell',
+      then: (schema) => schema.matches(regexPrice, 'Must be a positive integer number').required("Required"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
     photo: yup.mixed().test(
       'fileFormat',
       'Unsupported file type',

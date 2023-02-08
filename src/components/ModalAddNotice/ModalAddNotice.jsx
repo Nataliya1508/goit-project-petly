@@ -38,7 +38,7 @@ const ModalAddsNotice = ({onClose}) => {
         newPet.append('breed', breed.trim())
         newPet.append('sex', sex)
         newPet.append('location', location.trim())
-        newPet.append('price', price ? Number(price) : null)
+        newPet.append('price', price ? Number(price) : '')
         newPet.append('photo', photo)
         newPet.append('comments', comments.trim())
 
@@ -74,7 +74,7 @@ const ModalAddsNotice = ({onClose}) => {
                                     <FormikControl
                                         type='text'
                                         name='title'
-                                        label={<>Title of ad<Text color={'accent.accentOrange'}>*</Text></>}
+                                        label={<>Title of ad<Text as={'span'} color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type title'
                                         id={titleId}
                                         width={60}
@@ -135,12 +135,12 @@ const ModalAddsNotice = ({onClose}) => {
                                     <FormikControl
                                         control='sex-radio'
                                         name='sex'
-                                        label={<>The sex<Text color={'accent.accentOrange'}>*</Text></>}
+                                        label={<>The sex<Text as={'span'} color={'accent.accentOrange'}>*</Text></>}
                                     />
                                     <FormikControl
                                         type='text'
                                         name='location'
-                                        label={<>Location<Text color={'accent.accentOrange'}>*</Text></>}
+                                        label={<>Location<Text as={'span'} color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type location'
                                         id={locationId}
                                         width={'60'}
@@ -148,7 +148,7 @@ const ModalAddsNotice = ({onClose}) => {
                                     {(values.categoryName === 'sell') && <FormikControl
                                                                         type='text'
                                                                         name='price'
-                                                                        label={<>Price<Text color={'accent.accentOrange'}>*</Text></>}
+                                                                        label={<>Price<Text as={'span'} color={'accent.accentOrange'}>*</Text></>}
                                                                         placeholder='Type price'
                                                                         id={priceId}
                                                                         width={'60'}
@@ -175,7 +175,7 @@ const ModalAddsNotice = ({onClose}) => {
                                     <FormikControl
                                         control="textarea"
                                         name='comments'
-                                        label={<>Comments<Text color={'accent.accentOrange'}>*</Text></>}
+                                        label={<>Comments<Text as={'span'} color={'accent.accentOrange'}>*</Text></>}
                                         placeholder='Type comments'
                                         id={commentsId}
                                     />

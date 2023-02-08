@@ -1,8 +1,8 @@
 import { lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { getCurrentUser } from 'redux/auth/auth-operations';
-import { getIsRefreshing } from 'redux/auth/auth-selectors';
+// import { getIsRefreshing } from 'redux/auth/auth-selectors';
 import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
 import { PrivateRoute } from './SecureRoutes/PrivatRoute';
 import { RedirectedRoute } from './SecureRoutes/RedirectedRoute';
@@ -32,7 +32,7 @@ const UserAccount = lazy(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsRefreshing);
+  // const isLoading = useSelector(getIsRefreshing);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -40,7 +40,7 @@ export const App = () => {
 
   return (
     <>
-      {!isLoading && (
+      {/* {!isLoading && ( */}
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
@@ -93,7 +93,7 @@ export const App = () => {
             <Route path="*" element={<h1>Page Not Found 🥶</h1>} />
           </Route>
         </Routes>
-      )}
+      {/* )} */}
     </>
   );
 };

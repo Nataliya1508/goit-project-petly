@@ -1,4 +1,4 @@
-import { Link as RouteLink } from 'react-router-dom'
+import { NavLink as RouteLink } from 'react-router-dom'
 import { Link } from '@chakra-ui/react'
 
 const FilterLink = ({children, ...rest}) => {

@@ -45,7 +45,9 @@ const UserNav = ({ onClick }) => {
             bg="white"
             color={'accent.accentOrange'}
             name={userMail.name}
-            size={'sm'}
+            // size={'sm'}
+            h='28px'
+            w='28px'
             mr="12px"
             mb="1px"
           />

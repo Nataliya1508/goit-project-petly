@@ -38,8 +38,7 @@ const LoginForm = () => {
         if(!data.payload) {
             errorToast("Please try again later");
         }             
-        data.error.message && data.error && errorToast(data.payload.message);
-        // resetForm();                        
+        data.error.message && data.error && errorToast(data.payload.message);                       
     }
 
     return (

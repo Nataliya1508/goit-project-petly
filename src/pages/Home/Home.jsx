@@ -1,24 +1,16 @@
 import { Box, Heading } from "@chakra-ui/react";
-import useVisualViewportHeight from "hooks/useVisualViewportHeight";
 import { homeBg1Laptop, homeBg1Mobile, homeBg1Tablet, homeBg2Laptop, homeBg2Mobile, homeBg2Tablet, homeBg3Laptop, homeBg4Laptop } from "media";
 import { Container, Section } from "shared/components";
 // import { useBreakpointValue } from '@chakra-ui/react';
 
 
 const Home = () => {
-  const headerHaightMobile = 74;
-  const headerHaightTablet = 96;
-  const headerHaightLaptop = 88;
-  const vieportHaight = useVisualViewportHeight(); 
-  const sectionHaightMobile = `${100-(headerHaightMobile/vieportHaight)*100}vh`;
-  const sectionHaightTablet = `${100-(headerHaightTablet/vieportHaight)*100}vh`;
-  const sectionHaightLaptop = `${100-(headerHaightLaptop/vieportHaight)*100}vh`;
-    
+  
   return (    
     <Section 
     overflow='hidden' 
     position='relative' 
-    h={{base:sectionHaightMobile, md:sectionHaightTablet, xl:sectionHaightLaptop}} 
+    h={{base:"calc(100vh - 74px)", md:"calc(100vh - 96px)", xl:"calc(100vh - 88px)"}} 
     bg='accent.background'  
     pt={{base:'44px', md:'64px', xl:'72px'}} 
     pb={{base:'0', md:'0', xl:'0'}}

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { NavLink as RouteLink } from 'react-router-dom'
 import { Link } from '@chakra-ui/react'
 
@@ -35,3 +36,7 @@ const FilterLink = ({children, ...rest}) => {
 }
 
 export default FilterLink
+
+FilterLink.propTypes = {
+  children: PropTypes.node
+}

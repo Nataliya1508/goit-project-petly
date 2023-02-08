@@ -27,6 +27,7 @@ AddPetButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   size: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
+    PropTypes.object,
   ])
 }

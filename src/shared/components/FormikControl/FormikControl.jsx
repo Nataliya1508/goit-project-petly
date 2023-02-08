@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { CustomInput, CustomTextArea, CustomEditable, CustomInputFile, SexRadio, CategoryRadio} from './index'
 
 const FormikControl = ({control = 'input', ...rest}) => {
@@ -19,3 +20,7 @@ const FormikControl = ({control = 'input', ...rest}) => {
 }
 
 export default FormikControl
+
+FormikControl.propTypes = {
+    control: PropTypes.oneOf(['input', 'textarea', 'editable', 'file', 'sex-radio', 'category-radio']),
+  }

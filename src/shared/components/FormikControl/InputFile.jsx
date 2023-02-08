@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import {
     Box,
     Image,
@@ -84,3 +85,28 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', border
 }
 
 export default CustomInputFile
+
+CustomInputFile.propTypes = {
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    plusSize: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object
+    ]),
+    mb: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object
+    ]),
+    borderRadius: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object
+    ]),
+    size: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object
+    ]).isRequired
+  }

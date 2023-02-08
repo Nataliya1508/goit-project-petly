@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Field } from "formik"
 import { useMemo } from "react"
 import { nanoid } from "nanoid"
@@ -72,3 +73,11 @@ const SexRadioButtons = ({label, name, ...rest}) => {
 }
 
 export default SexRadioButtons
+
+SexRadioButtons.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]).isRequired,
+  name: PropTypes.string.isRequired,
+}

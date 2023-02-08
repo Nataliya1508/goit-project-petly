@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Input, InputRightElement, InputGroup, Button } from '@chakra-ui/react'
 import { SearchIcon, SmallCloseIcon } from '@chakra-ui/icons'
 
@@ -60,3 +61,16 @@ const FilterInput = ({handleSearch, handleClear, onChange, value, mb, ...rest}) 
 }
 
 export default FilterInput
+
+FilterInput.propTypes = {
+    handleSearch: PropTypes.func.isRequired,
+    handleClear: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    mb: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object
+      ])
+  }
+  

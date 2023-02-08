@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import {
     Box,
     FormControl,
@@ -103,3 +104,15 @@ const CustomEditable = ({label, name, id, defaultValue, mb='16px', ...rest}) => 
 }
 
 export default CustomEditable
+
+CustomEditable.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string.isRequired,
+  mb: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ])
+}

@@ -10,14 +10,17 @@ const BurgerMenu = ({ active, setActive, isLogin }) => {
 
     return (
         <Box
-            w='100vw'
+            display={{ xl: 'none' }}
+            // pr='30px'
+            w='100%'
             h='100vh'
             bg='accent.background'
             position='absolute'
             zIndex='5'
             transition='transform 0.5s'
             overflow='auto'
-            style={{ transform: isOpen }}
+            style={{ transform: isOpen }
+            }
         >
             <Box
                 display='flex'
@@ -29,7 +32,7 @@ const BurgerMenu = ({ active, setActive, isLogin }) => {
                 </Box>
                 <Nav onClick={setActive} />
             </Box>
-        </Box>
+        </Box >
     )
 }
 

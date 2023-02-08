@@ -8,6 +8,7 @@ import { updateUserAvatar } from 'redux/auth/auth-operations';
 import Loader from 'components/Loader/Loader';
 import {useState} from 'react'
 const UserData = () => {
+  
   let {
     email = '',
     name = '',
@@ -18,20 +19,8 @@ const UserData = () => {
   } = useSelector(getUser);
 
   const[isLoading, setIsLoading] = useState(false)
-  // const[avatar, setAvatar] = useState(avatarURL)
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   console.log("useEffect", avatar)
-    
-  //   if (isLoading === true || avatar ) {
-  //     setIsLoading(false)
-  //     console.log( "useEffect if", avatar)
-  //   }
-  //  },[dispatch, avatar, isLoading, avatarURL]
-  // )
-
   
-
   const onChange = async(e) => {
     const newPhoto = new FormData()
     newPhoto.append('avatar', e.target.files[0])

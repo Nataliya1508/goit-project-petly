@@ -90,7 +90,7 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
-        state.user = { ...state, ...payload };
+        state.user = { ...state.user, ...payload };
       })
       .addCase(updateUser.rejected, (state, action) => {
         handleRejected(state, action);
@@ -100,7 +100,7 @@ const authSlice = createSlice({
       })
       .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
-        state.user = { ...state, ...payload };
+        state.user = { ...state.user, ...payload };
       })
       .addCase(updateUserAvatar.rejected, (state, action) => {
         handleRejected(state, action);
@@ -110,7 +110,7 @@ const authSlice = createSlice({
       })
       .addCase(addNewPet.fulfilled, (state, { payload }) => {
         state.isRefreshing = false;
-        state.user.pets = [...payload, ...state.user.pets];
+        state.user.pets = [payload, ...state.user.pets];
         state.error = null;
       })
       .addCase(addNewPet.rejected, (state, action) => {

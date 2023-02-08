@@ -1,15 +1,12 @@
 import UserData from 'components/UserData/UserData';
 import PetsData from 'components/PetsData/PetsData';
 import Logout from 'components/Logout/Logout';
-import { useSelector } from 'react-redux';
-import {getUser}  from 'redux/auth/auth-selectors';
 import {
   Flex, Box, Heading
 } from "@chakra-ui/react"
   
 const UserAccount = () => {
 
-  const user = useSelector(getUser)
   return (
     <Box  bg="accent.background" m={'0 auto'}  pt={{ base: '45px', md: '64px', xl: '38px' }} >
         <Flex
@@ -33,7 +30,7 @@ const UserAccount = () => {
               py={{base:'20px', md:'24px', xl:'20px'}}
               pr={{base:'12px', md:'40px', xl:'16px'}}
               pl={{base:'16px', md:'32px', xl:'16px'}}>
-              <UserData userData={user}/>
+              <UserData />
               <Logout/>
             </Box>
           </Box>

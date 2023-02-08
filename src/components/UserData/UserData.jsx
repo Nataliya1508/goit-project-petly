@@ -2,11 +2,11 @@ import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { Box, Flex, Text, Image, Input, FormLabel } from '@chakra-ui/react';
 import { BsCameraFill } from 'react-icons/bs';
 import defaultAvatar from '../../media/defaultAvatar.svg';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
-import { useDispatch } from 'react-redux';
 import { updateUserAvatar } from 'redux/auth/auth-operations';
-
+import Loader from 'components/Loader/Loader';
+import {useState} from 'react'
 const UserData = () => {
   const {
     email = '',
@@ -17,12 +17,19 @@ const UserData = () => {
     avatarURL,
   } = useSelector(getUser);
 
-    const dispatch = useDispatch();
+  const[isLoading, setIsLoading] = useState(false)
+  // const[avatar, setAvatar] = useState(avatarURL)
 
-  function onChange (e) {
+
+
+  const dispatch = useDispatch();
+
+  function onChange(e) {
+    setIsLoading(false)
     const newPhoto = new FormData()
     newPhoto.append('avatar', e.target.files[0])
     dispatch(updateUserAvatar(newPhoto))
+
   }
 
   return (
@@ -40,18 +47,23 @@ const UserData = () => {
         <Box
           position="relative"
           mx="auto"
-          mb={{ base: '66px', md: '0px', xl: '32px' }}
-        >
-          <Image
+          mb={{ base: '66px', md: '0px', xl: '32px' }}>
+          <Box
+            w="233px"
+            h="233px"
+            filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
+            bgColor='accent.background'
+            borderRadius="50%">
+            { isLoading ? <Box p='92px'><Loader/></Box> : 
+            <Image
             src={avatarURL ?? defaultAvatar}
             alt="user photo"
             w="233px"
             h="233px"
             backgroundPosition={'center'}
-            bgColor='accent.background'
-            borderRadius="50%"
-            filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
-          />
+            borderRadius="50%"/>}
+          </Box>
+          
           <FormLabel
             cursor='pointer'
             display="flex"
@@ -93,7 +105,8 @@ const UserData = () => {
           <UserDataItem nameInput={'Email'} valueInput={email} type={'email'} />
           <UserDataItem nameInput={'Birthday'} valueInput={birthday} type={'date'} />
           <UserDataItem nameInput={'Phone'} valueInput={phone} type={'tel'} />
-          <UserDataItem nameInput={'Adress'} valueInput={address} type={'string'} />
+          <UserDataItem nameInput={'Address'} valueInput={address} type={'string'} />
+          
         </Flex>
       </Flex>
     </Box>

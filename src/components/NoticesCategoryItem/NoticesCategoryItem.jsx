@@ -10,6 +10,7 @@ import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
 import {
   addToFavorites,
   removeFromFavorites,
+  deleteMyNotice,
 } from '../../redux/notices/notices-operations';
 import {
   Text,
@@ -36,7 +37,6 @@ const NoticesCategoryItem = ({
   birthdate,
   price,
   categoryName,
-  deleteMyNotice,
 }) => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -82,6 +82,10 @@ const NoticesCategoryItem = ({
       setIsFavorite(isFavorite);
       console.log(error);
     }
+  };
+
+  const handlerDeleteNotice = () => {
+    dispatch(deleteMyNotice(id));
   };
 
   return (
@@ -184,14 +188,6 @@ const NoticesCategoryItem = ({
         alignItems={'center'}
         flexDirection={'column'}
       >
-        {/* <CardButton
-          type="submit"
-          onClick={() =>
-          mb={favorite && '12px'}
-        >
-          Learn more
-        </CardButton> */}
-
         <CardButton onClick={onOpen}>Learn more</CardButton>
 
         <ModalNotice
@@ -207,7 +203,7 @@ const NoticesCategoryItem = ({
           <CardButton
             mt={'12px'}
             type="submit"
-            onClick={() => deleteMyNotice(id)}
+            onClick={handlerDeleteNotice}
             controle="delete"
           >
             Delete

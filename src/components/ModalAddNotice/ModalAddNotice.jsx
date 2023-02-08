@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Formik, Form } from "formik"
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -216,3 +217,7 @@ const ModalAddsNotice = ({onClose}) => {
 )}
 
 export default ModalAddsNotice
+
+ModalAddsNotice.propTypes = {
+    onClose: PropTypes.func.isRequired
+}

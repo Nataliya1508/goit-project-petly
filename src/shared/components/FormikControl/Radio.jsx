@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Field } from "formik"
 import { useMemo } from "react"
 import { nanoid } from "nanoid"
@@ -6,8 +7,7 @@ import {
   Image,
   Text,
   VisuallyHiddenInput } from "@chakra-ui/react"
-import male from './male.svg'
-import female from './female.svg'
+import { male, female } from 'media'
 
 const SexRadioButtons = ({label, name, ...rest}) => {
     const id = useMemo(()=> nanoid(), [])
@@ -73,3 +73,11 @@ const SexRadioButtons = ({label, name, ...rest}) => {
 }
 
 export default SexRadioButtons
+
+SexRadioButtons.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]).isRequired,
+  name: PropTypes.string.isRequired,
+}

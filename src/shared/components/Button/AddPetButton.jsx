@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { IconButton } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
@@ -21,3 +22,12 @@ const AddPetButton = ({onClick, size='40px', ...rest}) => {
 }
 
 export default AddPetButton
+
+AddPetButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+  ])
+}

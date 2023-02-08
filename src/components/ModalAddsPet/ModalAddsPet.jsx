@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
 import { Formik, Form } from 'formik';
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { nanoid } from 'nanoid';
 import moment from 'moment/moment';
-import { Text, Box } from '@chakra-ui/react';
+import { Text, Box, Spinner } from '@chakra-ui/react';
 import { addNewPet } from "redux/auth/auth-operations"
 import { getIsRefreshing } from "redux/auth/auth-selectors"
 import {
@@ -185,7 +186,12 @@ const ModalAddsPet = ({ onClose }) => {
                   controle="secondary"
                   width={{ md: '180px' }}
                 >
-                  {isLoading ? 'Adding...' : 'Done'}
+                {isLoading
+                  ? <> Adding <Spinner emptyColor='#FF6101'
+                                      color='#F5F5F5'
+                                      textAlign='center'
+                                      size='xs'/></>
+                  : 'Done'}
                 </Button>
                 <Button
                   onClick={() => setFirstStep(true)}
@@ -204,3 +210,7 @@ const ModalAddsPet = ({ onClose }) => {
 };
 
 export default ModalAddsPet;
+
+ModalAddsPet.propTypes = {
+  onClose: PropTypes.func.isRequired
+}

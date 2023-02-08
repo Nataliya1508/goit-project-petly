@@ -19,7 +19,10 @@ const ModalAddsNotice = ({ onClose }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getNoticesLoading);
   const location = useLocation();
-  const category = location.pathname.split('/')[2];
+  const category = useMemo(
+    () => location.pathname.split('/')[2],
+    [location.pathname]
+  );
   const [firstStep, setFirstStep] = useState(true);
 
   const titleId = useMemo(() => nanoid(), []);

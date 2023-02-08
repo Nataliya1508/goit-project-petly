@@ -1,12 +1,8 @@
 import { Button, Image } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
-import { getUser } from 'redux/auth/auth-selectors';
 import heart from './heart.svg';
 import heartFull from './heartFull.svg';
 
-const FavoriteButton = ({ noticeId, toggleFav, ...rest }) => {
-  const { favorites } = useSelector(getUser);
-
+const FavoriteButton = ({ toggleFav, isFavorite, ...rest }) => {
   return (
     <Button
       type={'button'}
@@ -22,11 +18,7 @@ const FavoriteButton = ({ noticeId, toggleFav, ...rest }) => {
       onClick={toggleFav}
       {...rest}
     >
-      <Image
-        src={favorites?.includes(noticeId) ? heartFull : heart}
-        width={7}
-        height={7}
-      />
+      <Image src={isFavorite ? heartFull : heart} width={7} height={7} />
     </Button>
   );
 };

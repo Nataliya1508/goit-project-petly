@@ -30,14 +30,7 @@ import {
 } from '@chakra-ui/react';
 import Loader from 'components/Loader/Loader';
 
-function ModalNotice({
-  isOpen,
-  onClose,
-  id,
-  toggleFavorite,
-  favorite,
-  calculatePetsAgeModal,
-}) {
+function ModalNotice({ isOpen, onClose, id, toggleFavorite, favorite }) {
   const dispatch = useDispatch();
   // const user = useSelector(getUser);
   // const isLoggedIn = useSelector(getIsLoggedIn);
@@ -183,9 +176,9 @@ function ModalNotice({
                           fontSize={['14px', '14px', '14px', '16px']}
                           lineHeight={'1.36'}
                         >
-                          {calculatePetsAgeModal(notice?.birthdate)
-                            ? calculatePetsAgeModal(notice?.birthdate)
-                            : '-'}
+                          {notice?.birthdate === 'null'
+                            ? '-'
+                            : notice?.birthdate}
                         </Text>
                       </ListItem>
                       <ListItem
@@ -263,13 +256,22 @@ function ModalNotice({
                             >
                               Email:
                             </FormLabel>
-                            <Link
-                              fontSize={['14px', '14px', '14px', '16px']}
-                              lineHeight={'1.36'}
-                              href={`mailto: ${notice?.email}`}
-                            >
-                              {notice?.email ? notice?.email : '-'}
-                            </Link>
+                            {notice?.email ? (
+                              <Link
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                                href={`mailto: ${notice?.email}`}
+                              >
+                                {notice?.email}
+                              </Link>
+                            ) : (
+                              <Text
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                              >
+                                -
+                              </Text>
+                            )}
                           </ListItem>
                           <ListItem
                             display="flex"
@@ -284,13 +286,22 @@ function ModalNotice({
                             >
                               Phone:
                             </FormLabel>
-                            <Link
-                              fontSize={['14px', '14px', '14px', '16px']}
-                              lineHeight={'1.36'}
-                              href={`tel: ${notice?.phone}`}
-                            >
-                              {notice?.phone ? notice?.phone : '-'}
-                            </Link>
+                            {notice?.phone ? (
+                              <Link
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                                href={`mailto: ${notice?.phone}`}
+                              >
+                                {notice?.phone}
+                              </Link>
+                            ) : (
+                              <Text
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                              >
+                                -
+                              </Text>
+                            )}
                           </ListItem>
                         </>
                       )}

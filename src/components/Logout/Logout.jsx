@@ -20,8 +20,8 @@ const Logout = () => {
       fontSize="12px"
       lineHeight="1.35"
       fontWeight="400"
-      ml={{ base: 'auto', md: '0px', xl: 'auto' }}
-      mr={{ base: '0px', md: 'auto', xl: '0px' }}
+      ml={{ base: '0px', md: '0px', xl: '0px' }}
+      mr={{ base: '0px', md: '0px', xl: '0px' }}
       bc="transparent"
       p="0px"
       h="22px"

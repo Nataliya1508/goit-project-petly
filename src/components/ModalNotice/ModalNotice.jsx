@@ -219,7 +219,7 @@ function ModalNotice({
                           lineHeight={'1.36'}
                           m="0"
                         >
-                          Loсation:
+                          Location:
                         </FormLabel>
                         <Text
                           fontSize={['14px', '14px', '14px', '16px']}

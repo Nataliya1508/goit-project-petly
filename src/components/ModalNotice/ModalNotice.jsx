@@ -25,14 +25,7 @@ import {
 } from '@chakra-ui/react';
 import Loader from 'components/Loader/Loader';
 
-const ModalNotice = ({
-  isOpen,
-  onClose,
-  id,
-  toggleFavorite,
-  favorite,
-  calculatePetsAgeModal,
-}) => {
+const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
   const dispatch = useDispatch();
   const notice = useSelector(selectCurrentNotice);
   const isLoading = useSelector(getNoticesLoading);
@@ -114,7 +107,9 @@ const ModalNotice = ({
                       borderBottomRightRadius="20px"
                       bg="rgba(255, 255, 255, 0.6)"
                     >
-                      {notice?.categoryName.split('-').join(' ')}
+                      {notice?.categoryName === 'for-free'
+                        ? 'in good hands'
+                        : notice?.categoryName.split('-').join(' ')}
                     </Text>
                   </Box>
 
@@ -172,9 +167,9 @@ const ModalNotice = ({
                           fontSize={['14px', '14px', '14px', '16px']}
                           lineHeight={'1.36'}
                         >
-                          {calculatePetsAgeModal(notice?.birthdate)
-                            ? calculatePetsAgeModal(notice?.birthdate)
-                            : '-'}
+                          {notice?.birthdate === 'null'
+                            ? '-'
+                            : notice?.birthdate}
                         </Text>
                       </ListItem>
                       <ListItem
@@ -252,13 +247,22 @@ const ModalNotice = ({
                             >
                               Email:
                             </FormLabel>
-                            <Link
-                              fontSize={['14px', '14px', '14px', '16px']}
-                              lineHeight={'1.36'}
-                              href={`mailto: ${notice?.email}`}
-                            >
-                              {notice?.email ? notice?.email : '-'}
-                            </Link>
+                            {notice?.email ? (
+                              <Link
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                                href={`mailto: ${notice?.email}`}
+                              >
+                                {notice?.email}
+                              </Link>
+                            ) : (
+                              <Text
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                              >
+                                -
+                              </Text>
+                            )}
                           </ListItem>
                           <ListItem
                             display="flex"
@@ -273,13 +277,22 @@ const ModalNotice = ({
                             >
                               Phone:
                             </FormLabel>
-                            <Link
-                              fontSize={['14px', '14px', '14px', '16px']}
-                              lineHeight={'1.36'}
-                              href={`tel: ${notice?.phone}`}
-                            >
-                              {notice?.phone ? notice?.phone : '-'}
-                            </Link>
+                            {notice?.phone ? (
+                              <Link
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                                href={`mailto: ${notice?.phone}`}
+                              >
+                                {notice?.phone}
+                              </Link>
+                            ) : (
+                              <Text
+                                fontSize={['14px', '14px', '14px', '16px']}
+                                lineHeight={'1.36'}
+                              >
+                                -
+                              </Text>
+                            )}
                           </ListItem>
                         </>
                       )}

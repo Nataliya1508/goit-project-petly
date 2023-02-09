@@ -52,12 +52,7 @@ const NoticesCategoryItem = ({
   const isOwner = owner === _id;
 
   const calculatePetsAge = birthdate => {
-    const petsAge = moment(birthdate, 'YYYY-MM-DD').fromNow(true);
-    return petsAge;
-  };
-
-  const calculatePetsAgeModal = birthdate => {
-    const petsAge = moment(birthdate, 'YYYY-MM-DD').format('DD.MM.YYYY');
+    const petsAge = moment(birthdate, 'DD.MM.YYYY').fromNow(true);
     return petsAge;
   };
 
@@ -118,7 +113,9 @@ const NoticesCategoryItem = ({
             backgroundColor={'rgba(255, 255, 255, 0.6)'}
             backdropFilter={'blur(2px)'}
           >
-            {categoryName}
+            {categoryName === 'for-free'
+              ? 'in good hands'
+              : categoryName.split('-').join(' ')}
           </Box>
           <FavoriteButton toggleFav={toggleFavorite} isFavorite={isFavorite} />
         </Box>
@@ -158,7 +155,7 @@ const NoticesCategoryItem = ({
             lineHeight={'short'}
             color={'#111111'}
           >
-            Age: {calculatePetsAge(birthdate)}
+            Age: {birthdate === 'null' ? '-' : calculatePetsAge(birthdate)}
           </Text>
           {price && (
             <Text
@@ -200,7 +197,6 @@ const NoticesCategoryItem = ({
           id={id}
           toggleFavorite={toggleFavorite}
           favorite={isFavorite}
-          calculatePetsAgeModal={calculatePetsAgeModal}
         />
       </CardFooter>
     </Card>

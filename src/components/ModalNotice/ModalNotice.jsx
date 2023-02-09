@@ -58,8 +58,6 @@ function ModalNotice({
       <ModalContent
         w={['280px', null, '280px', '704px']}
         maxW={'none'}
-        px={['20px', null, '20px', '20px']}
-        py={'32px'}
         borderRadius={['20px', null, '20px', '40px']}
         // {...rest}
       >
@@ -69,6 +67,7 @@ function ModalNotice({
               {notice?.title && (
                 <ModalHeader
                   mx={'auto'}
+                  display={['none', 'none', 'none', null]}
                   mb={['20px', null, '20px', '40px']}
                   p={'0'}
                   fontSize={['2xl', null, '2xl', '4xl']}
@@ -80,13 +79,17 @@ function ModalNotice({
                 </ModalHeader>
               )}
             </>
-            <ModalBody>
+            <ModalBody
+              px={'20px'}
+              py={[null, null, null, '32px']}
+              pb={['40px', '40px', '40px', null]}
+              pt={['60px', '60px', '60px', null]}
+            >
               <Box bg="#ffffff" position="relative">
                 <Box
                   display={[null, null, null, 'grid']}
                   gridTemplateColumns="288px 356px"
                   gap="20px"
-                  marginBottom="28px"
                 >
                   <Box
                     position="relative"
@@ -128,7 +131,9 @@ function ModalNotice({
 
                   <Box>
                     <Text
-                      marginBottom="16px"
+                      maxWidth="316px"
+                      mb={['16px', '16px', '16px', '20px']}
+                      mt={['16px', '16px', '16px', '0px']}
                       fontWeight="700"
                       fontSize="28px"
                       lineHeight="1.36"
@@ -139,7 +144,6 @@ function ModalNotice({
                     <List
                       display="flex"
                       flexDirection="column"
-                      marginBottom="28px"
                       _notLast={{ marginBottom: '0px' }}
                     >
                       <ListItem
@@ -148,14 +152,17 @@ function ModalNotice({
                       >
                         <FormLabel
                           minWidth="118px"
-                          fontWeight="600"
-                          fontSize="16px"
-                          lineHeight="1.36"
+                          fontWeight={'600'}
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
                           m="0"
                         >
                           Name:
                         </FormLabel>
-                        <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                        <Text
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
+                        >
                           {notice?.name ? notice?.name : '-'}
                         </Text>
                       </ListItem>
@@ -165,14 +172,17 @@ function ModalNotice({
                       >
                         <FormLabel
                           minWidth="118px"
-                          fontWeight="600"
-                          fontSize="16px"
-                          lineHeight="1.36"
+                          fontWeight={'600'}
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
                           m="0"
                         >
                           Birthday:
                         </FormLabel>
-                        <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                        <Text
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
+                        >
                           {calculatePetsAgeModal(notice?.birthdate)
                             ? calculatePetsAgeModal(notice?.birthdate)
                             : '-'}
@@ -184,14 +194,17 @@ function ModalNotice({
                       >
                         <FormLabel
                           minWidth="118px"
-                          fontWeight="600"
-                          fontSize="16px"
-                          lineHeight="1.36"
+                          fontWeight={'600'}
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
                           m="0"
                         >
                           Breed:
                         </FormLabel>
-                        <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                        <Text
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
+                        >
                           {notice?.breed ? notice?.breed : '-'}
                         </Text>
                       </ListItem>
@@ -201,14 +214,17 @@ function ModalNotice({
                       >
                         <FormLabel
                           minWidth="118px"
-                          fontWeight="600"
-                          fontSize="16px"
-                          lineHeight="1.36"
+                          fontWeight={'600'}
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
                           m="0"
                         >
                           Loсation:
                         </FormLabel>
-                        <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                        <Text
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
+                        >
                           {notice?.location}
                         </Text>
                       </ListItem>
@@ -218,14 +234,17 @@ function ModalNotice({
                       >
                         <FormLabel
                           minWidth="118px"
-                          fontWeight="600"
-                          fontSize="16px"
-                          lineHeight="1.36"
+                          fontWeight={'600'}
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
                           m="0"
                         >
                           The sex:
                         </FormLabel>
-                        <Text fontSize="16px" lineHeight="1.36" color="#000000">
+                        <Text
+                          fontSize={['14px', '14px', '14px', '16px']}
+                          lineHeight={'1.36'}
+                        >
                           {notice?.sex}
                         </Text>
                       </ListItem>
@@ -237,14 +256,18 @@ function ModalNotice({
                           >
                             <FormLabel
                               minWidth="118px"
-                              fontWeight="600"
-                              fontSize="16px"
-                              lineHeight="1.36"
+                              fontWeight={'600'}
+                              fontSize={['14px', '14px', '14px', '16px']}
+                              lineHeight={'1.36'}
                               m="0"
                             >
                               Email:
                             </FormLabel>
-                            <Link href={`mailto: ${notice?.email}`}>
+                            <Link
+                              fontSize={['14px', '14px', '14px', '16px']}
+                              lineHeight={'1.36'}
+                              href={`mailto: ${notice?.email}`}
+                            >
                               {notice?.email ? notice?.email : '-'}
                             </Link>
                           </ListItem>
@@ -254,14 +277,18 @@ function ModalNotice({
                           >
                             <FormLabel
                               minWidth="118px"
-                              fontWeight="600"
-                              fontSize="16px"
-                              lineHeight="1.36"
+                              fontWeight={'600'}
+                              fontSize={['14px', '14px', '14px', '16px']}
+                              lineHeight={'1.36'}
                               m="0"
                             >
                               Phone:
                             </FormLabel>
-                            <Link href={`tel: ${notice?.phone}`}>
+                            <Link
+                              fontSize={['14px', '14px', '14px', '16px']}
+                              lineHeight={'1.36'}
+                              href={`tel: ${notice?.phone}`}
+                            >
                               {notice?.phone ? notice?.phone : '-'}
                             </Link>
                           </ListItem>
@@ -274,39 +301,48 @@ function ModalNotice({
                         >
                           <FormLabel
                             minWidth="118px"
-                            fontWeight="600"
-                            fontSize="16px"
-                            lineHeight="1.36"
+                            fontWeight={'600'}
+                            fontSize={['14px', '14px', '14px', '16px']}
+                            lineHeight={'1.36'}
                             m="0"
                           >
                             Price:
                           </FormLabel>
-                          <Text>{notice?.price} $</Text>
+                          <Text
+                            fontSize={['14px', '14px', '14px', '16px']}
+                            lineHeight={'1.36'}
+                          >
+                            {notice?.price} $
+                          </Text>
                         </ListItem>
                       )}
                     </List>
                   </Box>
                 </Box>
 
-                <Text>
+                <Text
+                  fontSize={['14px', '14px', '14px', '16px']}
+                  lineHeight={'1.36'}
+                  mt="28px"
+                >
                   <b>Comments:</b> {notice?.comments}
                 </Text>
 
                 <Box
-                  display="flex"
+                  display={[null, null, 'flex', 'flex']}
                   justifyContent="flex-start"
-                  flexWrap={['34px', null, 'wrap', 'nowrap']}
-                  paddingRight="20px"
-                  marginTop={[null, null, '40px', '32px']}
+                  flexWrap={[null, null, 'wrap', 'nowrap']}
+                  pr={[null, null, null, '20px']}
+                  mt={['40px', '40px', '40px', '32px']}
                   flexDirection="row-reverse"
                 >
                   <Link
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
-                    width={[null, null, '100%', '160px']}
+                    width={['100%', '100%', '100%', '160px']}
                     height={[10, null, 10, null, 10]}
-                    marginBottom={[null, null, '12px', '0px']}
+                    marginBottom={['12px', '12px', '12px', '0px']}
                     fontSize="16px"
                     lineHeight="1.375"
                     letterSpacing="0.04em"
@@ -329,9 +365,9 @@ function ModalNotice({
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
-                    width={[null, null, '100%', '160px']}
+                    width={['100%', '100%', '100%', '160px']}
                     height={[10, null, 10, null, 10]}
-                    marginRight={[null, null, '0px', '12px']}
+                    marginRight={[null, null, null, '12px']}
                     fontSize="16px"
                     lineHeight="1.375"
                     letterSpacing="0.04em"

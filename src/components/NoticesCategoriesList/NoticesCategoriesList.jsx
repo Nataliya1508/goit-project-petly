@@ -22,7 +22,7 @@ import NoticesPagination from 'components/NoticesPagination/NoticesPagination';
 const categoriesOjb = {
   sell: 'sell',
   'lost-found': 'lost-found',
-  free: 'for-free',
+  'for-free': 'for-free',
 };
 
 const NoticesCategoriesList = () => {

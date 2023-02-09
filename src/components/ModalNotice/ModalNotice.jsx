@@ -144,7 +144,6 @@ function ModalNotice({
                     <List
                       display="flex"
                       flexDirection="column"
-                      marginBottom="28px"
                       _notLast={{ marginBottom: '0px' }}
                     >
                       <ListItem
@@ -324,6 +323,7 @@ function ModalNotice({
                 <Text
                   fontSize={['14px', '14px', '14px', '16px']}
                   lineHeight={'1.36'}
+                  mt="28px"
                 >
                   <b>Comments:</b> {notice?.comments}
                 </Text>

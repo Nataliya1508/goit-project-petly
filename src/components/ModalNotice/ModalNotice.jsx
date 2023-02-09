@@ -1,18 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-// import { getUser, getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import {
-  // getFavoriteNotices,
   selectCurrentNotice,
   getNoticesLoading,
 } from '../../redux/notices/notices-selectors';
-
 import { getNoticeById } from '../../redux/notices/notices-operations';
 import { ReactComponent as HeartIcon } from '../../media/akar-icons_heart.svg';
 import petTemlate from '../../media/no_img.png';
 import { Button } from '../../shared/components';
-
 import {
   ModalOverlay,
   ModalContent,
@@ -30,18 +25,15 @@ import {
 } from '@chakra-ui/react';
 import Loader from 'components/Loader/Loader';
 
-function ModalNotice({
+const ModalNotice = ({
   isOpen,
   onClose,
   id,
   toggleFavorite,
   favorite,
   calculatePetsAgeModal,
-}) {
+}) => {
   const dispatch = useDispatch();
-  // const user = useSelector(getUser);
-  // const isLoggedIn = useSelector(getIsLoggedIn);
-  // const favoriteNotices = useSelector(getFavoriteNotices);
   const notice = useSelector(selectCurrentNotice);
   const isLoading = useSelector(getNoticesLoading);
 
@@ -51,7 +43,6 @@ function ModalNotice({
     }
   }, [dispatch, id, isOpen]);
 
-  // const { title, children, ...rest } = useDisclosure();
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="rgba(17, 17, 17, 0.6);" />
@@ -63,22 +54,20 @@ function ModalNotice({
       >
         {!isLoading ? (
           <>
-            <>
-              {notice?.title && (
-                <ModalHeader
-                  mx={'auto'}
-                  display={['none', 'none', 'none', null]}
-                  mb={['20px', null, '20px', '40px']}
-                  p={'0'}
-                  fontSize={['2xl', null, '2xl', '4xl']}
-                  fontWeight={'500'}
-                  lineHeight={'short'}
-                  color={'#111111'}
-                >
-                  {notice.title}
-                </ModalHeader>
-              )}
-            </>
+            {notice?.title && (
+              <ModalHeader
+                mx={'auto'}
+                display={['none', 'none', 'none', null]}
+                mb={['20px', null, '20px', '40px']}
+                p={'0'}
+                fontSize={['2xl', null, '2xl', '4xl']}
+                fontWeight={'500'}
+                lineHeight={'short'}
+                color={'#111111'}
+              >
+                {notice.title}
+              </ModalHeader>
+            )}
             <ModalBody
               px={'20px'}
               py={[null, null, null, '32px']}
@@ -400,6 +389,6 @@ function ModalNotice({
       </ModalContent>
     </Modal>
   );
-}
+};
 
 export default ModalNotice;

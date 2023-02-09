@@ -90,7 +90,6 @@ function ModalNotice({
                   display={[null, null, null, 'grid']}
                   gridTemplateColumns="288px 356px"
                   gap="20px"
-                  marginBottom="28px"
                 >
                   <Box
                     position="relative"
@@ -132,6 +131,7 @@ function ModalNotice({
 
                   <Box>
                     <Text
+                      maxWidth="316px"
                       mb={['16px', '16px', '16px', '20px']}
                       mt={['16px', '16px', '16px', '0px']}
                       fontWeight="700"

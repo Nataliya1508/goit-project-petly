@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import NoticesCategoryItem from '../NoticesCategoryItem/NoticesCategoryItem';
@@ -9,48 +9,39 @@ import {
   getMyNotice,
 } from '../../redux/notices/notices-operations';
 import {
-  selectNoticesByCategory,
   getNoticesLoading,
-  getNoticesError,
-  getFavoriteNotices,
-  getUserNotices,
-  selectTotalCountNotices,
+  getAllNotices,
 } from '../../redux/notices/notices-selectors';
-import Loader from 'components/Loader/Loader';
 import NoticesPagination from 'components/NoticesPagination/NoticesPagination';
+import Loader from 'components/Loader/Loader';
 
-const categoriesOjb = {
-  sell: 'sell',
-  'lost-found': 'lost-found',
-  'for-free': 'for-free',
-};
+const categoriesOjb = ['sell', 'lost-found', 'for-free'];
 
 const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
 
-  const categories = useSelector(selectNoticesByCategory);
-  const totalNotices = useSelector(selectTotalCountNotices);
-  const favoriteNotices = useSelector(getFavoriteNotices);
-  const ownNotices = useSelector(getUserNotices);
+  const { ownNotices, favoriteNotices, categories, totalNotices } =
+    useSelector(getAllNotices);
+  const isLoading = useSelector(getNoticesLoading);
   const category = location.pathname.split('/')[2];
 
-  const [searchParams] = useSearchParams();
   const page = searchParams.get('page');
   const query = `?page=${page === null ? 1 : page}`;
 
-  const categoryForRender =
-    category === 'sell' || category === 'lost-found' || category === 'for-free'
-      ? categories
-      : category === 'favorite'
-      ? favoriteNotices
-      : ownNotices;
-
-  const isLoading = useSelector(getNoticesLoading);
-  const error = useSelector(getNoticesError);
+  const categoryForRender = useMemo(
+    () =>
+      categoriesOjb.includes(category)
+        ? categories
+        : category === 'favorite'
+        ? favoriteNotices
+        : ownNotices,
+    [categories, category, favoriteNotices, ownNotices]
+  );
 
   useEffect(() => {
-    if (category === categoriesOjb[category]) {
+    if (categoriesOjb.includes(category)) {
       dispatch(getNoticesByCategory(category + query));
     }
     if (category === 'favorite') {
@@ -119,10 +110,9 @@ const NoticesCategoriesList = () => {
       ) : (
         <Loader />
       )}
-      {category !== 'favorite' && category !== 'own' && (
+      {categoriesOjb.includes(category) && (
         <NoticesPagination total={totalNotices} />
       )}
-      {error && <p>Something went wrong</p>}
     </>
   );
 };

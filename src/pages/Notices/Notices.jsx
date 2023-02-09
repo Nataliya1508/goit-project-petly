@@ -3,7 +3,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { Container, Section } from 'shared/components';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Box } from '@chakra-ui/react';
 
 const Notices = () => {
   const [, setSearchQuery] = useState('');
@@ -17,6 +17,7 @@ const Notices = () => {
   }, [category, navigate]);
 
   return (
+    <Box bgColor={'#FDF7F2'} h={'100vh'}>
        <Container h={'100vh'}>
         <Section>
           <Heading
@@ -36,6 +37,7 @@ const Notices = () => {
           </Suspense>
         </Section>
       </Container>
+      </Box>
   );
 };
 

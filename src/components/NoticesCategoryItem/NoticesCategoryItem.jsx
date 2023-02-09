@@ -124,7 +124,9 @@ const NoticesCategoryItem = ({
             backgroundColor={'rgba(255, 255, 255, 0.6)'}
             backdropFilter={'blur(2px)'}
           >
-            {categoryName}
+            {categoryName === 'for-free'
+              ? 'in good hands'
+              : categoryName.split('-').join(' ')}
           </Box>
           <FavoriteButton
             // noticeId={id}

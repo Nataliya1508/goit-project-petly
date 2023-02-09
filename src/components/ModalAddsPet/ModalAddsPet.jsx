@@ -86,6 +86,7 @@ const ModalAddsPet = ({ onClose }) => {
                 }
                 placeholder={'Type name pet'}
                 id={nameId}
+                autoFocus
                 width={'60'}
               />
               <FormikControl

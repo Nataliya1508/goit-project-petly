@@ -17,8 +17,7 @@ const Notices = () => {
   }, [category, navigate]);
 
   return (
-    <>
-      <Container>
+       <Container h={'100vh'}>
         <Section>
           <Heading
             as={'h1'}
@@ -37,7 +36,6 @@ const Notices = () => {
           </Suspense>
         </Section>
       </Container>
-    </>
   );
 };
 

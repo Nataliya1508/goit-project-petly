@@ -183,7 +183,7 @@ const NoticesCategoryItem = ({
               lineHeight={'short'}
               color={'#111111'}
             >
-              Price: {price}
+              Price: {price} $
             </Text>
           )}
         </Box>

@@ -26,7 +26,7 @@ const OurFriends = () => {
   }, []);
 
   return (
-    <Container h={'100vh'}>
+    <Container h={'100%'}>
       <Section>
         <Heading
           as={'h1'}

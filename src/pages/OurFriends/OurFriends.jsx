@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Container from '../../shared/components/Box/Container';
 import Section from '../../shared/components/Box/Section';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Box } from '@chakra-ui/react';
 import Loader from 'components/Loader/Loader';
 import { getFriends } from './getFriends';
 import { OurFriendsList } from '../../components/OurFriendsList/OurFriendsList';
@@ -26,6 +26,7 @@ const OurFriends = () => {
   }, []);
 
   return (
+    <Box bgColor={'#FDF7F2'} h={'100vh'}>
     <Container h={'100%'}>
       <Section>
         <Heading
@@ -41,6 +42,7 @@ const OurFriends = () => {
         {isLoading ? <Loader /> : <OurFriendsList friends={friends} />}
       </Section>
     </Container>
+    </Box>
   );
 };
 

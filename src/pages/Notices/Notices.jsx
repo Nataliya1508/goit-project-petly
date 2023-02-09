@@ -4,11 +4,14 @@ import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { Container, Section } from 'shared/components';
 import { Heading, Box } from '@chakra-ui/react';
+import { getNoticesError } from 'redux/notices/notices-selectors';
+import { useSelector } from 'react-redux';
 
 const Notices = () => {
   const [, setSearchQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
+  const error = useSelector(getNoticesError);
 
   const category = location.pathname;
 
@@ -33,11 +36,15 @@ const Notices = () => {
           <NoticesSearch setSearchQuery={setSearchQuery} />
           <NoticesCategoriesNav />
           <Suspense fallback={null}>
-            <Outlet />
+            {error ? (
+              <Heading>Here is problem, try to reload the page</Heading>
+            ) : (
+              <Outlet />
+            )}
           </Suspense>
         </Section>
       </Container>
-      </Box>
+    </Box>
   );
 };
 

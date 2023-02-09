@@ -64,6 +64,7 @@ const noticesSlice = createSlice({
       // })
       .addCase(addToFavorites.fulfilled, (state, { payload }) => {
         state.favorite = [payload.notice, ...state.favorite];
+        // state.user
         state.isLoading = false;
         state.error = null;
       })

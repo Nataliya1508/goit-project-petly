@@ -63,6 +63,7 @@ const CategoryRadioButtons = ({label, name, ...rest}) => {
                                                 id={id+value}
                                                 value={value}
                                                 checked={field.value === value}
+                                                autoFocus={field.value === value}
                                             />
                                             <Text
                                               width={'fit-content'}

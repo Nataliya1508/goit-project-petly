@@ -8,7 +8,7 @@ const NoticesPagination = ({ total }) => {
 
   const [, setSearchParams] = useSearchParams();
 
-  const noticesPerPage = 20;
+  const noticesPerPage = 12;
   const pageCount = Math.ceil(total / noticesPerPage);
 
   const changePage = ({ selected }) => {

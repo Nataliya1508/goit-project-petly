@@ -21,16 +21,6 @@ import {
   Heading,
   CardFooter,
   useDisclosure,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverHeader,
-  PopoverCloseButton,
-  PopoverBody,
-  PopoverFooter,
-  ButtonGroup,
-  Button,
 } from '@chakra-ui/react';
 import { CardButton, FavoriteButton } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
@@ -52,16 +42,15 @@ const NoticesCategoryItem = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const isLoggedIn = useSelector(getIsLoggedIn);
-
   const favoriteNotices = useSelector(getFavoriteNotices);
-
-  const favorite = favoriteNotices.find(item => item._id === id);
-
-  const [isFavorite, setIsFavorite] = useState(() => Boolean(favorite));
-
   const { _id } = useSelector(getUser);
 
+  const [isFavorite, setIsFavorite] = useState(() =>
+    Boolean(favoriteNotices.find(item => item._id === id))
+  );
+
   const isOwner = owner === _id;
+
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'DD.MM.YYYY').fromNow(true);
     return petsAge;
@@ -95,7 +84,7 @@ const NoticesCategoryItem = ({
       boxShadow={'7px 4px 14px rgba(49, 21, 4, 0.07)'}
       borderBottomRadius={'20px'}
     >
-      <CardBody p={'0'} mb={price ?? favorite ? '0' : '30px'}>
+      <CardBody p={'0'} mb={price ?? isFavorite ? '0' : '30px'}>
         <Box position={'relative'}>
           <Image
             src={photo ?? petTemlate}
@@ -128,11 +117,7 @@ const NoticesCategoryItem = ({
               ? 'in good hands'
               : categoryName.split('-').join(' ')}
           </Box>
-          <FavoriteButton
-            // noticeId={id}
-            toggleFav={toggleFavorite}
-            isFavorite={isFavorite}
-          />
+          <FavoriteButton toggleFav={toggleFavorite} isFavorite={isFavorite} />
         </Box>
         <Box p={'20px'}>
           <Heading
@@ -188,7 +173,7 @@ const NoticesCategoryItem = ({
       <CardFooter
         pt={'0'}
         px={'16px'}
-        pb={!favorite ? '32px' : '16px'}
+        pb={!isFavorite ? '32px' : '16px'}
         width={'100%'}
         display={'flex'}
         alignItems={'center'}
@@ -197,30 +182,14 @@ const NoticesCategoryItem = ({
         <CardButton onClick={onOpen}>Learn more</CardButton>
 
         {isOwner && (
-          <Popover closeOnBlur={false}>
-            <PopoverTrigger placement="bottom">
-              <CardButton mt={'12px'} position={'relative'} controle="delete">
-                Delete
-              </CardButton>
-              {/* <Button>delete</Button> */}
-            </PopoverTrigger>
-            <PopoverContent>
-              <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverBody>
-                Are you sure you want to delete this notice?
-              </PopoverBody>
-              <PopoverFooter display="flex" justifyContent="flex-end">
-                <ButtonGroup size="sm">
-                  {/* <Button variant="outline">Cancel</Button> */}
-                  <Button colorScheme="red" onClick={handlerDeleteNotice}>
-                    Apply
-                  </Button>
-                </ButtonGroup>
-              </PopoverFooter>
-            </PopoverContent>
-          </Popover>
+          <CardButton
+            mt={'12px'}
+            position={'relative'}
+            controle="delete"
+            onClick={handlerDeleteNotice}
+          >
+            Delete
+          </CardButton>
         )}
         <ModalNotice
           isOpen={isOpen}

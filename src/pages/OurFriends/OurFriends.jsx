@@ -27,7 +27,7 @@ const OurFriends = () => {
 
   return (
     <Box bgColor={'#FDF7F2'} h={'100vh'}>
-    <Container h={'100%'}>
+    <Container>
       <Section>
         <Heading
           as={'h1'}

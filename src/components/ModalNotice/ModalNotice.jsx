@@ -118,7 +118,9 @@ function ModalNotice({ isOpen, onClose, id, toggleFavorite, favorite }) {
                       borderBottomRightRadius="20px"
                       bg="rgba(255, 255, 255, 0.6)"
                     >
-                      {notice?.categoryName.split('-').join(' ')}
+                      {notice?.categoryName === 'for-free'
+                        ? 'in good hands'
+                        : notice?.categoryName.split('-').join(' ')}
                     </Text>
                   </Box>
 

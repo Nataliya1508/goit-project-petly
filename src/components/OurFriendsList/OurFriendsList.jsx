@@ -15,8 +15,11 @@ export const OurFriendsList = ({ friends }) => {
   return (
     <SimpleGrid
       justifyItems={'center'}
+      maxW={{md: '704px', xl: '1240px',}}
       columns={{ base: 1, md: 2, xl: 3 }}
       spacing={{ base: '3', md: '8' }}
+      ml={'auto'}
+      mr={'auto'}
     >
       {friends.map(
         ({

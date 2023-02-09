@@ -26,8 +26,8 @@ const OurFriends = () => {
   }, []);
 
   return (
-    <Container>
-      <Section pt={{ base: '26px', md: '64px', xl: '41px' }}>
+    <Container h={'100vh'}>
+      <Section>
         <Heading
           as={'h1'}
           fontSize={{ base: '2xl', md: '5xl' }}

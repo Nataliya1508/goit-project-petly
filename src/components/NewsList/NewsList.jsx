@@ -4,10 +4,13 @@ export const NewsList = ({ news }) => {
   return (
     <SimpleGrid
       justifyItems={'center'}
+      maxW={{md: '704px', lg: '940px', xl: '1240px',}}
       mt={'60px'}
-      columns={{base: 1, md: 2, lg: 3}}
+      columns={{ base: 1, md: 2, xl: 3 }}
       spacing={{base: '12', md: '60px'}}
       p={2}
+      ml={'auto'}
+      mr={'auto'}
     >
       {news.map(({ _id, title, description, date, url }) => (
         <Box

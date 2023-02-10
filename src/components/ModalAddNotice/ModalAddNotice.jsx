@@ -93,7 +93,6 @@ const ModalAddsNotice = ({ onClose }) => {
       validationSchema={addNoticeSchema}
       onSubmit={handleSubmit}
       validateOnChange={true}
-      validateOnBlur={true}
     >
       {({ values, errors, dirty }) => (
         <Form autoComplete="off" encType="multipart/form-data">
@@ -223,6 +222,7 @@ const ModalAddsNotice = ({ onClose }) => {
                 id={photoId}
                 name={'photo'}
                 size={{ base: '116px', md: '140px' }}
+                mx={0}
                 borderRadius={'20px'}
                 plusSize={{ base: '55%', md: '50%' }}
               />

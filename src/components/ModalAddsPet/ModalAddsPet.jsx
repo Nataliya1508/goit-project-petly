@@ -70,7 +70,6 @@ const ModalAddsPet = ({ onClose }) => {
       validationSchema={addPetSchema}
       onSubmit={handleSubmit}
       validateOnChange={true}
-      validateOnBlur={true}
     >
       {({ errors, dirty }) => (
         <Form autoComplete="off" encType="multipart/form-data">

@@ -15,7 +15,7 @@ const PetsList = () => {
   const dispatch = useDispatch();
   const onDeleteBtnClick = (e, id) => {
     dispatch(deletePet(id))
-    e.preventdefault()
+    e.preventDefault()
   }
   return  ( pets.length > 0 ?
      <Box >

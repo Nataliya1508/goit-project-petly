@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { plus } from "media";
 import { Field, useFormikContext } from 'formik';
   
-const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', borderRadius='40px', size, ...rest}) => {
+const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', mx='auto', borderRadius='40px', size, ...rest}) => {
 
     const [image, setImage] = useState(null)
     const { values } = useFormikContext();
@@ -31,13 +31,18 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', border
       }, [values.photo]);
 
     return (
-        <Box w={size} h={size} mb={marginbot}>
+        <Box mb={marginbot}>
             <Field>
                 {({ form }) => (
                 <FormControl
+                    w={'full'}
                     isInvalid={form.errors[name] && form.touched[name]}
                     >
-                    <Box _focusWithin={{outline: '2px solid #FF6101',
+                    <Box
+                        mx={mx}
+                        w={size}
+                        h={size} 
+                        _focusWithin={{outline: '2px solid #FF6101',
                                         borderRadius: '20px'}}>
                     <FormLabel
                         htmlFor={id}
@@ -67,6 +72,7 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', border
                         onChange={(e) =>{
                                 form.setFieldValue(`${name}`, e.currentTarget.files[0])
                                 onImageChange(e)
+                                form.validateField(`${name}`)
                             }
                           }
                         type='file'
@@ -99,6 +105,11 @@ CustomInputFile.propTypes = {
       PropTypes.number,
       PropTypes.object
     ]),
+    mx: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object
+      ]),
     borderRadius: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,

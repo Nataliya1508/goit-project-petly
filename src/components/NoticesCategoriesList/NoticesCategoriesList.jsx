@@ -25,9 +25,7 @@ const NoticesCategoriesList = () => {
   const { ownNotices, favoriteNotices, categories, totalNotices } =
     useSelector(getAllNotices);
   const isLoading = useSelector(getNoticesLoading);
-  // const { _id: userId, favorites } = useSelector(getUser);
   const category = location.pathname.split('/')[2];
-  // console.log(favorites);
   const page = searchParams.get('page');
 
   useEffect(() => {
@@ -93,7 +91,6 @@ const NoticesCategoriesList = () => {
                       <NoticesCategoryItem
                         key={_id}
                         id={_id}
-                        // userId={userId}
                         photo={photo}
                         title={title}
                         breed={breed}
@@ -102,7 +99,6 @@ const NoticesCategoriesList = () => {
                         price={price}
                         categoryName={categoryName}
                         owner={owner}
-                        // favorites={favorites}
                       />
                     )
                   )}

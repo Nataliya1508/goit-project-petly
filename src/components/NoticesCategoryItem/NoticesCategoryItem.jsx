@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import petTemlate from '../../media/no_img.png';
 import moment from 'moment';
-import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
+import { getIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
 import {
   addToFavorites,
   removeFromFavorites,
@@ -35,18 +35,17 @@ const NoticesCategoryItem = ({
   birthdate,
   price,
   categoryName,
-  favorites,
-  userId,
 }) => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const { _id, favorites } = useSelector(getUser);
 
   const [isFavorite, setIsFavorite] = useState(() =>
     Boolean(favorites.includes(id))
   );
 
-  const isOwner = owner === userId;
+  const isOwner = owner === _id;
 
   const calculatePetsAge = birthdate => {
     const petsAge = moment(birthdate, 'DD.MM.YYYY').fromNow(true);

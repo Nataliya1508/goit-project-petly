@@ -17,7 +17,7 @@ const handlePending = state => {
 };
 
 const initialState = {
-  total: 0,
+  total: null,
   categories: [],
   isLoading: false,
   userNotices: [],

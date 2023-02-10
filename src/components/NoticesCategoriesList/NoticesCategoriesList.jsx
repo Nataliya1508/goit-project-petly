@@ -14,6 +14,7 @@ import {
 } from '../../redux/notices/notices-selectors';
 import NoticesPagination from 'components/NoticesPagination/NoticesPagination';
 import Loader from 'components/Loader/Loader';
+import { getUser } from 'redux/auth/auth-selectors';
 
 const categoriesOjb = ['sell', 'lost-found', 'for-free'];
 
@@ -25,13 +26,14 @@ const NoticesCategoriesList = () => {
   const { ownNotices, favoriteNotices, categories, totalNotices } =
     useSelector(getAllNotices);
   const isLoading = useSelector(getNoticesLoading);
+  const { _id: userId, favorites } = useSelector(getUser);
   const category = location.pathname.split('/')[2];
-
+  console.log(favorites);
   const page = searchParams.get('page');
 
   useEffect(() => {
-    setSearchParams({ page: page === null ? 1 : page })
-  }, [page, setSearchParams])
+    setSearchParams({ page: page === null ? 1 : page });
+  }, [page, setSearchParams]);
 
   const query = `?page=${page === null ? 1 : page}&limit=8`;
 
@@ -40,8 +42,8 @@ const NoticesCategoriesList = () => {
       categoriesOjb.includes(category)
         ? categories
         : category === 'favorite'
-          ? favoriteNotices
-          : ownNotices,
+        ? favoriteNotices
+        : ownNotices,
     [categories, category, favoriteNotices, ownNotices]
   );
 
@@ -92,6 +94,7 @@ const NoticesCategoriesList = () => {
                       <NoticesCategoryItem
                         key={_id}
                         id={_id}
+                        userId={userId}
                         photo={photo}
                         title={title}
                         breed={breed}
@@ -100,6 +103,7 @@ const NoticesCategoriesList = () => {
                         price={price}
                         categoryName={categoryName}
                         owner={owner}
+                        favorites={favorites}
                       />
                     )
                   )}
@@ -115,7 +119,9 @@ const NoticesCategoriesList = () => {
       ) : (
         <Loader />
       )}
-      {!isLoading && totalNotices > 8 && <NoticesPagination total={totalNotices} currentPage={page} />}
+      {!isLoading && totalNotices > 8 && (
+        <NoticesPagination total={totalNotices} currentPage={page} />
+      )}
     </>
   );
 };

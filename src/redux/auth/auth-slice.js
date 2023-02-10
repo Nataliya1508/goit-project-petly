@@ -127,6 +127,15 @@ const authSlice = createSlice({
         handleRejected(state, action);
       });
   },
+  reducers: {
+    addFavToUser(state, action) {
+      state.user.favorites = [action.payload, ...state.user.favorites];
+    },
+    removeFavFromUser(state, action) {
+      const index = state.user.favorites.indexOf(action.payload);
+      state.user.favorites.splice(index, 1);
+    },
+  },
 });
-
+export const { addFavToUser, removeFavFromUser } = authSlice.actions;
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);

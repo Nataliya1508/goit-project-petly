@@ -2,17 +2,30 @@ import { Flex, Box } from '@chakra-ui/layout';
 import ReactPaginate from 'react-paginate';
 import { useMediaQuery } from '@chakra-ui/media-query';
 import { useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const NoticesPagination = ({ total }) => {
+const NoticesPagination = ({ total, currentPage }) => {
   const [isMobile] = useMediaQuery('(max-width: 767px)');
 
   const [, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(0)
 
-  const noticesPerPage = 12;
+  useEffect(() => {
+    if (total === null) {
+      return
+    }
+    setPage(currentPage)
+  }, [total, currentPage])
+
+  const noticesPerPage = 8;
   const pageCount = Math.ceil(total / noticesPerPage);
 
   const changePage = ({ selected }) => {
     setSearchParams({ page: selected + 1 });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (
@@ -23,6 +36,7 @@ const NoticesPagination = ({ total }) => {
         nextLabel="Next"
         pageCount={pageCount}
         onPageChange={changePage}
+        forcePage={page - 1}
         pageRangeDisplayed={isMobile ? 0 : 2}
         marginPagesDisplayed={isMobile ? 0 : 2}
         renderOnZeroPageCount={null}
@@ -64,7 +78,7 @@ const NoticesPagination = ({ total }) => {
             p: '10px',
             pb: '10px',
             fontSize: '14px',
-            lineHeight: '20px',
+            lineHeight: '1.3',
             border: '2px solid',
             borderColor: 'accent.accentOrange',
             borderRadius: '50%',

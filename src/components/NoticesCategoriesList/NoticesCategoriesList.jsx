@@ -20,7 +20,7 @@ const categoriesOjb = ['sell', 'lost-found', 'for-free'];
 const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { ownNotices, favoriteNotices, categories, totalNotices } =
     useSelector(getAllNotices);
@@ -28,15 +28,20 @@ const NoticesCategoriesList = () => {
   const category = location.pathname.split('/')[2];
 
   const page = searchParams.get('page');
-  const query = `?page=${page === null ? 1 : page}`;
+
+  useEffect(() => {
+    setSearchParams({ page: page === null ? 1 : page })
+  }, [page, setSearchParams])
+
+  const query = `?page=${page === null ? 1 : page}&limit=8`;
 
   const categoryForRender = useMemo(
     () =>
       categoriesOjb.includes(category)
         ? categories
         : category === 'favorite'
-        ? favoriteNotices
-        : ownNotices,
+          ? favoriteNotices
+          : ownNotices,
     [categories, category, favoriteNotices, ownNotices]
   );
 
@@ -110,9 +115,7 @@ const NoticesCategoriesList = () => {
       ) : (
         <Loader />
       )}
-      {categoriesOjb.includes(category) && (
-        <NoticesPagination total={totalNotices} />
-      )}
+      {!isLoading && totalNotices > 8 && <NoticesPagination total={totalNotices} currentPage={page} />}
     </>
   );
 };

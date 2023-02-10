@@ -14,7 +14,6 @@ import {
 } from '../../redux/notices/notices-selectors';
 import NoticesPagination from 'components/NoticesPagination/NoticesPagination';
 import Loader from 'components/Loader/Loader';
-import { getUser } from 'redux/auth/auth-selectors';
 
 const categoriesOjb = ['sell', 'lost-found', 'for-free'];
 
@@ -26,9 +25,9 @@ const NoticesCategoriesList = () => {
   const { ownNotices, favoriteNotices, categories, totalNotices } =
     useSelector(getAllNotices);
   const isLoading = useSelector(getNoticesLoading);
-  const { _id: userId, favorites } = useSelector(getUser);
+  // const { _id: userId, favorites } = useSelector(getUser);
   const category = location.pathname.split('/')[2];
-  console.log(favorites);
+  // console.log(favorites);
   const page = searchParams.get('page');
 
   useEffect(() => {
@@ -94,7 +93,7 @@ const NoticesCategoriesList = () => {
                       <NoticesCategoryItem
                         key={_id}
                         id={_id}
-                        userId={userId}
+                        // userId={userId}
                         photo={photo}
                         title={title}
                         breed={breed}
@@ -103,7 +102,7 @@ const NoticesCategoriesList = () => {
                         price={price}
                         categoryName={categoryName}
                         owner={owner}
-                        favorites={favorites}
+                        // favorites={favorites}
                       />
                     )
                   )}

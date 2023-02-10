@@ -6,9 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUser } from 'redux/auth/auth-selectors';
 import { updateUserAvatar } from 'redux/auth/auth-operations';
 import Loader from 'components/Loader/Loader';
-import {useState} from 'react'
+import { useState } from 'react';
 const UserData = () => {
-  
   let {
     email = '',
     name = '',
@@ -18,20 +17,20 @@ const UserData = () => {
     avatarURL,
   } = useSelector(getUser);
 
-  const[isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
-  
-  const onChange = async(e) => {
-    const newPhoto = new FormData()
-    newPhoto.append('avatar', e.target.files[0])
-    setIsLoading(true)
-    await dispatch(updateUserAvatar(newPhoto))
-    setIsLoading(false)
-  }
+
+  const onChange = async e => {
+    const newPhoto = new FormData();
+    newPhoto.append('avatar', e.target.files[0]);
+    setIsLoading(true);
+    dispatch(updateUserAvatar(newPhoto));
+    setIsLoading(false);
+  };
 
   return (
-    <Box
-      mr="0px">
+    <Box mr="0px">
       <Flex
         display="flex"
         justifyContent="space-between"
@@ -44,25 +43,33 @@ const UserData = () => {
         <Box
           position="relative"
           mx="auto"
-          mb={{ base: '66px', md: '0px', xl: '32px' }}>
+          mb={{ base: '66px', md: '0px', xl: '32px' }}
+        >
           <Box
             w="233px"
             h="233px"
             filter="drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11))"
-            bgColor='accent.background'
-            borderRadius="50%">
-            { isLoading ? <Box p='92px'><Loader/></Box> : 
-            <Image
-            src={avatarURL ?? defaultAvatar}
-            alt="user photo"
-            w="233px"
-            h="233px"
-            backgroundPosition={'center'}
-            borderRadius="50%"/>}
+            bgColor="accent.background"
+            borderRadius="50%"
+          >
+            {isLoading ? (
+              <Box p="92px">
+                <Loader />
+              </Box>
+            ) : (
+              <Image
+                src={avatarURL ?? defaultAvatar}
+                alt="user photo"
+                w="233px"
+                h="233px"
+                backgroundPosition={'center'}
+                borderRadius="50%"
+              />
+            )}
           </Box>
-          
+
           <FormLabel
-            cursor='pointer'
+            cursor="pointer"
             display="flex"
             alignItems="center"
             fontSize="12px"
@@ -76,19 +83,20 @@ const UserData = () => {
             _focus={{ color: 'accent.accentOrange' }}
             transitionProperty={'color'}
             transitionDuration={'250ms'}
-            transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}>
-            <BsCameraFill size="20px" fill='#F59256' />
+            transitionTimingFunction={'cubic-bezier(0.4, 0, 0.2, 1)'}
+          >
+            <BsCameraFill size="20px" fill="#F59256" />
             <Text ml="4px">Edit photo</Text>
             <Input
-              onChange={(e)=> onChange(e)}
+              onChange={e => onChange(e)}
               type="file"
               w="0px"
               h="0px"
-              position= "absolute"
-              z-index= "-1"
-              opacity= "0"
-              display= "block"
-          />
+              position="absolute"
+              z-index="-1"
+              opacity="0"
+              display="block"
+            />
           </FormLabel>
         </Box>
         <Flex
@@ -100,10 +108,17 @@ const UserData = () => {
         >
           <UserDataItem nameInput={'Name'} valueInput={name} type={'text'} />
           <UserDataItem nameInput={'Email'} valueInput={email} type={'email'} />
-          <UserDataItem nameInput={'Birthday'} valueInput={birthday} type={'date'} />
+          <UserDataItem
+            nameInput={'Birthday'}
+            valueInput={birthday}
+            type={'date'}
+          />
           <UserDataItem nameInput={'Phone'} valueInput={phone} type={'tel'} />
-          <UserDataItem nameInput={'Address'} valueInput={address} type={'string'} />
-          
+          <UserDataItem
+            nameInput={'Address'}
+            valueInput={address}
+            type={'string'}
+          />
         </Flex>
       </Flex>
     </Box>

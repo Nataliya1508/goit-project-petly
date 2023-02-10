@@ -84,7 +84,7 @@ const NoticesCategoryItem = ({
       boxShadow={'7px 4px 14px rgba(49, 21, 4, 0.07)'}
       borderBottomRadius={'20px'}
     >
-      <CardBody p={'0'} mb={price ?? isFavorite ? '0' : '30px'}>
+      <CardBody p={'0'} mb={'30px'}>
         <Box position={'relative'}>
           <Image
             src={photo ?? petTemlate}
@@ -92,6 +92,7 @@ const NoticesCategoryItem = ({
             objectFit={'cover'}
             width={{ base: '280px', md: '336px', xl: '288px' }}
             height={'288px'}
+            loading={'lazy'}
           />
           <Box
             as={'span'}
@@ -173,7 +174,7 @@ const NoticesCategoryItem = ({
       <CardFooter
         pt={'0'}
         px={'16px'}
-        pb={!isFavorite ? '32px' : '16px'}
+        pb={'32px'}
         width={'100%'}
         display={'flex'}
         alignItems={'center'}

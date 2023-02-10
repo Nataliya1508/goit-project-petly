@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import petTemlate from '../../media/no_img.png';
 import moment from 'moment';
-
-import { getIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
-
-import { getFavoriteNotices } from '../../redux/notices/notices-selectors';
+import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
 import {
   addToFavorites,
   removeFromFavorites,

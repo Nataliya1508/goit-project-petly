@@ -19,7 +19,7 @@ import {
   CardFooter,
   useDisclosure,
 } from '@chakra-ui/react';
-import { CardButton, FavoriteButton } from 'shared/components';
+import { CardButton, FavoriteButton, successToast } from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
 import { addFavToUser, removeFavFromUser } from 'redux/auth/auth-slice';
 
@@ -42,9 +42,8 @@ const NoticesCategoryItem = ({
   const { _id, favorites } = useSelector(getUser);
 
   const [isFavorite, setIsFavorite] = useState(() =>
-  isLoggedIn ? Boolean(favorites.includes(id)) : false
+    Boolean(favorites?.includes(id))
   );
-
   const isOwner = owner === _id;
 
   const calculatePetsAge = birthdate => {
@@ -61,13 +60,16 @@ const NoticesCategoryItem = ({
       console.log('add');
       dispatch(addToFavorites(id));
       dispatch(addFavToUser(id));
+      successToast('Pet was successfully added to favorite !');
       setIsFavorite(true);
       return;
     }
     if (isFavorite) {
       console.log('remove');
       dispatch(removeFromFavorites(id));
+
       dispatch(removeFavFromUser(id));
+      successToast('Pet was successfully removed to favorite !');
       setIsFavorite(false);
       return;
     }

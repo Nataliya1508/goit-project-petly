@@ -16,13 +16,14 @@ import {
 import NoticesPagination from 'components/NoticesPagination/NoticesPagination';
 import Loader from 'components/Loader/Loader';
 
+const categoriesOjb = ['sell', 'lost-found', 'for-free'];
 
 const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [totalList, setTotalList] = useState(0)
+  const [totalList, setTotalList] = useState(0);
   const { ownNotices, favoriteNotices, categories, totalNotices } =
     useSelector(getAllNotices);
   const isLoading = useSelector(getNoticesLoading);
@@ -34,15 +35,21 @@ const NoticesCategoriesList = () => {
   useEffect(() => {
     const selectedCategory = () => {
       if (category === 'favorite') {
-        return setTotalList(favoriteNotices.length)
+        return setTotalList(favoriteNotices.length);
       }
       if (category === 'own') {
-        return setTotalList(ownNotices.length)
+        return setTotalList(ownNotices.length);
       }
-      return setTotalList(totalNotices)
-    }
-    selectedCategory()
-  }, [category, favoriteNotices.length, ownNotices.length, totalNotices, totalList]);
+      return setTotalList(totalNotices);
+    };
+    selectedCategory();
+  }, [
+    category,
+    favoriteNotices.length,
+    ownNotices.length,
+    totalNotices,
+    totalList,
+  ]);
 
   useEffect(() => {
     setSearchParams({ page: page === null ? 1 : page });
@@ -53,8 +60,8 @@ const NoticesCategoriesList = () => {
       categoriesOjb.includes(category)
         ? categories
         : category === 'favorite'
-          ? favoriteNotices
-          : ownNotices,
+        ? favoriteNotices
+        : ownNotices,
     [categories, category, favoriteNotices, ownNotices]
   );
 
@@ -69,8 +76,6 @@ const NoticesCategoriesList = () => {
       dispatch(getMyNotice());
     }
   }, [dispatch, category, query]);
-
-const NoticesCategoriesList = ({notices}) => {
 
   return (
     <>

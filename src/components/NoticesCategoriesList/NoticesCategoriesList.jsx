@@ -105,7 +105,7 @@ const NoticesCategoriesList = () => {
               </>
             </SimpleGrid>
           ) : (
-            <NotFoundPage />
+            <NotFoundPage category={category} />
           )}
         </>
       ) : (

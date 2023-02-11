@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import NoticesCategoryItem from '../NoticesCategoryItem/NoticesCategoryItem';
-import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
+import NotFoundPage from '../../pages/NotFoundPet/NotFoundPet';
+import { SimpleGrid } from '@chakra-ui/react';
 import {
   getNoticesByCategory,
   getFavorites,
@@ -15,7 +16,6 @@ import {
 import NoticesPagination from 'components/NoticesPagination/NoticesPagination';
 import Loader from 'components/Loader/Loader';
 
-const categoriesOjb = ['sell', 'lost-found', 'for-free'];
 
 const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
@@ -70,60 +70,58 @@ const NoticesCategoriesList = () => {
     }
   }, [dispatch, category, query]);
 
+const NoticesCategoriesList = ({notices}) => {
+
   return (
     <>
       {!isLoading ? (
         <>
-          <SimpleGrid
-            as="ul"
-            mx={'auto'}
-            maxWidth={{ base: '280px', md: '704px', xl: '1248px' }}
-            gridTemplateColumns={{
-              base: '1fr',
-              md: '1fr 1fr',
-              xl: '1fr 1fr 1fr 1fr',
-            }}
-            gap={'32px'}
-            width={'full'}
-            listStyleType={'none'}
-          >
-            <>
-              {categoryForRender.length !== 0 ? (
-                <>
-                  {categoryForRender.map(
-                    ({
-                      _id,
-                      photo,
-                      title,
-                      breed,
-                      location,
-                      birthdate,
-                      price,
-                      categoryName,
-                      owner,
-                    }) => (
-                      <NoticesCategoryItem
-                        key={_id}
-                        id={_id}
-                        photo={photo}
-                        title={title}
-                        breed={breed}
-                        location={location}
-                        birthdate={birthdate}
-                        price={price}
-                        categoryName={categoryName}
-                        owner={owner}
-                      />
-                    )
-                  )}
-                </>
-              ) : (
-                <Box textAlign={'center'}>
-                  <Heading>This Category is empty ^_^</Heading>
-                </Box>
-              )}
-            </>
-          </SimpleGrid>
+          {categoryForRender.length !== 0 ? (
+            <SimpleGrid
+              as="ul"
+              mx={'auto'}
+              maxWidth={{ base: '280px', md: '704px', xl: '1248px' }}
+              gridTemplateColumns={{
+                base: '1fr',
+                md: '1fr 1fr',
+                xl: '1fr 1fr 1fr 1fr',
+              }}
+              gap={'32px'}
+              width={'full'}
+              listStyleType={'none'}
+            >
+              <>
+                {categoryForRender.map(
+                  ({
+                    _id,
+                    photo,
+                    title,
+                    breed,
+                    location,
+                    birthdate,
+                    price,
+                    categoryName,
+                    owner,
+                  }) => (
+                    <NoticesCategoryItem
+                      key={_id}
+                      id={_id}
+                      photo={photo}
+                      title={title}
+                      breed={breed}
+                      location={location}
+                      birthdate={birthdate}
+                      price={price}
+                      categoryName={categoryName}
+                      owner={owner}
+                    />
+                  )
+                )}
+              </>
+            </SimpleGrid>
+          ) : (
+            <NotFoundPage category={category} />
+          )}
         </>
       ) : (
         <Loader />

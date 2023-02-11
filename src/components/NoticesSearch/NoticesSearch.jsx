@@ -1,42 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FilterInput } from 'shared/components';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter } from 'redux/filter/filter-selector';
+import { setFilter } from 'redux/filter/filter-slice';
 
-const NoticesSearch = ({ searchFunction }) => {
-  const [query, setQuery] = useState('');
+
+const NoticesSearch = ({submitFunction}) => {
+  const dispatch = useDispatch();
+  const searchQuery = useSelector(getFilter);
+  const [isSubmited, setIsSubmited] = useState(false);
+  const location = useLocation();
+  const categoryName = useMemo(() => location.pathname.split('/')[2], [location.pathname]);
+
+
+  useEffect(()=>{
+    if (searchQuery==='') {
+      setIsSubmited(false);
+    }
+  },[searchQuery]);
 
   const handleChange = e => {
-    setQuery(e.target.value.toLowerCase());
-    searchFunction(e.target.value);
+    const { value } = e.target;
+    dispatch(setFilter(value));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (query.trim() === '') {
+    if (searchQuery.trim() === '') {
       toast('What pet do you need?');
-      return;
-    }
-    searchFunction(query);
+      return;    }
+
+    submitFunction();
+    setIsSubmited(true); 
   };
 
   const clearInput = () => {
-    setQuery('');
-    searchFunction('');
+    dispatch(setFilter(""));
+    setIsSubmited(false);
   };
 
   return (
-    <>
     <FilterInput
         type="text"
         name={'search'}
         onChange={handleChange}
         handleSearch={handleSubmit}
         handleClear={clearInput}
-        value={query}
+        value={searchQuery}
+        isSubmited={isSubmited}
         mb={'28px'}
+        category={categoryName}
       />
-      <ToastContainer />
-    </>
   );
 };
 

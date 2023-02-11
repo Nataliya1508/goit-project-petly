@@ -4,13 +4,13 @@ import dog from '../../media/dog.svg';
 const NotFoundPet = ({ category }) => {
   const message = () => {
     if (category === 'own') {
-      return 'You have not added your pets yet';
+      return 'You have not added your pets yet.';
     }
     if (category === 'favorite') {
-      return 'There are currently no favorite animals';
+      return 'There are currently no favorite animals.';
     }
     if (category === 'sell') {
-      return 'There are currently no pets for sale';
+      return 'There are currently no pets for sale.';
     }
     if (category === 'for-free') {
       return 'There are no pets that can be free.';

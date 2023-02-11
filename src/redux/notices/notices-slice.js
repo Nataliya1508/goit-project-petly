@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   getNoticesByCategory,
+  getNoticesByCategoryWithQuery,
   getNoticeById,
   addNotice,
   getMyNotice,
@@ -41,6 +42,20 @@ const noticesSlice = createSlice({
         state.error = null;
       })
       .addCase(getNoticesByCategory.rejected, (state, { payload }) => {
+        state.categories = [];
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getNoticesByCategoryWithQuery.pending, (state, _) => {
+        handlePending(state);
+      })
+      .addCase(getNoticesByCategoryWithQuery.fulfilled, (state, { payload }) => {
+        state.total = payload.total;
+        state.categories = payload.result;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getNoticesByCategoryWithQuery.rejected, (state, { payload }) => {
         state.categories = [];
         state.isLoading = false;
         state.error = payload;

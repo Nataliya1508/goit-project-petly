@@ -42,7 +42,7 @@ const NoticesCategoryItem = ({
   const { _id, favorites } = useSelector(getUser);
 
   const [isFavorite, setIsFavorite] = useState(() =>
-    Boolean(favorites.includes(id))
+  isLoggedIn ? Boolean(favorites.includes(id)) : false
   );
 
   const isOwner = owner === _id;

@@ -13,6 +13,7 @@ const NoticesCategoriesNav = () => {
   const handleClick = () => {
     if (!isLoggedIn) {
       toast('Please log in!');
+      return;
     }
     onOpen(true);
   };

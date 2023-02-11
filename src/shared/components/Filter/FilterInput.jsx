@@ -64,7 +64,7 @@ const FilterInput = ({handleSearch, handleClear, onChange, value, mb, isSubmited
 export default FilterInput
 
 FilterInput.propTypes = {
-    handleSearch: PropTypes.func.isRequired,
+    handleSearch: PropTypes.func,
     handleClear: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
@@ -73,6 +73,6 @@ FilterInput.propTypes = {
         PropTypes.number,
         PropTypes.object
       ]),
-    isSubmited: PropTypes.bool.isRequired
+    isSubmited: PropTypes.bool
   }
   

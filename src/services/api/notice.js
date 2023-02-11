@@ -1,7 +1,13 @@
 import instance from './auth';
 
-export const getNoticesByCategory = async categoryName => {
-  const { data } = await instance.get(`/api/notices/category/${categoryName}`);
+export const getNoticesByCategory = async (categoryName, page, limit=8) => {
+  const { data } = await instance.get(`/api/notices/category/${categoryName}?&page=${page}&limit=${limit}`);
+  return data;
+};
+
+export const getNoticesByCategoryWithQuery = async (categoryName, searchQuery, page=1, limit=8) => {
+  
+  const { data } = await instance.get(`/api/notices/category/${categoryName}?query=${searchQuery}&page=${page}&limit=${limit}`);
   return data;
 };
 

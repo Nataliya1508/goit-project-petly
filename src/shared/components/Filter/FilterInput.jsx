@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Input, InputRightElement, InputGroup, Button } from '@chakra-ui/react'
 import { SearchIcon, SmallCloseIcon } from '@chakra-ui/icons'
 
-const FilterInput = ({handleSearch, handleClear, onChange, value, mb, ...rest}) => {
+const FilterInput = ({handleSearch, handleClear, onChange, value, mb, isSubmited, category, ...rest}) => {
   return (
     <InputGroup
         maxWidth={{base:'280px', md:'608px'}}
@@ -34,7 +34,8 @@ const FilterInput = ({handleSearch, handleClear, onChange, value, mb, ...rest}) 
                 _focus={{borderColor: 'rgba(245, 146, 86, 0.5)',
                         boxShadow: '7px 4px 14px rgba(49, 21, 4, 0.07)'}}
                 {...rest}/>
-            <InputRightElement h={{base:'40px', md:'44px'}} w={{base:'40px', md:'44px'}}>
+            { (category !== 'favorite' && category !== 'own') 
+            && <InputRightElement h={{base:'40px', md:'44px'}} w={{base:'40px', md:'44px'}}>
                 <Button
                     p={'0'}
                     borderRadius={'50%'}
@@ -42,10 +43,10 @@ const FilterInput = ({handleSearch, handleClear, onChange, value, mb, ...rest}) 
                     backgroundColor={'white'}
                     width={{base:'20px', md:'24px'}}
                     height={{base:'20px', md:'24px'}}
-                    onClick={(value === '') ? handleSearch : handleClear}
+                    onClick={!isSubmited ? handleSearch : handleClear}
                     _hover={{backgroundColor: 'rgba(245, 146, 86, 0.5)'}}
                     _focus={{backgroundColor: 'rgba(245, 146, 86, 0.5)'}}>
-                        {(value === '')
+                        {!isSubmited
                             ? <SearchIcon
                                 width={{base:'15px', md:'18px'}}
                                 height={{base:'15px', md:'18px'}}/> 
@@ -55,7 +56,7 @@ const FilterInput = ({handleSearch, handleClear, onChange, value, mb, ...rest}) 
                                 width={{base:'15px', md:'18px'}}
                                 height={{base:'15px', md:'18px'}}/>}
                 </Button>
-            </InputRightElement>
+            </InputRightElement>}
     </InputGroup>
   )
 }
@@ -71,6 +72,7 @@ FilterInput.propTypes = {
         PropTypes.string,
         PropTypes.number,
         PropTypes.object
-      ])
+      ]),
+    isSubmited: PropTypes.bool.isRequired
   }
   

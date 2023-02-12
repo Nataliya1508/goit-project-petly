@@ -32,6 +32,16 @@ export const logout = async () => {
     return data;
 }
 
+export const reset = async (resetData) => {
+    const { data } = await instance.post("/api/users/recovery", resetData);
+    return data;
+}
+
+export const resetPassword = async (token, resetData) => {
+    const { data } = await instance.post(`/api/users/recovery/${token}`, resetData);
+    return data;
+}
+
 export const getCurrentUser = async (persistedToken) => {
     token.set(persistedToken);
     const data = await instance.get("/api/users/current");

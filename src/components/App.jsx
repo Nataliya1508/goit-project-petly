@@ -16,6 +16,12 @@ const Login = lazy(() =>
 const Register = lazy(() =>
   import('pages/Auth').then(module => ({ default: module.Register }))
 );
+const Reset = lazy(() =>
+  import('pages/Auth').then(module => ({ default: module.Reset }))
+);
+const ResetPassword = lazy(() =>
+  import('pages/Auth').then(module => ({ default: module.ResetPassword }))
+);
 const News = lazy(() =>
   import('pages/News').then(module => ({ default: module.News }))
 );
@@ -56,6 +62,8 @@ export const App = () => {
                 <RedirectedRoute redirectTo="/user" component={<Register />} />
               }
             />
+            <Route path="recovery" element={<Reset />} />
+            <Route path="recovery/:recoveryToken" element={<ResetPassword />} />
 
             <Route path="news" element={<News />} />
             <Route path="notices/:categoryName" element={<Notices />} />

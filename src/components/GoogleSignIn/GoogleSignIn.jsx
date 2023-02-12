@@ -26,8 +26,8 @@ export const GoogleIcon = createIcon({
 
 const GoogleSignIn = () =>{
  return (
-    <Box>
-        <Link href={'https://goit-project-petly-backend.onrender.com/api/auth/google'} target="_self">
+    <Box> 
+        <Link href={`https://goit-project-petly-backend.onrender.com/api/auth/google`} target="_self">
         <GoogleIcon/>
         </Link>
     </Box>

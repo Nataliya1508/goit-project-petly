@@ -4,9 +4,27 @@ import { errorToast, successToast } from 'shared/components';
 
 export const getNoticesByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
-  async (categoryName, { rejectWithValue }) => {
+  async ({categoryName, page}, { rejectWithValue }) => {
     try {
-      const result = await api.getNoticesByCategory(categoryName);
+      const result = await api.getNoticesByCategory(categoryName, page);
+      return result;
+    } catch ({ response }) {
+      errorToast('Something went wrong, try to reload the page');
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getNoticesByCategoryWithQuery = createAsyncThunk(
+  'notices/getNoticesByCategoryWithQuery',
+  async ({categoryName, searchQuery, page, limit}, { rejectWithValue }) => {
+    try {
+      const result = await api.getNoticesByCategoryWithQuery(categoryName, searchQuery, page, limit);
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');
@@ -42,9 +60,8 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async ({ newPet, category }, { rejectWithValue }) => {
     try {
-
       const result = await api.addNotice(newPet);
-      return {result, category};
+      return { result, category };
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');
       const { status, data } = response;
@@ -98,7 +115,6 @@ export const addToFavorites = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await api.addToFavorites(id);
-      successToast('Pet was successfully added to favorite !');
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');
@@ -136,7 +152,6 @@ export const removeFromFavorites = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await api.removeFromFavorites(id);
-      successToast('Pet was successfully removed to favorite !');
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');

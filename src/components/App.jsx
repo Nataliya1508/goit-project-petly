@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { getCurrentUser } from 'redux/auth/auth-operations';
 // import { getIsRefreshing } from 'redux/auth/auth-selectors';
-import NoticesCategoriesList from './NoticesCategoriesList/NoticesCategoriesList';
 import { PrivateRoute } from './SecureRoutes/PrivatRoute';
 import { RedirectedRoute } from './SecureRoutes/RedirectedRoute';
 import { SharedLayout } from './SharedLayout';
@@ -59,29 +58,7 @@ export const App = () => {
             />
 
             <Route path="news" element={<News />} />
-            <Route path="notices/" element={<Notices />}>
-              <Route path="sell" element={<NoticesCategoriesList />} />
-              <Route path="lost-found" element={<NoticesCategoriesList />} />
-              <Route path="for-free" element={<NoticesCategoriesList />} />
-              <Route
-                path="own"
-                element={
-                  <PrivateRoute
-                    redirectTo="/login"
-                    component={<NoticesCategoriesList />}
-                  />
-                }
-              />
-              <Route
-                path="favorite"
-                element={
-                  <PrivateRoute
-                    redirectTo="/login"
-                    component={<NoticesCategoriesList />}
-                  />
-                }
-              />
-            </Route>
+            <Route path="notices/:categoryName" element={<Notices />} />
 
             <Route path="friends" element={<OurFriends />} />
             <Route

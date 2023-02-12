@@ -29,3 +29,37 @@ export const getAllNotices = createSelector(
     totalNotices,
   })
 );
+
+export const getFiltredUserNotices = ({ notices, filter }) => {
+  const userNotices = notices.userNotices;
+
+  if(!filter) {
+      return userNotices;
+  }
+  
+  const normalizedFilter = filter.toLowerCase();
+  const filteredUserNotices = userNotices.filter((item) => {
+      const normalizedTitle = item.title.toLocaleLowerCase();
+      const result = normalizedTitle.includes(normalizedFilter);
+      return result;
+  })
+
+  return filteredUserNotices;
+};
+
+export const getFiltredFavoriteNotices = ({ notices, filter }) => {
+  const favotiteNotices = notices.favorite;
+
+  if(!filter) {
+      return favotiteNotices;
+  }
+
+  const normalizedFilter = filter.toLowerCase();
+  const filteredFavoritNotices = favotiteNotices.filter((item) => {
+      const normalizedTitle = item.title.toLocaleLowerCase();
+      const result = normalizedTitle.includes(normalizedFilter);
+      return result;
+  })
+
+  return filteredFavoritNotices;
+};

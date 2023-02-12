@@ -4,27 +4,9 @@ import { errorToast, successToast } from 'shared/components';
 
 export const getNoticesByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
-  async ({categoryName, page}, { rejectWithValue }) => {
+  async ({categoryName, page, limit, searchQuery}, { rejectWithValue }) => {
     try {
-      const result = await api.getNoticesByCategory(categoryName, page);
-      return result;
-    } catch ({ response }) {
-      errorToast('Something went wrong, try to reload the page');
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const getNoticesByCategoryWithQuery = createAsyncThunk(
-  'notices/getNoticesByCategoryWithQuery',
-  async ({categoryName, searchQuery, page, limit}, { rejectWithValue }) => {
-    try {
-      const result = await api.getNoticesByCategoryWithQuery(categoryName, searchQuery, page, limit);
+      const result = await api.getNoticesByCategory(categoryName, page, limit, searchQuery);
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');

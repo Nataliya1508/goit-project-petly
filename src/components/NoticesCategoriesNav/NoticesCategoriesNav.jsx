@@ -49,8 +49,8 @@ const NoticesCategoriesNav = () => {
 
         <Box
           display={'flex'}
-          w={{ base: '80px', md: '140px' }}
-          h={{ base: '80px' }}
+          w={{ base: '80px', md: '129px' }}
+          h={{ base: '80px', md:'44px' }}
           flexDirection={{ base: 'column-reverse', md: 'row' }}
           alignItems={{ base: 'center' }}
           justifyContent={{ base: 'center' }}

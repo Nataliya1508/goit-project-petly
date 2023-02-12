@@ -1,7 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { homeBg1Laptop, homeBg1Mobile, homeBg1Tablet, homeBg2Laptop, homeBg2Mobile, homeBg2Tablet, homeBg3Laptop, homeBg4Laptop } from "media";
 import { Container, Section } from "shared/components";
-// import { useBreakpointValue } from '@chakra-ui/react';
 
 
 const Home = () => {

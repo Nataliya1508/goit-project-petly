@@ -12,7 +12,7 @@ import Loader from 'components/Loader/Loader';
 import NotFoundPage from '../../pages/NotFoundPet/NotFoundPet';
 
 import { getAllNotices, getFiltredFavoriteNotices, getFiltredUserNotices, getNoticesError, getNoticesLoading } from 'redux/notices/notices-selectors';
-import { getFavorites, getMyNotice, getNoticesByCategory, getNoticesByCategoryWithQuery } from 'redux/notices/notices-operations';
+import { getFavorites, getMyNotice, getNoticesByCategory } from 'redux/notices/notices-operations';
 import { getFilter } from 'redux/filter/filter-selector';
 
 
@@ -64,37 +64,35 @@ const Notices = () => {
       if (categoryName === 'own') {
         dispatch(getMyNotice());
       } else {
-        dispatch(getNoticesByCategory({categoryName, page}));
+        dispatch(getNoticesByCategory({categoryName, page, searchQuery}));
       }      
     }
   }, [dispatch, categoryName, page, searchQuery]);
 
+  const noticesPerPage = 8;
+  const lastIndex = page * noticesPerPage;
+  const startIndex = lastIndex - noticesPerPage;
+  const paginatedNotices = useMemo(() => (noticesToPaginate) => noticesToPaginate.length <= 8 ? 
+  noticesToPaginate : noticesToPaginate.slice(startIndex, lastIndex),[lastIndex, startIndex]); 
+
   const categoryForRender = useMemo(
     () =>
       categoryName === 'favorite'
-      ? fiteredFavoriteNotices
+      ? paginatedNotices(fiteredFavoriteNotices)
       : categoryName === 'own'
-      ? fiteredUserNotices
+      ? paginatedNotices(fiteredUserNotices)
       : categories,
-    [categories, categoryName, fiteredFavoriteNotices, fiteredUserNotices]
+    [categories, categoryName, fiteredFavoriteNotices, fiteredUserNotices, paginatedNotices]
   );
 
   const searchOnSubmitFunction = () => {
-    if (categoryName === 'own') {
-      dispatch(getMyNotice());
-    } 
-    if (categoryName === 'favorite') {
-      dispatch(getFavorites());
-    } else {
-      dispatch(getNoticesByCategoryWithQuery({categoryName, searchQuery}));
-    }
-    
+      dispatch(getNoticesByCategory({categoryName, page, searchQuery}));    
   } 
 
   return (
-    <Box bgColor={'#FDF7F2'} h={'100vh'}>
+    <Box bgColor={'#FDF7F2'} h={{base:"calc(100vh - 74px)", md:"calc(100vh - 96px)", xl:"calc(100vh - 88px)"}} >
       <Container>
-        <Section>
+        <Section pt={{base:'26px', md:'66px', xl:'39px'}}>
           <Heading
             as={'h1'}
             fontSize={{ base: '24px', md: '48px' }}

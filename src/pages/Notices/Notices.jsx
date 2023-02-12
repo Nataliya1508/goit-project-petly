@@ -1,5 +1,5 @@
-import { Suspense, useEffect, useMemo, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Heading, Box } from '@chakra-ui/react';
 
@@ -18,8 +18,7 @@ import { getFilter } from 'redux/filter/filter-selector';
 
 const Notices = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const categoryName = location.pathname.split('/')[2];
+  const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParams = searchParams.get('page');
   const page = pageParams === null ? 1 : pageParams;
@@ -108,16 +107,26 @@ const Notices = () => {
           </Heading>
           <NoticesSearch submitFunction={searchOnSubmitFunction}/>
           <NoticesCategoriesNav />
-          <Suspense fallback={null}>
-            {error && <Heading> Here is problem, try to reload the page</Heading>}
-            {isLoading ? <Loader /> 
-            :            
-            categoryForRender.length !== 0 ? <NoticesCategoriesList notices={categoryForRender}/> 
-            : <NotFoundPage category={categoryName} /> }            
-            {!isLoading && totalNotices > 8 && (
-              <NoticesPagination total={totalList} currentPage={page} />
-            )}
-          </Suspense>
+          {!error ? (
+            <>
+              {!isLoading ? (
+                <>
+                  {categoryForRender.length !== 0 ? (
+                    <NoticesCategoriesList notices={categoryForRender} />
+                  ) : (
+                    <NotFoundPage category={categoryName} />
+                  )}
+                </>
+              ) : (
+                <Loader />
+              )}
+            </>
+          ) : (
+            <Heading> Here is problem, try to reload the page</Heading>
+          )}           
+          {!isLoading && totalNotices > 8 && (
+            <NoticesPagination total={totalList} currentPage={page} />
+          )}
         </Section>
       </Container>
     </Box>

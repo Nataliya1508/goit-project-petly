@@ -19,3 +19,13 @@ export const loginYupSchema = Yup.object({
     email: Yup.string().email("Invalid email adress").required("Required"),
     password: Yup.string().min(7, 'Must be 7 characters or more').max(32, 'Must be 32 characters or less').matches(regexPassword, 'Must not contain spaces').required("Required"),
 });
+
+export const resetYupSchema = Yup.object({
+    email: Yup.string().email("Invalid email adress").required("Required"),
+});
+
+export const resetPasswordYupSchema = Yup.object({
+    password: Yup.string().min(7, 'Must be 7 characters or more').max(32, 'Must be 32 characters or less').matches(regexPassword, 'Must not contain spaces').required("Required"),
+    passwordConfirmation: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+});

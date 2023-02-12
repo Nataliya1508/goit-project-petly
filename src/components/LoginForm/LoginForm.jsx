@@ -30,7 +30,6 @@ const LoginForm = () => {
         
         const authData = ({'email': values.email, 'password': values.password });
         const data = await dispatch(login(authData));
-        console.log(data);
         if(data.type === 'auth/login/fulfilled') {
             resetForm();
         }
@@ -70,7 +69,7 @@ const LoginForm = () => {
                             mb='0' 
                         />
                         <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} isLoading={isRefreshing} loadingText={"Login"}>Login</Button>
-                        <Box display='flex' justifyContent='center' >
+                        <Box display='flex' justifyContent='center' mb={2}>
                             <Text 
                                 fontFamily='body' 
                                 fontSize='xs' 
@@ -93,6 +92,31 @@ const LoginForm = () => {
                                 color='#3091EB;'
                                 textAlign='center'>
                                 <Link to='/register'>Register</Link>
+                            </Box>
+                        </Box>
+                        <Box display='flex' justifyContent='center' >
+                            <Text 
+                                fontFamily='body' 
+                                fontSize='xs' 
+                                fontWeight='normal' 
+                                lineHeight='1.33' 
+                                letterSpacing='0.04em' 
+                                color='accent.grey'
+                                textAlign='center'
+                                >
+                                Forgot your password? 
+                            </Text>
+                            <Box
+                                as='span'
+                                textDecoration='underline' 
+                                fontFamily='body' 
+                                fontSize='xs' 
+                                fontWeight='normal' 
+                                lineHeight='1.33' 
+                                letterSpacing='0.04em' 
+                                color='#3091EB;'
+                                textAlign='center'>
+                                <Link to='/recovery'>Reset</Link>
                             </Box>
                         </Box>
                     </Box>

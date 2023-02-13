@@ -34,15 +34,15 @@ const NoticesCategoriesNav = () => {
           mr={'auto'}
           ml={{ base: 'auto', md: '0' }}
         >
-          <FilterLink to='/notices/lost-found'>lost/found</FilterLink>
-          <FilterLink to='/notices/for-free'>in good hand</FilterLink>
-          <FilterLink exact="true" to='/notices/sell'>
+          <FilterLink to="/notices/lost-found">lost/found</FilterLink>
+          <FilterLink to="/notices/for-free">in good hand</FilterLink>
+          <FilterLink exact="true" to="/notices/sell">
             sell
           </FilterLink>
           {isLoggedIn && (
             <>
-              <FilterLink to='/notices/favorite'>favorite ads</FilterLink>
-              <FilterLink to='/notices/own'>my ads</FilterLink>
+              <FilterLink to="/notices/favorite">favorite ads</FilterLink>
+              <FilterLink to="/notices/own">my ads</FilterLink>
             </>
           )}
         </Box>
@@ -50,7 +50,7 @@ const NoticesCategoriesNav = () => {
         <Box
           display={'flex'}
           w={{ base: '80px', md: '129px' }}
-          h={{ base: '80px', md:'44px' }}
+          h={{ base: '80px', md: '44px' }}
           flexDirection={{ base: 'column-reverse', md: 'row' }}
           alignItems={{ base: 'center' }}
           justifyContent={{ base: 'center' }}
@@ -85,6 +85,7 @@ const NoticesCategoriesNav = () => {
             _hover={{ backgroundColor: '#FF6101' }}
             _focus={{ backgroundColor: '#FF6101' }}
             onClick={handleClick}
+            aria-label="add pet"
           >
             <AddIcon
               w={{ base: '21px', md: '16px' }}

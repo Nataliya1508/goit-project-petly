@@ -1,22 +1,23 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { useMemo, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import moment from 'moment/moment';
 import { Text, Box, Spinner } from '@chakra-ui/react';
-import { addNewPet } from "redux/auth/auth-operations"
-import { getIsRefreshing } from "redux/auth/auth-selectors"
+import { addNewPet } from 'redux/auth/auth-operations';
+import { getIsRefreshing } from 'redux/auth/auth-selectors';
 import {
   FormikControl,
   Button,
-  errorToast, successToast
+  errorToast,
+  successToast,
 } from 'shared/components';
 import { addPetInitialState, addPetSchema } from './index';
 
 const ModalAddsPet = ({ onClose }) => {
-  const dispatch = useDispatch()
-  const isLoading = useSelector(getIsRefreshing)
+  const dispatch = useDispatch();
+  const isLoading = useSelector(getIsRefreshing);
 
   const nameId = useMemo(() => nanoid(), []);
   const birthdayId = useMemo(() => nanoid(), []);
@@ -43,25 +44,23 @@ const ModalAddsPet = ({ onClose }) => {
     const newPet = new FormData();
     newPet.append('name', name.trim());
     newPet.append(
-      'birthday', moment(birthday, 'YYYYY-MM-DD').format('DD.MM.YYYY')
+      'birthday',
+      moment(birthday, 'YYYYY-MM-DD').format('DD.MM.YYYY')
     );
     newPet.append('breed', breed.trim());
     newPet.append('photo', photo);
     newPet.append('comments', comments.trim());
-      console.log()
+    console.log();
     dispatch(addNewPet(newPet))
-    .then(
-        ({error}) => {
+      .then(({ error }) => {
         if (error) {
-            return errorToast(error.message)
+          return errorToast(error.message);
         }
-        successToast('Pet successfully added')
-        resetForm()
-        onClose()
-        }
-    ).catch(
-        (e) => errorToast(e.message)
-    )
+        successToast('Pet successfully added');
+        resetForm();
+        onClose();
+      })
+      .catch(e => errorToast(e.message));
   };
 
   return (
@@ -80,7 +79,10 @@ const ModalAddsPet = ({ onClose }) => {
                 name="name"
                 label={
                   <>
-                    Name pet<Text as={'span'} color={'accent.accentOrange'}>*</Text>
+                    Name pet
+                    <Text as={'span'} color={'accent.accentOrange'}>
+                      *
+                    </Text>
                   </>
                 }
                 placeholder={'Type name pet'}
@@ -93,7 +95,10 @@ const ModalAddsPet = ({ onClose }) => {
                 name="birthday"
                 label={
                   <>
-                    Date of birthday<Text as={'span'} color={'accent.accentOrange'}>*</Text>
+                    Date of birthday
+                    <Text as={'span'} color={'accent.accentOrange'}>
+                      *
+                    </Text>
                   </>
                 }
                 id={birthdayId}
@@ -104,7 +109,10 @@ const ModalAddsPet = ({ onClose }) => {
                 name="breed"
                 label={
                   <>
-                    Breed<Text as={'span'} color={'accent.accentOrange'}>*</Text>
+                    Breed
+                    <Text as={'span'} color={'accent.accentOrange'}>
+                      *
+                    </Text>
                   </>
                 }
                 placeholder="Type breed"
@@ -124,6 +132,7 @@ const ModalAddsPet = ({ onClose }) => {
                   mb={{ base: '3', md: '0' }}
                   width={{ md: '180px' }}
                   isDisabled={isDisabled(dirty, errors)}
+                  aria-label="next"
                 >
                   Next
                 </Button>
@@ -131,6 +140,7 @@ const ModalAddsPet = ({ onClose }) => {
                   onClick={onClose}
                   mr={{ md: '5' }}
                   width={{ md: '180px' }}
+                  aria-label="cancel"
                 >
                   Cancel
                 </Button>
@@ -152,7 +162,11 @@ const ModalAddsPet = ({ onClose }) => {
                 mb={'5'}
               >
                 Add photo and some comments
-                {<Text as={'span'} color={'accent.accentOrange'}>*</Text>}
+                {
+                  <Text as={'span'} color={'accent.accentOrange'}>
+                    *
+                  </Text>
+                }
               </Text>
               <FormikControl
                 control="file"
@@ -168,7 +182,10 @@ const ModalAddsPet = ({ onClose }) => {
                 name="comments"
                 label={
                   <>
-                    Comments<Text as={'span'} color={'accent.accentOrange'}>*</Text>
+                    Comments
+                    <Text as={'span'} color={'accent.accentOrange'}>
+                      *
+                    </Text>
                   </>
                 }
                 placeholder="Type comments"
@@ -186,18 +203,27 @@ const ModalAddsPet = ({ onClose }) => {
                   mb={{ base: '3', md: '0' }}
                   controle="secondary"
                   width={{ md: '180px' }}
+                  aria-label="add"
                 >
-                {isLoading
-                  ? <> Adding <Spinner emptyColor='#FF6101'
-                                      color='#F5F5F5'
-                                      textAlign='center'
-                                      size='xs'/></>
-                  : 'Done'}
+                  {isLoading ? (
+                    <>
+                      Adding{' '}
+                      <Spinner
+                        emptyColor="#FF6101"
+                        color="#F5F5F5"
+                        textAlign="center"
+                        size="xs"
+                      />
+                    </>
+                  ) : (
+                    'Done'
+                  )}
                 </Button>
                 <Button
                   onClick={() => setFirstStep(true)}
                   mr={{ md: '5' }}
                   width={{ md: '180px' }}
+                  aria-label="back"
                 >
                   Back
                 </Button>
@@ -213,5 +239,5 @@ const ModalAddsPet = ({ onClose }) => {
 export default ModalAddsPet;
 
 ModalAddsPet.propTypes = {
-  onClose: PropTypes.func.isRequired
-}
+  onClose: PropTypes.func.isRequired,
+};

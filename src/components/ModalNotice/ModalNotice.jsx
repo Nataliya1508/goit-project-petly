@@ -360,6 +360,7 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
                 rightIcon={<HeartIcon />}
                 variant="solid"
                 onClick={toggleFavorite}
+                aria-label="toggle favorite"
               >
                 {!favorite ? 'Add to' : 'Remove from'}
               </Button>
@@ -373,8 +374,8 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
           right={'20px'}
           bg={'#FDF7F2'}
           borderRadius={'50%'}
-          _hover={{backgroundColor: 'accent.accentOrange'}}
-          _focus={{backgroundColor: 'accent.accentOrange'}}
+          _hover={{ backgroundColor: 'accent.accentOrange' }}
+          _focus={{ backgroundColor: 'accent.accentOrange' }}
         />
       </ModalContent>
       {/* ) : (  <Loader />

@@ -20,7 +20,7 @@ const AddNoticeButton = () => {
   return (
     <>
       <ButtonGroup size="sm" isAttached variant="outline">
-        <Button type="button" onClick={handleClick}>
+        <Button type="button" onClick={handleClick} aria-label="add pet">
           Add pet
         </Button>
         <IconButton

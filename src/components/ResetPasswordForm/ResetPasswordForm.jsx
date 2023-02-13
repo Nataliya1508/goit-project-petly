@@ -102,6 +102,7 @@ const ResetPasswordForm = () => {
               width={{ base: '280px', md: '448px', xl: '458px' }}
               isLoading={isLoading}
               loadingText={'Update'}
+              aria-label="Update your password"
             >
               Update your password
             </Button>

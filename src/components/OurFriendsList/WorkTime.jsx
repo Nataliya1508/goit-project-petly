@@ -33,6 +33,7 @@ export const WorkTime = ({ workDays }) => {
             fontSize={{ base: 'xs', md: 'sm', xl: 'md' }}
             lineHeight={{ base: '1.33', md: '1.35', xl: 'short' }}
             type="click"
+            aria-label="work time"
           >
             {workDays[indexUpdater()].from && workDays[indexUpdater()].to
               ? `${workDays[indexUpdater()]?.from} - ${

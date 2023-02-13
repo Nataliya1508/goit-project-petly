@@ -150,6 +150,7 @@ const ModalAddsNotice = ({ onClose }) => {
                   isDisabled={isDisabled(dirty, errors)}
                   mb={{ base: '3', md: '0' }}
                   width={{ md: '180px' }}
+                  aria-label="next"
                 >
                   Next
                 </Button>
@@ -157,6 +158,7 @@ const ModalAddsNotice = ({ onClose }) => {
                   onClick={onClose}
                   mr={{ md: '5' }}
                   width={{ md: '180px' }}
+                  aria-label="cancel"
                 >
                   Cancel
                 </Button>
@@ -252,18 +254,27 @@ const ModalAddsNotice = ({ onClose }) => {
                   mb={{ base: '3', md: '0' }}
                   controle="secondary"
                   width={{ md: '180px' }}
+                  aria-label="add"
                 >
-                  {isLoading
-                  ? <> Adding <Spinner emptyColor='#FF6101'
-                                      color='#F5F5F5'
-                                      textAlign='center'
-                                      size='xs'/></>
-                  : 'Done'}
+                  {isLoading ? (
+                    <>
+                      Adding{' '}
+                      <Spinner
+                        emptyColor="#FF6101"
+                        color="#F5F5F5"
+                        textAlign="center"
+                        size="xs"
+                      />
+                    </>
+                  ) : (
+                    'Done'
+                  )}
                 </Button>
                 <Button
                   onClick={() => setFirstStep(true)}
                   mr={{ md: '5' }}
                   width={{ md: '180px' }}
+                  aria-label="back"
                 >
                   Back
                 </Button>

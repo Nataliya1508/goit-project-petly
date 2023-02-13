@@ -13,8 +13,6 @@ const NoticesSearch = ({submitFunction}) => {
   const [isSubmited, setIsSubmited] = useState(false);
   const { categoryName } = useParams();
   const location = useLocation().pathname;
-  console.log(location);
-
 
   useEffect(()=>{
     if (searchQuery==='') {

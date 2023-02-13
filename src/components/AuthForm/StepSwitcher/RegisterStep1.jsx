@@ -35,7 +35,7 @@ const RegisterStep1 = () => {
                 name='confirm' 
                 id='reg-confirm-password' 
                 placeholder='Confirm Password'
-                mb='0' 
+                mb='40px' 
                 />
         </>                   
     )

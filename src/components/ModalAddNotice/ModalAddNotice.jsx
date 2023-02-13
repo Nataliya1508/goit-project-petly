@@ -222,7 +222,7 @@ const ModalAddsNotice = ({ onClose }) => {
                 id={photoId}
                 name={'photo'}
                 size={{ base: '116px', md: '140px' }}
-                mx={0}
+                mx={'0'}
                 borderRadius={'20px'}
                 plusSize={{ base: '55%', md: '50%' }}
               />

@@ -30,11 +30,10 @@ const RegisterStep2 = ({handleBackClick, isDisabled}) => {
                 name='phone' 
                 id='reg-phone' 
                 placeholder='Mobile phone'
-                mb='0' />
+                mb='40px' />
             <Button 
                 controle='secondary' 
                 mb='4' 
-                mt='10' 
                 type='submit' 
                 isDisabled={isDisabled} 
                 isLoading={isRefreshing} 

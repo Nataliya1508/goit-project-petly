@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { plus } from "media";
 import { Field, useFormikContext } from 'formik';
   
-const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', mx='auto', borderRadius='40px', size, ...rest}) => {
+const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', mx='auto', borderRadius='40px', size, errPos='start', ...rest}) => {
 
     const [image, setImage] = useState(null)
     const { values } = useFormikContext();
@@ -31,17 +31,18 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', mx='au
       }, [values.photo]);
 
     return (
-        <Box mb={marginbot}>
             <Field>
                 {({ form }) => (
                 <FormControl
                     w={'full'}
                     isInvalid={form.errors[name] && form.touched[name]}
+                    mb={form.errors[name] && form.touched[name] ? `calc(${marginbot} - 15px)` : marginbot}
                     >
                     <Box
                         mx={mx}
                         w={size}
-                        h={size} 
+                        h={size}
+                        mb={form.errors[name] && form.touched[name] ? '1px' : 0}
                         _focusWithin={{outline: '2px solid #FF6101',
                                         borderRadius: '20px'}}>
                     <FormLabel
@@ -53,6 +54,8 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', mx='au
                                 src={image}
                                 w={size}
                                 h={size}
+                                border={'1px solid'}
+                                borderColor={form.errors[name] && form.touched[name] ? '#E53E3E' : 'transparent'}
                                 borderRadius={borderRadius}
                                 alt='pet'></Image>
                         :   <Box
@@ -80,13 +83,14 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', mx='au
                     />
                     </Box>
                     <FormErrorMessage
-                        fontSize="12px">
+                        fontSize="12px"
+                        justifyContent={errPos}
+                        mt={0}>
                         {form.errors[name]}
                     </FormErrorMessage>
                 </FormControl>
                 )}
             </Field>
-        </Box>
     )
 }
 
@@ -119,5 +123,6 @@ CustomInputFile.propTypes = {
         PropTypes.string,
         PropTypes.number,
         PropTypes.object
-    ]).isRequired
+    ]).isRequired,
+    errPos: PropTypes.string
   }

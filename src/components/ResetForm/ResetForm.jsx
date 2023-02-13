@@ -50,8 +50,9 @@ const ResetForm = () => {
                             name='email' 
                             id='reset-email' 
                             placeholder='Email'
+                            mb='40px'
                         />
-                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} isLoading={isLoading} loadingText={"Send"}>Request password reset</Button>
+                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} isLoading={isLoading} loadingText={"Send"}>Request password reset</Button>
                         <Box display='flex' justifyContent='center' >
                             <Box
                                 as='span'

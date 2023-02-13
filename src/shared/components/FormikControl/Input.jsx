@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import {
-  Box,
   FormControl,
   FormLabel,
   Input,
@@ -13,10 +12,12 @@ import { Field } from 'formik';
 
 const CustomInput = ({label, name, id, mb='16px', width='280px', type='text', show, handleClick, ...rest}) => {
   return (
-    <Box  w={{base: `${width}`, md:'448px', xl:'458px'}} mb={mb}>
           <Field>
             {({ form }) => (
-              <FormControl isInvalid={form.errors[name] && form.touched[name]}>
+              <FormControl
+                isInvalid={form.errors[name] && form.touched[name]}
+                w={{base: `${width}`, md:'448px', xl:'458px'}}
+                mb={form.errors[name] && form.touched[name] ? `calc(${mb} - 15px)` : mb}>
                 {label  ? <FormLabel
                             display={'inline-flex'}
                             htmlFor={id}
@@ -30,7 +31,9 @@ const CustomInput = ({label, name, id, mb='16px', width='280px', type='text', sh
                                 {label}
                           </FormLabel>
                         : null}
-                <InputGroup maxH={{base:'40px', md:'52px'}}>
+                <InputGroup
+                  maxH={{base:'40px', md:'52px'}}
+                  mb={form.errors[name] && form.touched[name] ? '1px' : 0}>
                 <Field
                     as={Input}
                     type={(type !== 'password') ? type : (show ? 'text' : 'password')}
@@ -61,13 +64,13 @@ const CustomInput = ({label, name, id, mb='16px', width='280px', type='text', sh
                                           </InputRightElement>}
                 </InputGroup>
                 <FormErrorMessage
-                  fontSize="xs">
+                  fontSize="xs"
+                  mt={0}>
                     {form.errors[name]}
                 </FormErrorMessage>
               </FormControl>
             )}
           </Field>
-    </Box>
   )
 }
 

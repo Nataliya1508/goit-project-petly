@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Heading, Box } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { resetPassword } from 'services/api/auth';
@@ -10,6 +10,7 @@ import { errorToast, successToast } from 'shared/components/Toast';
 const ResetPasswordForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { recoveryToken } = useParams();
+  const navigate = useNavigate()
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPasswordClick = () => {
@@ -30,8 +31,9 @@ const ResetPasswordForm = () => {
     try {
       setIsLoading(true);
       await resetPassword(recoveryToken, resetData);
-      successToast('Password was changed successfull');
       resetForm();
+      successToast('Password was changed successfull');
+      navigate('/login')
     } catch ({ response }) {
       errorToast(response.data.message);
     } finally {

@@ -50,7 +50,9 @@ const News = () => {
   };
 
   return (
-    <Box bgColor={'#FDF7F2'} h={'100vh'}>
+    <Box  
+    h={{base:"calc(100vh - 74px)", md:"calc(100vh - 96px)", xl:"calc(100vh - 88px)"}} 
+    bg='accent.background'>
       <Container>
         <Section>
           <Heading

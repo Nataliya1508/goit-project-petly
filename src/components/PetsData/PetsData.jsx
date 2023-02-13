@@ -14,7 +14,10 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 const PetsData = () => {
   const { onOpen, onClose, isOpen } = useDisclosure();
   return (
-    <Box ml={{ xl: '32px' }}>
+    <Box
+      ml={{ xl: '32px' }}
+      w='100%'
+    >
       <Flex
         direction="baseline"
         justifyContent="space-between"

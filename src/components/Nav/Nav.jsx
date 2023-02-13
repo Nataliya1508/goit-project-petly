@@ -19,7 +19,7 @@ const Nav = ({ onClick }) => {
       >
         {navItems.map(({ href, text }) => (
           <Link
-            onClick={() => onClick()}
+            onClick={() => onClick(false)}
             to={href}
             key={href}
             as={NavLink}

@@ -18,7 +18,7 @@ const UserNav = ({ onClick }) => {
     >
       {userItems.map(({ href, text }) =>
         <Link
-          onClick={onClick}
+          onClick={() => onClick(false)}
           to={href}
           key={href}
 

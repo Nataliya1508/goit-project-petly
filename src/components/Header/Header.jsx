@@ -1,5 +1,5 @@
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getIsLoggedIn } from 'redux/auth/auth-selectors'
 import HeaderMenu from './HeaderMenu'
@@ -9,21 +9,17 @@ const Header = () => {
     const [menuActive, setMenuActive] = useState(false)
 
     const isModalOpen = (bool) => {
+        console.log(bool)
         if (!bool) {
-            return setMenuActive(bool)
-        }
-        setMenuActive(!menuActive)
-    }
-
-    useEffect(() => {
-        if (menuActive) {
-            document.documentElement.classList.toggle('disable-fix')
-            document.body.style.overflowY = 'hidden'
-        } else {
-            document.documentElement.classList.toggle('disable-fix')
+            document.documentElement.classList.remove('disable-fix')
             document.body.style.overflowY = 'initial'
+            return setMenuActive(bool)
+        } else {
+            document.documentElement.classList.add('disable-fix')
+            document.body.style.overflowY = 'hidden'
+            setMenuActive(bool)
         }
-    }, [menuActive]);
+    }
 
     return (
         <>

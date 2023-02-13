@@ -17,6 +17,7 @@ const HeaderMenu = ({ active, setActive, isLogin }) => {
                 pos='relative'
                 zIndex={{ base: 10, md: 10 }}
                 bg='accent.background'
+                maxW={{ xl: '1280px' }}
             >
                 <Flex
                     justify='space-between'
@@ -49,7 +50,7 @@ const HeaderMenu = ({ active, setActive, isLogin }) => {
                                 position='relative'
                                 width='30px'
                                 height='20px'
-                                onClick={setActive}
+                                onClick={() => setActive(!active)}
                                 _hover={{ cursor: 'pointer' }}
                             >
                                 <Box

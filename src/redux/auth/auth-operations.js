@@ -26,7 +26,6 @@ export const login = createAsyncThunk(
       const data = await api.login(credentials);
       return data;
     } catch ({ response }) {
-      errorToast('Something went wrong, try to reload the page');
       const error = {
         status: response.status,
         message: response.data.message,

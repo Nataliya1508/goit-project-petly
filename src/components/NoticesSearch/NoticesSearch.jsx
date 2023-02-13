@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { FilterInput } from 'shared/components';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,8 @@ const NoticesSearch = ({submitFunction}) => {
   const searchQuery = useSelector(getFilter);
   const [isSubmited, setIsSubmited] = useState(false);
   const { categoryName } = useParams();
+  const location = useLocation().pathname;
+  console.log(location);
 
 
   useEffect(()=>{
@@ -19,6 +21,11 @@ const NoticesSearch = ({submitFunction}) => {
       setIsSubmited(false);
     }
   },[searchQuery]);
+
+  useEffect(()=>{
+    dispatch(setFilter(""));
+    setIsSubmited(false);
+  },[dispatch, location]);
 
   const handleChange = e => {
     const { value } = e.target;

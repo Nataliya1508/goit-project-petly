@@ -46,38 +46,38 @@ export const App = () => {
   return (
     <>
       {/* {!isLoading && ( */}
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
 
-            <Route
-              path="login"
-              element={
-                <RedirectedRoute redirectTo="/user" component={<Login />} />
-              }
-            />
-            <Route
-              path="register"
-              element={
-                <RedirectedRoute redirectTo="/user" component={<Register />} />
-              }
-            />
-            <Route path="recovery" element={<Reset />} />
-            <Route path="recovery/:recoveryToken" element={<ResetPassword />} />
+          <Route
+            path="login"
+            element={
+              <RedirectedRoute redirectTo="/user" component={<Login />} />
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <RedirectedRoute redirectTo="/user" component={<Register />} />
+            }
+          />
+          <Route path="recovery" element={<Reset />} />
+          <Route path="recovery/:recoveryToken" element={<ResetPassword />} />
 
-            <Route path="news" element={<News />} />
-            <Route path="notices/:categoryName" element={<Notices />} />
+          <Route path="news" element={<News />} />
+          <Route path="notices/:categoryName" element={<Notices />} />
 
-            <Route path="friends" element={<OurFriends />} />
-            <Route
-              path="user"
-              element={
-                <PrivateRoute redirectTo="/login" component={<UserAccount />} />
-              }
-            />
-            <Route path="*" element={<h1>Page Not Found 🥶</h1>} />
-          </Route>
-        </Routes>
+          <Route path="friends" element={<OurFriends />} />
+          <Route
+            path="user"
+            element={
+              <PrivateRoute redirectTo="/login" component={<UserAccount />} />
+            }
+          />
+          <Route path="*" element={<h1>Page Not Found 🥶</h1>} />
+        </Route>
+      </Routes>
       {/* )} */}
     </>
   );

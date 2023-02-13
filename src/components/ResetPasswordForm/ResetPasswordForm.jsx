@@ -80,7 +80,7 @@ const ResetPasswordForm = () => {
               placeholder="Password"
               show={showPassword}
               handleClick={handleShowPasswordClick}
-              mb={8}
+              mb={'32px'}
             />
             <FormikControl
               control="input"
@@ -91,14 +91,13 @@ const ResetPasswordForm = () => {
               placeholder="Password"
               show={showPassword}
               handleClick={handleShowPasswordClick}
-              mb="0"
+              mb="40px"
             />
             <Button
               isDisabled={formik.isSubmitting}
               type="submit"
               controle="secondary"
               mb="40px"
-              mt="40px"
               h={{ base: '44px', xl: '48px' }}
               width={{ base: '280px', md: '448px', xl: '458px' }}
               isLoading={isLoading}

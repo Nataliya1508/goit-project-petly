@@ -89,7 +89,7 @@ const Notices = () => {
             fontWeight={'bold'}
             lineHeight={'short'}
             textAlign={'center'}
-            mb={7}
+            mb={'40px'}
           >
             Find your favorite pet
           </Heading>

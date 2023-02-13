@@ -53,7 +53,7 @@ const RegisterForm = () => {
                 {formik => (
                 <Box as={Form} position='relative' width={{base:'280px', md:'448px', xl:'458px'}} >
                     <StepSwitcher step={step} isDisabled={formik.isSubmitting} handleBackClick={handleBackClick}/>
-                    {step === 'step1' && <Button  controle='secondary' mb='10' mt='10' h={{base:'44px', xl:'12'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={async()=>{Object.keys(await formik.validateForm()).length === 0 ? setStep('step2') : formik.submitForm()}}>Next</Button> }
+                    {step === 'step1' && <Button  controle='secondary' mb='10' h={{base:'44px', xl:'12'}} width={{base:'280px', md:'448px', xl:'458px'}} onClick={async()=>{Object.keys(await formik.validateForm()).length === 0 ? setStep('step2') : formik.submitForm()}}>Next</Button> }
                     <Box display='flex' justifyContent='center' >
                         <Text 
                         fontFamily='body' 

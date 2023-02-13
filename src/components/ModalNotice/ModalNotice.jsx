@@ -310,7 +310,6 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
             >
               <b>Comments:</b> {notice?.comments}
             </Text>
-
             <Box
               display={[null, null, 'flex', 'flex']}
               justifyContent="flex-start"
@@ -374,6 +373,8 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
           right={'20px'}
           bg={'#FDF7F2'}
           borderRadius={'50%'}
+          _hover={{backgroundColor: 'accent.accentOrange'}}
+          _focus={{backgroundColor: 'accent.accentOrange'}}
         />
       </ModalContent>
       {/* ) : (  <Loader />

@@ -56,9 +56,11 @@ const News = () => {
       <Container>
         <Section>
           <Heading
-            as="h2"
+            as="h1"
             size={'3xl'}
             fontSize={{base: '2xl', md: '5xl'}}
+            fontWeight={'bold'}
+            lineHeight={'short'}
             textAlign={'center'}
             mb={{base: '7', lg: '10'}}
           >

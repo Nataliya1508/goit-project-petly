@@ -66,9 +66,9 @@ const LoginForm = () => {
                             placeholder='Password'
                             show={showPassword}
                             handleClick={handleShowPasswordClick}
-                            mb='0' 
+                            mb='40px' 
                         />
-                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' mt='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} isLoading={isRefreshing} loadingText={"Login"}>Login</Button>
+                        <Button isDisabled={formik.isSubmitting} type='submit' controle='secondary' mb='40px' h={{base:'44px', xl:'48px'}} width={{base:'280px', md:'448px', xl:'458px'}} isLoading={isRefreshing} loadingText={"Login"}>Login</Button>
                         <Box display='flex' justifyContent='center' mb={2}>
                             <Text 
                                 fontFamily='body' 

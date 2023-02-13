@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import {
-    Box,
     FormControl,
     FormLabel,
     Textarea,
@@ -9,10 +8,12 @@ import { Field } from 'formik';
   
 const CustomTextArea = ({label, name, id, mb='40px', ...rest}) => {
   return (
-    <Box  w={{base:'60', md:'394px'}} mb={mb}>
           <Field>
             {({ form }) => (
-              <FormControl isInvalid={form.errors[name] && form.touched[name]}>
+              <FormControl
+                isInvalid={form.errors[name] && form.touched[name]}
+                w={{base:'60', md:'394px'}}
+                mb={form.errors[name] && form.touched[name] ? `calc(${mb} - 15px)` : mb}>
                 {label  ? <FormLabel
                             display={'inline-flex'}
                             htmlFor={id}
@@ -30,6 +31,7 @@ const CustomTextArea = ({label, name, id, mb='40px', ...rest}) => {
                     variant='filled'
                     h={{base:'137px', md:'116px'}}
                     p={{base:'12px 14px', md:'16px 16px'}}
+                    mb={form.errors[name] && form.touched[name] ? '1px' : 0}
                     fontSize={{base:'sm', md:'md'}}
                     bg='accent.background'
                     border= "1px solid rgba(245, 146, 86, 0.5)"
@@ -38,13 +40,13 @@ const CustomTextArea = ({label, name, id, mb='40px', ...rest}) => {
                     {...rest}
                   />
                 <FormErrorMessage
-                  fontSize="xs">
+                  fontSize="xs"
+                  mt={0}>
                     {form.errors[name]}
                 </FormErrorMessage>
               </FormControl>
             )}
           </Field>
-    </Box>
   )
 }
 

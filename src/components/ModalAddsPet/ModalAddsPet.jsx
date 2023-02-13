@@ -110,7 +110,7 @@ const ModalAddsPet = ({ onClose }) => {
                 placeholder="Type breed"
                 id={breedId}
                 width={'60'}
-                mb={'10'}
+                mb={'40px'}
               />
               <Box
                 maxW={'none'}
@@ -161,6 +161,7 @@ const ModalAddsPet = ({ onClose }) => {
                 size={{ base: '208px', md: '182px' }}
                 borderRadius={{ base: '20px', md: '40px' }}
                 plusSize={{ base: '30%', md: '40%' }}
+                errPos={'center'}
               />
               <FormikControl
                 control="textarea"

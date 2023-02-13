@@ -124,7 +124,7 @@ const NoticesCategoryItem = ({
           >
             {categoryName === 'for-free'
               ? 'in good hands'
-              : categoryName.split('-').join(' ')}
+              : categoryName.split('-').join('/')}
           </Box>
           <FavoriteButton toggleFav={toggleFavorite} isFavorite={isFavorite} />
         </Box>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Heading, Box } from '@chakra-ui/react';
@@ -22,8 +22,6 @@ const Notices = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParams = searchParams.get('page');
   const page = pageParams === null ? 1 : pageParams;
-  const [totalList, setTotalList] = useState(0);
-
   const searchQuery = useSelector(getFilter).toLowerCase();
   const { categories, totalNotices } = useSelector(getAllNotices);
   const fiteredFavoriteNotices = useSelector(getFiltredFavoriteNotices);
@@ -35,25 +33,6 @@ const Notices = () => {
     const params = searchQuery !== "" ? { page: page === null ? 1 : page, query: searchQuery} : { page: page === null ? 1 : page, } 
     setSearchParams(params);
   }, [page, searchQuery, setSearchParams]);
-
-  useEffect(() => {
-    const selectedCategory = () => {
-      if (categoryName === 'favorite') {
-        return setTotalList(fiteredFavoriteNotices.length);
-      }
-      if (categoryName === 'own') {
-        return setTotalList(fiteredUserNotices.length);
-      }
-      return setTotalList(totalNotices);
-    };
-    selectedCategory();
-  }, [
-    categoryName,
-    fiteredFavoriteNotices.length,
-    fiteredUserNotices.length,
-    totalNotices,
-    totalList,
-  ]);
 
   useEffect(() => {
     if (searchQuery === '') {
@@ -85,9 +64,20 @@ const Notices = () => {
     [categories, categoryName, fiteredFavoriteNotices, fiteredUserNotices, paginatedNotices]
   );
 
+  const totalList = useMemo(
+    () =>
+      categoryName === 'favorite'
+      ? fiteredFavoriteNotices.length
+      : categoryName === 'own'
+      ? fiteredUserNotices.length
+      : totalNotices,
+    [categoryName, fiteredFavoriteNotices.length, fiteredUserNotices.length, totalNotices]
+  );
+
   const searchOnSubmitFunction = () => {
       dispatch(getNoticesByCategory({categoryName, page, searchQuery}));    
   } 
+
 
   return (
     <Box bgColor={'#FDF7F2'} h={{base:"calc(100vh - 74px)", md:"calc(100vh - 96px)", xl:"calc(100vh - 88px)"}} >
@@ -122,7 +112,7 @@ const Notices = () => {
           ) : (
             <Heading> Here is problem, try to reload the page</Heading>
           )}           
-          {!isLoading && totalNotices > 8 && (
+          {!isLoading && totalList > 8 && (
             <NoticesPagination total={totalList} currentPage={page} />
           )}
         </Section>

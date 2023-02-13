@@ -393,6 +393,8 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
               right={'20px'}
               bg={'#FDF7F2'}
               borderRadius={'50%'}
+              _hover={{backgroundColor: 'accent.accentOrange'}}
+              _focus={{backgroundColor: 'accent.accentOrange'}}
             />
             {/* <ModalBody p={'0'}>{children}</ModalBody> */}
           </>

@@ -231,13 +231,13 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
                         >
                           Email:
                         </FormLabel>
-                        {notice?.email ? (
+                        {notice?.owner?.email ? (
                           <Link
                             fontSize={['14px', '14px', '14px', '16px']}
                             lineHeight={'1.36'}
-                            href={`mailto: ${notice?.email}`}
+                            href={`mailto: ${notice?.owner?.email}`}
                           >
-                            {notice?.email}
+                            {notice?.owner?.email}
                           </Link>
                         ) : (
                           <Text
@@ -261,13 +261,13 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
                         >
                           Phone:
                         </FormLabel>
-                        {notice?.phone ? (
+                        {notice?.owner?.phone ? (
                           <Link
                             fontSize={['14px', '14px', '14px', '16px']}
                             lineHeight={'1.36'}
-                            href={`mailto: ${notice?.phone}`}
+                            href={`mailto: ${notice?.owner?.phone}`}
                           >
-                            {notice?.phone}
+                            {notice?.owner?.phone}
                           </Link>
                         ) : (
                           <Text

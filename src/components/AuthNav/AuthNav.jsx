@@ -13,7 +13,7 @@ const AuthNav = ({ onClick }) => {
         <Flex m='0 auto' align='center'>
             {authItems.map(({ href, text }) =>
                 <Link
-                    onClick={onClick}
+                    onClick={() => onClick(false)}
                     to={href}
                     key={href}
 

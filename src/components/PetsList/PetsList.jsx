@@ -17,11 +17,11 @@ const PetsList = () => {
     dispatch(deletePet(id))
     e.preventDefault()
   }
-  return  ( pets.length > 0 ?
-     <Box >
-      { pets.map(({ _id, name, birthday, breed, photo, comments }) => (
+  return (pets.length > 0 ?
+    <Box >
+      {pets.map(({ _id, name, birthday, breed, photo, comments }) => (
         <Flex
-          key = {_id}
+          key={_id}
           bgColor='accent.white'
           box-shadow="7px 4px 14px rgba(0, 0, 0, 0.11)"
           borderRadius="40px"
@@ -36,18 +36,21 @@ const PetsList = () => {
             bgColor='accent.background'
             borderRadius={{ base: '40px', md: '20px' }}>
             <Image
+              display='block'
+              maxW='initial'
               boxSize={{ base: '240px', md: '161px' }}
               borderRadius={{ base: '40px', md: '20px' }}
-              src={ photo ?? petDefaultAvatar}
-              alt="pet photo"/>
+              src={photo ?? petDefaultAvatar}
+              alt="pet photo" />
           </Box>
           <Box
             position="relative"
-            w={{ base: '235px', md: '471px', xl: '580px' }}
+            w='100%'
+            maxW={{ base: '235px', md: '471px', xl: '580px' }}
             mt={{ base: '20px', md: '0px' }}
           >
             <Box
-              onClick={(e) =>  onDeleteBtnClick(e, _id) }
+              onClick={(e) => onDeleteBtnClick(e, _id)}
               as="button"
               type="button"
               position="absolute"
@@ -85,9 +88,9 @@ const PetsList = () => {
                   fontWeight="600"
                   display="block"
                   mr="5px"
-                  >Name:
+                >Name:
                 </Text>
-                <Text  fontWeight="400">
+                <Text fontWeight="400">
                   {name}
                 </Text>
               </ListItem>
@@ -98,9 +101,9 @@ const PetsList = () => {
                   fontWeight="600"
                   display="block"
                   mr="5px"
-                  >Date of birth:
+                >Date of birth:
                 </Text>
-                <Text  fontWeight="400">
+                <Text fontWeight="400">
                   {birthday}
                 </Text>
               </ListItem>
@@ -111,9 +114,9 @@ const PetsList = () => {
                   fontWeight="600"
                   display="block"
                   mr="5px"
-                  >Breed:
+                >Breed:
                 </Text>
-                <Text  fontWeight="400">
+                <Text fontWeight="400">
                   {breed}
                 </Text>
               </ListItem>
@@ -124,13 +127,13 @@ const PetsList = () => {
                   fontWeight="600"
                   display="block"
                   mr="5px"
-                  >Comments:
+                >Comments:
                 </Text>
-                  <Text
-                    fontWeight="400"
-                    lineHeight={{ base: '1.57', md: '1.35' }}
-                    >{comments}
-                  </Text>
+                <Text
+                  fontWeight="400"
+                  lineHeight={{ base: '1.57', md: '1.35' }}
+                >{comments}
+                </Text>
               </ListItem>
             </List>
           </Box>
@@ -149,8 +152,8 @@ const PetsList = () => {
       w={{ base: '280px', md: '704px', xl: '821px' }}>
       <Text mx='auto'> You are have no pets yet </Text>
     </Flex>
-   
-    )
+
+  )
 };
 
 export default PetsList;

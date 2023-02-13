@@ -136,7 +136,6 @@ export const addNewPet = createAsyncThunk(
       }
 
       const data = await api.addPet(newPet);
-      successToast('Pet was successfully created');
       return data;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');

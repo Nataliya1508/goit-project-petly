@@ -74,8 +74,10 @@ const CustomInputFile = ({id, name, plusSize='30%', mb: marginbot='20px', mx='au
                         name={name}
                         onChange={(e) =>{
                                 form.setFieldValue(`${name}`, e.currentTarget.files[0])
+                                if (form.touched[name] && form.errors[name]){
+                                    return
+                                }
                                 onImageChange(e)
-                                form.validateField(`${name}`)
                             }
                           }
                         type='file'

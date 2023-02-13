@@ -4,9 +4,14 @@ import { errorToast, successToast } from 'shared/components';
 
 export const getNoticesByCategory = createAsyncThunk(
   'notices/getNoticesByCategory',
-  async ({categoryName, page, limit, searchQuery}, { rejectWithValue }) => {
+  async ({ categoryName, page, limit, searchQuery }, { rejectWithValue }) => {
     try {
-      const result = await api.getNoticesByCategory(categoryName, page, limit, searchQuery);
+      const result = await api.getNoticesByCategory(
+        categoryName,
+        page,
+        limit,
+        searchQuery
+      );
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');
@@ -97,6 +102,7 @@ export const addToFavorites = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await api.addToFavorites(id);
+      successToast('Pet was successfully added to favorite !');
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');
@@ -134,6 +140,7 @@ export const removeFromFavorites = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const result = await api.removeFromFavorites(id);
+      successToast('Pet was successfully removed to favorite !');
       return result;
     } catch ({ response }) {
       errorToast('Something went wrong, try to reload the page');

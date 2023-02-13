@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import petTemlate from '../../media/no_img.png';
 import moment from 'moment';
 import { getIsLoggedIn, getUser } from '../../redux/auth/auth-selectors';
@@ -9,6 +8,7 @@ import {
   removeFromFavorites,
   deleteMyNotice,
 } from '../../redux/notices/notices-operations';
+// import CustomButton from '';
 import {
   Text,
   Box,
@@ -19,9 +19,15 @@ import {
   CardFooter,
   useDisclosure,
 } from '@chakra-ui/react';
-import { CardButton, FavoriteButton, successToast } from 'shared/components';
+import {
+  CardButton,
+  errorToast,
+  FavoriteButton,
+  CustomButton,
+} from 'shared/components';
 import ModalNotice from '../ModalNotice/ModalNotice';
 import { addFavToUser, removeFavFromUser } from 'redux/auth/auth-slice';
+import CustomModal from 'shared/components/Modal/Modal';
 
 moment().format();
 
@@ -38,6 +44,11 @@ const NoticesCategoryItem = ({
 }) => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDeleteAlertOpen,
+    onOpen: onDeleteAlertOpen,
+    onClose: onDeleteAlertClose,
+  } = useDisclosure();
   const isLoggedIn = useSelector(getIsLoggedIn);
   const { _id, favorites } = useSelector(getUser);
 
@@ -53,23 +64,18 @@ const NoticesCategoryItem = ({
 
   const toggleFavorite = () => {
     if (!isLoggedIn) {
-      toast.warn('You must sign in for add to favorites!');
+      errorToast('You must sign in for add to favorites!');
       return;
     }
     if (!isFavorite) {
-      console.log('add');
       dispatch(addToFavorites(id));
       dispatch(addFavToUser(id));
-      successToast('Pet was successfully added to favorite !');
       setIsFavorite(true);
       return;
     }
     if (isFavorite) {
-      console.log('remove');
       dispatch(removeFromFavorites(id));
-
       dispatch(removeFavFromUser(id));
-      successToast('Pet was successfully removed to favorite !');
       setIsFavorite(false);
       return;
     }
@@ -185,14 +191,27 @@ const NoticesCategoryItem = ({
         <CardButton onClick={onOpen}>Learn more</CardButton>
 
         {isOwner && (
-          <CardButton
-            mt={'12px'}
-            position={'relative'}
-            controle="delete"
-            onClick={handlerDeleteNotice}
-          >
-            Delete
-          </CardButton>
+          <>
+            <CardButton
+              mt={'12px'}
+              position={'relative'}
+              controle="delete"
+              onClick={onDeleteAlertOpen}
+            >
+              Delete
+            </CardButton>
+            <CustomModal
+              isOpen={isDeleteAlertOpen}
+              onClose={onDeleteAlertClose}
+              title="Are you sure you want to delete this notice?"
+            >
+              <Box textAlign={'center'}>
+                <CustomButton onClick={handlerDeleteNotice}>
+                  Delete
+                </CustomButton>
+              </Box>
+            </CustomModal>
+          </>
         )}
         <ModalNotice
           isOpen={isOpen}

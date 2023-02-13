@@ -110,7 +110,7 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
                 >
                   {notice?.categoryName === 'for-free'
                     ? 'in good hands'
-                    : notice?.categoryName.split('-').join(' ')}
+                    : notice?.categoryName.split('-').join('/')}
                 </Text>
               </Box>
 
@@ -265,7 +265,7 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
                           <Link
                             fontSize={['14px', '14px', '14px', '16px']}
                             lineHeight={'1.36'}
-                            href={`mailto: ${notice?.owner?.phone}`}
+                            href={`tel: ${notice?.owner?.phone}`}
                           >
                             {notice?.owner?.phone}
                           </Link>

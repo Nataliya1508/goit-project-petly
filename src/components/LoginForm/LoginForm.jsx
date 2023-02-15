@@ -27,7 +27,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     const authData = { email: values.email, password: values.password };
-    const data = await dispatch(login(authData));
+    const data = dispatch(login(authData));
     if (data.type === 'auth/login/fulfilled') {
       resetForm();
     }

@@ -13,16 +13,19 @@ import {
   successToast,
 } from 'shared/components';
 import { addNoticeInitialState, addNoticeSchema } from './index';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 const ModalAddsNotice = ({ onClose }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getNoticesLoading);
-  const location = useLocation();
-  const category = useMemo(
-    () => location.pathname.split('/')[2],
-    [location.pathname]
-  );
+  // const location = useLocation();
+  const { categoryName: category } = useParams();
+  console.log(category);
+  // const category = useMemo(
+  //   () => location.pathname.split('/')[2],
+  //   [location.pathname]
+  // );
   const [firstStep, setFirstStep] = useState(true);
 
   const titleId = useMemo(() => nanoid(), []);
@@ -258,7 +261,7 @@ const ModalAddsNotice = ({ onClose }) => {
                 >
                   {isLoading ? (
                     <>
-                      Adding{' '}
+                      Adding
                       <Spinner
                         emptyColor="#FF6101"
                         color="#F5F5F5"

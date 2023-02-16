@@ -31,7 +31,7 @@ const GoogleSignIn = () => {
         href={`https://goit-project-petly-backend.onrender.com/api/users/google`}
         target="_self"
       >
-        <GoogleIcon />
+        <GoogleIcon boxSize={'7'} />
       </Link>
     </Box>
   );

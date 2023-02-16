@@ -1,7 +1,8 @@
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useSearchParams } from 'react-router-dom';
 import { getCurrentUser } from 'redux/auth/auth-operations';
+import { addGoogleToken } from 'redux/auth/auth-slice';
 // import { getIsRefreshing } from 'redux/auth/auth-selectors';
 import { PrivateRoute } from './SecureRoutes/PrivatRoute';
 import { RedirectedRoute } from './SecureRoutes/RedirectedRoute';
@@ -36,12 +37,17 @@ const UserAccount = lazy(() =>
 );
 
 export const App = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
-  // const isLoading = useSelector(getIsRefreshing);
+  const googleToken = searchParams.get('token');
 
   useEffect(() => {
+    if (googleToken) {
+      dispatch(addGoogleToken(googleToken));
+      setSearchParams({});
+    }
     dispatch(getCurrentUser());
-  }, [dispatch]);
+  }, [dispatch, googleToken, setSearchParams]);
 
   return (
     <>

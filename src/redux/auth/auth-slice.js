@@ -62,6 +62,17 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         handleRejected(state, action);
       })
+
+      // .addCase(setGoogleToken.pending, (state, action) => {
+      //   handlePending(state);
+      // })
+      // .addCase(setGoogleToken.fulfilled, (state, action) => {
+      //   state.token = payload.token;
+      // })
+      // .addCase(setGoogleToken.rejected, (state, action) => {
+      //   handleRejected(state, action);
+      // })
+
       .addCase(logout.pending, (state, _) => {
         handlePending(state);
       })
@@ -135,7 +146,11 @@ const authSlice = createSlice({
       const index = state.user.favorites.indexOf(action.payload);
       state.user.favorites.splice(index, 1);
     },
+    addGoogleToken(state, action) {
+      state.token = action.payload;
+    },
   },
 });
-export const { addFavToUser, removeFavFromUser } = authSlice.actions;
+export const { addFavToUser, removeFavFromUser, addGoogleToken } =
+  authSlice.actions;
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);

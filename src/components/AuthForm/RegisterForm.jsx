@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heading, Box, Text } from '@chakra-ui/react';
+import { Heading, Box, Text, Divider } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Button } from 'shared/components';
@@ -85,20 +85,38 @@ const RegisterForm = () => {
               handleBackClick={handleBackClick}
             />
             {step === 'step1' && (
-              <Button
-                aria-label="next"
-                controle="secondary"
-                mb="10"
-                h={{ base: '44px', xl: '12' }}
-                width={{ base: '280px', md: '448px', xl: '458px' }}
-                onClick={async () => {
-                  Object.keys(await formik.validateForm()).length === 0
-                    ? setStep('step2')
-                    : formik.submitForm();
-                }}
-              >
-                Next
-              </Button>
+              <>
+                <Button
+                  aria-label="next"
+                  controle="secondary"
+                  mb="10"
+                  h={{ base: '44px', xl: '12' }}
+                  width={{ base: '280px', md: '448px', xl: '458px' }}
+                  onClick={async () => {
+                    Object.keys(await formik.validateForm()).length === 0
+                      ? setStep('step2')
+                      : formik.submitForm();
+                  }}
+                >
+                  Next
+                </Button>
+                <Divider />
+                <Box textAlign={'center'} mb={'7'}>
+                  <Text
+                    fontFamily="body"
+                    fontSize="sm"
+                    fontWeight="normal"
+                    lineHeight="1.33"
+                    letterSpacing="0.04em"
+                    color="accent.grey"
+                    textAlign="center"
+                    my={'3.5'}
+                  >
+                    Or use alternative
+                  </Text>
+                  <GoogleSignIn />
+                </Box>
+              </>
             )}
             <Box display="flex" justifyContent="center">
               <Text
@@ -126,7 +144,6 @@ const RegisterForm = () => {
                 <Link to="/login">Login</Link>
               </Box>
             </Box>
-            <GoogleSignIn />
           </Box>
         )}
       </Formik>

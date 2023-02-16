@@ -5,6 +5,7 @@ import { logout } from 'redux/auth/auth-operations';
 
 const Logout = () => {
   const dispatch = useDispatch();
+
   const onLogoutClick = () => {
     dispatch(logout());
   };

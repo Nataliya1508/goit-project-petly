@@ -10,6 +10,7 @@ import { Button, FormikControl } from 'shared/components';
 import { loginYupSchema } from 'schemas/validationYupSchemas';
 import { login } from 'redux/auth/auth-operations';
 import { errorToast } from 'shared/components/Toast';
+import GoogleSignIn from 'components/GoogleSignIn/GoogleSignIn';
 
 const LoginForm = () => {
   const isRefreshing = useSelector(getIsRefreshing);
@@ -27,7 +28,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     const authData = { email: values.email, password: values.password };
-    const data = await dispatch(login(authData));
+    const data = dispatch(login(authData));
     if (data.type === 'auth/login/fulfilled') {
       resetForm();
     }
@@ -155,6 +156,7 @@ const LoginForm = () => {
           </Box>
         )}
       </Formik>
+      <GoogleSignIn />
     </Box>
   );
 };

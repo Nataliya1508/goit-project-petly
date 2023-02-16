@@ -10,6 +10,7 @@ import { Button, FormikControl } from 'shared/components';
 import { loginYupSchema } from 'schemas/validationYupSchemas';
 import { login } from 'redux/auth/auth-operations';
 import { errorToast } from 'shared/components/Toast';
+import GoogleSignIn from 'components/GoogleSignIn/GoogleSignIn';
 
 const LoginForm = () => {
   const isRefreshing = useSelector(getIsRefreshing);
@@ -155,6 +156,7 @@ const LoginForm = () => {
           </Box>
         )}
       </Formik>
+      <GoogleSignIn />
     </Box>
   );
 };

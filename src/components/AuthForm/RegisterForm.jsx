@@ -9,6 +9,7 @@ import StepSwitcher from 'components/AuthForm/StepSwitcher/StepSwitcher';
 import { regesterYupSchema } from 'schemas/validationYupSchemas';
 import { login, register } from 'redux/auth/auth-operations';
 import { errorToast } from 'shared/components/Toast';
+import GoogleSignIn from 'components/GoogleSignIn/GoogleSignIn';
 
 const RegisterForm = () => {
   const [step, setStep] = useState('step1');
@@ -125,6 +126,7 @@ const RegisterForm = () => {
                 <Link to="/login">Login</Link>
               </Box>
             </Box>
+            <GoogleSignIn />
           </Box>
         )}
       </Formik>

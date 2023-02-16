@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heading, Box, Text } from '@chakra-ui/react';
+import { Heading, Box, Text, Divider } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -101,6 +101,22 @@ const LoginForm = () => {
             >
               Login
             </Button>
+            <Divider />
+            <Box textAlign={'center'} mb={'7'}>
+              <Text
+                fontFamily="body"
+                fontSize="sm"
+                fontWeight="normal"
+                lineHeight="1.33"
+                letterSpacing="0.04em"
+                color="accent.grey"
+                textAlign="center"
+                my={'3.5'}
+              >
+                Or use alternative
+              </Text>
+              <GoogleSignIn />
+            </Box>
             <Box display="flex" justifyContent="center" mb={2}>
               <Text
                 fontFamily="body"
@@ -156,7 +172,6 @@ const LoginForm = () => {
           </Box>
         )}
       </Formik>
-      <GoogleSignIn />
     </Box>
   );
 };

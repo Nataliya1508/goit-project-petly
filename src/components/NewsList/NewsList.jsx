@@ -4,10 +4,10 @@ export const NewsList = ({ news }) => {
   return (
     <SimpleGrid
       justifyItems={'center'}
-      maxW={{md: '704px', lg: '940px', xl: '1240px',}}
+      maxW={{ md: '704px', lg: '940px', xl: '1240px' }}
       mt={'60px'}
       columns={{ base: 1, md: 2, xl: 3 }}
-      spacing={{base: '12', md: '60px'}}
+      spacing={{ base: '12', md: '60px' }}
       p={2}
       ml={'auto'}
       mr={'auto'}
@@ -15,7 +15,7 @@ export const NewsList = ({ news }) => {
       {news.map(({ _id, title, description, date, url }) => (
         <Box
           position={'relative'}
-          maxWidth={{base: '330px', lg: '394px'}}
+          maxWidth={{ base: '330px', lg: '394px' }}
           p={2}
           transitionProperty={'box-shadow'}
           transitionDuration={'250ms'}
@@ -32,7 +32,7 @@ export const NewsList = ({ news }) => {
           }}
           _hover={{
             shadow: 'md',
-            }}
+          }}
           key={_id}
         >
           <Heading
@@ -59,14 +59,14 @@ export const NewsList = ({ news }) => {
             display={'flex'}
             justifyContent="space-between"
             alignItems={'center'}
-            mt={{base: '5', lg: '10'}}
+            mt={{ base: '5', lg: '10' }}
           >
             <Text
               fontSize={'md'}
               color={'rgba(17, 17, 17, 0.6)'}
               lineHeight={'short'}
             >
-              {date?.split("-").reverse().join("/")}
+              {date?.split('-').reverse().join('/')}
             </Text>
             <Link
               position={'relative'}

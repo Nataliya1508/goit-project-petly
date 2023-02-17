@@ -50,19 +50,24 @@ const News = () => {
   };
 
   return (
-    <Box  
-    h={{base:"calc(100vh - 74px)", md:"calc(100vh - 96px)", xl:"calc(100vh - 88px)"}} 
-    bg='accent.background'>
+    <Box
+      h={{
+        base: 'calc(100vh - 74px)',
+        md: 'calc(100vh - 96px)',
+        xl: 'calc(100vh - 88px)',
+      }}
+      bg="accent.background"
+    >
       <Container>
         <Section>
           <Heading
             as="h1"
             size={'3xl'}
-            fontSize={{base: '2xl', md: '5xl'}}
+            fontSize={{ base: '2xl', md: '5xl' }}
             fontWeight={'bold'}
             lineHeight={'short'}
             textAlign={'center'}
-            mb={{base: '7', lg: '10'}}
+            mb={{ base: '7', lg: '10' }}
           >
             News
           </Heading>

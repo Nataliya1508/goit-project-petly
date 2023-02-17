@@ -50,7 +50,6 @@ const ModalAddsPet = ({ onClose }) => {
     newPet.append('breed', breed.trim());
     newPet.append('photo', photo);
     newPet.append('comments', comments.trim());
-    console.log();
     dispatch(addNewPet(newPet))
       .then(({ error }) => {
         if (error) {

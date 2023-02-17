@@ -25,8 +25,7 @@ const UserData = () => {
     const newPhoto = new FormData();
     newPhoto.append('avatar', e.target.files[0]);
     setIsLoading(true);
-    dispatch(updateUserAvatar(newPhoto));
-    setIsLoading(false);
+    dispatch(updateUserAvatar(newPhoto)).finally(() => setIsLoading(false));
   };
 
   return (

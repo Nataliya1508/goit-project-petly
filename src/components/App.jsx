@@ -39,6 +39,7 @@ const UserAccount = lazy(() =>
 export const App = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
+  // const isLoading = useSelector(getIsRefreshing);
   const googleToken = searchParams.get('token');
 
   useEffect(() => {

@@ -47,7 +47,6 @@ const ModalNotice = ({ isOpen, onClose, id, toggleFavorite, favorite }) => {
         borderRadius={['20px', null, '20px', '40px']}
         minH={'md'}
         id="12123132213"
-        // {...rest}
       >
         {!isLoading ? (
           <>
